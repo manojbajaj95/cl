@@ -123,7 +123,7 @@ Status values:
 
 ## Patterns in the kills
 
-- **Lesson-value claims must beat a temperature-matched no-lesson arm.** In G1/Q2 an entropy-matched temperature reproduced ~95% of per-start lesson effects (PR #27). Split-half reliability over unbalanced start sets measures the start mix, not noise. [source: reviewer; added: 2026-11-24]
+- **Lesson-value claims must beat a temperature-matched no-lesson arm.** In G1/Q2 an entropy-matched temperature reproduced ~95% of per-start lesson effects (PR #27). Split-half reliability over unbalanced start sets measures the start mix, not noise.
 - **Anomaly mining:** an idea mined from a pilot surprise must first replicate that surprise at ≥ 10 seeds. Q1 (from PR #12) and P1 (from PR #11) both died at that gate.
 
 - **Noisy ground truth:** when truth comes from fresh rollouts, report its split-half reliability first; G1's truth (ρ 0.16 with exact success) made the test unpassable.

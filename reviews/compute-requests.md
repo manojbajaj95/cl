@@ -15,6 +15,8 @@ These are the active or gated pilots from [idea-ledger.md](idea-ledger.md) whose
 - Functional syndromes
 - P3's synthetic replication, if kept small
 
+**Every pilot that makes a lesson-value claim also runs a temperature-matched no-lesson arm** (T fit by entropy matching on source tasks only; see A3 in [PR #27](https://github.com/manojbajaj95/cl/pull/27)).
+
 ## Which tier-1 pilots can run on OpenRouter free models (about 50 requests/day)
 
 Call counts assume about 3–5 calls per agent episode. Free endpoints generally don't return token log-probs, so any arm that needs log-probs still needs a local model.
