@@ -44,3 +44,10 @@ Rerun with a harder (nonlinear-teacher) task stream, in `pilots/noether_check.py
 - **Both measured LLM regimes are degenerate.** With real units the self-gate rejects every defect (α_D = 0, so R = 0). With made-up units it rejects everything (α_S ≈ 0, so learning stops). No real setting with an intermediate R has been found, so the GPU test currently has nothing to predict.
 - **Assumptions to test.** τ independent of how many defects are retrieved; uniform retrieval (similarity retrieval clusters defects); no deduplication or merging in the store.
 - **Next step.** First the ~30 GPU-h measurement step (plan item 1), chosen to find intermediate R, for example with a weaker verifier or partially checkable domains. Then one cheap k-sweep stream that tests prediction 2. Scale only if the collapse onset tracks R with AUC ≥ 0.75 there and the gate-precision control does worse.
+
+## Rolling review (three parallel proposers)
+
+| Idea | Verdict | Strongest control | Smallest falsifying test |
+|---|---|---|---|
+| Functional syndromes (coded key→value checks, sparse damage decode) | PASS, narrowed to one linear memory layer (MEMIT-edited MLP). Weight ECC exists only for hardware faults ([2602.00076](https://arxiv.org/abs/2602.00076), [2611.02042](https://arxiv.org/abs/2611.02042)) | Raw (key, value) replay of m pairs plus re-editing, and a dense random-projection sketch with least-squares decoding, both at equal bytes | Fine-tune a MEMIT-edited GPT-2-XL and measure e_i = ΔW·k_i. Dead if the top 10% of facts hold less than ~80% of the damage energy |
+| Functional sigma-delta low-bit updates | KILL | — | Combines error feedback ([2610.18139](https://arxiv.org/abs/2610.18139)) with subspace projection. It cannot beat full error feedback on protected drift, and its only gain is an O(r) debt buffer |
