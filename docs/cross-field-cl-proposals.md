@@ -54,6 +54,8 @@ Use a relevance score trained on old development streams to split student prefix
 
 **Prior art and scope.** [Adaptive multilevel splitting](https://doi.org/10.1080/07362990601139669) estimates rare-event risks; [continual MOPD replay](https://arxiv.org/abs/2611.02746) replays earlier domains against the previous student; [SPOT](https://arxiv.org/abs/2608.04419) probes alternate continuations in OPD. The distinction to test is weighted branching for old-tail retention under the same budget, not branching as a novelty claim.
 
+**Pilot falsified the tested method.** [The pilot](https://github.com/manojbajaj95/cl/pull/12) found no clear rare-recovery gain over frequency-weighted prompt upsampling (−6.48 percentage points, 95% CI [−40.52, +27.55]) and worse common behavior than MOPD replay (−1.06 percentage points, 95% CI [−1.66, −0.47]). A new attempt needs both a substantially tighter rare-event estimate and a way to protect common behavior.
+
 ### 6. Sparse-write feasibility certificates
 
 **Hypothesis.** A routed model's structural zeros may identify masks with little room for safe updates before computing a dense Jacobian. For a fixed routing pattern and parameter mask `S`, a first-order direction on `S` can change a new scalar logit without changing protected logits iff the new Jacobian row adds rank to the old Jacobian restricted to `S`. Under generic coefficients with that support, the ranks of the old and augmented matrices equal the sizes of maximum bipartite matchings. Two matchings therefore test generic feasibility from supports alone.
@@ -106,7 +108,28 @@ For an executable toy stream, retain a few anchors to rule out constant-output c
 
 **Reviewer rejected:** with correct, executable atomic operations, directly composing them produces supervised hybrid labels from the same information.
 
+## Batch 6 · Interaction measurements and reachability forecasts
+
+### 11. Coded merge interference for irreversible consolidation
+
+**Hypothesis.** When independently useful adapters must be consolidated into one deployed model, some old-skill regressions depend on pairs of writes and are invisible to singleton audits. If a small set of interactions explains the damage, grouped signed merges can locate those interactions at lower audit cost than checking pairs individually, leaving budget to choose a better consolidation.
+
+Set a merge anchor and a fixed set of pending deltas. Audit both signs of a random vector of small coefficients and average the two probe scores. This cancels odd orders; at quadratic order the diagonal terms contribute only a constant because each coefficient's magnitude is fixed. Fit an intercept and sparse off-diagonal effects using pairwise products of the signs. Use the fit only for candidate selection; independently audit the chosen merge before the pending deltas are discarded. With zero higher-order terms, singleton audits cannot distinguish two score functions that differ only by a cross term. This is not true of grouped audits, and sparsity or a negligible higher-order residual is not guaranteed.
+
+**First falsifier.** In a CPU MLP stream with sequential adapter consolidation, measure whether the fitted model predicts held-out *positive* merges at realistic coefficients, using exhaustive pair audits on a small development stream only as a diagnostic. Compare it with receiver-local linear/logit surrogates, selective direct pair audits, and direct search or ridge on exactly the same grouped observations. Charge both signed audits, pending-delta bytes, and final verification. Kill if out-of-sample regression ranking fails, or if the same-budget controls tie old/new performance after repeated consolidation. A known-sparse quadratic recovered six interactions from 120 signed rows versus 276 pairs; this is only an algebra check, not evidence about real models.
+
+**Prior art and scope.** [Receiver-local linearization](https://arxiv.org/abs/2611.25000) forecasts merge interference with directional derivatives and can fit one merge through teacher matching. The proposed distinction is learning cross terms of black-box old-skill scores from grouped evaluations in a sequential, irreversible consolidation budget, not first-order merge prediction.
+
+### 12. Forecast-weighted write selection
+
+**Hypothesis.** Among writes matched for both observed new-task loss and old retention, the useful projected update directions depend on which residuals the next task is likely to require. The practice of maximizing unweighted reachability should be replaced by predicting finite-step adaptation gain using a shared, history-only forecast of those residuals.
+
+On a fixed probe set, let `K = G P Gᵀ` be the post-write kernel of the actual projected next-task learner. Estimate the next-target distribution using completed training tasks only. For each candidate let `M` be the conditional second moment of the forecast targets minus its own predicted probe outputs. With fixed Jacobian, stable squared-loss gradient descent and step `η`, expected `h`-step loss decrease is `tr(M [I − (I − ηK)^(2h)])/2`. The expression follows by propagating the residual through `h` steps; its directional weights and horizon differ from log determinant and a point-forecast one-step score. A two-mode linear sanity check gives different expected gains at equal log determinant and equal point-forecast gain. This does not validate forecasting on held-out streams.
+
+**First falsifier.** Reuse the reserve pilot's CPU task generator; match the candidate writes for old retention as well as current loss and actually use a projected next-task learner. First stop if the spread in measured next-task gain vanishes. Compare all choices with projected readiness using the exact same history and forecast draw budget, diagonal/isotropic covariance, and direct projected lookahead on sampled forecast tasks. Do not call an analytic shortcut on a linear toy a CL gain: if same-budget lookahead/readiness ties on held-out sequential streams, stop. Use shuffled and unrelated task shifts as negative controls. The [original pilot](https://github.com/manojbajaj95/cl/pull/9) already falsified the unprojected Gramian; this is a candidate replacement, not evidence that it works.
+
 ## Screened before submission
 
 - **Remove gradient holonomy:** [The Lie Bracket as an Early-Warning Signal for Catastrophic Forgetting](https://arxiv.org/abs/2611.20087) already makes the core connection between noncommuting task updates and forgetting. A diagnostic-only version is not distinct.
 - **Hidden relaxation modes after a matched checkpoint:** [Matched Specialization, Different Adaptation](https://arxiv.org/abs/2610.15830) already pairs output-matched histories and swaps Adam states to locate hidden adaptation effects. A Kovacs-style test alone would be too narrow to send.
+- **Contrastive old-teacher context:** [Repulsive and Attractive Teachers](https://arxiv.org/abs/2609.21561) already contrasts correct and incorrect teacher contexts on the same student rollout. Adding a continual replay stream would not establish a new distillation mechanism.
