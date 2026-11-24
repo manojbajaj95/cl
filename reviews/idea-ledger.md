@@ -76,6 +76,7 @@ Ambitious ideas that can't be tested yet. Move one to Survived when its unlock i
 
 | Idea | Source | Status | Why |
 |---|---|---|---|
+| Replay-deadline option: schedule target-blind replay by a predicted merge deadline (PR #110 idea 7) | Replay-deadlines node ([PR #113](https://github.com/manojbajaj95/cl/pull/113)) | KILLED (empirical) | Reviewer rerun of the node's linear probe (30 worlds): self-replay value decays smoothly with damage (self/label 0.80 → 0.11), with no merge cliff, so every K = 4 timing policy (fixed, before-severe, reactive, forecast) lands within 0.011 of the hindsight oracle; forecast vs fixed is +0.002 ± 0.002. Escrow (record before, replay after a damaging window), the part that survived, is +0.042 ± 0.009 over fixed self-replay but is an improvement on LwF/DER |
 | Noether memory (#1) | Batch 1 | KILLED | Reviewer rerun: SGD at lr 0.05 and SGD with momentum erase the payload. A non-conserved channel survives about as well at low LR, and a one-step rebalance erases it |
 | Gauge preconditioning (#2) | Batch 1 | KILLED | Rescaling only makes units more plastic. What remains is the known effective-LR effect |
 | Rational (power-law) forgetting (#3) | REGRADED: DOABLE (improvement) | KILLED (fix) | Must beat multi-timescale learners (Benna–Fusi, mixtures of LRs) that need no estimate of α **Regrade (2026-11-24):** testable and not done. First test (CPU): a power-law-decay learner against Benna–Fusi and an LR mixture at equal parameters, on a 20-task stream; dead if it doesn't beat both on retention AUC. |
