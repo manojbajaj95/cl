@@ -102,6 +102,7 @@ Status values:
 | Skill re-shelving, split-only hierarchy | Long-run proposer batch 2 (PR #16) | KILLED | Rebuild plus redirect keeps old paths valid (the HTTP 301 fix) and ties by construction; flat retrieval has no paths; stale-ID effect already shown for semantic IDs (2604.13273) |
 | PR #18 pre-killed ideas (13) | Memory-form proposer | KILLED (at proposal) | Reasons and covering papers are in PR #18 |
 | PR #20 harness pre-kills HK1–HK8 | Harness proposer | KILLED (at proposal) | Reasons and covering papers are in PR #20 (SAGE, GUARD, Masked Erosion, Harness Annealing, Mixture of Branches, SIM and others); reviewer agrees |
+| R1: consolidation erodes correctability (fix: counterfactual-context consolidation) | Long-run proposer batch 3 (PR #16) | KILLED (fold into double-dosing pilot) | The fix is KAFT-style counterfactual-context training (Li et al. 2022); 2610.02614 shows steerability declines under SFT and recognition tuning restores it. Multi-cycle erosion is logged in the double-dosing pilot: flip rate of a contradicting lesson at each cycle, matched on absorption; dead if the last cycle is not ≥ 15 points below cycle 1 |
 
 ## Patterns in the kills
 
