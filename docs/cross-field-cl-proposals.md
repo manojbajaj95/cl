@@ -76,6 +76,8 @@ The chain rule decomposes sequence KL into class-level KL plus expected within-c
 
 **First falsifier.** Continually train a small code model through an API or library migration that changes required syntax while preserving old effects under held-out inputs. Compare token KL, canonicalized token KL, and verifier/reward-only replay at matched execution calls and generated tokens. Kill if the old-pass vs. new-syntax frontier does not beat both canonicalized KL and execution-only replay; test misclassified side effects as a negative control. [OPSD theory](https://arxiv.org/abs/2610.05200) and [Purified OPSD](https://arxiv.org/abs/2607.02234) motivate separating useful teacher signal from incidental variation; the proposed advance is preserving executable outcome distributions under sequential change.
 
+**Pilot falsified the tested method.** [The CPU pilot](https://github.com/manojbajaj95/cl/pull/13) beat canonicalized token KL but did not beat execution-reward-only replay (retention/adoption hypervolume difference −0.0028, 95% CI [−0.0064, +0.0008]). It evaluated fixed completions and plain fine-tuning was near ceiling. A resubmit would need free generation and a stream where plain fine-tuning forgets.
+
 ### 8. Bounded-delay stability scheduling
 
 **Hypothesis.** With the same stream examples and update count, training order can determine how deep the temporary retention dip is. Keep a small deadline-bounded buffer and greedily choose the next example to counteract the running sum of estimated old-logit changes; flush near deadlines. Nothing is added, reweighted or dropped.
