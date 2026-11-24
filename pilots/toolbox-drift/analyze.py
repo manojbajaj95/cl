@@ -9,6 +9,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parent
 ARMS = ["tool", "tool+tests", "lesson", "lesson+tests", "none"]
 MEASURES = ["detect", "recover"]
+SECONDARY = ["wrong"]  # post hoc: wrong post-drift uses per unit
 
 
 def load(path):
@@ -36,6 +37,7 @@ def units(meta, eps):
         out.append(dict(api=api, kind=kind, uses=n, detect=det, recover=rec,
                         detect_ep=ep(det), recover_ep=ep(rec),
                         detect_censored=det > n, recover_censored=rec > n,
+                        wrong=sum(1 for r in uses if not r["ok"]),
                         silent_wrong=sum(1 for r in uses if not r["ok"] and not r["signals"])))
     return out
 
@@ -108,6 +110,7 @@ def main():
         row["detect_censored"] = sum(u["detect_censored"] for u in us)
         row["recover_censored"] = sum(u["recover_censored"] for u in us)
         row["silent_wrong"] = float(np.mean([u["silent_wrong"] for u in us]))
+        row["wrong"] = float(np.mean([u["wrong"] for u in us]))
         row["uses"] = float(np.mean([u["uses"] for u in us]))
         for k in ["pre_acc", "post_undrifted_acc", "false_flags", "llm_calls", "tokens"]:
             vals = [s[k] for s in ss if s[k] is not None]
@@ -118,7 +121,7 @@ def main():
     pairs += [(a, "none") for a in ARMS[:4]]
     for a, b in pairs:
         if any((b, s) in U for (x, s) in U if x == a):
-            contrasts[f"{b} - {a}"] = {m: contrast(U, a, b, m) for m in MEASURES}
+            contrasts[f"{b} - {a}"] = {m: contrast(U, a, b, m) for m in MEASURES + SECONDARY}
             for kind in ["breaking", "silent"]:
                 contrasts[f"{b} - {a} [{kind}]"] = {m: contrast(U, a, b, m, kind) for m in MEASURES}
     primary = contrasts.get("lesson+tests - tool+tests")

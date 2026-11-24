@@ -1,0 +1,182 @@
+{"meta": true, "arm": "none", "seed": 2, "drift": {"population": "breaking", "timezone": "breaking", "translate": "breaking", "order_items": "silent", "user_age": "silent", "holiday_count": "silent"}, "drift_at": 60, "temperature": 0.25, "model": "qwen2.5-coder-3b-instruct-q4_k_m.gguf"}
+{"t": 0, "proc": 9, "api": "weight", "ok": false, "error": false, "out": "15.600000000000001", "want": "6.6", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 1, "sec": 39.6}
+{"t": 1, "proc": 19, "api": "word_count", "ok": true, "error": false, "out": "36.5", "want": "36.5", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 2, "sec": 66.4}
+{"t": 2, "proc": 5, "api": "user_age", "ok": true, "error": false, "out": "276", "want": "276", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 3, "sec": 83.8}
+{"t": 3, "proc": 16, "api": "holiday_count", "ok": false, "error": false, "out": "10", "want": "80", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 4, "sec": 95.0}
+{"t": 4, "proc": 14, "api": "exchange_rate", "ok": false, "error": false, "out": "0.79", "want": "79.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 5, "sec": 106.3}
+{"t": 5, "proc": 0, "api": "weather", "ok": false, "error": false, "out": "39.56", "want": "39.6", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 6, "sec": 147.3}
+{"t": 6, "proc": 10, "api": "category", "ok": false, "error": false, "out": "{'category': 'furniture'}", "want": "'FURNITURE'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 7, "sec": 161.9}
+{"t": 7, "proc": 16, "api": "holiday_count", "ok": false, "error": false, "out": "21", "want": "168", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 8, "sec": 171.7}
+{"t": 8, "proc": 7, "api": "price", "ok": true, "error": false, "out": "98.89", "want": "98.89", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 9, "sec": 211.0}
+{"t": 9, "proc": 10, "api": "category", "ok": false, "error": false, "out": "{'category': 'garden'}", "want": "'GARDEN'", "signals": ["feedback"], "artifact": "da39a3ee", "drift": null, "llm_calls": 10, "sec": 223.1}
+{"t": 10, "proc": 16, "api": "holiday_count", "ok": false, "error": false, "out": "{'days': 10}", "want": "80", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 11, "sec": 233.4}
+{"t": 11, "proc": 17, "api": "distance", "ok": false, "error": false, "out": "178.125", "want": "178.1", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 12, "sec": 268.1}
+{"t": 12, "proc": 14, "api": "exchange_rate", "ok": true, "error": false, "out": "79.0", "want": "79.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 13, "sec": 291.0}
+{"t": 13, "proc": 11, "api": "order_items", "ok": false, "error": false, "out": "['p3', 10]", "want": "'p3'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 14, "sec": 338.5}
+{"t": 14, "proc": 14, "api": "exchange_rate", "ok": true, "error": false, "out": "8320.0", "want": "8320.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 15, "sec": 381.1}
+{"t": 15, "proc": 12, "api": "order_status", "ok": false, "error": false, "out": "False", "want": "True", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 16, "sec": 397.3}
+{"t": 16, "proc": 7, "api": "price", "ok": true, "error": false, "out": "1320.0", "want": "1320.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 17, "sec": 419.0}
+{"t": 17, "proc": 15, "api": "stock_price", "ok": false, "error": false, "out": "128.4", "want": "1284.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 18, "sec": 429.3}
+{"t": 18, "proc": 14, "api": "exchange_rate", "ok": true, "error": false, "out": "79.0", "want": "79.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 19, "sec": 449.2}
+{"t": 19, "proc": 17, "api": "distance", "ok": false, "error": false, "out": "140.625", "want": "140.6", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 20, "sec": 487.1}
+{"t": 20, "proc": 7, "api": "price", "ok": true, "error": false, "out": "21.45", "want": "21.45", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 21, "sec": 507.3}
+{"t": 21, "proc": 5, "api": "user_age", "ok": true, "error": false, "out": "732", "want": "732", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 22, "sec": 523.1}
+{"t": 22, "proc": 15, "api": "stock_price", "ok": false, "error": false, "out": "128.4", "want": "1284.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 23, "sec": 535.8}
+{"t": 23, "proc": 16, "api": "holiday_count", "ok": false, "error": false, "out": "10", "want": "80", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 24, "sec": 545.3}
+{"t": 24, "proc": 6, "api": "user_city", "ok": false, "error": false, "out": "'Hello from Perth!'", "want": "'Hello from Perth'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 25, "sec": 573.0}
+{"t": 25, "proc": 19, "api": "word_count", "ok": true, "error": false, "out": "36.5", "want": "36.5", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 26, "sec": 605.6}
+{"t": 26, "proc": 10, "api": "category", "ok": false, "error": false, "out": "{'category': 'grocery'}", "want": "'GROCERY'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 27, "sec": 619.9}
+{"t": 27, "proc": 6, "api": "user_city", "ok": false, "error": false, "out": "'Hello from Tokyo!'", "want": "'Hello from Tokyo'", "signals": ["feedback"], "artifact": "da39a3ee", "drift": null, "llm_calls": 28, "sec": 638.6}
+{"t": 28, "proc": 1, "api": "population", "ok": false, "error": false, "out": "0.7", "want": "700000", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 29, "sec": 650.4}
+{"t": 29, "proc": 3, "api": "coords", "ok": false, "error": false, "out": "'Northern Hemisphere'", "want": "'north'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 30, "sec": 678.6}
+{"t": 30, "proc": 7, "api": "price", "ok": true, "error": false, "out": "98.89", "want": "98.89", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 31, "sec": 698.9}
+{"t": 31, "proc": 1, "api": "population", "ok": true, "error": false, "out": "2100000.0", "want": "2100000", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 32, "sec": 712.7}
+{"t": 32, "proc": 1, "api": "population", "ok": false, "error": false, "out": "14.0", "want": "14000000", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 33, "sec": 719.7}
+{"t": 33, "proc": 5, "api": "user_age", "ok": true, "error": false, "out": "336", "want": "336", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 34, "sec": 742.0}
+{"t": 34, "proc": 2, "api": "timezone", "ok": true, "error": false, "out": "21", "want": "21", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 35, "sec": 775.1}
+{"t": 35, "proc": 0, "api": "weather", "ok": false, "error": false, "out": "{'temp_f': 61.519999999999996}", "want": "61.5", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 36, "sec": 806.7}
+{"t": 36, "proc": 0, "api": "weather", "ok": false, "error": false, "out": "{'temp_f': 39.56}", "want": "39.6", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 37, "sec": 831.8}
+{"t": 37, "proc": 5, "api": "user_age", "ok": true, "error": false, "out": "336", "want": "336", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 38, "sec": 867.3}
+{"t": 38, "proc": 0, "api": "weather", "ok": false, "error": false, "out": "{'temp_f': 70.34}", "want": "70.3", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 39, "sec": 903.8}
+{"t": 39, "proc": 7, "api": "price", "ok": true, "error": false, "out": "98.89", "want": "98.89", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 40, "sec": 930.1}
+{"t": 40, "proc": 0, "api": "weather", "ok": false, "error": false, "out": "39.56", "want": "39.6", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 41, "sec": 955.2}
+{"t": 41, "proc": 3, "api": "coords", "ok": false, "error": false, "out": "'Northern Hemisphere'", "want": "'north'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 42, "sec": 998.8}
+{"t": 42, "proc": 0, "api": "weather", "ok": false, "error": false, "out": "{'temp_f': 39.56}", "want": "39.6", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 43, "sec": 1024.1}
+{"t": 43, "proc": 19, "api": "word_count", "ok": false, "error": false, "out": "29.2", "want": "36.5", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 44, "sec": 1054.0}
+{"t": 44, "proc": 12, "api": "order_status", "ok": true, "error": false, "out": "False", "want": "False", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 45, "sec": 1069.8}
+{"t": 45, "proc": 7, "api": "price", "ok": true, "error": false, "out": "6.039000000000001", "want": "6.04", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 46, "sec": 1092.1}
+{"t": 46, "proc": 10, "api": "category", "ok": false, "error": false, "out": "'grocery'", "want": "'GROCERY'", "signals": ["feedback"], "artifact": "da39a3ee", "drift": null, "llm_calls": 47, "sec": 1102.1}
+{"t": 47, "proc": 4, "api": "user_email", "ok": true, "error": false, "out": "'corp.io'", "want": "'corp.io'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 48, "sec": 1118.3}
+{"t": 48, "proc": 10, "api": "category", "ok": false, "error": false, "out": "'garden'", "want": "'GARDEN'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 49, "sec": 1132.0}
+{"t": 49, "proc": 10, "api": "category", "ok": false, "error": false, "out": "{'category': 'toys'}", "want": "'TOYS'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 50, "sec": 1143.0}
+{"t": 50, "proc": 13, "api": "order_user", "ok": false, "error": false, "out": "{'user_id': 'u4'}", "want": "'CUST-u4'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 51, "sec": 1153.8}
+{"t": 51, "proc": 4, "api": "user_email", "ok": true, "error": false, "out": "'uni.edu'", "want": "'uni.edu'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 52, "sec": 1168.7}
+{"t": 52, "proc": 4, "api": "user_email", "ok": true, "error": false, "out": "'shop.net'", "want": "'shop.net'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 53, "sec": 1180.2}
+{"t": 53, "proc": 14, "api": "exchange_rate", "ok": true, "error": false, "out": "8320.0", "want": "8320.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 54, "sec": 1194.8}
+{"t": 54, "proc": 1, "api": "population", "ok": true, "error": false, "out": "9500000.0", "want": "9500000", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 55, "sec": 1209.8}
+{"t": 55, "proc": 14, "api": "exchange_rate", "ok": false, "error": false, "out": "83.2", "want": "8320.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 56, "sec": 1219.0}
+{"t": 56, "proc": 18, "api": "translate", "ok": false, "error": false, "out": "{'fr': 'pain'}", "want": "'Pain'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 57, "sec": 1228.2}
+{"t": 57, "proc": 19, "api": "word_count", "ok": false, "error": false, "out": "14.75", "want": "14.8", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 58, "sec": 1255.5}
+{"t": 58, "proc": 13, "api": "order_user", "ok": false, "error": false, "out": "{'user_id': 'u6'}", "want": "'CUST-u6'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 59, "sec": 1265.4}
+{"t": 59, "proc": 0, "api": "weather", "ok": false, "error": false, "out": "76.64", "want": "76.6", "signals": ["feedback"], "artifact": "da39a3ee", "drift": null, "llm_calls": 60, "sec": 1292.4}
+{"t": 60, "proc": 13, "api": "order_user", "ok": false, "error": false, "out": "{'user_id': 'u3'}", "want": "'CUST-u3'", "signals": ["feedback"], "artifact": "da39a3ee", "drift": null, "llm_calls": 61, "sec": 1320.2}
+{"t": 61, "proc": 2, "api": "timezone", "ok": true, "error": false, "out": "14", "want": "14", "signals": [], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 62, "sec": 1358.2}
+{"t": 62, "proc": 0, "api": "weather", "ok": false, "error": false, "out": "{'temp_f': 76.64}", "want": "76.6", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 63, "sec": 1382.1}
+{"t": 63, "proc": 3, "api": "coords", "ok": false, "error": false, "out": "'Northern Hemisphere'", "want": "'north'", "signals": ["feedback"], "artifact": "da39a3ee", "drift": null, "llm_calls": 64, "sec": 1424.1}
+{"t": 64, "proc": 14, "api": "exchange_rate", "ok": true, "error": false, "out": "79.0", "want": "79.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 65, "sec": 1445.5}
+{"t": 65, "proc": 12, "api": "order_status", "ok": true, "error": false, "out": "False", "want": "False", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 66, "sec": 1483.9}
+{"t": 66, "proc": 6, "api": "user_city", "ok": true, "error": false, "out": "'Hello from Perth'", "want": "'Hello from Perth'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 67, "sec": 1502.8}
+{"t": 67, "proc": 0, "api": "weather", "ok": false, "error": false, "out": "{'temp_f': 61.519999999999996}", "want": "61.5", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 68, "sec": 1529.8}
+{"t": 68, "proc": 16, "api": "holiday_count", "ok": false, "error": false, "out": "{'days': 168}", "want": "168", "signals": [], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 69, "sec": 1547.3}
+{"t": 69, "proc": 15, "api": "stock_price", "ok": false, "error": false, "out": "128.4", "want": "1284.0", "signals": ["feedback"], "artifact": "da39a3ee", "drift": null, "llm_calls": 70, "sec": 1557.9}
+{"t": 70, "proc": 3, "api": "coords", "ok": false, "error": false, "out": "'Northern Hemisphere'", "want": "'north'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 71, "sec": 1590.2}
+{"t": 71, "proc": 11, "api": "order_items", "ok": false, "error": true, "out": "None", "want": "'p3'", "signals": ["error"], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 72, "sec": 1622.0}
+{"t": 72, "proc": 13, "api": "order_user", "ok": false, "error": false, "out": "{'user_id': 'u4'}", "want": "'CUST-u4'", "signals": ["feedback"], "artifact": "da39a3ee", "drift": null, "llm_calls": 73, "sec": 1632.3}
+{"t": 73, "proc": 6, "api": "user_city", "ok": true, "error": false, "out": "'Hello from Tokyo'", "want": "'Hello from Tokyo'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 74, "sec": 1647.9}
+{"t": 74, "proc": 1, "api": "population", "ok": true, "error": false, "out": "2100000.0", "want": "2100000", "signals": [], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 75, "sec": 1661.9}
+{"t": 75, "proc": 14, "api": "exchange_rate", "ok": true, "error": false, "out": "8320.0", "want": "8320.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 76, "sec": 1680.7}
+{"t": 76, "proc": 19, "api": "word_count", "ok": true, "error": false, "out": "36.5", "want": "36.5", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 77, "sec": 1714.0}
+{"t": 77, "proc": 0, "api": "weather", "ok": false, "error": false, "out": "{'temp_f': 39.56}", "want": "39.6", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 78, "sec": 1738.9}
+{"t": 78, "proc": 2, "api": "timezone", "ok": false, "error": false, "out": "12.799999999999997", "want": "14", "signals": [], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 79, "sec": 1770.3}
+{"t": 79, "proc": 6, "api": "user_city", "ok": true, "error": false, "out": "'Hello from Tokyo'", "want": "'Hello from Tokyo'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 80, "sec": 1791.0}
+{"t": 80, "proc": 12, "api": "order_status", "ok": false, "error": false, "out": "False", "want": "True", "signals": ["feedback"], "artifact": "da39a3ee", "drift": null, "llm_calls": 81, "sec": 1818.3}
+{"t": 81, "proc": 11, "api": "order_items", "ok": false, "error": true, "out": "None", "want": "'p4'", "signals": ["error"], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 82, "sec": 1850.3}
+{"t": 82, "proc": 8, "api": "stock", "ok": true, "error": false, "out": "50", "want": "50", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 83, "sec": 1872.7}
+{"t": 83, "proc": 19, "api": "word_count", "ok": false, "error": false, "out": "14.75", "want": "14.8", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 84, "sec": 1900.6}
+{"t": 84, "proc": 6, "api": "user_city", "ok": true, "error": false, "out": "'Hello from Tokyo'", "want": "'Hello from Tokyo'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 85, "sec": 1915.4}
+{"t": 85, "proc": 15, "api": "stock_price", "ok": false, "error": false, "out": "7.65", "want": "76.5", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 86, "sec": 1925.9}
+{"t": 86, "proc": 15, "api": "stock_price", "ok": false, "error": false, "out": "128.4", "want": "1284.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 87, "sec": 1933.6}
+{"t": 87, "proc": 14, "api": "exchange_rate", "ok": true, "error": false, "out": "8320.0", "want": "8320.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 88, "sec": 1950.1}
+{"t": 88, "proc": 8, "api": "stock", "ok": true, "error": false, "out": "0", "want": "0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 89, "sec": 1966.3}
+{"t": 89, "proc": 15, "api": "stock_price", "ok": false, "error": true, "out": "None", "want": "1284.0", "signals": ["error"], "artifact": "da39a3ee", "drift": null, "llm_calls": 90, "sec": 1977.2}
+{"t": 90, "proc": 9, "api": "weight", "ok": false, "error": false, "out": "{'shipping_cost': 120.0}", "want": "29.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 91, "sec": 1998.9}
+{"t": 91, "proc": 15, "api": "stock_price", "ok": false, "error": false, "out": "128.4", "want": "1284.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 92, "sec": 2008.8}
+{"t": 92, "proc": 2, "api": "timezone", "ok": false, "error": false, "out": "4.399999999999999", "want": "21", "signals": ["feedback"], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 93, "sec": 2044.1}
+{"t": 93, "proc": 5, "api": "user_age", "ok": false, "error": false, "out": "23976", "want": "336", "signals": [], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 94, "sec": 2059.3}
+{"t": 94, "proc": 2, "api": "timezone", "ok": false, "error": false, "out": "-4.399999999999999", "want": "21", "signals": [], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 95, "sec": 2088.9}
+{"t": 95, "proc": 1, "api": "population", "ok": true, "error": false, "out": "9500000.0", "want": "9500000", "signals": [], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 96, "sec": 2101.6}
+{"t": 96, "proc": 12, "api": "order_status", "ok": true, "error": false, "out": "False", "want": "False", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 97, "sec": 2123.1}
+{"t": 97, "proc": 10, "api": "category", "ok": false, "error": false, "out": "{'category': 'furniture'}", "want": "'FURNITURE'", "signals": ["feedback"], "artifact": "da39a3ee", "drift": null, "llm_calls": 98, "sec": 2131.7}
+{"t": 98, "proc": 9, "api": "weight", "ok": false, "error": false, "out": "{'shipping_cost': 1.0}", "want": "5.2", "signals": ["feedback"], "artifact": "da39a3ee", "drift": null, "llm_calls": 99, "sec": 2153.0}
+{"t": 99, "proc": 13, "api": "order_user", "ok": false, "error": false, "out": "{'user_id': 'u4'}", "want": "'CUST-u4'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 100, "sec": 2161.5}
+{"t": 100, "proc": 7, "api": "price", "ok": true, "error": false, "out": "21.45", "want": "21.45", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 101, "sec": 2185.3}
+{"t": 101, "proc": 5, "api": "user_age", "ok": false, "error": false, "out": "{'months': 24036}", "want": "276", "signals": [], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 102, "sec": 2205.8}
+{"t": 102, "proc": 7, "api": "price", "ok": true, "error": false, "out": "1320.0", "want": "1320.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 103, "sec": 2232.3}
+{"t": 103, "proc": 11, "api": "order_items", "ok": false, "error": true, "out": "None", "want": "'p6'", "signals": ["error"], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 104, "sec": 2278.8}
+{"t": 104, "proc": 0, "api": "weather", "ok": false, "error": false, "out": "{'temp_f': 70.34}", "want": "70.3", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 105, "sec": 2317.5}
+{"t": 105, "proc": 5, "api": "user_age", "ok": false, "error": false, "out": "24036", "want": "276", "signals": [], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 106, "sec": 2336.4}
+{"t": 106, "proc": 15, "api": "stock_price", "ok": false, "error": false, "out": "128.4", "want": "1284.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 107, "sec": 2353.4}
+{"t": 107, "proc": 13, "api": "order_user", "ok": false, "error": false, "out": "{'user_id': 'u5'}", "want": "'CUST-u5'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 108, "sec": 2364.4}
+{"t": 108, "proc": 17, "api": "distance", "ok": true, "error": false, "out": "137.5", "want": "137.5", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 109, "sec": 2395.9}
+{"t": 109, "proc": 2, "api": "timezone", "ok": false, "error": false, "out": "12.799999999999997", "want": "14", "signals": [], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 110, "sec": 2430.8}
+{"t": 110, "proc": 6, "api": "user_city", "ok": false, "error": false, "out": "'Hello from Perth!'", "want": "'Hello from Perth'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 111, "sec": 2446.3}
+{"t": 111, "proc": 12, "api": "order_status", "ok": true, "error": false, "out": "True", "want": "True", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 112, "sec": 2476.6}
+{"t": 112, "proc": 16, "api": "holiday_count", "ok": false, "error": false, "out": "{'days': 80}", "want": "80", "signals": [], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 113, "sec": 2488.3}
+{"t": 113, "proc": 3, "api": "coords", "ok": false, "error": false, "out": "'Northern Hemisphere'", "want": "'north'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 114, "sec": 2517.2}
+{"t": 114, "proc": 6, "api": "user_city", "ok": false, "error": false, "out": "'Hello from Perth!'", "want": "'Hello from Perth'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 115, "sec": 2545.6}
+{"t": 115, "proc": 3, "api": "coords", "ok": false, "error": false, "out": "'Southern Hemisphere'", "want": "'south'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 116, "sec": 2577.3}
+{"t": 116, "proc": 6, "api": "user_city", "ok": true, "error": false, "out": "'Hello from Lima'", "want": "'Hello from Lima'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 117, "sec": 2594.2}
+{"t": 117, "proc": 18, "api": "translate", "ok": false, "error": false, "out": "{'translation': 'pain'}", "want": "'Pain'", "signals": [], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 118, "sec": 2603.2}
+{"t": 118, "proc": 19, "api": "word_count", "ok": true, "error": false, "out": "36.5", "want": "36.5", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 119, "sec": 2636.4}
+{"t": 119, "proc": 13, "api": "order_user", "ok": false, "error": false, "out": "{'user_id': 'u5'}", "want": "'CUST-u5'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 120, "sec": 2647.1}
+{"t": 120, "proc": 18, "api": "translate", "ok": false, "error": false, "out": "{'translation': 'pain'}", "want": "'Pain'", "signals": [], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 121, "sec": 2654.6}
+{"t": 121, "proc": 6, "api": "user_city", "ok": false, "error": false, "out": "'Hello from Tokyo!'", "want": "'Hello from Tokyo'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 122, "sec": 2667.4}
+{"t": 122, "proc": 15, "api": "stock_price", "ok": false, "error": true, "out": "None", "want": "76.5", "signals": ["error"], "artifact": "da39a3ee", "drift": null, "llm_calls": 123, "sec": 2677.5}
+{"t": 123, "proc": 15, "api": "stock_price", "ok": true, "error": false, "out": "1284.0", "want": "1284.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 124, "sec": 2702.2}
+{"t": 124, "proc": 16, "api": "holiday_count", "ok": true, "error": false, "out": "80", "want": "80", "signals": [], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 125, "sec": 2711.3}
+{"t": 125, "proc": 2, "api": "timezone", "ok": true, "error": false, "out": "13", "want": "13", "signals": [], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 126, "sec": 2734.5}
+{"t": 126, "proc": 12, "api": "order_status", "ok": false, "error": false, "out": "False", "want": "True", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 127, "sec": 2756.7}
+{"t": 127, "proc": 4, "api": "user_email", "ok": true, "error": false, "out": "'uni.edu'", "want": "'uni.edu'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 128, "sec": 2774.5}
+{"t": 128, "proc": 12, "api": "order_status", "ok": false, "error": false, "out": "False", "want": "True", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 129, "sec": 2791.0}
+{"t": 129, "proc": 4, "api": "user_email", "ok": true, "error": false, "out": "'uni.edu'", "want": "'uni.edu'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 130, "sec": 2816.2}
+{"t": 130, "proc": 14, "api": "exchange_rate", "ok": true, "error": false, "out": "8320.0", "want": "8320.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 131, "sec": 2852.6}
+{"t": 131, "proc": 17, "api": "distance", "ok": false, "error": false, "out": "176.25", "want": "176.2", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 132, "sec": 2880.9}
+{"t": 132, "proc": 6, "api": "user_city", "ok": false, "error": false, "out": "'Hello from Lima!'", "want": "'Hello from Lima'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 133, "sec": 2895.9}
+{"t": 133, "proc": 4, "api": "user_email", "ok": true, "error": false, "out": "'corp.io'", "want": "'corp.io'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 134, "sec": 2907.2}
+{"t": 134, "proc": 9, "api": "weight", "ok": false, "error": false, "out": "{'shipping_cost': 1.0}", "want": "5.2", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 135, "sec": 2932.3}
+{"t": 135, "proc": 10, "api": "category", "ok": false, "error": false, "out": "{'category': 'toys'}", "want": "'TOYS'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 136, "sec": 2942.4}
+{"t": 136, "proc": 9, "api": "weight", "ok": false, "error": false, "out": "1.2000000000000002", "want": "29.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 137, "sec": 2961.1}
+{"t": 137, "proc": 2, "api": "timezone", "ok": true, "error": false, "out": "14", "want": "14", "signals": [], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 138, "sec": 2988.7}
+{"t": 138, "proc": 16, "api": "holiday_count", "ok": false, "error": false, "out": "{'days': 168}", "want": "168", "signals": [], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 139, "sec": 2996.6}
+{"t": 139, "proc": 2, "api": "timezone", "ok": false, "error": false, "out": "5.2", "want": "13", "signals": ["feedback"], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 140, "sec": 3026.7}
+{"t": 140, "proc": 14, "api": "exchange_rate", "ok": true, "error": false, "out": "8320.0", "want": "8320.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 141, "sec": 3038.0}
+{"t": 141, "proc": 1, "api": "population", "ok": true, "error": false, "out": "14000000.0", "want": "14000000", "signals": [], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 142, "sec": 3049.0}
+{"t": 142, "proc": 12, "api": "order_status", "ok": false, "error": false, "out": "False", "want": "True", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 143, "sec": 3069.1}
+{"t": 143, "proc": 11, "api": "order_items", "ok": false, "error": true, "out": "None", "want": "'p5'", "signals": ["error"], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 144, "sec": 3094.8}
+{"t": 144, "proc": 11, "api": "order_items", "ok": false, "error": false, "out": "['p5', 2]", "want": "'p6'", "signals": [], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 145, "sec": 3121.2}
+{"t": 145, "proc": 9, "api": "weight", "ok": false, "error": false, "out": "{'shipping_cost': 1.2000000000000002}", "want": "29.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 146, "sec": 3138.4}
+{"t": 146, "proc": 14, "api": "exchange_rate", "ok": false, "error": false, "out": "83.2", "want": "8320.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 147, "sec": 3152.1}
+{"t": 147, "proc": 10, "api": "category", "ok": false, "error": false, "out": "{'category': 'garden'}", "want": "'GARDEN'", "signals": ["feedback"], "artifact": "da39a3ee", "drift": null, "llm_calls": 148, "sec": 3158.7}
+{"t": 148, "proc": 7, "api": "price", "ok": true, "error": false, "out": "1320.0", "want": "1320.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 149, "sec": 3174.4}
+{"t": 149, "proc": 11, "api": "order_items", "ok": false, "error": true, "out": "None", "want": "'p6'", "signals": ["error"], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 150, "sec": 3192.8}
+{"t": 150, "proc": 4, "api": "user_email", "ok": true, "error": false, "out": "'shop.net'", "want": "'shop.net'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 151, "sec": 3202.7}
+{"t": 151, "proc": 17, "api": "distance", "ok": false, "error": false, "out": "45.25", "want": "45.2", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 152, "sec": 3228.1}
+{"t": 152, "proc": 10, "api": "category", "ok": false, "error": false, "out": "{'category': 'toys'}", "want": "'TOYS'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 153, "sec": 3235.5}
+{"t": 153, "proc": 19, "api": "word_count", "ok": false, "error": false, "out": "14.75", "want": "14.8", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 154, "sec": 3259.9}
+{"t": 154, "proc": 9, "api": "weight", "ok": false, "error": false, "out": "{'shipping_cost': 0.549}", "want": "5.2", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 155, "sec": 3280.2}
+{"t": 155, "proc": 12, "api": "order_status", "ok": false, "error": false, "out": "False", "want": "True", "signals": ["feedback"], "artifact": "da39a3ee", "drift": null, "llm_calls": 156, "sec": 3299.6}
+{"t": 156, "proc": 11, "api": "order_items", "ok": false, "error": true, "out": "None", "want": "'p4'", "signals": ["error"], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 157, "sec": 3322.6}
+{"t": 157, "proc": 5, "api": "user_age", "ok": false, "error": false, "out": "23580", "want": "732", "signals": [], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 158, "sec": 3339.2}
+{"t": 158, "proc": 4, "api": "user_email", "ok": true, "error": false, "out": "'uni.edu'", "want": "'uni.edu'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 159, "sec": 3350.5}
+{"t": 159, "proc": 5, "api": "user_age", "ok": false, "error": false, "out": "23580", "want": "732", "signals": ["feedback"], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 160, "sec": 3364.0}
+{"t": 160, "proc": 13, "api": "order_user", "ok": false, "error": false, "out": "{'user_id': 'u4'}", "want": "'CUST-u4'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 161, "sec": 3375.8}
+{"t": 161, "proc": 7, "api": "price", "ok": true, "error": false, "out": "1320.0", "want": "1320.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 162, "sec": 3392.4}
+{"t": 162, "proc": 15, "api": "stock_price", "ok": false, "error": true, "out": "None", "want": "76.5", "signals": ["error"], "artifact": "da39a3ee", "drift": null, "llm_calls": 163, "sec": 3401.5}
+{"t": 163, "proc": 6, "api": "user_city", "ok": true, "error": false, "out": "'Hello from Perth'", "want": "'Hello from Perth'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 164, "sec": 3411.8}
+{"t": 164, "proc": 4, "api": "user_email", "ok": true, "error": false, "out": "'shop.net'", "want": "'shop.net'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 165, "sec": 3423.2}
+{"t": 165, "proc": 4, "api": "user_email", "ok": true, "error": false, "out": "'corp.io'", "want": "'corp.io'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 166, "sec": 3434.9}
+{"t": 166, "proc": 2, "api": "timezone", "ok": true, "error": false, "out": "13", "want": "13", "signals": [], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 167, "sec": 3456.3}
+{"t": 167, "proc": 7, "api": "price", "ok": true, "error": false, "out": "6.039000000000001", "want": "6.04", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 168, "sec": 3473.4}
+{"t": 168, "proc": 11, "api": "order_items", "ok": false, "error": false, "out": "['p4', 1]", "want": "'p5'", "signals": [], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 169, "sec": 3503.4}
+{"t": 169, "proc": 5, "api": "user_age", "ok": false, "error": false, "out": "23772", "want": "540", "signals": [], "artifact": "da39a3ee", "drift": "silent", "llm_calls": 170, "sec": 3512.7}
+{"t": 170, "proc": 8, "api": "stock", "ok": true, "error": false, "out": "3", "want": "3", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 171, "sec": 3520.1}
+{"t": 171, "proc": 18, "api": "translate", "ok": false, "error": false, "out": "{'translation': 'eau'}", "want": "'Eau'", "signals": [], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 172, "sec": 3523.9}
+{"t": 172, "proc": 19, "api": "word_count", "ok": false, "error": false, "out": "14.75", "want": "14.8", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 173, "sec": 3535.4}
+{"t": 173, "proc": 1, "api": "population", "ok": true, "error": false, "out": "2100000.0", "want": "2100000", "signals": [], "artifact": "da39a3ee", "drift": "breaking", "llm_calls": 174, "sec": 3542.6}
+{"t": 174, "proc": 15, "api": "stock_price", "ok": true, "error": false, "out": "1284.0", "want": "1284.0", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 175, "sec": 3547.4}
+{"t": 175, "proc": 19, "api": "word_count", "ok": true, "error": false, "out": "36.5", "want": "36.5", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 176, "sec": 3558.5}
+{"t": 176, "proc": 17, "api": "distance", "ok": false, "error": false, "out": "45.25", "want": "45.2", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 177, "sec": 3570.4}
+{"t": 177, "proc": 12, "api": "order_status", "ok": false, "error": false, "out": "False", "want": "True", "signals": ["feedback"], "artifact": "da39a3ee", "drift": null, "llm_calls": 178, "sec": 3578.6}
+{"t": 178, "proc": 12, "api": "order_status", "ok": false, "error": false, "out": "False", "want": "True", "signals": ["feedback"], "artifact": "da39a3ee", "drift": null, "llm_calls": 179, "sec": 3584.3}
+{"t": 179, "proc": 3, "api": "coords", "ok": false, "error": false, "out": "'Southern Hemisphere'", "want": "'south'", "signals": [], "artifact": "da39a3ee", "drift": null, "llm_calls": 180, "sec": 3596.2}
+{"final": true, "memory": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""], "llm_calls": 180, "tokens": 97599, "sec": 3596.2}
