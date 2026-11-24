@@ -142,3 +142,4 @@ Status values:
 - **Ties a simple baseline at equal budget:** replay, append + retrieve, save/restore. This is how PR #1 died.
 - **True by construction:** exact restore, flat reacquisition, a threshold built into the simulator.
 - **Already in 2026 papers:** found by alphaXiv but missed by the HF papers search.
+- **Merge cards must beat the union of their parts' baselines.** The strongest control for a merged idea is the best simple baseline of each part, stacked together at the same compute and tokens (for example leave-one-out plus recency plus the entropy control). A merge passes only if its mechanism has an interaction those stacked baselines can't reproduce, with a smallest test that isolates that interaction. Reusing a partial win from a kill must cite the result it rests on.
