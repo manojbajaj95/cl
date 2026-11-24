@@ -26,7 +26,7 @@ Call counts assume about 3–5 calls per agent episode. Free endpoints generally
 | Toolbox drift | ~36,000 | No | 1 seed × 2 arms (tools vs lessons + tests) × 100 episodes is still ~600 calls (~12 days) and underpowered; use a GPU |
 | Ask when stuck | ~13,500 | No | Needs the store-size sweep; use a GPU |
 | P3 writer distractibility | ~4,000 | No | Needs ≥ 200 episodes per arm, and the mask arm needs log-probs |
-| Fleet Q2 | ~16,000 rollouts plus log-probs | No | Needs log-probs from both models; use a GPU |
+| Fleet Q2 | — | Killed | [PR #25](https://github.com/manojbajaj95/cl/pull/25) |
 
 ## Tier 1: agent-loop pilots (need a 7B+ instruct model served with vLLM)
 
@@ -71,16 +71,8 @@ The CPU run is killed ([PR #23](https://github.com/manojbajaj95/cl/pull/23)) and
 - **Seeds and compute:** 3 seeds, about 8 GPU-h.
 - **Kill line:** dead if the gap between bad-write rate and solve accuracy vanishes against filler, or arm 4 matches arm 5.
 
-### Fleet Q2: lessons made obsolete by a model upgrade
-- **Models:** Qwen2.5-1.5B-Instruct upgraded to Qwen2.5-7B-Instruct, with 40 lessons written by the 1.5B agent.
-- **Predictor:** per-lesson mean Δ log-prob of logged successful actions under the 7B model, with the lesson in context versus without.
-- **Controls:**
-  1. The 7B model's zero-shot success on each lesson's source tasks (the strongest control).
-  2. The 1.5B model's likelihood gain.
-  3. An LLM judge.
-- **Truth:** the lesson's effect on the 7B model's success, from ≥ 200 rollouts with and without it. Report split-half reliability first; it must be ≥ 0.7.
-- **Seeds and compute:** 16k rollouts in total, about 8 GPU-h.
-- **Kill line:** dead if ρ < 0.5, or if it is not ≥ 0.15 above zero-shot success.
+### Fleet Q2: killed at the truth-reliability gate
+Killed ([PR #25](https://github.com/manojbajaj95/cl/pull/25)): exact-truth split-half reliability was about 0, and 9 of 40 lessons flipped sign. This is task heterogeneity, not sampling noise, so it isn't requested at larger scale. Q3 is dead with it.
 
 ### HW1: convergent-edit harness promotion
 The HW1 pilot writes its own spec; see [PR #20](https://github.com/manojbajaj95/cl/pull/20). It needs a cheap API-class evolver, such as GPT-4o-mini or Qwen2.5-72B, and a small fixed task model.
@@ -142,4 +134,4 @@ Killed at CPU scale ([PR #22](https://github.com/manojbajaj95/cl/pull/22)), so n
 - **Seeds and compute:** 3 seeds, about 60 GPU-h in total.
 - **Kill line:** dead if collapse onset doesn't switch near R = 1.
 
-**Total:** about 160 GPU-h (plus about 20 if H1's gate passes), plus HW1's API spend. If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
+**Total:** about 150 GPU-h (plus about 20 if H1's gate passes), plus HW1's API spend. If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
