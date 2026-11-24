@@ -33,6 +33,13 @@ the same controls before claiming a general memory mechanism.
   benchmark before running. No expert action ranking or planner in
   the agent. This is a constrained-action ALFWorld evaluation, not
   directly comparable to word-by-word agent leaderboards.
+- Before scoring lessons, check for baseline mode collapse on the no-memory
+  source tape. Report the top-command verb distribution, modal share,
+  and legal-action entropy by task family, alongside the menus' verb
+  diversity. If one verb is the top action on ≥90% of source states with
+  at least two admissible verb types, stop and report a collapsed agent;
+  this setup would not test transfer beyond the router's single-mode
+  regime. Freeze this criterion before inference.
 
 ## Arms and calibration
 
@@ -62,6 +69,15 @@ the same controls before claiming a general memory mechanism.
 
 ## Evaluation and stop rules
 
+- Stage one is a source-only smoke test, capped at **≈3 GPU-hours**:
+  check menu/codebook handling and mode collapse, then compare 8 frozen
+  lessons (4 rule, 4 other) with no memory on 8 balanced source games
+  using 4 paired seeds per game. Proceed only if mean lesson lift is
+  **≥5 pp** in verified completion vs no memory. Report its paired CI
+  and stop without opening the held-out lesson run if the gate misses
+  or the stage cannot finish within budget. These rollout seeds do not
+  enter the held-out estimates.
+
 - Test all 40 lessons on all 32 held-out games. Start with two
   independent banks of eight rollout seeds per game/arm. Report
   ordinary pooled held-out R² beside a noise-corrected version:
@@ -72,6 +88,9 @@ the same controls before claiming a general memory mechanism.
   would inflate explained variance. For lesson main-effect share
   use the same cross-bank estimator on centered lesson means
   (times the count of games). Do not clip negative estimates.
+  Apply the identical R² calculation with each lesson's matched filler
+  effect as the predictor and report **temperature R² minus filler R²**
+  with a paired CI, not just either absolute fit.
 - If the cross-bank SST is nonpositive or cross-bank Pearson
   agreement of cell effects is <0.70, double both seed banks once
   as predeclared, without inspecting gate estimates to choose
@@ -87,15 +106,26 @@ the same controls before claiming a general memory mechanism.
   effect exceeds 25%. Also report uncorrected estimates, rule and
   other lessons vs filler, no-memory success by stratum, and
   sensitivity by objective family.
+- **Content-transfer kill line:** On a fixed held-out no-memory state
+  tape, compare the rule arm and its paired filler on identical
+  observations where the base top action is wrong and where the
+  note's correct action can be independently labeled by the benchmark
+  expert. A correct flip means that this arm switches its top action
+  to the expert-verified action. Report eligible counts and both
+  rates; kill the content-transfer claim if the paired rule − filler
+  correct-flip gap does not have a 95% CI entirely above zero.
+  Use the expert only to label/scaffold this evaluation, never to
+  select the agent's live action. If eligibility is absent, report
+  content transfer as untested, not supported.
 
 ## Compute and artifacts
 
 Run on one or more GPUs with local access to the full action logits
 (e.g. vLLM or Transformers with masked logits and batched KV
-caching). The initial design is 61,440 held-out lesson/temperature/
-filler rollouts plus shared no-memory, qualification, and source
-calibration runs. Time a small source-only batch first and record
-GPU-hours before launching; parallelize over games and seed banks.
+caching). After the ≈3 GPU-hour first-stage gate, the main design
+starts at 61,440 held-out lesson/temperature/filler rollouts plus
+shared no-memory, qualification, and source calibration runs. Record
+measured GPU-hours before scaling; parallelize over games and seed banks.
 Do not use the OpenRouter free tier for this design: even aside from
 the request budget, sparse or unavailable logprobs cannot establish
 a full-menu entropy match. Release game IDs, lessons, code, source
