@@ -68,6 +68,27 @@ The strongest file so far.
 | 3 | SM5, SM9, SM12, SM19, SM20, SM26, SM27, SM29, SM30, SM33, SM36, SM37 | P/I | OPSD variants, loss code, generational tests, leash slot, path gating, self-forecast, weight-reading, weight dreaming |
 | 2 | SM4, SM8, SM10, SM11, SM13, SM14, SM16–SM18, SM21–SM24, SM28, SM31, SM32, SM34, SM35, SM38 | I | Duplicate other pool ideas or known methods |
 
-## Running leaders (provisional, 5 of 8 sources in)
+## physics-math ([PR #44](https://github.com/manojbajaj95/cl/pull/44), 52 ideas)
 
-Top 10 for prior art once the pool is complete, if nothing new displaces them: L1, SM1, P21 (+SM2), D1 (+D2), O2 (+O1), N1 (+S4, SM17), SM7, SM25, P19 (+N4), W3.
+| Score | Ideas | P/I | One line |
+|---|---|---|---|
+| 4 | #11 spin-echo refocusing; #12 anti-Zeno consolidation | P | Specific non-monotone predictions: a function-preserving reflection refocuses drift; an intermediate projection rate speeds new learning |
+| 4 | #21 kinetic proofreading for lesson writes | P | Predicts error falling exponentially in delayed stages versus linearly in budget; plugs straight into the contamination law's gate term |
+| 4 | #26 winding-number bits; #27 holonomy writes; #43 Chinese-remainder task storage | P | Memory protected by topology, geometric phase or arithmetic, not by penalties |
+| 4 | #20 stochastic-resonance recall; #31 sheaf cohomology of lesson stores; #40 Lie-algebra closure | P | A noise recall knob for sub-threshold memories; global (not pairwise) lesson inconsistency; composing skills by algebra |
+| 3 | #1–10, #13–17, #24, #25, #29, #30, #34, #37–39, #41, #42, #44, #46, #48, #49 | P/I | Physics-derived detectors, schedules and constraints; most reduce to known projection, multi-timescale or curvature methods |
+| 2 | #18, #19, #22, #23, #28, #32, #33, #35, #36, #45, #47, #50–52 | I | Duplicates (W1, L5, Lindy) or known (hyperbolic, coresets, fractional momentum) |
+
+## econ-society ([PR #45](https://github.com/manojbajaj95/cl/pull/45), 45 ideas)
+
+| Score | Ideas | P/I | One line |
+|---|---|---|---|
+| 4 | E2 logit price index for index-linked memories | P | Fine-tuning inflates the model's units, silently devaluing every threshold, margin and router bias written in old units |
+| 4 | E4 emphasis hyperinflation with a conserved salience supply | P | Predicts a measurable drift in self-written lessons; ties to self-contamination |
+| 4 | E32 metered lessons (error-correcting structure); E30 stemmatic reconstruction of lost skills; E31 Tasmania critical fleet size | P | Copy-error correction, phylogenetic recovery, and a predicted phase transition in fleet culture |
+| 3 | E1, E5, E11–E13, E15, E21, E23, E24, E26, E28, E33, E34, E36, E39, E44 | P/I | Market, institutional and evolutionary rules applied to capacity, replay and fleets |
+| 2 | Remaining 24 ideas | I | Duplicates (Lindy = aging clocks, A2 testaments, fleet markets) or reworded allocation |
+
+## Running leaders (provisional, 7 of 8 sources in; neuro-bio, the tree nodes and the CL-bench proposer still to come)
+
+Top 10 for prior art once the pool is complete, if nothing new displaces them: L1, SM1, P21 (+SM2), D1 (+D2), O2 (+O1), N1 (+S4, SM17), SM7, P19 (+N4, E2), physics #11 spin echo, physics #21 kinetic proofreading. Next in line: SM25, W3, E4, E32.
