@@ -1,5 +1,7 @@
+--extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+--prefer-binary
 numpy
 scipy
 matplotlib
 pytest
-llama-cpp-python==0.3.38  # LLM pilot only
+llama-cpp-python==0.3.38
