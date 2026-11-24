@@ -1,0 +1,46 @@
+# Reviewer verdicts: proposer batches 1–3 (PR #5) and the artifact-epidemic law (PR #4)
+
+Bar: a new result at NeurIPS/ICLR level, not a study. Each idea was checked for prior art on alphaXiv and the Hugging Face papers API (2026-11-24). **PURSUE** = pilot now, **REVISE** = pilot only after the named fix, **KILL** = stop.
+
+## Shortlist worth piloting
+
+| # | Idea | Strongest control it must beat | First step |
+|---|---|---|---|
+| 1 | PR #4: reproduction-number law for agent lesson pools | A per-candidate gate-precision predictor (α_D/α_S alone) and extrapolation of the defect fraction at round 200 | ~30 GPU-h: find a model × domain × gate with a non-degenerate R in [0.5, 2], then sweep retrieval breadth k across R = 1 on one real stream. Spend the 200–400 GPU-h only if onset tracks R there |
+| 2 | #11 testing effect (self-generated, verified QA replay) | Self-generated *raw-text* replay ([2605.26097](https://arxiv.org/abs/2605.26097), [SSR 2403.01244](https://arxiv.org/abs/2403.01244)) and teacher-written QA with the same questions, at equal tokens | A claim stands only if self-QA beats teacher-QA. Otherwise it is QA formatting, which is already known |
+| 3 | #14 edit capacity law (REVISE) | The norm-feedback collapse predictor of [Norm Anchors 2602.02543](https://arxiv.org/abs/2602.02543) and the spectral account in [2601.11042](https://arxiv.org/abs/2601.11042) | Predict N* from key covariance *before editing* better than an edited-weight norm threshold does, across ≥3 models |
+
+## Noether memory (#1) and keyed restore (#13): KILL
+
+Rerun with a harder (nonlinear-teacher) task stream, in `pilots/noether_check.py`:
+- **Ordinary SGD erases it.** Per step, discrete SGD drifts balancedness by η²(‖g_in‖² − ‖g_out‖²). At lr 0.05, one task moved d by 0.048, more than d's natural spread (0.039). After 3 tasks, bits written at 3× the spread decode at chance (0.52); the proposer's 99.6% comes from an easy linear-teacher task with small gradients. Finite-step symmetry breaking is also analysed in [2611.06718](https://arxiv.org/abs/2611.06718).
+- **When it survives, a non-conserved channel survives too.** At lr ≤ 0.002 (SGD) or 1e-4 (AdamW), the ‖w_in‖² channel keeps 0.97–1.00 at ≥1× spread. At 0.3× it keeps 0.70–0.81, against 0.81–1.00 for d. At lr 0.01 and 0.3×, d (0.65) is *worse* than the control (0.77).
+- **Adam lr 1e-3:** 0.82 at 3×, chance below.
+- **Anyone can erase it.** A function-preserving rebalancing is one closed-form step, and weight canonicalization in merging tools ([2511.12601](https://arxiv.org/abs/2511.12601)) does it as a side effect.
+- **#13 adds nothing for CL.** The adapter bank has to travel with the model anyway, so the key can travel in it. What is left is fragile watermarking.
+
+## Other ideas
+
+| # | Verdict | Reason |
+|---|---|---|
+| 2 gauge preconditioning | KILL | For a homogeneous in/out pair, a unit's NTK contribution scales as c²A + B/c² (SGD) or cA' + B'/c (Adam), which is minimal near balance. Rescaling can make units *more* plastic, never stiffer. The only real knob is scale-invariant (LN/QK-norm) weights, which is the known effective-LR effect, and weight decay undoes it |
+| 3 rational forgetting | REVISE (low) | Matching the exponent is close to Bayes-optimal by construction, so the monotone kill test will pass trivially. It must beat scale-free multi-timescale learners (Benna–Fusi cascades, mixtures of learning rates) that need no estimate of α |
+| 4 decode training order | KILL | A study. That forgetting is not erasure is already shown ([spurious forgetting 2501.13453](https://arxiv.org/abs/2501.13453), [2610.08718](https://arxiv.org/abs/2610.08718)); recovering lineage from weights also exists (Model Tree Heritage Recovery, Horwitz et al. 2024) |
+| 5 forgetting as EoS crossing | KILL | Incoherent: 2/η stability applies to the loss being descended. The old task's curvature has no dynamical role during new-task training. As a predictor it reduces to ½Δθᵀ H_old Δθ |
+| 6 text Fisher for memories | KILL | [ACE 2510.04618](https://arxiv.org/abs/2510.04618) already addresses context collapse with delta updates. Append + retrieve is likely to match at equal tokens |
+| 7 programmable half-life | REVISE (low) | Lifecycle-aware parametric memory with learned fade exists ([2611.25235](https://arxiv.org/abs/2611.25235)). "Expired" must also survive a cheap relearning attack, or it is suppression, not expiry |
+| 8 Landauer budget | KILL | Erased-bit counts bound information loss but say nothing about accessibility. Making β → 1 changes the optimizer, a confound |
+| 9 metamemory | KILL | For replay targeting, buffer items already have labels, so per-item loss is free. The science part is crowded ([2405.05904](https://arxiv.org/abs/2405.05904), [2610.08718](https://arxiv.org/abs/2610.08718), [2610.22381](https://arxiv.org/abs/2610.22381)) |
+| 10 counter-gradient data | REVISE (low) | On images it reduces to dataset condensation. Under shuffling and Adam, cancellation only holds in expectation. Control: gradient-matched *selection* of real examples (GradMatch/CRAIG) at equal size |
+| 12 residual skill bits | KILL | The bit count depends on the mask-search algorithm, and random nets already contain good subnetworks. Relearning savings already measure this |
+| 15 memory shorthand | KILL (low) | A 1.5B model is unlikely to invent a shorthand that beats NL at equal tokens. Prompt compression and gisting cover the compression part |
+| 16 forecast forgetting | KILL | First-order per-fact prediction was tested and found to fail beyond the validated region ([2609.32818](https://arxiv.org/abs/2609.32818)). Pre-training behaviour bounds exist ([FireGate 2611.11979](https://arxiv.org/abs/2611.11979)). Evaluating 5% of probes is a cheap control that is hard to beat |
+| 17 iterated learning | REVISE (low) | Overlaps PR #4. Control: same-compute iterative refinement by one agent without generational resets |
+
+## PR #4 artifact-epidemic law: novel enough to stage, not ready for 200–400 GPU-h
+
+- **Novelty.** The closest work ([2610.27406](https://arxiv.org/abs/2610.27406), [skill misevolution 2608.12851](https://arxiv.org/abs/2608.12851), [SEABench 2609.35596](https://arxiv.org/abs/2609.35596), [Zombie Agents 2602.15654](https://arxiv.org/abs/2602.15654)) shows error reproduction and persistence. None gives a threshold measured before deployment. The branching-process math is standard, so the paper rests entirely on real-agent validation.
+- **The simulator is not evidence.** It implements the branching process, so the R = 1 threshold is built in. The mean-field only fits conditioned on the round-200 state, which weakens the "measured before deployment" claim.
+- **Both measured LLM regimes are degenerate.** With real units the self-gate rejects every defect (α_D = 0, so R = 0). With made-up units it rejects everything (α_S ≈ 0, so learning stops). No real setting with an intermediate R has been found, so the GPU test currently has nothing to predict.
+- **Assumptions to test.** τ independent of how many defects are retrieved; uniform retrieval (similarity retrieval clusters defects); no deduplication or merging in the store.
+- **Next step.** First the ~30 GPU-h measurement step (plan item 1), chosen to find intermediate R, for example with a weaker verifier or partially checkable domains. Then one cheap k-sweep stream that tests prediction 2. Scale only if the collapse onset tracks R with AUC ≥ 0.75 there and the gate-precision control does worse.
