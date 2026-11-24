@@ -193,11 +193,12 @@ def load(path):
 
 
 def metrics(rows):
-    rates = [100 * sum(col) / (len(rows) * len(SEEDS)) for col in zip(*rows)]
+    counts = [sum(col) for col in zip(*rows)]
+    n = len(rows) * len(SEEDS)
     width = len(ARMS)
-    rise = rates[-width] - rates[0]
-    gap = rates[-width + ARMS.index("rewrite")] - rates[-width + ARMS.index("mask")]
-    return rates + [rise, gap]
+    rise = counts[-width] - counts[0]
+    gap = counts[-width + ARMS.index("rewrite")] - counts[-width + ARMS.index("mask")]
+    return [100 * count / n for count in (*counts, rise, gap)]
 
 
 def summarize(cube, reps=10_000):
@@ -225,6 +226,8 @@ def report(path):
     print("# N2 pilot results\n")
     print(f"**{verdict(rise, gap)}.** Text rebound: {fmt(rise)} pp. "
           f"Positive rewrite minus logit mask at wave 6: {fmt(gap)} pp.\n")
+    print(f"The text rise {'met' if rise[0] >= 5 else 'did not meet'} the 5 pp gate. "
+          f"The rewrite–mask interval {'included' if gap[1] <= 0 <= gap[2] else 'excluded'} zero.\n")
     print(f"{len(PROBES) * len(cube)} repeated wave-1 probes per wave and seed; "
           f"seeds {', '.join(map(str, SEEDS))}. Values are percent [paired 95% CI].\n")
     print("| Wave | Prompt tokens (all arms) | Text | Positive rewrite | Logit mask | "
@@ -240,6 +243,17 @@ def report(path):
         print(f"\nZero observed wave-6 rewrite violations; its bootstrap CI is degenerate. "
               f"The one-sided 95% exact upper bound on the probability that a queue "
               f"has any rewrite violation across its fixed probes and seeds is {upper:.2f}%.")
+    if all(result[(wave - 1) * len(ARMS) + ARMS.index("no_rule")][0] < 50 for wave in WAVES):
+        print("\nThe length-matched no-rule baseline picked the habitual tool on fewer than "
+              "half the probes at every wave. This limits the result: the probes did not "
+              "reliably elicit the would-be forbidden behavior without a rule. "
+              "The text arm's high violation rate is an absolute failure of the negative "
+              "instructions, not evidence of an increase with accumulation.")
+    print("\nThe verifier rejects rather than executes a forbidden proposal; its unresolved "
+          "rate is the cost of running out of its two draws. The logit mask's zero violations "
+          "are guaranteed in this two-tool interface. The pilot only measures routing under "
+          "one accumulation order and does not test the attention mechanism or separate "
+          "competition from other effects of a longer prompt.")
 
 
 def main():

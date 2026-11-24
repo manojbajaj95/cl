@@ -59,13 +59,14 @@ Build llama.cpp at `66a3b01b0a243f119b144abfa7122b1677ea9114`, then:
 
 ```sh
 llama-server --host 127.0.0.1 --port 8080 -m qwen2.5-1.5b-instruct-q4_k_m.gguf -ngl 0 -t 8 -tb 8 -np 16 -c 16384
-python3 run.py collect raw.csv
-python3 run.py report raw.csv
+python3 run.py collect reproduced.csv
+python3 run.py report reproduced.csv
 python3 -m unittest discover -p 'test_*.py'
 ```
 
 The collector uses llama-server's native tokenization and completion
-endpoints. It verifies the legal action IDs, the two-action distribution
-and the three distinct prompt lengths per probe. The CSV stores one row per wave/probe
-(with both draws for each seed reconstructed from the recorded probabilities,
-the fixed RNG algorithm and the seed).
+endpoints. It verifies the legal action IDs, the two-action distribution,
+and the lengths of the three distinct prompts per probe. To reanalyze
+the archived run without a model, use `python3 run.py report raw.csv`.
+The CSV stores one row per wave/probe; both draws for each seed are
+reconstructed from the recorded probabilities and fixed RNG algorithm.

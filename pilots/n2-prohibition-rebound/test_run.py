@@ -1,6 +1,6 @@
 import unittest
 
-from run import PROBES, QUEUES, memories, proposals, score, uniforms, verdict
+from run import ARMS, PROBES, QUEUES, memories, metrics, proposals, score, uniforms, verdict
 
 
 class PilotTests(unittest.TestCase):
@@ -31,6 +31,13 @@ class PilotTests(unittest.TestCase):
         self.assertEqual(verdict((4.99, 2, 8), (2, 1, 3)), "KILL")
         self.assertEqual(verdict((5, 2, 8), (1, 0, 2)), "KILL")
         self.assertEqual(verdict((5, 2, 8), (2, 1, 3)), "KEEP")
+
+    def test_exactly_five_points_is_not_rounded_below_the_gate(self):
+        rows = [[0] * (6 * len(ARMS)) for _ in range(200)]
+        for index in range(55):
+            rows[index][0] = int(index < 25)
+            rows[index][-len(ARMS)] = 1
+        self.assertEqual(metrics(rows)[-2], 5)
 
 
 if __name__ == "__main__":
