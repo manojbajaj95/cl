@@ -71,3 +71,5 @@ Rerun with a harder (nonlinear-teacher) task stream, in `pilots/noether_check.py
 | Cross-field 4 bounded-delay scheduling | KILL | — | O(η²) order effect; gradient accumulation ties |
 | Agent G1 offline A/B of memory edits | PASS | Likelihood-gain (no IS) control; LLM judge; uplift model | 30 lessons vs fresh-rollout truth; check ESS first |
 | Agent H1 surprisingly-popular fleet memory | PASS | Union + regime retrieval; truth discovery | 20 agents, p = 0.2; check meta-prediction dependence first |
+| Cross-field 5 delay-compensated retention | KILL | — | Delayed-label online risk control exists |
+| Cross-field 5 composition contracts | KILL | — | Reduces to SFT on generated labels |

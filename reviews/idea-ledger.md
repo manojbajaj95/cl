@@ -65,6 +65,14 @@ Status values:
 | Coded/redundant memory fragments | Agent 7 (PR #7) | KILLED (at proposal) | Proposer dropped it as covered |
 | Cycle-consistency lesson scoring | Agent 8 (PR #7) | KILLED (at proposal) | Proposer dropped it: label-free judge gates (2608.18719, 2607.28777) are close, and in-context likelihood gain ties |
 | Weight-space-programming CL repair | Agent 8 (PR #7) | KILLED (at proposal) | Proposer dropped it: 2611.25613, Self-WSP 2611.28833 and 2611.26841 cover it |
+| Delay-compensated retention gating | Cross-field 5 (PR #10) | KILLED | Online risk control with delayed labels exists ([2611.17059](https://arxiv.org/abs/2611.17059), [2609.32267](https://arxiv.org/abs/2609.32267)); applying it to update gating is a scheduling result, not a CL mechanism |
+| Composition contracts (unlabeled identities for hybrid skills) | Cross-field 5 (PR #10) | KILLED | If the atomic skills pass, composing their outputs labels hybrids for free, so identity training reduces to SFT on generated labels, the proposer's own tying control |
+| Exact counterfactual message influence for multi-agent credit | Agent 9 (PR #7) | KILLED (at proposal) | Proposer dropped it; reviewer agrees: Counterfactual credit and message-effect isolation exist (2609.30734, 2603.21563, 2611.16123, 2611.16206) |
+| Social-choice rules for shared multi-user memory | Agent 9 (PR #7) | KILLED (at proposal) | Proposer dropped it; reviewer agrees: Multi-principal and irreducible-conflict shared memory are covered (2606.18829, 2608.13921, 2609.32511) |
+| Median-of-means cohort gating against poisoning users | Agent 9 (PR #7) | KILLED (at proposal) | Proposer dropped it; reviewer agrees: Byzantine-robust aggregation applied to memory is a new application only |
+| Counterexample-guided lesson preconditions | Agent 9 (PR #7) | KILLED (at proposal) | Proposer dropped it; reviewer agrees: An LLM rewriting the lesson with the failure in context likely ties |
+| Learning-progress self-curricula for deployed agents | Agent 9 (PR #7) | KILLED (at proposal) | Proposer dropped it; reviewer agrees: ALP-GMM and self-play curricula cover it |
+| Log-likelihood drop on logged good trajectories as a forgetting alarm | Agent 9 (PR #7) | KILLED (at proposal) | Proposer dropped it; reviewer agrees: Too close to the verifier-measured retention audit (PR #2); it survives only as a control inside G1 |
 
 ## Patterns in the kills
 
