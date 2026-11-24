@@ -56,7 +56,17 @@ below (≈3 minutes on 6 cores); tests are in `tests/test_epidemic.py`.
 
 [`agents/llm_pilot/challenge_trial.py`](../agents/llm_pilot/challenge_trial.py) plants a wrong unit-conversion lesson in the agent's context. It then
 asks the agent to solve a task, distill a new lesson, and self-gate it. That yields ε, τ (with and without
-verifier feedback) and α_D/α_S. LLM_RESULTS
+verifier feedback) and α_D/α_S. Results below are for Qwen2.5-1.5B-Instruct Q4 on CPU. τ is measured
+for the one relevant lesson in context, with 3 distractor lessons.
+
+| Domain | Trials | ε | τ, no feedback | τ, verifier feedback | Self-gate α_D / α_S | Wrong answers with bad lesson |
+| --- | --- | --- | --- | --- | --- | --- |
+| Real units (model has a prior) | 240 | 0.00 | 0.48 | 0.05 | 0/32 vs 0.40 | 0.99 |
+| Made-up units (no prior) | 120 | 0.00 | 1.00 | 1.00 | 0.02 vs 0.00 (rejects all) | 1.00 |
+
+- **Planted lessons override the model at solve time.** With a bad lesson in context, the agent answers wrong 99–100% of the time, even when it knows the true factor.
+- **Feedback stops transmission only when the model can check the lesson.** For real units, a verifier's "incorrect" makes the agent drop the bad factor (τ 0.48 → 0.05), and the self-judge rejects every defective lesson. For made-up units, τ stays 1.0 even with feedback: the agent keeps the planted factor. The self-gate there rejects everything, so it blocks learning instead of telling defects apart.
+- **R depends on model × domain × gate.** It is not a property of the agent alone. The dangerous regime is knowledge the model cannot check, which is exactly what deployed agents learn (private APIs, a user's conventions, hidden policies). That is where the paper's experiments should focus.
 
 ## Plan to a paper
 

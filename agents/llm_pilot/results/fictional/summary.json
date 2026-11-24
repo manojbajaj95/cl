@@ -1,0 +1,29 @@
+{
+  "feedback=False": {
+    "p_def_given_bad_parent": 1.0,
+    "p_def_given_good_parent": 0.0,
+    "eps": 0.0,
+    "tau": 1.0,
+    "n": 60,
+    "R_per_relevant_lesson": NaN
+  },
+  "feedback=True": {
+    "p_def_given_bad_parent": 1.0,
+    "p_def_given_good_parent": 0.0,
+    "eps": 0.0,
+    "tau": 1.0,
+    "n": 60,
+    "R_per_relevant_lesson": NaN
+  },
+  "gate": {
+    "alpha_D": 0.016666666666666666,
+    "n_D": 60,
+    "alpha_S": 0.0,
+    "n_S": 60,
+    "odds_ratio": NaN
+  },
+  "behavior": {
+    "p_wrong_answer_bad_parent": 1.0,
+    "p_wrong_answer_good_parent": 0.0
+  }
+}

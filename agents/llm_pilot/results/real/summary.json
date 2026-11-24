@@ -1,0 +1,29 @@
+{
+  "feedback=False": {
+    "p_def_given_bad_parent": 0.48333333333333334,
+    "p_def_given_good_parent": 0.0,
+    "eps": 0.0,
+    "tau": 0.48333333333333334,
+    "n": 120,
+    "R_per_relevant_lesson": 0.0
+  },
+  "feedback=True": {
+    "p_def_given_bad_parent": 0.05,
+    "p_def_given_good_parent": 0.0,
+    "eps": 0.0,
+    "tau": 0.05,
+    "n": 120,
+    "R_per_relevant_lesson": 0.0
+  },
+  "gate": {
+    "alpha_D": 0.0,
+    "n_D": 32,
+    "alpha_S": 0.40384615384615385,
+    "n_S": 208,
+    "odds_ratio": 0.0
+  },
+  "behavior": {
+    "p_wrong_answer_bad_parent": 0.9916666666666667,
+    "p_wrong_answer_good_parent": 0.0
+  }
+}

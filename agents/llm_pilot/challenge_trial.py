@@ -23,6 +23,16 @@ PAIRS = {
     ("ounces", "grams"): 28.35,
 }
 WRONG = {1.609: 1.2, 0.4536: 0.62, 2.54: 3.1, 3.785: 2.9, 0.3048: 0.41, 28.35: 21.0}
+# Made-up units: the model has no prior, so neither the solver nor the gate can check a lesson.
+FICTIONAL = {
+    ("zorps", "glims"): 3.7,
+    ("brels", "quoms"): 0.62,
+    ("taxels", "murns"): 12.5,
+    ("fips", "dravs"): 0.085,
+    ("wunks", "pells"): 46.0,
+    ("snorbs", "kites"): 1.9,
+}
+WRONG.update({3.7: 2.6, 0.62: 0.85, 12.5: 8.0, 0.085: 0.12, 46.0: 31.0, 1.9: 2.7})
 
 
 def lesson(src, dst, f):
@@ -98,13 +108,17 @@ def main():
     ap.add_argument("--model", required=True)
     ap.add_argument("--reps", type=int, default=10)
     ap.add_argument("--threads", type=int, default=4)
-    ap.add_argument("--out", default=str(Path(__file__).parent / "results"))
+    ap.add_argument("--domain", choices=["real", "fictional"], default="real")
+    ap.add_argument("--out", default=None)
     a = ap.parse_args()
+    if a.domain == "fictional":
+        PAIRS.clear()
+        PAIRS.update(FICTIONAL)
     from llama_cpp import Llama
 
     llm = Llama(a.model, n_ctx=2048, n_threads=a.threads, verbose=False, seed=0)
     rng = random.Random(0)
-    out = Path(a.out)
+    out = Path(a.out or Path(__file__).parent / "results" / a.domain)
     out.mkdir(parents=True, exist_ok=True)
     rows, t0 = [], time.time()
     for rep in range(a.reps):
