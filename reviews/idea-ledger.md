@@ -44,6 +44,7 @@ Status values:
 | N1: layer-local lesson KV (per-layer visibility mask) | Memory-form proposer batch 2 (PR #18) | PILOTING (arm of M2) | M2's global bias at matched on-target gain; retrieval gating at equal recall; a narrower lesson rewrite | 40 lessons, masks chosen on train probes, 3 seeds. Dead if at ≥ 90% on-target gain the mask doesn't cut held-out off-target harm by ≥ 30% more than the matched bias | — |
 | N2: prohibition rebound as text prohibitions accumulate; logit-mask form | Memory-form proposer batch 2 (PR #18) | PILOTING | Positive-instruction rewrite at equal tokens; verifier reject-and-resample | 60 prohibitions in 6 waves, Qwen2.5-1.5B, 3 seeds, 200 probes per wave. Dead if wave-1 violations rise < 5 points by wave 6, or the positive rewrite matches the mask | — |
 | Fleet Q3: forecast which lessons the next upgrade obsoletes, from whether successive upgrades improve the same states | Fleet proposer batch 2 (PR #15) | GATED on Q2 (low priority) | Each lesson's own lift-trend extrapolation; zero-shot-success trend across generations (observational-scaling style) | 4 generations, 40 lessons, fit on 3 and forecast the 4th. Dead if upgrade directions correlate at ρ < 0.3, or if not ≥ 0.15 ρ above own-trend extrapolation | — |
+| B4-R1: route a lesson to weights when its learned bias b_i is stable, keep it in text when it swings | Memory-form proposer batch 4 (PR #18) | GATED on M2 (arm) | Counter-variance routing (variance of ACE helpful/harmful counts); recency of last use | In M2's recurring-regime run, consolidate the most stable third into LoRA. Dead if not ≥ 3 points ahead of counter-variance routing on regime returns; the ≥ 0.1 ρ over E1 criterion applies only if E1 runs | — |
 
 ## Killed
 
@@ -113,6 +114,7 @@ Status values:
 | PR #15 batch 2 pre-kills (7) | Fleet proposer | KILLED (at proposal) | Reasons are in PR #15 batch 2 |
 | C1: contrastive-pair memory (act on the good/bad logit difference) | Memory-form proposer batch 3 (PR #18) | KILLED | This is context-aware / contrastive decoding (CAD, Shi et al. 2023) and contrastive ICL (Gao & Das 2024); the labelled pair in one context at matched compute likely ties |
 | PR #18 batch 3 pre-kills (5) | Memory-form proposer | KILLED (at proposal) | Reasons are in PR #18 batch-3 |
+| PR #18 batch 4 pre-kills (6) | Memory-form proposer | KILLED (at proposal) | Reasons are in PR #18 batch-4; the proposer judges the memory-form angle near saturated and has stopped |
 
 ## Patterns in the kills
 
