@@ -91,18 +91,8 @@ The HW1 pilot writes its own spec; see [PR #20](https://github.com/manojbajaj95/
 
 ## Tier 2: weight-training pilots (need a GPU for LoRA or model editing)
 
-### Double dosing, multi-cycle (with R1's correctability measurement)
-- **Model:** Qwen2.5-1.5B-Instruct, distilling 10 graded lessons (caution and verbosity levels) into LoRA rank 16.
-- **Protocol:** 6 consolidation cycles.
-- **Arms:**
-  1. Lesson in weights only.
-  2. Lesson in context only.
-  3. Both.
-  4. Both, with No-Context Anchoring (2606.11627).
-  5. Delete the lesson from context once it is distilled.
-- **R1 measurement:** at each cycle, add one contradicting lesson and log its flip rate, matched on absorption.
-- **Seeds and compute:** 3 seeds, about 10 GPU-h.
-- **Kill line:** dead if "both" shows no overshoot beyond the seed CI with no growing oscillation over cycles, or if NCA removes it. R1 is dead if the flip rate at cycle 6 is not ≥ 15 points below cycle 1.
+### Double dosing, multi-cycle: DROPPED
+Falsified on CPU ([PR #30](https://github.com/manojbajaj95/cl/pull/30)): 0 of 50 runs showed growing oscillation, and R1's fold-in failed its gate. At this effect size, a 1.5B model has no particular reason to start oscillating.
 
 ### E1 consolidation predictor (with M3 and F1 arms): HELD, B3 gate failed ([PR #28](https://github.com/manojbajaj95/cl/pull/28)), not in the total
 - **Model:** Qwen2.5-1.5B-Instruct, distilling 200 lessons, each into LoRA ranks {4, 16, 64}.
@@ -146,4 +136,4 @@ Killed at CPU scale ([PR #22](https://github.com/manojbajaj95/cl/pull/22)), so n
 - **Seeds and compute:** 3 seeds, about 60 GPU-h in total.
 - **Kill line:** dead if collapse onset doesn't switch near R = 1.
 
-**Total:** about 140 GPU-h (plus about 20 if H1's gate passes), plus HW1's API spend. If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
+**Total:** about 130 GPU-h (plus about 20 if H1's gate passes), plus HW1's API spend. If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
