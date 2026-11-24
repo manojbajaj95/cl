@@ -112,6 +112,7 @@ Killed at CPU scale ([PR #22](https://github.com/manojbajaj95/cl/pull/22)), so n
 
 ### Self-contamination law, R = k·(α_D·τ − d)/α_S (PR #4)
 - **Ranked the best remaining GPU bet** (odds of a frontier result low to moderate).
+- **CPU transmission precheck passed narrowly** ([result](../pilots/defect-transmission/README.md)): new-helper defects +2.32 pp [0.24, 4.83] over same-length filler and +4.43 pp [2.33, 6.90] over the entropy-matched no-note arm. Fund only stage 1; the CPU challenge did not establish free-form transmission or R headroom.
 - **Stage 1 (about 5 GPU-h, inference only):** Qwen2.5-7B lesson writer on a coding stream. Vary verifier strength by running 10–100% of the unit tests, and measure α_D, α_S, d and τ on about 300 candidates per coverage level. Stage 1 is dead if no level gives R in [0.5, 2] with CI, or if τ doesn't exceed the defect rate from same-length filler.
 - **Protocol:**
   1. Find a setting with R in [0.5, 2] (stage 1 above).
