@@ -69,3 +69,4 @@ Rerun with a harder (nonlinear-teacher) task stream, in `pilots/noether_check.py
 | Agent F1 context→weight interference | KILL (fold into E1) | — | Gradient cosine is a cheap known predictor that dominates it |
 | Cross-field 4 effect-class distillation | PASS, narrowed to syntax shifts | Canonicalized token KL; reward-only replay | API-migration stream, Pareto test |
 | Cross-field 4 bounded-delay scheduling | KILL | — | O(η²) order effect; gradient accumulation ties |
+| Agent G1 offline A/B of memory edits | PASS | Likelihood-gain (no IS) control; LLM judge; uplift model | 30 lessons vs fresh-rollout truth; check ESS first |

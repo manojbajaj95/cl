@@ -6,6 +6,7 @@ Status values:
 - **PILOTING**: passed review, pilot running.
 - **GATED on X**: passed review; launch only if pilot X survives.
 - **KILLED**: stop.
+- **KILLED (at proposal)**: dropped by the proposer before review.
 - **KILLED (fix)**: dead as written; can be resubmitted with the named fix.
 - **SURVIVED / FALSIFIED**: the pilot outcome. A FALSIFIED row ends with **What we learned**, a negative result proposers can build on.
 
@@ -25,6 +26,7 @@ Status values:
 | Consolidation predictor: lesson's ΔW share in LoRA reachable span (E1) | Agent 5 (PR #7) | GATED on B3 | One-step distillation gradient projected onto the LoRA span; first-step loss drop; in-context effect size; length | 200 lessons, LoRA ranks {4, 16, 64}. Dead if not ≥ 0.15 ρ above the best control at every rank, or the gradient projection ties | — |
 | Edge-of-chaos tuning: hold memory-loop λ at 0 (E2) | Agent 5 (PR #7) | GATED on C2 | Label-free tuning by self-consistency, memory growth rate, edit-acceptance rate; labelled grid search is the ceiling | 3 designs × 7 knob values × 3 seeds. Dead if the peak misses λ = 0 by more than one step in ≥ 2 designs, or self-consistency tuning is within the seed CI | — |
 | Effect-class distillation, narrowed to syntax-shifting code streams | Cross-field 4 | PILOTING | Token KL on canonicalized code; execution-reward-only replay; equal sample and execution budget | ~0.5B code model through an API migration, 3 seeds. Dead if it doesn't beat both controls on the old-pass vs new-syntax Pareto front beyond the seed CI | — |
+| Offline A/B of memory edits via exact-likelihood per-decision IS/DR (G1) | Agent 7 (PR #7) | PILOTING | Log-likelihood gain of the lesson on successful vs failed logged trajectories (no IS weighting); LLM judge; UpliftMem-style uplift model | 500 logged trajectories, 30 lessons, 50 fresh rollouts each as truth. Report ESS first. Dead if ESS < ~50, ρ < 0.6, or not ≥ 0.15 above the judge and the likelihood-gain control | — |
 
 ## Killed
 
@@ -56,6 +58,10 @@ Status values:
 | Write-time poison detection by off-domain ΔW energy (D2) | Agent 4 (PR #7) | KILLED | Targeted/sleeper poisons ([2605.15338](https://arxiv.org/abs/2605.15338)) fire only on triggers, so random off-domain probes miss them by construction. Broad injections are already caught by TaskTracker activation deltas and [LatentTriad 2611.05088](https://arxiv.org/abs/2611.05088) |
 | Context interference predicts LoRA forgetting (F1) | Agent 6 (PR #7) | KILLED (fold into E1) | Its ceiling, distillation-gradient cosine, is cheap and is the established GEM/OGD forgetting predictor, so even a pass loses to a known method. Test the shared-geometry claim inside E1's pilot on the same lesson pairs |
 | Bounded-delay stability scheduling | Cross-field 4 | KILLED | Reordering within a window changes the end weights only at O(η²); gradient accumulation removes the order effect at the same latency; mid-window evaluation is the only case it helps |
+| Matthew-effect skill libraries | Agent 7 (PR #7) | KILLED (at proposal) | Proposer dropped it: skill curation is crowded (SkillOS 2605.06614, COBRA-Skills 2609.11682, SE-GoS 2609.08228; preferential attachment 2607.01148) |
+| Einstellung effect from memory | Agent 7 (PR #7) | KILLED (at proposal) | Proposer dropped it: Experience Rot (2611.20922) covers it |
+| E-value sequential gating of memory edits | Agent 7 (PR #7) | KILLED (at proposal) | Proposer dropped it: randomized playbook curation (2610.18427) is too close |
+| Coded/redundant memory fragments | Agent 7 (PR #7) | KILLED (at proposal) | Proposer dropped it as covered |
 
 ## Patterns in the kills
 
