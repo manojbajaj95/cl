@@ -1,0 +1,114 @@
+{
+ "g1": {
+  "base_success_by_start": [
+   0.7073,
+   0.1653,
+   0.0695,
+   0.7226,
+   0.1479,
+   0.089,
+   0.744,
+   0.1823,
+   0.052,
+   0.7576,
+   0.1652,
+   0.0664
+  ],
+  "effect_pp_mean_by_start": [
+   15.527,
+   -8.923,
+   -2.236,
+   13.87,
+   -6.917,
+   -5.124,
+   12.712,
+   -9.629,
+   -1.286,
+   11.62,
+   -8.758,
+   -2.456
+  ],
+  "effect_pp_range": [
+   -0.6658604042564468,
+   6.785244786182869
+  ],
+  "decomposition": {
+   "lesson_main_share": 0.012038761831387164,
+   "start_main_share": 0.7209051211281864,
+   "interaction_share": 0.26705611704042664,
+   "interaction_rank1_share_of_interaction": 0.9264379559651869,
+   "lessons_with_both_signs": 30,
+   "n_lessons": 30
+  },
+  "split_half_r_frozen_halves": 0.8597029398277356,
+  "split_half_r_random_6v6": [
+   0.08241934191379541,
+   -0.8248962546401954,
+   0.8804404175146587
+  ],
+  "first_order_R2_per_cell": 0.9870736759875938,
+  "first_order_R2_interaction_only": 0.9857496656221721,
+  "per_cell_correct_mass_change": {
+   "mean_abs_pp": 4.190840841568547,
+   "share_cells_with_both_signs_across_lessons": 1.0,
+   "lessons_with_both_signs_across_cells": 30,
+   "mean_cell_sd_pp": 2.883435629391255
+  }
+ },
+ "q2_heldout_halves": {
+  "base_success_by_start": [
+   0.7379,
+   0.144,
+   0.0798,
+   0.7126,
+   0.1829,
+   0.0677,
+   0.7328,
+   0.143,
+   0.0526,
+   0.6997,
+   0.1458,
+   0.0556
+  ],
+  "effect_pp_mean_by_start": [
+   14.042,
+   -7.609,
+   -3.762,
+   15.758,
+   -10.607,
+   -3.495,
+   15.397,
+   -6.816,
+   -1.935,
+   18.388,
+   -7.74,
+   -1.522
+  ],
+  "effect_pp_range": [
+   0.6812528479964856,
+   7.285477977658039
+  ],
+  "decomposition": {
+   "lesson_main_share": 0.007646873049360825,
+   "start_main_share": 0.8611481154044418,
+   "interaction_share": 0.13120501154619718,
+   "interaction_rank1_share_of_interaction": 0.8127421026436252,
+   "lessons_with_both_signs": 40,
+   "n_lessons": 40
+  },
+  "split_half_r_frozen_halves": -0.0018206749999127388,
+  "split_half_r_random_6v6": [
+   0.041057688926205496,
+   -0.7499958459156487,
+   0.7608196559878669
+  ],
+  "first_order_R2_per_cell": 0.9910977908907286,
+  "first_order_R2_interaction_only": 0.9821356575342899,
+  "per_cell_correct_mass_change": {
+   "mean_abs_pp": 3.8988557137262716,
+   "share_cells_with_both_signs_across_lessons": 0.7777777777777778,
+   "lessons_with_both_signs_across_cells": 40,
+   "mean_cell_sd_pp": 1.877029245298374
+  }
+ }
+}
