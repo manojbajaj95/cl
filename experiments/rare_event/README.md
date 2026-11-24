@@ -1,6 +1,6 @@
 # Rare-event distillation: kill this pilot
 
-Weighted splitting found **10.4× more old jam states per rollout** than ordinary
+Weighted splitting found **10.4× as many old jam tails** as ordinary
 MOPD replay, but didn't turn that coverage into a retention win at the fixed
 budget. Post-shift old recovery was **10.7%** ([2.7%, 18.7%] 95% CI) with splitting
 and **17.2%** ([-16.7%, 51.0%]) with prompt upsampling, the best control by point
@@ -49,12 +49,11 @@ reused prefixes count as a rollout even if fewer live tool calls were needed.
 | Weighted splitting | 47 / 37 / 41 | 26 / 19 / 20 | 2,048 | 4,096 |
 | Direct terminal replay | 2,049 / 2,048 / 2,049 | 43 / 40 / 41 | 2,048 | 2,048 |
 
-With a shared tilted objective, neither the 10.4× higher jam visitation over
-live replay nor direct rehearsal of recorded jams established a retained
-recovery advantage for splitting. The apparent plain-MOPD rare win does not
-isolate branching: it shrank and became inconclusive when MOPD used the same
-objective. No GPU follow-up for this variant. Revisit only with a reason why
-branching should add useful recovery states unavailable to direct replay.
+Splitting did not beat ordinary sampling with the same tilted objective or
+direct rehearsal of recorded jams. The win over plain MOPD does not isolate
+branching: it shrank and became inconclusive when MOPD used the same objective.
+No GPU follow-up for this variant. Revisit only with a reason why branching
+should add useful recovery states unavailable to direct replay.
 
 This is a synthetic, two-decision environment with an oracle risk flag and known
 transition kernel. Only 896 parameters in a rank-one update of the constrained
