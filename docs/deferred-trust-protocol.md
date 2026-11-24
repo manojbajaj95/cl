@@ -54,8 +54,30 @@ does not imply a better classifier.
   subspace, so treat support as non-identifiable by this decoder.
 - Controls: unchanged anchor, exact first-order, exact diagonal
   second-order, live single-source shadows, equal-vector mixed shadow
-  ridge, blockwise exact batch refit on the favorable generator, and
-  reservoir chronology (byte cap equal to sketch state). Report dense
+  ridge, an affinity-gated exact jet tracking at most 24 pairs plus 24
+  input fingerprints, regularized full-data batch refit on the favorable
+  generator, and reservoir chronology (byte cap equal to sketch state). Report dense
   second-order separately as a memory-relaxed reference. Account for
   persistent state and per-event math separately; matching vector counts
   does not match FLOPs.
+
+## Follow-up: can the learner tell when not to trust its sketch?
+
+The first held-out run showed that the derivative-free decoder works under
+weak coupling but not under dense coupling. Test a guard before scaling:
+use the original analytic sketch's 48 rows as 32 fit, 8 selection and 8
+confirmation rows. Compare rank-4/8/12/16/24 MUSIC and dense kernel ridge
+on selection-row squared residual, then accept the best only if its
+confirmation residual is at most 80% of the no-pair residual. Otherwise
+use the diagonal jet. Neither validation split sees past examples.
+Report constant-rank MUSIC and diagonal controls on the same streams.
+
+Use new seeds 201–224, unchanged radius and query design. H3 passes if the
+guard cuts radius-0.5 RMSE by 20% vs diagonal on **both** paired and
+bridged streams (paired 95% intervals exclude zero improvement), and the
+interval excludes more than a 5% regression on **both** dense and digits.
+Include a rekeyed stress test: for the first quarter, pair sources under
+one random assignment; then switch to an independent assignment with no
+boundary marker. Report whether the guard beats axis shadows and online
+feature affinity there. Only improvements on an independent, non-planted
+dataset could support scaling.
