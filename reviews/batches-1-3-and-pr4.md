@@ -62,3 +62,5 @@ Rerun with a harder (nonlinear-teacher) task stream, in `pilots/noether_check.py
 | Agent B2 vocabulary-grown skills | KILL | — | Prompt-pool CL plus ToolkenGPT; zero forgetting is the frozen-backbone property |
 | Agent C2 memory-loop Lyapunov exponent | PASS | 20-step two-order divergence; seed-only noise floor | 8 designs, λ from 20 updates. Dead if not ≥ 0.3 Spearman above the cheap two-order control |
 | Agent C1 inverse tool models | KILL | — | Same data as hindsight-relabelled forward SFT (AgentHER) |
+| Agent D1 lesson capacity law | PASS, gated on B3's proxy surviving | Length-matched dilution; embedding rank | 5 pools. Dead if ρ < 0.5 or embedding rank within 0.2 |
+| Agent D2 write-time poison detection | KILL | — | Trigger-specific poisons evade random-probe energy; TaskTracker/LatentTriad cover broad ones |
