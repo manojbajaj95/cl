@@ -4,6 +4,7 @@ import numpy as np
 
 from analyze import ARMS, T, estimate, match_temperatures, outcomes, summarize
 from coding import FAMILIES, feedback, signature, stream
+from depth_analyze import adjusted_risk, dose_fit, summarize_depth
 
 
 class CodingTests(unittest.TestCase):
@@ -46,6 +47,31 @@ class AnalysisTests(unittest.TestCase):
         self.assertEqual(result["bad_minus_control"]["filler"]["write_any"],
                          {"estimate": 0., "ci95": [0., 0.]})
         self.assertFalse(result["recommend_stage_1"])
+
+
+class DepthTests(unittest.TestCase):
+    def test_independent_dose_fit_recovers_known_transfer(self):
+        p0, tau, k = .4, .12, 8
+        p1 = 1 - (1 - p0) * (1 - tau)
+        pk = 1 - (1 - p0) * (1 - tau)**k
+        self.assertAlmostEqual(adjusted_risk(p0, p1), tau)
+        self.assertAlmostEqual(dose_fit(p0, p1, pk, k), tau)
+
+    def test_k1_transfer_equals_original_adjusted_estimate(self):
+        rng = np.random.default_rng(5)
+        original = rng.normal(size=(4, 4, 4, 4, 3))
+        panel = original[:, :, [1, 0, 0, 2, 0, 1]]
+        depth = summarize_depth(panel, original[:, :, -1], 1, np.full((3, 4), .25))
+        binary = summarize(original, draws=2)
+        self.assertAlmostEqual(depth["k_tau_eff"]["estimate"], binary["background_adjusted_tau"]["estimate"])
+
+    def test_one_filler_and_one_bad_arms_define_local_effect(self):
+        panel = np.zeros((2, 4, 6, 4, 3))
+        panel[:, :, 5, :, 0] = 1  # correct favored when the target slot is filler
+        panel[:, :, 4, :, 1] = 1  # planted defect favored when the slot is defective
+        score = summarize_depth(panel, panel[:, :, 5], 4, np.full((3, 2), .5))
+        self.assertGreater(score["k_tau_eff"]["estimate"], 0.5)
+        self.assertEqual(score["tau_dose_fit"]["estimate"], 0)
 
 
 if __name__ == "__main__":

@@ -121,6 +121,8 @@ CONTEXTS = (
 )
 ORDERS = tuple(permutations(range(3)))
 RNG_SEED = 91731
+DEPTHS = (1, 2, 4, 8)
+DEPTH_ARMS = ("all_filler", "one_bad_filler", "all_bad", "all_sound", "one_bad_sound", "one_filler_sound")
 
 
 def execute(expression, value):

@@ -29,8 +29,8 @@ PADDING = ("", " here", " in practice", " for this helper", " in the earlier hel
 
 
 class Scorer:
-    def __init__(self, path, threads):
-        self.llm = Llama(str(path), n_ctx=384, n_batch=384, n_threads=threads,
+    def __init__(self, path, threads, context=384):
+        self.llm = Llama(str(path), n_ctx=context, n_batch=context, n_threads=threads,
                          n_threads_batch=threads, verbose=False, n_gpu_layers=0)
         self.ids = [self.tokenize(f" {label}", False)[0] for label in "ABC"]
         probe = "Choice:"
@@ -57,7 +57,7 @@ class Scorer:
         return logits
 
 
-def memories(scorer, family, variant, solve_order, write_order):
+def memories(scorer, family, variant, solve_order, write_order, filler_index=None):
     def candidates(texts):
         out = {}
         for text in texts:
@@ -65,7 +65,7 @@ def memories(scorer, family, variant, solve_order, write_order):
             out.setdefault(len(scorer.tokenize(prompt)), text)
         return out
 
-    template, modifiers = FILLERS[variant]
+    template, modifiers = FILLERS[variant if filler_index is None else filler_index]
     bad = candidates(family.bad_note[:-1] + suffix + "." for suffix in PADDING)
     sound = candidates(family.sound_note[:-1] + suffix + "." for suffix in PADDING)
     filler = candidates(template.format(*parts) for parts in product(*[("", m) for m in modifiers]))
