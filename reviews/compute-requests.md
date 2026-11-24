@@ -119,13 +119,16 @@ Falsified on CPU ([PR #30](https://github.com/manojbajaj95/cl/pull/30)): 0 of 50
 Killed at CPU scale ([PR #22](https://github.com/manojbajaj95/cl/pull/22)), so not requested: a fixed guess of N* tied the law. A GPU run is worth it only if N* is first shown to vary widely across settings.
 
 ### Self-contamination law, R = k·(α_D·τ − d)/α_S (PR #4)
+- **Ranked the best remaining GPU bet** (odds of a frontier result low to moderate).
+- **Stage 1 (about 5 GPU-h, inference only):** Qwen2.5-7B lesson writer on a coding stream. Vary verifier strength by running 10–100% of the unit tests, and measure α_D, α_S, d and τ on about 300 candidates per coverage level. Stage 1 is dead if no level gives R in [0.5, 2] with CI, or if τ doesn't exceed the defect rate from same-length filler.
 - **Protocol:**
-  1. Find a setting with R in [0.5, 2], about 30 GPU-h.
+  1. Find a setting with R in [0.5, 2] (stage 1 above).
   2. Sweep k ∈ {1, 2, 4, 8}.
 - **Controls:**
   1. A predictor that uses only the gate catch rate.
   2. Extrapolating the early defect share.
-- **Seeds and compute:** 3 seeds, about 60 GPU-h in total.
+- **Seeds and compute:** 3 seeds, about 5 GPU-h for stage 1 plus about 25 GPU-h for the k-sweep, roughly 30 GPU-h in total.
+- **Stage 2 kill line:** dead if the gate-precision-only predictor ties R, or onset AUC < 0.75.
 - **Kill line:** dead if collapse onset doesn't switch near R = 1.
 
-**Total:** about 105 GPU-h (plus about 20 if H1's gate passes). If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
+**Total:** about 75 GPU-h (plus about 20 if H1's gate passes). If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
