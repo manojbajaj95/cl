@@ -1,0 +1,442 @@
+[
+  {
+    "id": "m1-01",
+    "kind": "m1",
+    "note": "In the failed run, the code 19 was chosen incorrectly, leading to a failure.",
+    "source": [
+      0
+    ],
+    "writer_episode": 108
+  },
+  {
+    "id": "m1-02",
+    "kind": "m1",
+    "note": "Always choose the tool that requires the highest remainder when dividing the code by 3.",
+    "source": [
+      0
+    ],
+    "writer_episode": 296
+  },
+  {
+    "id": "m1-03",
+    "kind": "m1",
+    "note": "In the failed run, the code was not correctly divided by 3, leading to a remainder of 1 for the B route and a remainder of 2 for the C route.",
+    "source": [
+      6
+    ],
+    "writer_episode": 90
+  },
+  {
+    "id": "m1-04",
+    "kind": "m1",
+    "note": "In the failed run, the code was not correctly divided by 3, leading to a remainder of 2, which requires A.",
+    "source": [
+      7
+    ],
+    "writer_episode": 105
+  },
+  {
+    "id": "m1-05",
+    "kind": "m1",
+    "note": "In the failed run, the code 14 was chosen for B, but the verifier route A resulted in a remainder of 2, which is not allowed.",
+    "source": [
+      7
+    ],
+    "writer_episode": 188
+  },
+  {
+    "id": "m1-06",
+    "kind": "m1",
+    "note": "In the failed run, the code was 13, and the chosen routes were B and C.",
+    "source": [
+      0
+    ],
+    "writer_episode": 56
+  },
+  {
+    "id": "m1-07",
+    "kind": "m1",
+    "note": "In the failed run, the code 19 was chosen by B, but the verifier route C was chosen by A, resulting in a failure.",
+    "source": [
+      2
+    ],
+    "writer_episode": 205
+  },
+  {
+    "id": "m1-08",
+    "kind": "m1",
+    "note": "In the failed run, the code was not correctly divided by 3, leading to a remainder of 2.",
+    "source": [
+      6
+    ],
+    "writer_episode": 29
+  },
+  {
+    "id": "m1-09",
+    "kind": "m1",
+    "note": "In the failed run, the algorithm chose B for code 12 and A for code 21, but the verifier route was B, leading to a failure.",
+    "source": [
+      2
+    ],
+    "writer_episode": 76
+  },
+  {
+    "id": "m1-10",
+    "kind": "m1",
+    "note": "In the failed run, the code 13 was chosen for both checkpoints, leading to a verifier route C.",
+    "source": [
+      6
+    ],
+    "writer_episode": 155
+  },
+  {
+    "id": "m1-11",
+    "kind": "m1",
+    "note": "In the failed run, the code 14 was chosen for route A, but the verifier route A resulted in a remainder of 2, which is not allowed.",
+    "source": [
+      7
+    ],
+    "writer_episode": 106
+  },
+  {
+    "id": "m1-12",
+    "kind": "m1",
+    "note": "In the failed run, the code 18 was chosen for both checkpoints, leading to a verifier route B.",
+    "source": [
+      1
+    ],
+    "writer_episode": 165
+  },
+  {
+    "id": "m1-13",
+    "kind": "m1",
+    "note": "In the failed run, the code was 13, and the chosen routes were B and C.",
+    "source": [
+      8
+    ],
+    "writer_episode": 20
+  },
+  {
+    "id": "m1-14",
+    "kind": "m1",
+    "note": "In the failed run, the code 12 was chosen by A, but the verifier route B was chosen by C, resulting in a code 10.",
+    "source": [
+      7
+    ],
+    "writer_episode": 193
+  },
+  {
+    "id": "m1-15",
+    "kind": "m1",
+    "note": "In the failed run, the code 19 was chosen by B, but the verifier route C did not match the code's remainder 1.",
+    "source": [
+      2
+    ],
+    "writer_episode": 14
+  },
+  {
+    "id": "m1-16",
+    "kind": "m1",
+    "note": "In the failed run, the code 20 was chosen for route A, but the verifier route A resulted in a remainder of 2, which is not allowed.",
+    "source": [
+      1
+    ],
+    "writer_episode": 124
+  },
+  {
+    "id": "m1-17",
+    "kind": "m1",
+    "note": "In the failed run, the code was not correctly divided by 3, leading to a remainder of 1 for the B route.",
+    "source": [
+      6
+    ],
+    "writer_episode": 203
+  },
+  {
+    "id": "m1-18",
+    "kind": "m1",
+    "note": "In the failed run, the code 16 was chosen for B, but the verifier route C was not used, leading to a failure.",
+    "source": [
+      1
+    ],
+    "writer_episode": 57
+  },
+  {
+    "id": "m1-19",
+    "kind": "m1",
+    "note": "In the failed run, the code 21 was chosen for both checkpoints, leading to a verifier route B.",
+    "source": [
+      2
+    ],
+    "writer_episode": 131
+  },
+  {
+    "id": "m1-20",
+    "kind": "m1",
+    "note": "In the failed run, the code was not correctly divided by 3, leading to a remainder of 2.",
+    "source": [
+      8
+    ],
+    "writer_episode": 53
+  },
+  {
+    "id": "g1-01",
+    "kind": "helpful",
+    "note": "Divide the current code by three. Route remainder 0 to B, remainder 1 to C, and remainder 2 to A.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-03",
+    "kind": "helpful",
+    "note": "Subtract three repeatedly until the code is 0, 1, or 2; answer B, C, or A respectively.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-04",
+    "kind": "helpful",
+    "note": "The multiples of three in this range are 12, 15, 18 and 21. Route those to B.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-05",
+    "kind": "helpful",
+    "note": "A code of one more than a multiple of three goes to C. For example, 13 is C.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-07",
+    "kind": "helpful",
+    "note": "Compute the digit sum first. Its remainder modulo three equals the code's remainder; use the normal label mapping.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-09",
+    "kind": "helpful",
+    "note": "Ignore the checkpoint number in the arithmetic. The displayed code alone determines which label is correct.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-10",
+    "kind": "helpful",
+    "note": "Use the most recent code even if it changed after the last route. A previous route does not tell you the next one.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-12",
+    "kind": "neutral",
+    "note": "The checkpoint counter indicates progress through a run.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-13",
+    "kind": "neutral",
+    "note": "The command names are uppercase English letters.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-14",
+    "kind": "neutral",
+    "note": "Codes are printed as ordinary base-ten integers.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-17",
+    "kind": "neutral",
+    "note": "Treat the displayed code as the input to the routing task.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-18",
+    "kind": "neutral",
+    "note": "Avoid making assumptions about what the controller will display next.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-19",
+    "kind": "neutral",
+    "note": "The same command can be issued more than once in a run.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-20",
+    "kind": "neutral",
+    "note": "A route is sent to the controller as soon as you choose it.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-23",
+    "kind": "misleading",
+    "note": "Always route to C, regardless of the code.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-24",
+    "kind": "misleading",
+    "note": "Use the natural order instead: remainder 0 is A, remainder 1 is B, and remainder 2 is C.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-25",
+    "kind": "misleading",
+    "note": "Reverse the roles of A and C: send remainder 2 to C and remainder 1 to A. Keep remainder 0 as B.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-26",
+    "kind": "misleading",
+    "note": "Route even codes to B, and odd codes to C.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-29",
+    "kind": "misleading",
+    "note": "Use the quotient of division by three, not the remainder: cycle A, B, C with that quotient.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "id": "g1-30",
+    "kind": "misleading",
+    "note": "Send low codes (10–13) to A, middle codes (14–17) to B, and high codes (18–21) to C.",
+    "source": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8
+    ]
+  }
+]
