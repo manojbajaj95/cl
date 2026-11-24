@@ -1,0 +1,230 @@
+{
+  "seeds": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "gate": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "per_fleet_r": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "gate_passed": false,
+  "exposure_diagnostics": {
+    "all": [
+      0.19106575877446758,
+      -0.057353933467640436,
+      0.47172817652486343
+    ],
+    "false": [
+      0.19106575877446755,
+      -0.05735393346764051,
+      0.47172817652486343
+    ]
+  },
+  "pools": [
+    {
+      "seed": 0,
+      "pool_size": 16,
+      "true_rare": 4,
+      "mean_true_rare_proposed_exposed": 1.25,
+      "mean_true_rare_proposed_unexposed": 0.9375,
+      "true_rare_vote_shares": [
+        0.0,
+        0.0,
+        0.05,
+        0.0
+      ]
+    },
+    {
+      "seed": 1,
+      "pool_size": 14,
+      "true_rare": 4,
+      "mean_true_rare_proposed_exposed": 1.25,
+      "mean_true_rare_proposed_unexposed": 0.8125,
+      "true_rare_vote_shares": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "seed": 2,
+      "pool_size": 16,
+      "true_rare": 4,
+      "mean_true_rare_proposed_exposed": 1.0,
+      "mean_true_rare_proposed_unexposed": 0.6875,
+      "true_rare_vote_shares": [
+        0.05,
+        0.0,
+        0.05,
+        0.0
+      ]
+    },
+    {
+      "seed": 3,
+      "pool_size": 16,
+      "true_rare": 4,
+      "mean_true_rare_proposed_exposed": 0.75,
+      "mean_true_rare_proposed_unexposed": 0.9375,
+      "true_rare_vote_shares": [
+        0.05,
+        0.0,
+        0.05,
+        0.0
+      ]
+    }
+  ],
+  "by_fleet": {
+    "elicited_sp": [
+      [
+        0.875,
+        0.0
+      ],
+      [
+        1.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0625
+      ],
+      [
+        1.0,
+        0.125
+      ]
+    ],
+    "logprob_sp": [
+      [
+        0.875,
+        0.0
+      ],
+      [
+        1.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0625
+      ],
+      [
+        1.0,
+        0.125
+      ]
+    ],
+    "mean_pi": [
+      [
+        0.875,
+        0.0
+      ],
+      [
+        1.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0625
+      ],
+      [
+        1.0,
+        0.0625
+      ]
+    ]
+  },
+  "accuracy": {
+    "elicited_sp": [
+      [
+        0.96875,
+        0.90625,
+        1.0
+      ],
+      [
+        0.046875,
+        0.0,
+        0.09375
+      ]
+    ],
+    "logprob_sp": [
+      [
+        0.96875,
+        0.90625,
+        1.0
+      ],
+      [
+        0.046875,
+        0.0,
+        0.09375
+      ]
+    ],
+    "mean_pi": [
+      [
+        0.96875,
+        0.90625,
+        1.0
+      ],
+      [
+        0.03125,
+        0.0,
+        0.0625
+      ]
+    ]
+  },
+  "differences": {
+    "elicited_sp_minus_logprob_sp": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "elicited_sp_minus_mean_pi": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.015625,
+        0.0,
+        0.046875
+      ]
+    ],
+    "logprob_sp_minus_elicited_sp": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "logprob_sp_minus_mean_pi": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.015625,
+        0.0,
+        0.046875
+      ]
+    ]
+  }
+}
