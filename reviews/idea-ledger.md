@@ -103,6 +103,9 @@ Status values:
 | PR #18 pre-killed ideas (13) | Memory-form proposer | KILLED (at proposal) | Reasons and covering papers are in PR #18 |
 | PR #20 harness pre-kills HK1–HK8 | Harness proposer | KILLED (at proposal) | Reasons and covering papers are in PR #20 (SAGE, GUARD, Masked Erosion, Harness Annealing, Mixture of Branches, SIM and others); reviewer agrees |
 | R1: consolidation erodes correctability (fix: counterfactual-context consolidation) | Long-run proposer batch 3 (PR #16) | KILLED (fold into double-dosing pilot) | The fix is KAFT-style counterfactual-context training (Li et al. 2022); 2610.02614 shows steerability declines under SFT and recognition tuning restores it. Multi-cycle erosion is logged in the double-dosing pilot: flip rate of a contradicting lesson at each cycle, matched on absorption; dead if the last cycle is not ≥ 15 points below cycle 1 |
+| Noise vs overwrite at equal LR area | Agent proposer | KILLED (CPU pilot) | Same-task continuation forgets 0% at every LR; conflicting data forgets 78–91% with < 2% recovered by re-annealing (3 seeds). This is plain overwrite; there is no noise law |
+| Attention-sink pathway as reversible forgetting | Agent proposer | KILLED (at proposal) | 2610.08718 already removes the common shift with one data-free direction per update |
+| Co-observation effect (2608.18803) as a repetition artifact | Agent proposer | KILLED (CPU pilot) | Refuted: a 5.2-point gap at 1 epoch/chunk vs 0.4 at 30 (5 seeds) is undertraining, and the paper's fixed budget already controls for it |
 
 ## Patterns in the kills
 
