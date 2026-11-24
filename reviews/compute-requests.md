@@ -10,7 +10,7 @@ These are the active or gated pilots from [idea-ledger.md](idea-ledger.md) whose
 
 **Not listed here, because CPU is valid:**
 - B3, lesson interference proxy (CPU Qwen2.5-1.5B, already running)
-- M2, per-lesson attention bias, with N1 as an arm
+- M2, per-lesson attention bias, with N1 as an arm (both killed, [PR #35](https://github.com/manojbajaj95/cl/pull/35))
 - N2, prohibition rebound
 - Functional syndromes
 - P3's synthetic replication, if kept small
