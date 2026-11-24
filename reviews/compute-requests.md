@@ -94,7 +94,7 @@ The HW1 pilot writes its own spec; see [PR #20](https://github.com/manojbajaj95/
 - **Seeds and compute:** 3 seeds, about 10 GPU-h.
 - **Kill line:** dead if "both" shows no overshoot beyond the seed CI with no growing oscillation over cycles, or if NCA removes it. R1 is dead if the flip rate at cycle 6 is not ≥ 15 points below cycle 1.
 
-### E1 consolidation predictor (with M3 and F1 arms), gated on B3
+### E1 consolidation predictor (with M3 and F1 arms): HELD, B3 gate failed ([PR #28](https://github.com/manojbajaj95/cl/pull/28)), not in the total
 - **Model:** Qwen2.5-1.5B-Instruct, distilling 200 lessons, each into LoRA ranks {4, 16, 64}.
 - **Predictors:**
   1. E1: the lesson's ΔW share in the LoRA span.
@@ -112,7 +112,7 @@ The HW1 pilot writes its own spec; see [PR #20](https://github.com/manojbajaj95/
   - M3 is dead if it adds < 0.1 ρ.
   - F1 is dead if it trails gradient cosine by > 0.1 ρ.
 
-### D1 lesson capacity law, gated on B3
+### D1 lesson capacity law: HELD, B3 gate failed ([PR #28](https://github.com/manojbajaj95/cl/pull/28)), not in the total
 - **Model:** Qwen2.5-1.5B-Instruct, with 5 lesson pools and N swept over {1, 2, 4, …, 128}.
 - **Comparison:** predict each pool's accuracy peak N* from where ΔW rank saturates.
 - **Controls:**
@@ -136,4 +136,4 @@ Killed at CPU scale ([PR #22](https://github.com/manojbajaj95/cl/pull/22)), so n
 - **Seeds and compute:** 3 seeds, about 60 GPU-h in total.
 - **Kill line:** dead if collapse onset doesn't switch near R = 1.
 
-**Total:** about 150 GPU-h (plus about 20 if H1's gate passes), plus HW1's API spend. If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
+**Total:** about 114 GPU-h (plus about 20 if H1's gate passes), plus HW1's API spend. If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
