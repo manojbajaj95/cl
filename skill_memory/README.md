@@ -5,6 +5,8 @@ verifier, and paired task stream. The runner needs Python 3.10+ and has no Pytho
 dependencies. The scripted agent is for CI and debugging, not for comparing
 research methods; it omits the entropy control because it has no token distribution.
 
+[Qwen CPU pilot: results, intervals, and raw logs](results/qwen-cpu/README.md)
+
 ## Run it
 
 From the repository root:
