@@ -25,7 +25,6 @@ Call counts assume about 3–5 calls per agent episode. Free endpoints generally
 |---|---|---|---|
 | H1 gate only | ~3,400 with live episodes | **Yes, if shrunk** | Give each of 20 agents a synthesized memory (10 lessons from rare- or common-regime trajectories, ~20 calls), then elicit meta-predictions (20 agents × 10 lessons, ~200 calls). About 220 calls, about 5 days. Same r ≥ 0.2 gate |
 | Toolbox drift | ~36,000 | No | 1 seed × 2 arms (tools vs lessons + tests) × 100 episodes is still ~600 calls (~12 days) and underpowered; use a GPU |
-| Ask when stuck | ~13,500 | No | Needs the store-size sweep; use a GPU |
 | P3 writer distractibility | ~4,000 | No | Needs ≥ 200 episodes per arm, and the mask arm needs log-probs |
 | Fleet Q2 | — | Killed | [PR #25](https://github.com/manojbajaj95/cl/pull/25) |
 
@@ -43,15 +42,8 @@ Call counts assume about 3–5 calls per agent episode. Free endpoints generally
 - **Seeds and compute:** 3 seeds, about 10 GPU-h.
 - **Kill line:** dead if arm 3 matches arm 1 on both measures within the seed CI.
 
-### Ask when stuck: failure-triggered pull memory
-- **Model:** Qwen2.5-7B-Instruct on the 2610.27406 "more memory, worse agent" setup.
-- **Arms:**
-  1. Push top-k at the start.
-  2. FLARE-style confidence-triggered retrieval.
-  3. Pull of question-indexed atoms only on a failure signature (tool error or failed check).
-- **Protocol:** store sizes {0, 10, 30, 100, 300}, with tokens matched per retrieval.
-- **Seeds and compute:** 3 seeds, about 15 GPU-h.
-- **Kill line:** dead if arm 3 declines with store size like arm 1, or arm 2 ties arm 3 at every size.
+### Ask when stuck: KILLED
+Falsified ([PR #34](https://github.com/manojbajaj95/cl/pull/34)): no arm beat the entropy-matched control.
 
 ### H1: surprisingly-popular fleet memory (7B gate only)
 The CPU run is killed ([PR #23](https://github.com/manojbajaj95/cl/pull/23)) and H1b is dropped: it tied mean P_i, which doesn't depend on model scale. The CPU meta-predictions were flat (r = 0.000), plausibly a small-model ability gap, so only the gate is requested.
@@ -131,4 +123,4 @@ Killed at CPU scale ([PR #22](https://github.com/manojbajaj95/cl/pull/22)), so n
 - **Stage 2 kill line:** dead if the gate-precision-only predictor ties R, or onset AUC < 0.75.
 - **Kill line:** dead if collapse onset doesn't switch near R = 1.
 
-**Total:** about 75 GPU-h (plus about 20 if H1's gate passes). If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
+**Total:** about 60 GPU-h (plus about 20 if H1's gate passes). If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
