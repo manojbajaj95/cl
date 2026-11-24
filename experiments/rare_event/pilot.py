@@ -225,7 +225,15 @@ def reverse_kl(logits, teacher):
     return (student_logp.exp() * (student_logp - teacher_logp)).sum(dim=-1)
 
 
-def adapt(previous, new_batches, replay, mode, seed):
+def trace_replay(policy, starts, status, student, contributions):
+    slopes, = torch.autograd.grad(contributions.sum(), student, retain_graph=True)
+    with torch.no_grad():
+        prompts, actions = starts.T
+        feature_norms = policy.z[0, prompts, actions, status].norm(dim=-1)
+        return status == JAM, (slopes.abs() * feature_norms).numpy(), contributions.detach().numpy()
+
+
+def adapt(previous, new_batches, replay, mode, seed, replay_trace=None):
     policy = copy.deepcopy(previous)
     opt = torch.optim.AdamW(policy.parameters(), lr=0.006, weight_decay=0.0)
     rng = np.random.default_rng(seed)
@@ -249,7 +257,10 @@ def adapt(previous, new_batches, replay, mode, seed):
                 target = previous.logits(0, starts, status)
                 # Constrained one-token actions: KL integrates both possible samples exactly.
                 actions = rng.random(len(status)) < student.sigmoid().numpy()
-            loss = loss + REPLAY_SCALE * (reverse_kl(student, target) * torch.from_numpy(weight).float()).mean()
+            weighted_kl = reverse_kl(student, target) * torch.from_numpy(weight).float()
+            loss = loss + REPLAY_SCALE * weighted_kl.mean()
+            if replay_trace is not None:
+                replay_trace.append(trace_replay(policy, starts, status, student, weighted_kl * (REPLAY_SCALE / len(status))))
             budget["replay_rollouts"] += len(status)
             budget["replay_teacher_positions"] += len(target)
             budget["replay_sampled_actions"] += len(actions)
@@ -332,9 +343,15 @@ def main():
     parser.add_argument("--output", type=Path)
     parser.add_argument("--features-only", action="store_true")
     parser.add_argument("--dev-seed", type=int)
+    parser.add_argument("--seed-count", type=int)
+    parser.add_argument("--gradient-log", type=Path)
     args = parser.parse_args()
     if not args.features_only and args.output is None:
         parser.error("--output is required unless using --features-only")
+    if args.seed_count is not None and (args.seed_count < 1 or args.dev_seed is not None):
+        parser.error("--seed-count must be positive and cannot be combined with --dev-seed")
+    if args.gradient_log is not None:
+        args.gradient_log.mkdir(parents=True, exist_ok=True)
     torch.set_num_threads(args.threads)
     start = time.perf_counter()
     if not args.cache.exists():
@@ -348,6 +365,8 @@ def main():
         parser.error("cache was built with a different model or feature schema; use a new path")
     route = features["root"][:P].numpy()
     seeds = (args.dev_seed,) if args.dev_seed is not None else SEEDS
+    if args.seed_count is not None:
+        seeds = range(SEEDS[0], SEEDS[0] + args.seed_count)
     runs = []
     for seed in seeds:
         begin = time.perf_counter()
@@ -359,7 +378,12 @@ def main():
         result = dict(seed=seed, old_rollouts=len(archive[0]), old_jams=len(replay.jam_index),
                       old_high=len(replay.high_index), before=evaluate(previous, features))
         for mode in ("none", *MODES):
-            policy, budget = adapt(previous, new_batches, replay, mode, seed + 10000)
+            trace = [] if args.gradient_log is not None and mode != "none" else None
+            policy, budget = adapt(previous, new_batches, replay, mode, seed + 10000, replay_trace=trace)
+            if trace is not None:
+                jam, gradient_norm, loss = map(np.stack, zip(*trace))
+                np.savez_compressed(args.gradient_log / f"{seed}-{mode}.npz",
+                                    jam=jam, gradient_norm=gradient_norm, loss=loss)
             result[mode] = {**evaluate(policy, features), **budget}
         result["seconds"] = time.perf_counter() - begin
         runs.append(result)

@@ -3,7 +3,8 @@ import unittest
 import numpy as np
 import torch
 
-from pilot import JAM, MODES, N, P, RARE_TILT, REPLAY_BATCH, Policy, Replay, adapt, interval, natural, reverse_kl
+from pilot import JAM, MODES, N, P, RARE_TILT, REPLAY_BATCH, Policy, Replay, adapt, interval, natural, reverse_kl, trace_replay
+from q1_gate import gate
 
 
 class ReplayTest(unittest.TestCase):
@@ -57,6 +58,42 @@ class ReplayTest(unittest.TestCase):
         ci = interval([0.1, 0.2, 0.3])
         self.assertAlmostEqual(ci["mean"], 0.2)
         self.assertAlmostEqual(ci["high"] - ci["mean"], 0.248414, places=6)
+
+    def test_replay_trace_matches_individual_adapter_gradients(self):
+        z = torch.arange(2 * N * 2 * 3 * 2, dtype=torch.float32).reshape(2, N, 2, 3, 2)
+        policy = Policy({"z": z / z.max(), "base": torch.zeros(2, N, 2, 3)})
+        starts = np.array([[0, 0], [1, 0]])
+        status = np.array([JAM, 0])
+        student = policy.logits(0, starts, status)
+        losses = reverse_kl(student, torch.tensor([2., -1.])) * torch.tensor([.4, .03])
+        jam, norms, logged_loss = trace_replay(policy, starts, status, student, losses)
+        expected = [torch.autograd.grad(loss, policy.adapter, retain_graph=True)[0].norm().item()
+                    for loss in losses]
+        np.testing.assert_array_equal(jam, [True, False])
+        np.testing.assert_allclose(norms, expected, rtol=1e-6)
+        np.testing.assert_array_equal(logged_loss, losses.detach().numpy())
+        self.assertIsNone(policy.adapter.grad)
+
+    def test_replay_logging_does_not_change_training(self):
+        previous = Policy({"z": torch.ones(2, N, 2, 3, 2), "base": torch.zeros(2, N, 2, 3)})
+        batches = [natural(self.rng, 16, self.route) for _ in range(3)]
+        plain, plain_budget = adapt(previous, batches, self.replay, "terminal_replay", seed=5)
+        trace = []
+        logged, logged_budget = adapt(previous, batches, self.replay, "terminal_replay", seed=5,
+                                      replay_trace=trace)
+        torch.testing.assert_close(plain.adapter, logged.adapter, rtol=0, atol=0)
+        self.assertEqual(plain_budget, logged_budget)
+        self.assertEqual(len(trace), len(batches))
+        self.assertEqual(sum(jam.sum() for jam, _, _ in trace), logged_budget["replay_jams"])
+
+    def test_noise_gate_compares_seed_variance_to_arm_mean_variance(self):
+        recovery = np.array([[0., 3.], [2., 5.]])
+        paired = np.array([[0, 1], [0, 0], [1, 1], [1, 0]])
+        result = gate(recovery, paired)
+        self.assertTrue(result["proceed"])
+        self.assertEqual(result["within"]["estimate"], 2.)
+        self.assertEqual(result["across"], dict(estimate=4.5, low=4.5, high=4.5))
+        self.assertFalse(gate(recovery / [1, 2], paired)["proceed"])
 
 
 if __name__ == "__main__":
