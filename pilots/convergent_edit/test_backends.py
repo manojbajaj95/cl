@@ -6,9 +6,10 @@ import tempfile
 import threading
 import time
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
-from .backends import Chat, OPENROUTER_MODEL, OPENROUTER_URL, ResponseCache, backends
+from .backends import Chat, OPENROUTER_MODEL, OPENROUTER_URL, ResponseCache, TaskModel, backends
+from .environment import HELD_OUT, make_task
 
 
 @contextmanager
@@ -42,6 +43,14 @@ def mock_provider(responses):
 
 
 class BackendTest(unittest.TestCase):
+    def test_solver_schema_contains_all_choices_not_an_answer_hint(self):
+        task = make_task(HELD_OUT, 0)
+        chat = Mock(return_value=str(task.answer))
+        model = TaskModel(chat, constrain_choices=True)
+        self.assertEqual(model.solve(task, (), 11), model.solve(task, (), 11, 1))
+        schemas = [call.kwargs["response_format"]["json_schema"]["schema"] for call in chat.call_args_list]
+        self.assertEqual(schemas, [{"type": "integer", "enum": sorted(task.choices)}] * 2)
+
     @patch.dict("os.environ", {"OPENROUTER_API_KEY": "test-token", "OPENROUTER_HTTP_REFERER": "https://example.test",
                               "OPENROUTER_X_TITLE": "HW1"}, clear=True)
     def test_openrouter_default_configuration(self):

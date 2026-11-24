@@ -1,40 +1,35 @@
 # HW1 pilot results
 
-**Stop at the gate:** Neither live Lightning nor local Qwen produced held-out gain spread greater than seed variance on the initial CPU panel. The stub checks software paths only. See [API_RUN.md](API_RUN.md) for the full experiment and decision rule.
+The original eight-task runs **did not constitute a valid test**: the held-out solver scored 0/24, and lexical clustering did not yield a usable breadth signal. The revised pilot below tests variance after correcting both issues. See [API_RUN.md](API_RUN.md) for the protocol.
 
-## Live OpenRouter Lightning gate
+## V2 calibration and clustering audit
 
-With `OPENROUTER_API_KEY` exported and the local task endpoint from the [README](README.md):
+Using Qwen3-0.6B Q8_0 on llama.cpp with reasoning disabled and decoding constrained to the three displayed integer choices, the frozen baseline on 24 **disjoint calibration tasks per family** (indices 1000–1023) was:
 
-```sh
-EVOLVER_MAX_REQUESTS=40 python3 -m pilots.convergent_edit.pilot --backend api \
-  --proposal-batch-size 3 --curation-batch-size 6 --held-out-tasks 8 \
-  --gate-only --output hw1-lightning-gate.json
-```
-
-The free **`nvidia/nemotron-3.5-lightning:free`** evolver returned **90 valid edits from exactly 30 successful HTTP requests** (no retries, no fallback, no paid calls). The task model stayed local: Qwen2.5-0.5B-Instruct Q4_K_M. All 90 discovery tasks ran; only the unseen panel was reduced from 30 to 8 tasks for CPU time, retaining seeds 11/29/47. The run took 14m39s, including overlap with the local run.
-
-| Coverage and gate metric | Result |
+| Family | Correct |
 |---|---:|
-| Edit clusters | 72, all single-family |
-| Base exact match (held out) | 0/24 |
-| Range of cluster mean paired gains | 0 to +8.33 pp |
-| Between-cluster gain variance | 0.000162 |
-| Within-cluster seed variance | 0.001664 |
-| Between/seed variance ratio [95% CI] | **0.098 [0.000, 0.258]** |
-| Variance difference [95% CI] | **−0.001501 [−0.002160, −0.000906]** |
+| Inventory | 9/24 (37.5%) |
+| Schedule | 11/24 (45.8%) |
+| Routing | 7/24 (29.2%) |
+| Eligibility | 10/24 (41.7%) |
 
-**Verdict: stop, not a rank-based kill.** Coverage passed but the variance gate failed; no selection arm was run. No cluster was eligible for breadth promotion at this threshold. The held-out solver returned all 24 answers in the required integer format but got none right, so this floor is not explained by output-format rejection. This does not establish what a better-calibrated solver or a larger held-out panel would show.
+The choice position is balanced within three-task blocks. Rates close to three-choice chance should not be interpreted as evidence of reliable reasoning. An earlier corrected candidate with Qwen2.5-0.5B still scored 16/72 on its unseen panel and produced no cross-family clusters with raw task data in the proposal prompt, so we stopped before variance scoring and did not spend any Lightning requests. The final configuration uses a new eligibility generator and a stronger constrained solver. The evolver now sees abstract episode evidence, not the individual records or numeric answer. Evaluation uses **24 held-out tasks × three seeds**.
 
-At the observed 72 clusters, a full run passing the gate would need **42** evolver requests (30 discovery + 12 curator) with batching or **162** unbatched (90 + 72, holding cluster count fixed), before retries. The 42-request budget fits a fresh ~50-request free window. No extra credits or live calls were used after this gate.
+We hand-labeled [21 candidate edit pairs](clustering_audit.json) before the corrected gate result: 10 paraphrases and 11 nonmatches. A first local clustering pass had three apparent cross-family clusters; on inspection each combined instructions about distinct operations (for example, within **10%** of an initial value versus greater than **10**). We added those negative examples and refined the conflict guards. Complete-link clustering with BGE-small-en-v1.5 at 0.72 recovered **7/10** paraphrases, with **0/11** false merges on this calibration sample. For example, “Verify which endpoints are included before applying a boundary condition” and “Check whether each bound is inclusive or exclusive before filtering” scored **0.722** and merge; counting rows and summing values do not. This is not an independent precision estimate.
 
-## Local Qwen CPU gate
+## V2 variance gates
 
-Command: `python3 -m pilots.convergent_edit.pilot --backend local --held-out-tasks 8 --validation-blocks 1 --output hw1-local.json`. Both roles used Qwen2.5-0.5B-Instruct Q4_K_M on llama.cpp commit `d3c257a493b31cf06a4e724ab4648d6f1a3e5e1e` (8 CPU threads; 14m35s while also sharing the server with part of the Lightning run).
+Both reruns use the same fixed solver (llama.cpp revision `d3c257a493b31cf06a4e724ab4648d6f1a3e5e1e`) and 24 unseen eligibility tasks × three seeds. The held-out baseline was **25/72 (34.7%)**, with **8/24, 8/24, 9/24** for seeds 11, 29, and 47.
 
-With 90 discovery tasks and 8 unseen tasks over seeds 11/29/47, **77 valid edits formed 73 clusters**; only one cluster had traces from more than one family. Base exact match on family 4 was **0/24**, and cluster mean gains ranged from 0 to +8.33 percentage points. Between-cluster variance was **0.000314**, vs. seed variance **0.002568**: ratio **0.122** (95% CI **[0.007, 0.247]**), difference **[−0.00312, −0.00155]**.
+**Local Qwen2.5-1.5B evolver:** 90 accepted edits formed **19 clusters**; **one** was labeled cross-family by the algorithm (18 single-family, 1 two-family). Manual inspection found that pair matched “Check if the result is the listed integer” with a schedule-specific instruction to check the count of qualifying intervals against the given integer. We do not count that as credible independent rediscovery. The between-cluster variance was **0.001965**, vs. **0.005543** seed variance: ratio **0.354** (95% CI **[0.031, 0.644]**) and variance difference 95% CI **[−0.006413, −0.001544]**. The local gate stopped on both cluster count and gain spread; no arms ran.
 
-**Local verdict: stop at the variance gate.** No arm was scored; this is not a rank-based kill verdict for a stronger evolver or solver. The zero-accuracy solver and the small held-out panel limit external validity.
+**OpenRouter Nemotron 3.5 Lightning:** After the local gate, Lightning reused the V1 SQLite cache and made **15 additional HTTP requests**, no retries (45 cumulative of the 48 authorized). Three of 15 responses did not parse as six-edit arrays; **72/90** tasks supplied accepted edits (inventory 30, schedule 24, routing 18). These yielded **22 clusters**, **seven** labeled cross-family by the algorithm (15 single-family, six two-family, one three-family). Inspection found related advice across families, such as checking that the category filter matches the source records, but also clear overmerges such as “Confirm initial quantity is read from the first row before any event adjustments” with “Confirm start values are inclusive and end values are exclusive.” The seven is an algorithmic count, not seven verified equivalents. The between-cluster variance was **0.000484**, vs. **0.003104** seed variance: ratio **0.156** (95% CI **[0.000, 0.475]**) and variance difference 95% CI **[−0.004261, −0.001150]**.
+
+**Verdict: stop this configuration at the gate.** The solver is no longer at the floor: the best observed mean paired gain was **+9.72 pp** locally and **+6.94 pp** on Lightning. But neither run reached 40 clusters or had gain spread that exceeded seed variance. Neither ran any selection arms, so these results do not establish whether breadth beats the controls. A fresh configuration should improve proposal validity/diversity and audit cross-family merges on training-only data before measuring another held-out panel.
+
+## Original V1 runs, superseded
+
+Local Qwen had ratio 0.122 (95% CI [0.007, 0.247]), 73 clusters and one cross-family cluster. Lightning had ratio 0.098 (95% CI [0.000, 0.258]), 72 clusters and no cross-family clusters. Both had zero baseline accuracy. Lightning V1 spent 30 requests; V2 reuses its SQLite cache and accounting, so the cumulative cap is 48 attempts rather than a fresh 48.
 
 ## Deterministic end-to-end integration check
 

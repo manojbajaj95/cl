@@ -15,6 +15,7 @@ from scipy.stats import rankdata
 
 from .backends import ResponseCache, backends, correct
 from .environment import HELD_OUT, SEEDS, TRAIN, make_task
+from .semantic import THRESHOLD, SemanticSimilarity
 
 
 @dataclass(frozen=True)
@@ -39,10 +40,11 @@ def discover(evolver, model, train, pool, batch_size):
     def propose(batch):
         if len(batch) == 1:
             task, seed, before = batch[0]
-            edits = [evolver.edit(task, before, seed)]
+            edits = [evolver.edit(task, before, seed + 1000 * task.index)]
         else:
             batch_seed = SEEDS[(batch[0][0].index // batch_size) % len(SEEDS)] + 100 * TRAIN.index(batch[0][0].family)
-            edits = evolver.edit_batch([(task, before) for task, _, before in batch], batch_seed)
+            edits = evolver.edit_batch([(task, before) for task, _, before in batch],
+                                       batch_seed + 1000 * batch[0][0].index)
         return [(*attempt, edit) for attempt, edit in zip(batch, edits) if edit is not None]
 
     def retry(item):
@@ -67,17 +69,20 @@ def similarity(a, b):
     return sum((a & b).values()) / max(1, sum((a | b).values()))
 
 
-def medoid(items):
+def lexical_similarity(left, right):
+    return similarity(terms(left), terms(right))
+
+
+def medoid(items, score=lexical_similarity):
     texts = sorted({item.edit for item in items})
-    tokens = [terms(edit) for edit in texts]
-    return texts[max(range(len(texts)), key=lambda i: sum(similarity(tokens[i], t) for t in tokens))]
+    return max(texts, key=lambda left: sum(score(left, right) for right in texts))
 
 
-def cluster(traces, threshold=0.78):
+def cluster(traces, threshold=0.78, score=lexical_similarity):
     groups = []
     for edit in sorted({trace.edit for trace in traces}):
         for group in groups:
-            if all(similarity(terms(edit), terms(other)) >= threshold for other in group):
+            if all(score(edit, other) >= threshold for other in group):
                 group.add(edit)
                 break
         else:
@@ -122,7 +127,7 @@ def rho(a, b):
 ARMS = ("breadth", "lofo", "counterfactual", "frequency", "ace", "continued")
 
 
-def select(model, evolver, groups, edits, train, blocks, top_k, pool, curation_batch_size):
+def select(model, evolver, groups, edits, train, blocks, top_k, pool, curation_batch_size, score):
     scores = {arm: np.zeros(len(edits)) for arm in ARMS}
     evidence = [(edit, [asdict(t) for t in group]) for edit, group in zip(edits, groups)]
     def curate(batch):
@@ -153,7 +158,7 @@ def select(model, evolver, groups, edits, train, blocks, top_k, pool, curation_b
             full, rest = divmod(count, len(candidates))
             return candidates * full + rng.sample(candidates, rest)
 
-        eligible = [(family, medoid([t for t in group if t.family != family])) for family in TRAIN
+        eligible = [(family, medoid([t for t in group if t.family != family], score)) for family in TRAIN
                     if any(t.family != family for t in group)]
         fold_cases = {fold_edit: [] for _, fold_edit in eligible}
         for seed in SEEDS:
@@ -206,17 +211,32 @@ def run(args, cache=None):
                   proposal_requests=len(TRAIN) * ((args.tasks + args.proposal_batch_size - 1) // args.proposal_batch_size))
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
         traces = discover(evolver, model, train, pool, args.proposal_batch_size)
-        groups = cluster(traces)
-        edits = [medoid(group) for group in groups]
+        score, threshold = lexical_similarity, 0.78
+        if args.backend != "stub" and traces:
+            score, threshold = SemanticSimilarity(t.edit for t in traces), THRESHOLD
+        groups = cluster(traces, threshold, score)
+        edits = [medoid(group, score) for group in groups]
+        breadth = Counter(len({t.family for t in group}) for group in groups)
+        cross_family = sum(count for families, count in breadth.items() if families > 1)
         result.update(traces=[asdict(t) for t in traces], clusters=edits,
+                      breadth_distribution=dict(sorted(breadth.items())), cross_family_clusters=cross_family,
+                      cluster_threshold=threshold,
+                      curation_requests_if_full=(len(edits) + args.curation_batch_size - 1) // args.curation_batch_size,
                       cluster_members=[[{"family": t.family, "index": t.index} for t in group]
                                        for group in groups])
-        print(f"Discovery: {len(traces)} edits, {len(edits)} clusters", file=sys.stderr, flush=True)
+        print(f"Discovery: {len(traces)} edits, {len(edits)} clusters, {cross_family} cross-family",
+              file=sys.stderr, flush=True)
+        baseline = accuracy(model, (), cases, pool)
+        result["baseline_accuracy"] = float(baseline.mean())
+        result["baseline_correct_by_seed"] = baseline.reshape(len(SEEDS), -1).sum(axis=1).astype(int).tolist()
+        print(f"Held-out baseline: {int(baseline.sum())}/{len(cases)}", file=sys.stderr, flush=True)
+        if args.backend != "stub" and not 0.30 <= result["baseline_accuracy"] <= 0.60:
+            result["verdict"] = "stop: held-out solver baseline is outside 30-60%"
+            return result
         if len(edits) < 2:
             result["verdict"] = "stop: fewer than two clusters; variance undefined"
             return result
 
-        baseline = accuracy(model, (), cases, pool)
         labels = []
         truth_rollouts = grade_many(model, (((edit,), case) for edit in edits for case in cases), pool)
         for i, edit in enumerate(edits, 1):
@@ -229,24 +249,22 @@ def run(args, cache=None):
         draws = rng.integers(len(edits), size=(args.bootstrap, len(edits)))
         gate_boot = [gate_stats(matrix[idx]) for idx in draws]
         result.update(
-            baseline_accuracy=float(baseline.mean()),
             seed_gains=matrix.tolist(),
             gate=dict(between_cluster_variance=spread, seed_variance=noise, ratio=ratio,
                       ratio_ci=ci([r for _, _, r in gate_boot]),
                       difference_ci=ci([b - s for b, s, _ in gate_boot]),
-                      passed=bool(len(edits) >= 40 and spread > noise)),
+                      passed=bool(len(edits) >= 40 and cross_family and len(breadth) > 1 and spread > noise)),
         )
         print(f"Gate: {json.dumps(result['gate'])}", file=sys.stderr, flush=True)
         if not result["gate"]["passed"]:
-            result["verdict"] = "stop: fewer than 40 clusters or spread does not exceed seed variance"
+            result["verdict"] = "stop: insufficient cluster coverage, breadth variation, or gain spread"
             return result
-        result["curation_requests_if_full"] = (len(edits) + args.curation_batch_size - 1) // args.curation_batch_size
         if args.gate_only:
             result["verdict"] = "gate passed: rerun without --gate-only to evaluate the arms"
             return result
 
         scores, promoted = select(model, evolver, groups, edits, train, args.validation_blocks, args.top_k, pool,
-                                  args.curation_batch_size)
+                                  args.curation_batch_size, score)
         truth = matrix.mean(axis=1)
         rank_draws = {arm: [rho(score[idx], truth[idx]) for idx in draws] for arm, score in scores.items()}
         chosen = {}
@@ -289,6 +307,8 @@ def main():
     if min(args.tasks, args.held_out_tasks, args.workers, args.validation_blocks, args.top_k,
            args.bootstrap, args.proposal_batch_size, args.curation_batch_size) < 1:
         parser.error("numeric settings must be positive")
+    if args.backend != "stub" and args.held_out_tasks < 24:
+        parser.error("real gates require at least 24 held-out tasks")
     cache_path = args.cache or args.output.with_suffix(args.output.suffix + ".cache.sqlite3")
     if args.backend != "stub" and cache_path.resolve() == args.output.resolve():
         parser.error("cache and output must be different files")

@@ -1,0 +1,23 @@
+[
+  {"match": true, "left": "Filter records to those meeting all required conditions before computing the result.", "right": "Apply every stated filter before aggregating the remaining rows."},
+  {"match": true, "left": "Verify which endpoints are included before applying a boundary condition.", "right": "Check whether each bound is inclusive or exclusive before filtering."},
+  {"match": true, "left": "Calculate each candidate total separately, then compare the totals.", "right": "Work out the total for every option before choosing among them."},
+  {"match": true, "left": "Do the arithmetic again independently before returning the result.", "right": "Recompute the calculation a second way to verify the answer."},
+  {"match": true, "left": "Use only records that match every named criterion.", "right": "Exclude rows that fail any of the required conditions."},
+  {"match": true, "left": "Extract the relevant fields before working out the answer.", "right": "Identify the fields needed for the answer and ignore the other fields."},
+  {"match": true, "left": "Check that the computed result is among the listed choices.", "right": "Confirm the final number matches one of the supplied options."},
+  {"match": true, "left": "Read the question first to determine which records matter.", "right": "Identify what the question asks before deciding which data to use."},
+  {"match": true, "left": "Track running totals carefully so no item is counted twice.", "right": "Keep a tally and make sure each qualifying entry contributes only once."},
+  {"match": true, "left": "Separate the decision about which records qualify from the arithmetic.", "right": "Determine the eligible rows in one step and calculate from them in a second step."},
+  {"match": false, "left": "Return only the final integer, without explanation.", "right": "Show the arithmetic and explain the result before returning it."},
+  {"match": false, "left": "Count the rows that satisfy the conditions.", "right": "Sum the numerical values in the rows that satisfy the conditions."},
+  {"match": false, "left": "Exclude records exactly on the boundary.", "right": "Include records exactly on the boundary."},
+  {"match": false, "left": "Check all conditions before filtering the data.", "right": "Accept records that satisfy at least one condition."},
+  {"match": false, "left": "Find the minimum among the accumulated totals.", "right": "Find the maximum among the accumulated totals."},
+  {"match": false, "left": "Use only records with values greater than 3.", "right": "Use only records with values greater than 5."},
+  {"match": false, "left": "Filter changes by bin and day <= threshold, sum them, add to starting balance.", "right": "Filter room B meetings with start <= 15 and end > 15 for time 15."},
+  {"match": false, "left": "Filter records to specified bin and day range, then sum changes plus starting value.", "right": "Count meetings in room B with start <= time < end."},
+  {"match": false, "left": "Check if the calculated signed update is within the correct range based on the initial quantity and the category cutoff.", "right": "Check if the selected category and interval range are correctly applied to the given data points."},
+  {"match": false, "left": "Check if the computed quantity is within 10% of the initial quantity.", "right": "Check if the totals of all valid alternatives are greater than 10."},
+  {"match": false, "left": "Check if the result of the signed update exceeds a defined threshold.", "right": "Check if the total of each linked component is less than the threshold."}
+]

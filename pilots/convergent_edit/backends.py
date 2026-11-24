@@ -10,7 +10,7 @@ import urllib.error
 from email.utils import parsedate_to_datetime
 import urllib.request
 
-from .environment import TRAIN, harness
+from .environment import TASK_SHAPES, TRAIN, harness
 
 
 def unit(*parts):
@@ -92,10 +92,10 @@ class Chat:
             self.stopped.wait(remaining)
         raise RuntimeError("Request queue stopped after HTTP errors; rerun with the same cache to resume")
 
-    def __call__(self, system, prompt, seed, temperature, max_tokens):
+    def __call__(self, system, prompt, seed, temperature, max_tokens, **options):
         payload = dict(model=self.model, messages=[dict(role="system", content=system),
                                                    dict(role="user", content=prompt)],
-                       seed=seed, temperature=temperature, max_tokens=max_tokens, **self.options)
+                       seed=seed, temperature=temperature, max_tokens=max_tokens, **{**self.options, **options})
         body = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
         if self.cache is not None:
             return self.cache.lookup_or_request(self.url, body, lambda: self.send(body))
@@ -149,27 +149,25 @@ class ModelEvolver:
 
     def edit(self, task, completion, seed):
         system = (
-            "You improve the reusable instructions for a small task solver. Diagnose the last "
-            "attempt and propose ONE concrete strategy, check, or output rule as one short sentence. "
-            "Vary your approach; do not restate the base instructions, copy task data or give its "
-            "answer. Output only your new instruction, no explanation or headings."
+            "Write one reusable instruction for a small solver's shared playbook, based on the "
+            "episode summary. Prescribe a concrete check or thinking habit that still applies if "
+            "the next task uses different entities and asks for a different calculation. Do not "
+            "repeat the exercise description or the base prompt. Write one imperative sentence only."
         )
-        prompt = (f"Current instructions: {harness(())}\n{task.prompt()}\n"
-                  f"Solver completion: {completion!r}\n"
-                  f"Graded: {'correct' if correct(task, completion) else 'incorrect'}. Write the edit.")
+        prompt = f"Base instructions: {harness(())}\nEpisode summary: {json.dumps(edit_evidence(task, completion))}"
         output = self.chat(system, prompt, seed, 0.85, 48).strip()
         return clean_edit(output)
 
     def edit_batch(self, episodes, seed):
         system = (
-            "You improve reusable instructions for a small task solver. These are unrelated "
-            "episodes: treat each independently, using only its own records, completion and grade. "
-            "For each episode, write one concrete reusable strategy, check, or output rule, under "
-            "25 words. Do not copy task data, give answers or restate the base instructions. "
+            "Write reusable instructions for a small solver's shared playbook. Treat each "
+            "episode summary independently. Write one imperative sentence per episode, under 25 "
+            "words, prescribing a concrete check or thinking habit that still applies if the "
+            "next task uses different entities and asks for a different calculation. Do not "
+            "repeat the exercise description or the base prompt. "
             "Return only a JSON array of strings, one instruction per episode in input order."
         )
-        rows = [dict(task=task.prompt(), completion=completion, correct=correct(task, completion))
-                for task, completion in episodes]
+        rows = [edit_evidence(task, completion) for task, completion in episodes]
         prompt = f"Base instructions: {harness(())}\nEpisodes: {json.dumps(rows)}"
         candidates = parse_array(self.chat(system, prompt, seed, 0.85, 72 * len(rows)), len(rows))
         return [clean_edit(value) for value in candidates]
@@ -204,6 +202,19 @@ def clean_edit(output):
     return edit if 12 <= len(edit) <= 280 and any(c.isalpha() for c in edit) else None
 
 
+def edit_evidence(task, completion):
+    value = completion.strip()
+    delta = int(value) - task.answer if re.fullmatch(r"-?[0-9]{1,12}", value) else None
+    grade = ("invalid integer format" if delta is None else "exact" if delta == 0
+             else "too low" if delta < 0 else "too high")
+    return dict(
+        task_shape=TASK_SHAPES[task.family],
+        row_count=len(task.records),
+        picked_a_listed_integer=value in set(map(str, task.choices)),
+        grading_feedback=grade,
+    )
+
+
 def parse_array(output, count):
     start = output.find("[")
     if start >= 0:
@@ -217,11 +228,18 @@ def parse_array(output, count):
 
 
 class TaskModel:
-    def __init__(self, chat):
+    def __init__(self, chat, constrain_choices=False):
         self.chat = chat
+        self.constrain_choices = constrain_choices
 
     def solve(self, task, edits, seed, variant=0):
-        return self.chat(harness(edits), task.prompt(variant), seed, 0.4, 16)
+        options = {}
+        if self.constrain_choices:
+            options["response_format"] = {
+                "type": "json_schema",
+                "json_schema": {"name": "answer", "schema": {"type": "integer", "enum": sorted(task.choices)}},
+            }
+        return self.chat(harness(edits), task.prompt(variant), seed, 0.4, 16, **options)
 
 
 class Stub:
@@ -254,12 +272,13 @@ def backends(mode, cache=None):
     if mode == "stub":
         stub = Stub()
         return stub, stub, "stub", "stub"
-    task_name = os.environ.get("TASK_MODEL", "qwen2.5-0.5b-instruct")
-    task = TaskModel(Chat(os.environ.get("TASK_BASE_URL", "http://127.0.0.1:8080/v1"),
-                          task_name, os.environ.get("TASK_API_KEY"), cache=cache))
+    task_name = os.environ.get("TASK_MODEL", "qwen3-0.6b")
+    task = TaskModel(Chat(os.environ.get("TASK_BASE_URL", "http://127.0.0.1:8082/v1"),
+                          task_name, os.environ.get("TASK_API_KEY"), cache=cache),
+                     constrain_choices=os.environ.get("TASK_CONSTRAIN_CHOICES", "1") == "1")
     if mode == "local":
-        url = os.environ.get("EVOLVER_BASE_URL", "http://127.0.0.1:8080/v1")
-        model = os.environ.get("EVOLVER_MODEL", "qwen2.5-0.5b-instruct")
+        url = os.environ.get("EVOLVER_BASE_URL", "http://127.0.0.1:8081/v1")
+        model = os.environ.get("EVOLVER_MODEL", "qwen2.5-1.5b-instruct")
     else:
         url = os.environ.get("EVOLVER_BASE_URL", OPENROUTER_URL)
         model = os.environ.get("EVOLVER_MODEL", OPENROUTER_MODEL)

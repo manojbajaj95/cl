@@ -12,6 +12,7 @@ import numpy as np
 from .backends import Stub
 from .environment import HELD_OUT, SEEDS, TRAIN, make_task
 from .pilot import ARMS, Trace, cluster, discover, gate_stats, medoid, run
+from .semantic import conflicts
 
 
 class PilotTest(unittest.TestCase):
@@ -33,6 +34,11 @@ class PilotTest(unittest.TestCase):
                 self.assertEqual(as_multiset(base), as_multiset(reordered))
                 self.assertEqual(as_multiset(base), as_multiset(indexed))
                 self.assertIn("Question: " + task.question, prompts[2])
+                self.assertEqual(len(set(task.choices)), 3)
+                self.assertIn(task.answer, task.choices)
+                for prompt in prompts:
+                    choices = prompt.split("Choose one of: ", 1)[1].split(".", 1)[0]
+                    self.assertEqual(set(map(int, choices.split(", "))), set(task.choices))
 
     def test_clustering_keeps_distinct_numeric_instructions_and_distinct_origins(self):
         traces = [
@@ -57,6 +63,17 @@ class PilotTest(unittest.TestCase):
         trace = Trace(TRAIN[0], 0, SEEDS[0], "先检查所有给定条件再输出答案。", False, True)
         self.assertEqual(medoid(cluster([trace])[0]), trace.edit)
 
+    def test_semantic_clustering_preserves_conflicting_operations(self):
+        self.assertTrue(conflicts("Sum values in the records.", "Count records."))
+        self.assertTrue(conflicts("Return only the result.", "Show arithmetic first."))
+        self.assertTrue(conflicts("Filter values above 4.", "Filter values above 5."))
+        self.assertFalse(conflicts("Check whether bounds are inclusive or exclusive.", "Verify included endpoints."))
+
+    def test_correct_choice_position_balanced_across_a_panel(self):
+        for family in (*TRAIN, HELD_OUT):
+            tasks = [make_task(family, i) for i in range(24)]
+            self.assertEqual(Counter(t.choices.index(t.answer) for t in tasks), {0: 8, 1: 8, 2: 8})
+
     def test_gate_stops_before_arms(self):
         with patch("pilots.convergent_edit.pilot.select", side_effect=AssertionError("gate bypassed")):
             result = self.stub(4)
@@ -67,6 +84,7 @@ class PilotTest(unittest.TestCase):
         result = self.stub(30)
         self.assertEqual(len(result["traces"]), 90)
         self.assertGreaterEqual(len(result["clusters"]), 40)
+        self.assertGreater(result["cross_family_clusters"], 0)
         self.assertTrue(result["gate"]["passed"])
         self.assertEqual(set(result["arms"]), set(ARMS))
         self.assertEqual(result["verdict"], "kill")
