@@ -109,8 +109,10 @@ Killed at CPU scale ([PR #22](https://github.com/manojbajaj95/cl/pull/22)), so n
 - **Controls:**
   1. A predictor that uses only the gate catch rate.
   2. Extrapolating the early defect share.
-- **Seeds and compute:** 3 seeds, about 5 GPU-h for stage 1 plus about 25 GPU-h for the k-sweep, roughly 30 GPU-h in total.
+- **CPU stream test passed ([PR #4](https://github.com/manojbajaj95/cl/pull/4)):** R AUC 0.87 vs gate-only 0.75. It ties 5-episode extrapolation (0.84), and extrapolation wins from 10 episodes (0.94).
+- **Replaces stages 1 and 2: 7B stream stage, about 12 GPU-h.** 12 cells spanning R 0.5–2, 24 streams per cell, about 110 episodes each, plus the filler arm. 32B (about 15 GPU-h) runs only if 7B passes.
+- **7B kill lines:** R not CI-above the gate alone; 5-episode extrapolation beats R; R < 0.8 cells grow within 30 pp as often as R > 1.2 cells; τ not above filler. Retention: base-task success per cell.
 - **Stage 2 kill line:** dead if the gate-precision-only predictor ties R, or onset AUC < 0.75.
 - **Kill line:** dead if collapse onset doesn't switch near R = 1.
 
-**Total:** about 52 GPU-h (plus about 20 if H1's gate passes). If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
+**Total:** about 34 GPU-h (plus about 15 for 32B if 7B passes) (plus about 20 if H1's gate passes). If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
