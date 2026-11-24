@@ -120,7 +120,8 @@ The HW1 pilot writes its own spec; see [PR #20](https://github.com/manojbajaj95/
   2. Embedding effective rank.
   3. Token count.
 - **Seeds and compute:** 3 seeds, about 6 GPU-h. This is inference only, but long contexts make it slow on CPU.
-- **Kill line:** dead if ρ < 0.5, if embedding rank comes within 0.2, or if the dilution pool peaks at the same N.
+- **C2 arm:** also read the lessons in parallel passes (PCED-style).
+- **Kill line:** dead if ρ < 0.5, if embedding rank comes within 0.2, or if the dilution pool peaks at the same N. Also dead if the knee moves ≥ 2× under parallel reading, since capacity is then set by attention crowding.
 
 ### Edit-capacity law: predict N* before editing
 - **Models:** MEMIT on GPT-2-XL and GPT-J-6B, at 3 batch sizes.
