@@ -15,6 +15,19 @@ These are the active or gated pilots from [idea-ledger.md](idea-ledger.md) whose
 - Functional syndromes
 - P3's synthetic replication, if kept small
 
+## Which tier-1 pilots can run on OpenRouter free models (about 50 requests/day)
+
+Call counts assume about 3–5 calls per agent episode. Free endpoints generally don't return token log-probs, so any arm that needs log-probs still needs a local model.
+
+| Pilot | Calls at full spec | Free tier? | Smallest version that fits |
+|---|---|---|---|
+| H1 gate only | ~3,400 with live episodes | **Yes, if shrunk** | Give each of 20 agents a synthesized memory (10 lessons from rare- or common-regime trajectories, ~20 calls), then elicit meta-predictions (20 agents × 10 lessons, ~200 calls). About 220 calls, about 5 days. Same r ≥ 0.2 gate |
+| HW1 | its own spec | Yes (already planned) | See [PR #20](https://github.com/manojbajaj95/cl/pull/20) |
+| Toolbox drift | ~36,000 | No | 1 seed × 2 arms (tools vs lessons + tests) × 100 episodes is still ~600 calls (~12 days) and underpowered; use a GPU |
+| Ask when stuck | ~13,500 | No | Needs the store-size sweep; use a GPU |
+| P3 writer distractibility | ~4,000 | No | Needs ≥ 200 episodes per arm, and the mask arm needs log-probs |
+| Fleet Q2 | ~16,000 rollouts plus log-probs | No | Needs log-probs from both models; use a GPU |
+
 ## Tier 1: agent-loop pilots (need a 7B+ instruct model served with vLLM)
 
 ### Toolbox drift: tools fail loudly, lessons fail silently
