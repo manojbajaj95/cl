@@ -13,7 +13,6 @@ These are the active or gated pilots from [idea-ledger.md](idea-ledger.md) whose
 - M2, per-lesson attention bias, with N1 as an arm (both killed, [PR #35](https://github.com/manojbajaj95/cl/pull/35))
 - N2, prohibition rebound
 - Functional syndromes
-- P3's synthetic replication, if kept small
 
 **Every pilot that makes a lesson-value claim also runs a temperature-matched no-lesson arm** (T fit by entropy matching on source tasks only; see A3 in [PR #27](https://github.com/manojbajaj95/cl/pull/27)).
 
@@ -25,7 +24,6 @@ Call counts assume about 3–5 calls per agent episode. Free endpoints generally
 |---|---|---|---|
 | H1 gate only | ~3,400 with live episodes | **Yes, if shrunk** | Give each of 20 agents a synthesized memory (10 lessons from rare- or common-regime trajectories, ~20 calls), then elicit meta-predictions (20 agents × 10 lessons, ~200 calls). About 220 calls, about 5 days. Same r ≥ 0.2 gate |
 | Toolbox drift | ~36,000 | No | 1 seed × 2 arms (tools vs lessons + tests) × 100 episodes is still ~600 calls (~12 days) and underpowered; use a GPU |
-| P3 writer distractibility | ~4,000 | No | Needs ≥ 200 episodes per arm, and the mask arm needs log-probs |
 | Fleet Q2 | — | Killed | [PR #25](https://github.com/manojbajaj95/cl/pull/25) |
 
 ## Tier 1: agent-loop pilots (need a 7B+ instruct model served with vLLM)
@@ -52,17 +50,8 @@ The CPU run is killed ([PR #23](https://github.com/manojbajaj95/cl/pull/23)) and
 - **Seeds and compute:** 3 seeds, about 1 GPU-h.
 - **Kill line:** stop if r < 0.2. If r ≥ 0.2, run the full arms from the original spec in the ledger (about 20 GPU-h): SP must be ≥ 10 points ahead on rare-regime tasks and the union must not tie.
 
-### P3: writing is more distractible than acting
-- **Model:** Qwen2.5-7B-Instruct as agent and memory writer, in the contamination task world from PR #4.
-- **Arms:** one injected distractor in every arm, then:
-  1. Plain writer.
-  2. Length-matched filler.
-  3. Same-token "write only about the task" instruction.
-  4. Writer sees only its own action trace.
-  5. Action-log-prob relevance mask.
-- **Protocol:** ≥ 200 episodes per arm.
-- **Seeds and compute:** 3 seeds, about 8 GPU-h.
-- **Kill line:** dead if the gap between bad-write rate and solve accuracy vanishes against filler, or arm 4 matches arm 5.
+### P3: killed on CPU
+Killed ([PR #40](https://github.com/manojbajaj95/cl/pull/40)): at 210 episodes per arm the distractor effect did not replicate (−1.9 pp [−5.2, +1.4]), so the 7B run is dropped.
 
 ### Fleet Q2: killed at the truth-reliability gate
 Killed ([PR #25](https://github.com/manojbajaj95/cl/pull/25)): exact-truth split-half reliability was about 0, and 9 of 40 lessons flipped sign. This is task heterogeneity, not sampling noise, so it isn't requested at larger scale. Q3 is dead with it.
@@ -124,4 +113,4 @@ Killed at CPU scale ([PR #22](https://github.com/manojbajaj95/cl/pull/22)), so n
 - **Stage 2 kill line:** dead if the gate-precision-only predictor ties R, or onset AUC < 0.75.
 - **Kill line:** dead if collapse onset doesn't switch near R = 1.
 
-**Total:** about 60 GPU-h (plus about 20 if H1's gate passes). If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
+**Total:** about 52 GPU-h (plus about 20 if H1's gate passes). If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
