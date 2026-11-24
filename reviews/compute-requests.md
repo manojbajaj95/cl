@@ -101,7 +101,7 @@ Killed at CPU scale ([PR #22](https://github.com/manojbajaj95/cl/pull/22)), so n
 
 ### Self-contamination law, R = k·(α_D·τ − d)/α_S (PR #4)
 - **Ranked the best remaining GPU bet** (odds of a frontier result low to moderate).
-- **CPU transmission and retrieval-depth gates** ([PR #37](https://github.com/manojbajaj95/cl/pull/37)) passed on the local, mostly-sound contrast: k·τ_eff was 0.315 [0.138, 0.524] at k = 4 and 0.537 [0.222, 0.949] at k = 8, both allowing the 0.5 target. The filler-stack dose fit saturated (k·τ upper CI ≤ 0.166), and the gross effect did not beat temperature at either depth. This clears the original pre-funding check; it does not unpark GPU work or validate the law.
+- **CPU transmission precheck** ([PR #37](https://github.com/manojbajaj95/cl/pull/37)) passed narrowly, but the adjusted τ of 5.22% gives R ≤ 0.42 at k = 8. **Gate before stage 1 (CPU, about 1 h):** sweep retrieved-note count k ∈ {1, 2, 4, 8} with defective share {0, 1/k, 1}. Fund stage 1 only if k·τ_eff ≥ 0.5 is inside the CI at some k. **Result: passed** at k = 4 (0.315 [0.138, 0.524]) and k = 8 (0.537 [0.222, 0.949]); lower bounds stay below 0.5 and the filler dose fit saturates. Stage 1 is unblocked by this gate but stays parked with the rest of the GPU plan.
 - **Stage 1 (about 5 GPU-h, inference only):** Qwen2.5-7B lesson writer on a coding stream. Vary verifier strength by running 10–100% of the unit tests, and measure α_D, α_S, d and τ on about 300 candidates per coverage level. Stage 1 is dead if no level gives R in [0.5, 2] with CI, or if τ doesn't exceed the defect rate from same-length filler.
 - **Protocol:**
   1. Find a setting with R in [0.5, 2] (stage 1 above).
