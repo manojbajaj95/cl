@@ -123,11 +123,8 @@ The HW1 pilot writes its own spec; see [PR #20](https://github.com/manojbajaj95/
 - **C2 arm:** also read the lessons in parallel passes (PCED-style).
 - **Kill line:** dead if ρ < 0.5, if embedding rank comes within 0.2, or if the dilution pool peaks at the same N. Also dead if the knee moves ≥ 2× under parallel reading, since capacity is then set by attention crowding.
 
-### Edit-capacity law: predict N* before editing
-- **Models:** MEMIT on GPT-2-XL and GPT-J-6B, at 3 batch sizes.
-- **Comparison:** the key-covariance prediction of N* versus a weight-norm threshold fitted on the first 10% of edits.
-- **Seeds and compute:** 3 seeds, about 12 GPU-h.
-- **Kill line:** dead if the covariance prediction doesn't beat the norm control.
+### Edit-capacity law: killed at CPU scale
+Killed at CPU scale ([PR #22](https://github.com/manojbajaj95/cl/pull/22)), so not requested: a fixed guess of N* tied the law. A GPU run is worth it only if N* is first shown to vary widely across settings.
 
 ### Self-contamination law, R = k·(α_D·τ − d)/α_S (PR #4)
 - **Protocol:**
@@ -139,4 +136,4 @@ The HW1 pilot writes its own spec; see [PR #20](https://github.com/manojbajaj95/
 - **Seeds and compute:** 3 seeds, about 60 GPU-h in total.
 - **Kill line:** dead if collapse onset doesn't switch near R = 1.
 
-**Total:** about 190 GPU-h, plus HW1's API spend. If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
+**Total:** about 180 GPU-h, plus HW1's API spend. If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
