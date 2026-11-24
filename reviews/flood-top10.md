@@ -17,7 +17,7 @@ Pool: about 1,960 ideas (round 1: about 400 across PRs #36, #39, #41–#46; roun
 
 Revised after [PR #105](https://github.com/manojbajaj95/cl/pull/105): the rate–drift law enters at #4, old #4–#7 move to #5–#8, and re-derivability memory (old #8) drops to the next tier. Triage rows written before this revision use the old numbers.
 
-Next: re-derivability memory (LP39, PR #59; partly covered by Beyond Gain 2610.32322), WOM codes (PR #56), question barcodes (PR #50 #3 + PR #86), edge-addressable weights (B6), P19 ABI. Falsified: L1.
+Next: re-derivability memory (LP39, PR #59; partly covered by Beyond Gain 2610.32322), WOM codes (PR #56), question barcodes (PR #50 #3 + PR #86), edge-addressable weights (B6), P19 ABI (its read-pinning form is falsified in a toy by PR #117; the write-response form is an improvement). Falsified: L1.
 
 ## Smallest first tests (each with a retention check)
 
