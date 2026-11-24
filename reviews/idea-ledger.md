@@ -16,7 +16,7 @@ The reviewer grades cards instead of killing them:
 - **MOONSHOT**: ambitious but not testable yet. It goes on the [Moonshot shelf](#moonshot-shelf) with what would unlock it.
 - **KILLED**: only for cards that make no sense or are already done (prior art). A pilot can still FALSIFY a card; that is recorded as a result, not as a review kill.
 - **Primitive or improvement**: every card is also labelled PRIMITIVE (a new object or operation that a family of methods could build on) or IMPROVEMENT (a better existing method), with one line why. See the patterns section.
-- **Volume over verification (Manoj).** Proposers optimize for many more and crazier ideas. The reviewer triages each batch in one ranked table: novelty 1–5 against the nearest prior-art hit from one search, primitive or improvement, and doable now or Moonshot. Only the top 3 get a smallest first test and a pilot. Full verification happens at pilot time, not at review.
+- **Volume over verification (Manoj, Albert).** Proposers optimize for many more and crazier ideas (the flood pool lives in `ideas/flood/`). The reviewer ranks the whole pool head to head on novelty only, runs prior-art checks only on the top 10, and picks a top 3 for deep work. No pilots on ideas rated IMPROVEMENT. Full verification happens at pilot time, not at review.
 
 ## Survived review
 
