@@ -67,3 +67,5 @@ Rerun with a harder (nonlinear-teacher) task stream, in `pilots/noether_check.py
 | Agent E1 consolidation predictor | PASS, gated on B3 | One-step distillation gradient projection onto the LoRA span | 200 lessons × 3 ranks |
 | Agent E2 edge-of-chaos tuning | PASS, gated on C2 | Self-consistency tuning | 3 designs × 7 knob values. Dead if the peak misses λ = 0 by > 1 step |
 | Agent F1 context→weight interference | KILL (fold into E1) | — | Gradient cosine is a cheap known predictor that dominates it |
+| Cross-field 4 effect-class distillation | PASS, narrowed to syntax shifts | Canonicalized token KL; reward-only replay | API-migration stream, Pareto test |
+| Cross-field 4 bounded-delay scheduling | KILL | — | O(η²) order effect; gradient accumulation ties |
