@@ -13,10 +13,10 @@ Bar: a new result at NeurIPS/ICLR level, not a study. Each idea was checked for 
 ## Noether memory (#1) and keyed restore (#13): KILL
 
 Rerun with a harder (nonlinear-teacher) task stream, in `pilots/noether_check.py`:
-- **Ordinary SGD erases it.** Per step, discrete SGD drifts balancedness by η²(‖g_in‖² − ‖g_out‖²). At lr 0.05, one task moved d by 0.048, more than d's natural spread (0.039). After 3 tasks, bits written at 3× the spread decode at chance (0.52); the proposer's 99.6% comes from an easy linear-teacher task with small gradients. Finite-step symmetry breaking is also analysed in [2611.06718](https://arxiv.org/abs/2611.06718).
-- **When it survives, a non-conserved channel survives too.** At lr ≤ 0.002 (SGD) or 1e-4 (AdamW), the ‖w_in‖² channel keeps 0.97–1.00 at ≥1× spread. At 0.3× it keeps 0.70–0.81, against 0.81–1.00 for d. At lr 0.01 and 0.3×, d (0.65) is *worse* than the control (0.77).
+- **Ordinary SGD erases it.** Per step, discrete SGD drifts balancedness by η²(‖g_in‖² − ‖g_out‖²). In `pilots/div_check.py` at lr 0.05, one task moved d by 0.036–0.048 on average, about as much as its natural spread. After 3 tasks at lr 0.05, bits written at 3× the spread decode at chance (0.52), and SGD with momentum is at chance at every amplitude. The proposer's 99.6% comes from an easy linear-teacher task with small gradients. Finite-step symmetry breaking is also analysed in [2611.06718](https://arxiv.org/abs/2611.06718).
+- **When it survives, a non-conserved channel mostly survives too.** At lr ≤ 0.002 (SGD) or ≤ 1e-4 (Adam/AdamW), the ‖w_in‖² channel keeps 0.97–1.00 at ≥1× spread, the same as d. d's only edge is at 0.3×: 0.81–1.00 against 0.70–0.81 for the control. At lr 0.01 and 0.3×, d (0.65) is *worse* than the control (0.77).
 - **Adam lr 1e-3:** 0.82 at 3×, chance below.
-- **Anyone can erase it.** A function-preserving rebalancing is one closed-form step, and weight canonicalization in merging tools ([2511.12601](https://arxiv.org/abs/2511.12601)) does it as a side effect.
+- **Anyone can erase it.** A function-preserving rebalancing is one closed-form step (accuracy at or below chance in every run, function change ≤ 4e-6), and weight canonicalization in merging tools ([2511.12601](https://arxiv.org/abs/2511.12601)) does it as a side effect.
 - **#13 adds nothing for CL.** The adapter bank has to travel with the model anyway, so the key can travel in it. What is left is fragile watermarking.
 
 ## Other ideas
