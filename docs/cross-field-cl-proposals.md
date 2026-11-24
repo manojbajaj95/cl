@@ -120,6 +120,8 @@ Set a merge anchor and a fixed set of pending deltas. Audit both signs of a rand
 
 **Prior art and scope.** [Receiver-local linearization](https://arxiv.org/abs/2611.25000) forecasts merge interference with directional derivatives and can fit one merge through teacher matching. The proposed distinction is learning cross terms of black-box old-skill scores from grouped evaluations in a sequential, irreversible consolidation budget, not first-order merge prediction.
 
+**Reviewer rejected.** [BOCS](https://arxiv.org/abs/1806.08838) already learns a sparse quadratic surrogate from black-box grouped evaluations; [LoraHub](https://arxiv.org/abs/2307.13269) already searches grouped adapter combinations without gradients. The algebra check does not distinguish the proposal from those controls.
+
 ### 12. Forecast-weighted write selection
 
 **Hypothesis.** Among writes matched for both observed new-task loss and old retention, the useful projected update directions depend on which residuals the next task is likely to require. The practice of maximizing unweighted reachability should be replaced by predicting finite-step adaptation gain using a shared, history-only forecast of those residuals.
@@ -127,6 +129,8 @@ Set a merge anchor and a fixed set of pending deltas. Audit both signs of a rand
 On a fixed probe set, let `K = G P Gᵀ` be the post-write kernel of the actual projected next-task learner. Estimate the next-target distribution using completed training tasks only. For each candidate let `M` be the conditional second moment of the forecast targets minus its own predicted probe outputs. With fixed Jacobian, stable squared-loss gradient descent and step `η`, expected `h`-step loss decrease is `tr(M [I − (I − ηK)^(2h)])/2`. The expression follows by propagating the residual through `h` steps; its directional weights and horizon differ from log determinant and a point-forecast one-step score. A two-mode linear sanity check gives different expected gains at equal log determinant and equal point-forecast gain. This does not validate forecasting on held-out streams.
 
 **First falsifier.** Reuse the reserve pilot's CPU task generator; match the candidate writes for old retention as well as current loss and actually use a projected next-task learner. First stop if the spread in measured next-task gain vanishes. Compare all choices with projected readiness using the exact same history and forecast draw budget, diagonal/isotropic covariance, and direct projected lookahead on sampled forecast tasks. Do not call an analytic shortcut on a linear toy a CL gain: if same-budget lookahead/readiness ties on held-out sequential streams, stop. Use shuffled and unrelated task shifts as negative controls. The [original pilot](https://github.com/manojbajaj95/cl/pull/9) already falsified the unprojected Gramian; this is a candidate replacement, not evidence that it works.
+
+**Reviewer advanced this as a comparison arm** in the retention-matched plasticity-reserve rerun, not a separate pilot. See the [live ledger](https://github.com/manojbajaj95/cl/pull/6) for its outcome.
 
 ## Screened before submission
 
