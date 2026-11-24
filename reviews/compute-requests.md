@@ -86,7 +86,7 @@ The HW1 pilot writes its own spec; see [PR #20](https://github.com/manojbajaj95/
   2. **Lesson lift:** rule lessons must lift success ≥ 5 pp over no memory; otherwise inconclusive.
   3. **Filler:** report temperature-control R² minus filler-only R².
   4. **Primary content test (correct flips):** on states where the no-memory top action is wrong, A3 holds unless rule notes make the correct action top ≥ 5 pp more often than filler (CI above 0). Also report the magnitude-copy R² as the ceiling for a ranking-preserving account.
-- **Seeds and compute:** stage 1 is 10 notes × 16 games × 8 seeds, about 3 GPU-h. Stage 2 is the full 61k rollouts, about 20–25 GPU-h, run only if stage 1's gates pass. It needs full-menu logits, so it can't use the OpenRouter free tier.
+- **Seeds and compute:** stage 1 is 10 notes × 16 games × 8 seeds, about 3 GPU-h. Stage 2 (the full 61k rollouts, about 22 GPU-h) is DROPPED: the margin account is published ([2604.23750](https://arxiv.org/abs/2604.23750), [2404.10198](https://arxiv.org/abs/2404.10198)). Stage 1 runs only if the CPU margin-vs-scale test says scale, and then it tests whether a fixed-logit-lead plus margin model fits 7B note effects. A3 dies if it fits. It needs full-menu logits, so it can't use the OpenRouter free tier.
 - **Kill line:** dead on noise-corrected held-out R² < 0.50, a rule-vs-temperature gap ≥ 5 pp with CI above 0, or a lesson main effect > 25%.
 
 ## Tier 2: weight-training pilots (need a GPU for LoRA or model editing)
@@ -136,4 +136,4 @@ Killed at CPU scale ([PR #22](https://github.com/manojbajaj95/cl/pull/22)), so n
 - **Seeds and compute:** 3 seeds, about 60 GPU-h in total.
 - **Kill line:** dead if collapse onset doesn't switch near R = 1.
 
-**Total:** about 130 GPU-h (plus about 20 if H1's gate passes), plus HW1's API spend. If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
+**Total:** about 108 GPU-h (plus about 20 if H1's gate passes), plus HW1's API spend. If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
