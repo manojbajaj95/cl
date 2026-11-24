@@ -60,6 +60,8 @@ Use a relevance score trained on old development streams to split student prefix
 
 **Pilot falsified the tested method.** [The pilot](https://github.com/manojbajaj95/cl/pull/12) found no clear rare-recovery gain over frequency-weighted prompt upsampling (−6.48 percentage points, 95% CI [−40.52, +27.55]) and worse common behavior than MOPD replay (−1.06 percentage points, 95% CI [−1.66, −0.47]). A new attempt needs both a substantially tighter rare-event estimate and a way to protect common behavior.
 
+**Retire the original stream.** [A 20-seed follow-up](https://github.com/manojbajaj95/cl/pull/27) found that the old and new jam states shared a direction but had opposite labels on the same readout. Natural-frequency replay made rare retention worse than no replay (−5.83 percentage points, 95% CI [−6.37, −5.30]). More coverage could trade off old and new jam behavior in this stream, not solve their conflict. Before comparing coverage methods again, check that an offline joint fit at equal model capacity can reach at least 90% on both rare cohorts.
+
 ### 6. Sparse-write feasibility certificates
 
 **Hypothesis.** A routed model's structural zeros may identify masks with little room for safe updates before computing a dense Jacobian. For a fixed routing pattern and parameter mask `S`, a first-order direction on `S` can change a new scalar logit without changing protected logits iff the new Jacobian row adds rank to the old Jacobian restricted to `S`. Under generic coefficients with that support, the ranks of the old and augmented matrices equal the sizes of maximum bipartite matchings. Two matchings therefore test generic feasibility from supports alone.
@@ -81,6 +83,8 @@ The chain rule decomposes sequence KL into class-level KL plus expected within-c
 **First falsifier.** Continually train a small code model through an API or library migration that changes required syntax while preserving old effects under held-out inputs. Compare token KL, canonicalized token KL, and verifier/reward-only replay at matched execution calls and generated tokens. Kill if the old-pass vs. new-syntax frontier does not beat both canonicalized KL and execution-only replay; test misclassified side effects as a negative control. [OPSD theory](https://arxiv.org/abs/2610.05200) and [Purified OPSD](https://arxiv.org/abs/2607.02234) motivate separating useful teacher signal from incidental variation; the proposed advance is preserving executable outcome distributions under sequential change.
 
 **Pilot falsified the tested method.** [The CPU pilot](https://github.com/manojbajaj95/cl/pull/13) beat canonicalized token KL but did not beat execution-reward-only replay (retention/adoption hypervolume difference −0.0028, 95% CI [−0.0064, +0.0008]). It evaluated fixed completions and plain fine-tuning was near ceiling. A resubmit would need free generation and a stream where plain fine-tuning forgets.
+
+**The loss to execution-only replay replicated.** A [10-seed rerun](https://github.com/manojbajaj95/cl/pull/27) kept the same hypervolume difference (95% CI [−0.0044, −0.0012]). At the highest tested weight, adoption dropped below 95% on five seeds with effect-class replay versus one with execution-only replay. The proposed explanation, amplification from the teacher-to-student effect-count ratio, was not tested.
 
 ### 8. Bounded-delay stability scheduling
 
