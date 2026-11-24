@@ -1,0 +1,402 @@
+[
+  {
+    "id": "failure-01",
+    "kind": "failure",
+    "rule": false,
+    "text": "Never assume correctness without proof.",
+    "writer_episode": 33,
+    "source_start": 12,
+    "writer_codes": [
+      12,
+      21,
+      21
+    ],
+    "writer_actions": "ABB"
+  },
+  {
+    "id": "failure-02",
+    "kind": "failure",
+    "rule": true,
+    "text": "The routing rule changed: remainder 0 now requires C, and remainders 1 and 2 require A. Never assume correctness without proof.",
+    "writer_episode": 202,
+    "source_start": 14,
+    "writer_codes": [
+      14,
+      21,
+      21
+    ],
+    "writer_actions": "BBB"
+  },
+  {
+    "id": "failure-03",
+    "kind": "failure",
+    "rule": false,
+    "text": "Never assume correctness without proof.",
+    "writer_episode": 246,
+    "source_start": 14,
+    "writer_codes": [
+      14,
+      21,
+      21
+    ],
+    "writer_actions": "BBA"
+  },
+  {
+    "id": "failure-04",
+    "kind": "failure",
+    "rule": false,
+    "text": "Never assume correctness without proof.",
+    "writer_episode": 198,
+    "source_start": 13,
+    "writer_codes": [
+      13,
+      16,
+      20
+    ],
+    "writer_actions": "BBB"
+  },
+  {
+    "id": "failure-05",
+    "kind": "failure",
+    "rule": true,
+    "text": "The routing rule changed: remainder 0 now requires C, and remainders 1 and 2 require A. In order to avoid this failure, ensure that at least two of your choices are correct.",
+    "writer_episode": 129,
+    "source_start": 13,
+    "writer_codes": [
+      13,
+      16,
+      20
+    ],
+    "writer_actions": "BBA"
+  },
+  {
+    "id": "failure-06",
+    "kind": "failure",
+    "rule": false,
+    "text": "Never assume correctness without proof.",
+    "writer_episode": 28,
+    "source_start": 13,
+    "writer_codes": [
+      13,
+      16,
+      20
+    ],
+    "writer_actions": "BBB"
+  },
+  {
+    "id": "failure-07",
+    "kind": "failure",
+    "rule": true,
+    "text": "The routing rule changed: remainder 0 now requires C, and remainders 1 and 2 require A. Never assume correctness without proof.",
+    "writer_episode": 69,
+    "source_start": 11,
+    "writer_codes": [
+      11,
+      18,
+      18
+    ],
+    "writer_actions": "BBB"
+  },
+  {
+    "id": "failure-08",
+    "kind": "failure",
+    "rule": true,
+    "text": "The routing rule changed: remainder 0 now requires C, and remainders 1 and 2 require A. In order to avoid such failures, ensure that at least two of your choices are correct.",
+    "writer_episode": 91,
+    "source_start": 11,
+    "writer_codes": [
+      11,
+      16,
+      20
+    ],
+    "writer_actions": "ABB"
+  },
+  {
+    "id": "failure-09",
+    "kind": "failure",
+    "rule": true,
+    "text": "The routing rule changed: remainder 0 now requires C, and remainders 1 and 2 require A. Never assume correctness without proof.",
+    "writer_episode": 57,
+    "source_start": 11,
+    "writer_codes": [
+      11,
+      18,
+      16
+    ],
+    "writer_actions": "BAB"
+  },
+  {
+    "id": "failure-10",
+    "kind": "failure",
+    "rule": true,
+    "text": "The routing rule changed: remainder 0 now requires C, and remainders 1 and 2 require A. Never assume correctness without proof.",
+    "writer_episode": 73,
+    "source_start": 15,
+    "writer_codes": [
+      15,
+      14,
+      10
+    ],
+    "writer_actions": "BBC"
+  },
+  {
+    "id": "failure-11",
+    "kind": "failure",
+    "rule": false,
+    "text": "Never assume correctness without proof.",
+    "writer_episode": 270,
+    "source_start": 14,
+    "writer_codes": [
+      14,
+      21,
+      21
+    ],
+    "writer_actions": "BBA"
+  },
+  {
+    "id": "failure-12",
+    "kind": "failure",
+    "rule": true,
+    "text": "The routing rule changed: remainder 0 now requires C, and remainders 1 and 2 require A. In order to avoid such failures, ensure that at least two of your choices are correct.",
+    "writer_episode": 51,
+    "source_start": 10,
+    "writer_codes": [
+      10,
+      11,
+      19
+    ],
+    "writer_actions": "ABB"
+  },
+  {
+    "id": "failure-13",
+    "kind": "failure",
+    "rule": false,
+    "text": "Never assume correctness without proof.",
+    "writer_episode": 186,
+    "source_start": 10,
+    "writer_codes": [
+      10,
+      13,
+      17
+    ],
+    "writer_actions": "BBB"
+  },
+  {
+    "id": "failure-14",
+    "kind": "failure",
+    "rule": true,
+    "text": "The routing rule changed: remainder 0 now requires C, and remainders 1 and 2 require A. Never assume correctness without proof.",
+    "writer_episode": 259,
+    "source_start": 14,
+    "writer_codes": [
+      14,
+      21,
+      21
+    ],
+    "writer_actions": "BBA"
+  },
+  {
+    "id": "failure-15",
+    "kind": "failure",
+    "rule": false,
+    "text": "Never assume correctness without proof.",
+    "writer_episode": 5,
+    "source_start": 15,
+    "writer_codes": [
+      15,
+      12,
+      12
+    ],
+    "writer_actions": "ABA"
+  },
+  {
+    "id": "failure-16",
+    "kind": "failure",
+    "rule": false,
+    "text": "Never assume correctness without proof.",
+    "writer_episode": 0,
+    "source_start": 12,
+    "writer_codes": [
+      12,
+      21,
+      21
+    ],
+    "writer_actions": "ABB"
+  },
+  {
+    "id": "failure-17",
+    "kind": "failure",
+    "rule": true,
+    "text": "The routing rule changed: remainder 0 now requires C, and remainders 1 and 2 require A. Never make decisions based on incorrect information; always verify your choices.",
+    "writer_episode": 149,
+    "source_start": 15,
+    "writer_codes": [
+      15,
+      12,
+      10
+    ],
+    "writer_actions": "AAC"
+  },
+  {
+    "id": "failure-18",
+    "kind": "failure",
+    "rule": true,
+    "text": "The routing rule changed: remainder 0 now requires C, and remainders 1 and 2 require A. Never make decisions based on incorrect information; always verify your choices.",
+    "writer_episode": 56,
+    "source_start": 10,
+    "writer_codes": [
+      10,
+      15,
+      13
+    ],
+    "writer_actions": "CAB"
+  },
+  {
+    "id": "failure-19",
+    "kind": "failure",
+    "rule": false,
+    "text": "Never make decisions based on incorrect information; always verify your choices.",
+    "writer_episode": 81,
+    "source_start": 15,
+    "writer_codes": [
+      15,
+      12,
+      12
+    ],
+    "writer_actions": "ABA"
+  },
+  {
+    "id": "failure-20",
+    "kind": "failure",
+    "rule": false,
+    "text": "Never make decisions based on incorrect information; always verify your choices.",
+    "writer_episode": 237,
+    "source_start": 12,
+    "writer_codes": [
+      12,
+      21,
+      19
+    ],
+    "writer_actions": "AAB"
+  },
+  {
+    "id": "stratified-01",
+    "kind": "rule",
+    "rule": true,
+    "text": "The routing rule changed: remainder 0 now requires C, and remainders 1 and 2 require A."
+  },
+  {
+    "id": "stratified-02",
+    "kind": "rule",
+    "rule": true,
+    "text": "Use the revised mapping: send multiples of three to C, and every other code to A."
+  },
+  {
+    "id": "stratified-03",
+    "kind": "rule",
+    "rule": true,
+    "text": "Route to A unless the displayed code is divisible by three, in which case use C."
+  },
+  {
+    "id": "stratified-04",
+    "kind": "rule",
+    "rule": true,
+    "text": "The controller now wants C for codes 12, 15, 18 and 21. All remaining codes route to A."
+  },
+  {
+    "id": "stratified-05",
+    "kind": "rule",
+    "rule": true,
+    "text": "Subtract three repeatedly. An ending value of zero calls for C; one or two calls for A."
+  },
+  {
+    "id": "stratified-06",
+    "kind": "rule",
+    "rule": true,
+    "text": "Use the current verifier: return C if division by three leaves no remainder, otherwise return A."
+  },
+  {
+    "id": "stratified-07",
+    "kind": "rule",
+    "rule": true,
+    "text": "Ignore the old tool mapping; C is for remainder zero and A is for either nonzero remainder."
+  },
+  {
+    "id": "stratified-08",
+    "kind": "rule",
+    "rule": true,
+    "text": "First check divisibility by three. A successful divisibility check means C, and a failed check means A."
+  },
+  {
+    "id": "stratified-09",
+    "kind": "rule",
+    "rule": true,
+    "text": "Use C when the digit sum is a multiple of three. Otherwise choose A."
+  },
+  {
+    "id": "stratified-10",
+    "kind": "rule",
+    "rule": true,
+    "text": "Anchor on 10 \u2192 A, 11 \u2192 A, 12 \u2192 C; repeat that cycle across the displayed codes."
+  },
+  {
+    "id": "stratified-11",
+    "kind": "neutral",
+    "rule": false,
+    "text": "Answer with just the requested label, without punctuation or explanation."
+  },
+  {
+    "id": "stratified-12",
+    "kind": "neutral",
+    "rule": false,
+    "text": "The checkpoint counter indicates progress through a run."
+  },
+  {
+    "id": "stratified-13",
+    "kind": "neutral",
+    "rule": false,
+    "text": "Codes are printed as ordinary base-ten integers."
+  },
+  {
+    "id": "stratified-14",
+    "kind": "neutral",
+    "rule": false,
+    "text": "Take a moment to double-check before submitting a route."
+  },
+  {
+    "id": "stratified-15",
+    "kind": "neutral",
+    "rule": false,
+    "text": "Treat the displayed code as the input to the routing task."
+  },
+  {
+    "id": "stratified-16",
+    "kind": "misleading",
+    "rule": false,
+    "text": "Always route to B, regardless of the code."
+  },
+  {
+    "id": "stratified-17",
+    "kind": "misleading",
+    "rule": false,
+    "text": "Route even codes to B, and odd codes to C."
+  },
+  {
+    "id": "stratified-18",
+    "kind": "misleading",
+    "rule": false,
+    "text": "Add the checkpoint number to the code before taking the remainder."
+  },
+  {
+    "id": "stratified-19",
+    "kind": "misleading",
+    "rule": false,
+    "text": "Choose A on the first checkpoint, B on the second, and C on the third."
+  },
+  {
+    "id": "stratified-20",
+    "kind": "misleading",
+    "rule": false,
+    "text": "Use the quotient of division by three, not the remainder."
+  }
+]
