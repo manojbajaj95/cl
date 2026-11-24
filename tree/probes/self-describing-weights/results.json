@@ -1,0 +1,45 @@
+{
+  "models": 40,
+  "train_models": 28,
+  "test_models": 12,
+  "canonical_prediction_max_abs_drift": 8.881784197001252e-16,
+  "anchored_minus_raw_general_mse": -0.004174746793529966,
+  "arms": {
+    "raw": {
+      "read_r2": -0.12616979502245584,
+      "base_general_mse": 0.005104394325378621,
+      "target_coefficient_increment": 0.01358403813647306,
+      "oracle_coefficient_increment": 0.9638978712647074,
+      "new_task_mse_before": 0.4937842298607993,
+      "new_task_mse_after": 0.488448550779845,
+      "new_task_mse_oracle": 0.020092192598347266,
+      "old_task_mse_before": 0.0037254939841645175,
+      "old_task_mse_after": 0.011472359704333931,
+      "old_task_mse_oracle": 0.005672997295764918
+    },
+    "canonical": {
+      "read_r2": 0.2899142247292874,
+      "base_general_mse": 0.005104394325378621,
+      "target_coefficient_increment": 0.03153658321209405,
+      "oracle_coefficient_increment": 0.9638978712647074,
+      "new_task_mse_before": 0.4937842298607993,
+      "new_task_mse_after": 0.4707852377652136,
+      "new_task_mse_oracle": 0.02009219259834726,
+      "old_task_mse_before": 0.0037254939841645175,
+      "old_task_mse_after": 0.010387433653106917,
+      "old_task_mse_oracle": 0.005672997295764916
+    },
+    "anchored": {
+      "read_r2": 0.8711223474713587,
+      "base_general_mse": 0.000929647531848655,
+      "target_coefficient_increment": 0.9928481908462593,
+      "oracle_coefficient_increment": 0.9988944532195075,
+      "new_task_mse_before": 0.4878625781963599,
+      "new_task_mse_after": 0.0012284665906741184,
+      "new_task_mse_oracle": 0.0010741305918490391,
+      "old_task_mse_before": 0.0006732614408345581,
+      "old_task_mse_after": 0.0013720642264888538,
+      "old_task_mse_oracle": 0.0007386955602380822
+    }
+  }
+}
