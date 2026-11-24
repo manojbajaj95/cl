@@ -13,11 +13,12 @@ Status values:
 | Idea | Source | Status | Strongest control | Smallest falsifying test | Pilot outcome |
 |---|---|---|---|---|---|
 | Self-contamination law R = k·(α_D·τ − d)/α_S | PR #4 | PILOTING | Gate-catch-rate-only predictor; extrapolating the early defect share | Find a setting with R in [0.5, 2] (~30 GPU-h), then sweep k ∈ {1,2,4,8} × 3 seeds. Dead if collapse onset doesn't switch near R = 1 | — |
-| Self-quizzing replay (#11) | Batch 2 | FALSIFIED | Self-generated raw-text replay ([2605.26097](https://arxiv.org/abs/2605.26097)); teacher QA on the same questions, equal tokens | ~1B model, continued pretraining. Dead if self-QA ≤ teacher-QA on old-fact retention | Pilot killed it. Over 3 held-out seeds, self-QA retention was −1.39 pp vs teacher QA on the same questions (paired 95% CI −6.19 to +3.41) and −0.93 pp vs verified prose (−3.56 to +1.71) |
+| Self-quizzing replay (#11) | Batch 2 | FALSIFIED | Self-generated raw-text replay ([2605.26097](https://arxiv.org/abs/2605.26097)); teacher QA on the same questions, equal tokens | ~1B model, continued pretraining. Dead if self-QA ≤ teacher-QA on old-fact retention | Pilot killed it. Over 3 held-out seeds, self-QA retention was −1.39 pp vs teacher QA on the same questions (paired 95% CI −6.19 to +3.41) and −0.93 pp vs verified prose (−3.56 to +1.71). A style-matched teacher control also showed no advantage (−0.35 pp, CI −5.59 to +4.90). [PR #8](https://github.com/manojbajaj95/cl/pull/8) |
 | Edit-capacity law, narrowed to pre-edit N* prediction (#14) | Batch 3 | PILOTING | Weight-norm threshold fitted on the first 10% of edits ([2602.02543](https://arxiv.org/abs/2602.02543)) | MEMIT on GPT-2-XL and GPT-J, 3 batch sizes. Dead if the key-covariance prediction of N* doesn't beat the norm control | — |
 | Functional syndromes (coded key→value checks), narrowed to one linear memory layer | Cross-field 1 | PILOTING | Same-byte raw (k, v) replay + re-edit; dense random-projection sketch with least squares | Measure e_i = ΔW·k_i after fine-tuning. Dead if the top 10% of facts hold less than ~80% of the damage energy | — |
 | Plasticity reserve (Gramian write selection) | Cross-field 2 | PILOTING | Optimization readiness ([2605.09044](https://arxiv.org/abs/2605.09044)) as the chooser; effective rank; random choice | CPU MLP, 50 tasks, 8 equal-loss candidates per write. Dead if its Spearman correlation with next-task gain is not above readiness | — |
 | Rare-event distillation (weighted prefix splitting), narrowed to rare mid-trajectory behaviors | Cross-field 3 | PILOTING | Same-budget MOPD replay toward the previous student ([2611.02746](https://arxiv.org/abs/2611.02746)); uniform prefix replay ([2607.04763](https://arxiv.org/abs/2607.04763)); prompt upsampling weighted by behavior frequency | ~0.5B model, an old behavior firing ~1/1000 mid-rollout, then a new domain. Dead if splitting doesn't beat the best control beyond the seed CI, or hurts common behaviors | — |
+| Lesson-only interference prediction (−⟨ΔW_A, ΔW_B⟩), B3 | Agent 2 (PR #7) | PILOTING | Function-vector cosine ([2605.16591](https://arxiv.org/abs/2605.16591)); NLI; embedding cosine; length-matched irrelevant-lesson dilution control | CPU Qwen2.5-1.5B, 200 lesson pairs. Dead if Spearman is not ≥ 0.15 above NLI, doesn't beat FV cosine, or dilution explains most of the drop | — |
 
 ## Killed
 
@@ -44,6 +45,7 @@ Status values:
 | Baldwin vs Lamarck (A2) | Agent 1 (PR #7) | KILLED | Cross-episode meta-RL for LLM agents exists ([2602.04089](https://arxiv.org/abs/2602.04089)) |
 | Time-travel memory (A3) | Agent 1 (PR #7) | KILLED | Flat reacquisition holds by construction; Forget-Me-Not and recurring-drift model pools exist |
 | Sparse-write certificates (graph matchings) | Cross-field 3 | KILLED | Structural rank only bounds true rank from above, so it can't certify that every edit harms. Dense Jacobian patterns carry no information. Masked-Jacobian SVD (OGD) is cheap; certified retention exists ([2610.40740](https://arxiv.org/abs/2610.40740)) |
+| Vocabulary-grown skills (B2) | Agent 2 (PR #7) | KILLED | Frozen backbone + per-skill embeddings is prompt-pool CL (L2P/DualPrompt/CODA) plus ToolkenGPT/Toolken+. Zero forgetting is the frozen-backbone property; online macro mining only changes the token source |
 
 ## Patterns in the kills
 
