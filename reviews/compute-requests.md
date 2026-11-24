@@ -78,15 +78,8 @@ Killed ([PR #25](https://github.com/manojbajaj95/cl/pull/25)): exact-truth split
 ### HW1: DROPPED
 Killed at the variance gate ([PR #32](https://github.com/manojbajaj95/cl/pull/32)).
 
-### A3 replication: lessons as a temperature knob, 7B ALFWorld
-- **Spec:** [replication-7b.md in PR #29](https://github.com/manojbajaj95/cl/pull/29). Qwen2.5-7B-Instruct, constrained-menu ALFWorld, 40 notes, 32 source and 32 held-out games. Arms: no memory, note, length-matched filler, and entropy-matched no-memory temperature.
-- **Added gates:**
-  1. **Mode collapse:** at T = 1 no-memory, the modal action share must be < 0.8 on ≥ 50% of states; otherwise the run is uninformative.
-  2. **Lesson lift:** rule lessons must lift success ≥ 5 pp over no memory; otherwise inconclusive.
-  3. **Filler:** report temperature-control R² minus filler-only R².
-  4. **Primary content test (correct flips):** on states where the no-memory top action is wrong, A3 holds unless rule notes make the correct action top ≥ 5 pp more often than filler (CI above 0). Also report the magnitude-copy R² as the ceiling for a ranking-preserving account.
-- **Seeds and compute:** stage 1 is 10 notes × 16 games × 8 seeds, about 3 GPU-h. Stage 2 (the full 61k rollouts, about 22 GPU-h) is DROPPED: the margin account is published ([2604.23750](https://arxiv.org/abs/2604.23750), [2404.10198](https://arxiv.org/abs/2404.10198)). Stage 1 runs only if the CPU margin-vs-scale test says scale, and then it tests whether a fixed-logit-lead plus margin model fits 7B note effects. A3 dies if it fits. It needs full-menu logits, so it can't use the OpenRouter free tier.
-- **Kill line:** dead on noise-corrected held-out R² < 0.50, a rule-vs-temperature gap ≥ 5 pp with CI above 0, or a lesson main effect > 25%.
+### A3 replication: DROPPED
+A3 was killed by the margin-vs-scale test ([PR #33](https://github.com/manojbajaj95/cl/pull/33)): 1.5B follows lessons under a weak prior, and the margin account is published.
 
 ## Tier 2: weight-training pilots (need a GPU for LoRA or model editing)
 
@@ -135,4 +128,4 @@ Killed at CPU scale ([PR #22](https://github.com/manojbajaj95/cl/pull/22)), so n
 - **Seeds and compute:** 3 seeds, about 60 GPU-h in total.
 - **Kill line:** dead if collapse onset doesn't switch near R = 1.
 
-**Total:** about 108 GPU-h (plus about 20 if H1's gate passes). If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
+**Total:** about 105 GPU-h (plus about 20 if H1's gate passes). If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
