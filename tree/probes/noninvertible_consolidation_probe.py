@@ -90,7 +90,6 @@ def steps_to(p, X, y, thr, lr=0.05, cap=3000):
 
 def proj_onto_rows(M, tol=1e-3):
     U, s, Vt = np.linalg.svd(M, full_matrices=False)
-    k = int(np.sum(s ** 2 > tol * np.sum(s ** 2) * 1e-0)) if s.size else 0
     k = int(np.searchsorted(np.cumsum(s ** 2) / np.sum(s ** 2), 1 - tol) + 1)
     V = Vt[:k]
     return V.T @ V
