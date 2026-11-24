@@ -36,6 +36,8 @@ Status values:
 | One Pareto front for replay indexed by gradient share w (Q1) | Agent 12 (PR #7) | PILOTING (gated on noise) | Jam count; loss-weighted share (prioritized-replay account) | Rerun the PR #12 arms with 10 seeds and per-sample gradient norms. Gate: within-arm seed variance < across-arm variance. Dead if w explains < 70% of variance, or doesn't beat jam count by ≥ 0.3 R² and loss share by any margin. Second test (PR #13 seed reversal): compute w at weight 4 per seed before looking at outcomes; dead if seed 303 doesn't land on the good side where 101 and 202 do not, or per-seed loss share separates them as well | — |
 | Agent Toolbox, narrowed: tools fail loudly, lessons fail silently (faster drift detection and recovery) | Manoj | PASSED (narrowed) | The same procedures as text lessons with the same regression tests attached | 20 procedures as tools vs lessons, drift 30% of APIs mid-stream, 3 seeds. Dead if lessons + tests match tools on episodes-to-detect and episodes-to-recover | — |
 | StackOverflow for CL, narrowed: ask-when-stuck (question-indexed atoms pulled only on a failure signature) | Manoj | PASSED (narrowed) | FLARE-style confidence-triggered retrieval; push top-k from the same store at equal tokens | 2610.27406 setup, sweep store size. Dead if failure-triggered pull declines like push, or confidence-triggered retrieval ties | — |
+| Double dosing after consolidation | Long-run proposer (PR #16) | PASSED | Delete each lesson from context once distilled | 10 graded lessons, LoRA-distilled over 3 cycles; weights-only vs context-only vs both. Dead if both overshoots the larger single dose by ≤ seed CI with no oscillation | — |
+| Fleet Q2: predict lessons obsoleted by a model upgrade (new-model likelihood gain) | Fleet proposer (PR #15) | PASSED | New model's zero-shot success on each lesson's source tasks; old-model likelihood gain | About 40 lessons across one upgrade; truth from ≥ 200 rollouts with split-half reliability ≥ 0.7. Dead if ρ < 0.5 or not ≥ 0.15 above zero-shot success | — |
 
 ## Killed
 
@@ -89,6 +91,10 @@ Status values:
 | Agent Toolbox as stated (agents write tools from repeated procedures) | Manoj | KILLED (see narrowed pass) | Crowded: LATM, TroVE, Voyager, LIBRA 2611.05445, SkillCommit 2608.15165, MUSE-Autoskill 2605.27366, Selm 2610.24630 show the speed and error gains |
 | StackOverflow for CL as stated (shared Q&A memory of atoms) | Manoj | KILLED (see narrowed pass) | Shared agent memory is covered: transactive memory 2606.19911, governed shared memory 2606.24535, reputation memory 2609.19502, XferAgent 2610.19581, CoMem; atomic notes: A-MEM |
 | Book-style nested skill retrieval | Manoj | KILLED (open angle held) | Hierarchical and graph skill libraries at scale exist: HiSkill 2607.25853, SkillBrowser 2610.23554, SE-GoS 2609.08228, SkillDAG 2606.03056, TalentRL 2610.41143. Open angle for proposers: re-shelving under growth breaks navigation paths, so test whether a stable, append-only hierarchy beats periodic rebuilds on old-skill hit rate |
+| Self-sealing prohibitions | Long-run proposer (PR #16) | KILLED | Hot-stove effect (Denrell & March 2001); Memory Trap 2611.07554; ε-testing or expiry is standard exploration |
+| Advantage-baselined lesson writing | Long-run proposer (PR #16) | KILLED | Lessons from Luck 2610.33029; ExpeL's same-task success/failure contrast already baselines on the task |
+| Fleet Q1: bootstrap-resampled memory writing | Fleet proposer (PR #15) | KILLED | This is bagging; writer temperature or seed diversity at the same cost ties |
+| PR #15 and PR #16 pre-killed ideas (8 each) | Proposers | KILLED (at proposal) | The proposers' reasons are in their PRs |
 
 ## Patterns in the kills
 
