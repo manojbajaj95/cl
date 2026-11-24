@@ -85,6 +85,7 @@ The HW1 pilot writes its own spec; see [PR #20](https://github.com/manojbajaj95/
   1. **Mode collapse:** at T = 1 no-memory, the modal action share must be < 0.8 on ≥ 50% of states; otherwise the run is uninformative.
   2. **Lesson lift:** rule lessons must lift success ≥ 5 pp over no memory; otherwise inconclusive.
   3. **Filler:** report temperature-control R² minus filler-only R².
+  4. **Primary content test (correct flips):** on states where the no-memory top action is wrong, A3 holds unless rule notes make the correct action top ≥ 5 pp more often than filler (CI above 0). Also report the magnitude-copy R² as the ceiling for a ranking-preserving account.
 - **Seeds and compute:** stage 1 is 10 notes × 16 games × 8 seeds, about 3 GPU-h. Stage 2 is the full 61k rollouts, about 20–25 GPU-h, run only if stage 1's gates pass. It needs full-menu logits, so it can't use the OpenRouter free tier.
 - **Kill line:** dead on noise-corrected held-out R² < 0.50, a rule-vs-temperature gap ≥ 5 pp with CI above 0, or a lesson main effect > 25%.
 
