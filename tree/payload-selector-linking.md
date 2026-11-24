@@ -1,6 +1,6 @@
 # Can a payload be separated from its selector, and can compiled writes link?
 
-Depth 3, below [forward-trace-compile](https://github.com/manojbajaj95/cl/blob/pr60/tree/forward-trace-compile.md) ([PR #60](https://github.com/manojbajaj95/cl/pull/60)). That node found a trace says *what value to write* but not *where the write fires* or *which later layers read it*. This node asks two follow-ups: can a reusable **payload** (the value) be inferred separately from the **selector** (the key condition that delivers it), and can two independently compiled writes be **linked** without re-reading either one's examples? Ideation only; no experiments were run.
+Depth 3, below forward-trace-compile (`tree/forward-trace-compile.md`) ([PR #60](https://github.com/manojbajaj95/cl/pull/60)). That node found a trace says *what value to write* but not *where the write fires* or *which later layers read it*. This node asks two follow-ups: can a reusable **payload** (the value) be inferred separately from the **selector** (the key condition that delivers it), and can two independently compiled writes be **linked** without re-reading either one's examples? Ideation only; no experiments were run.
 
 ## Root cause: payload and selector are only identified as a product, and both live in someone else's coordinates
 
