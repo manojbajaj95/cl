@@ -16,6 +16,8 @@ Let `W₀` be the post-edit projection, `K` the matrix of old keys, and `S` a se
 
 **Prior art and scope.** [Algorithm-based fault tolerance](https://doi.org/10.1109/TC.1984.1676475) detects arithmetic errors with matrix checksums; [compressed sensing](https://arxiv.org/abs/math/0503066) supplies a sparse decoder; [MEMIT](https://arxiv.org/abs/2210.07229) supplies the key/value interface. The open question is whether *training-induced functional damage*, not injected faults, satisfies the sparsity assumption and can be repaired within budget. Unlike Noether memory, this is a read/repair operation after damage, not a conserved channel.
 
+**Pilot falsified fixed-key sparsity.** The [GPT-2-XL pilot](https://github.com/manojbajaj95/cl/pull/24) found only 18.9–19.1% of raw response damage energy in the worst 10% of facts. Group-sparse decoding did not beat matched-budget baselines, and repair did not run. Positive answer-probability drops were much more concentrated, but the tested readout did not measure them; raw damage norm was weakly negatively correlated with the drops.
+
 ### 2. Functional sigma–delta for quantized writes
 
 **Hypothesis.** Protected outputs need not inherit long-run rounding drift from irreversible low-bit parameter updates. For fixed protected Jacobian `J`, reference float update `u[t]`, and feasible quantized update `q[t]`, carry only `r[t] = r[t−1] + J(u[t] − q[t])`. If a quantizer keeps this small, cumulative protected linearized rounding error telescopes to `r[t] − r[0]`; this says nothing about whether a low-debt quantized update exists, and does not protect a moving Jacobian.
@@ -135,6 +137,28 @@ On a fixed probe set, let `K = G P Gᵀ` be the post-write kernel of the actual 
 **First falsifier.** Reuse the reserve pilot's CPU task generator; match the candidate writes for old retention as well as current loss and actually use a projected next-task learner. First stop if the spread in measured next-task gain vanishes. Compare all choices with projected readiness using the exact same history and forecast draw budget, diagonal/isotropic covariance, and direct projected lookahead on sampled forecast tasks. Do not call an analytic shortcut on a linear toy a CL gain: if same-budget lookahead/readiness ties on held-out sequential streams, stop. Use shuffled and unrelated task shifts as negative controls. The [original pilot](https://github.com/manojbajaj95/cl/pull/9) already falsified the unprojected Gramian; this is a candidate replacement, not evidence that it works.
 
 **Stopped at the variance gate.** The reviewer included this as a comparison arm, but the [retention-matched rerun](https://github.com/manojbajaj95/cl/pull/21) found too little next-task gain left to rank and did not run forecast-weighted selection. This closes the reserve line on that stream; it does not compare the predictors.
+
+## Batch 7 · Gate-only alternatives after fixed-key damage proved dense
+
+### 13. Use the current model to decode old answers from shared parity
+
+**Hypothesis.** A model can stop preferring a previously retained answer while still including it among a small list of candidates. Encode the old valid answers jointly, then use the later model's answer likelihoods as side information to decode the block. Shared parity allocates redundancy across whichever facts become ambiguous *later*, rather than spending an equal number of check bits on every fact. Unlike the failed layer sketch, this observes answer identity without guessing which old keys suffered damage.
+
+At write time, store a seeded hash or parity of a block of canonical target token sequences. At recovery time, generate candidate answers from the current model without showing it old targets or alternate answers, and rerank joint assignments subject to the stored bits. On small development blocks, enumerate assignments in score order and report the rank of the true block; a random `b`-bit fingerprint has at most `(R−1)/2^b` probability of matching any of the `R−1` better-ranked assignments. This bound assumes the true block is present and does not address search cost. Use separate verification bits or abstain on ambiguity. Protect only still-valid facts; charge the prompt catalog, membership/version flags, serialized labels, verification bits and inference calls to all relevant arms.
+
+**First falsifier.** Start with the successfully inserted facts in the [MEMIT traces](https://github.com/manojbajaj95/cl/pull/24). On held-out streams, first measure live top-k coverage among lost old answers and the bit cost of ideal list selection, including unchanged answers. Stop if the true targets routinely leave the affordable lists, or if the ideal bit saving disappears against direct entropy-coded answer storage once metadata is included. Only then compare matched-budget shared parity, independent per-fact fingerprints, and compressed answer replay with identical prompts, model-call and re-edit budgets. For a pass, require better accurate recovery without extra false corrections and better held-out paraphrase retention at equal new-task loss.
+
+**Prior art and scope.** [Slepian–Wolf coding](https://doi.org/10.1109/TIT.1973.1055037) already supplies source coding with decoder side information. [Lifelong compact editing memory](https://arxiv.org/abs/2611.25861) is a system baseline. The untested CL claim is that a post-update model retains enough *usable* answer-side information across successive writes to make the trade worthwhile, not that shared parity is new.
+
+### 14. Test low-rank damage as an alternative to sparse facts
+
+**Hypothesis.** Raw response damage can be dense across facts but have a small spectral dimension. Save two-sided sketches of the old response and subtract the new sketches before reconstruction, so the reconstruction budget tracks the rank of the *change*, not the rank of old knowledge.
+
+With `A = W₀K`, old sketches `LA` and `AS`, and live differences `X = LE` and `Y = ES` for `E = (W−W₀)K`, use the generalized Nyström reconstruction `Y(LY)⁺X` with a stable rank truncation. Recovery is exact for noiseless rank-r damage when the sketch maps have the needed ranks. This is standard sketch algebra; the CL question is whether the small-rank part is harmful at the level of actual behavior and correctable without removing useful learning. Charge the mixed input keys and any regenerated or retained key dictionary.
+
+**First falsifier.** From the saved weight changes and keys, measure rank-vs-energy at the actual matched-byte ranks and test whether the oracle truncated component predicts held-out answer regressions beyond raw norm and prior answer margin. Stop if either gate fails. Before a repair pilot, compare a truncated-weight-drift correction where a checkpoint is affordable, same-byte old-output SVD and raw replay, and a same-information two-sided reconstruction using regularized least squares. Kill if the useful old/new tradeoff is reproduced by one of these. A synthetic exact rank-4 case reconstructed to numerical precision, but says nothing about MEMIT drift or which directions to restore.
+
+**Prior art and scope.** [Randomized two-sided matrix sketching](https://arxiv.org/abs/1609.00048) supplies the decoder. [Low-rank function-space forgetting](https://arxiv.org/abs/2606.18024) is the nearest CL hypothesis. No separate pilot until the existing trace establishes a behavior-linked signal beyond the failed sparse-fact readout.
 
 ## Screened before submission
 
