@@ -70,3 +70,37 @@ and the lengths of the three distinct prompts per probe. To reanalyze
 the archived run without a model, use `python3 run.py report raw.csv`.
 The CSV stores one row per wave/probe; both draws for each seed are
 reconstructed from the recorded probabilities and fixed RNG algorithm.
+
+## Reviewer-requested screened rerun
+
+Keep the same model, 60 rules, order, six waves, and three sampling
+seeds. Freeze the candidate pool in `rerun.py`: the original 20
+phrasings followed by versions that make the habitual route explicit
+without giving a new routing instruction. For each candidate, screen
+on the exact next-action probability of its habitual tool in the
+length-matched **no-rule** prompt. A candidate must have probability
+at least 0.70 at every wave. Stop screening a candidate on its first
+failed wave. Take the first 20 eligible phrasings per wave-1 queue in
+candidate order (up to 200 probes); if a queue falls short, keep all
+of its eligible phrasings and report the shortfall. Freeze selection
+before querying any text-rule prompt.
+
+Query only the negative text and no-rule arms; skip rewrite, mask
+and verifier. Use fresh sampling draws (same seeds 17, 29 and 43,
+with a rerun-specific probe key), paired across waves and arms.
+Report exact screened baseline probabilities as well as sampled
+baseline rates; selection does not use sampling draws. Use the prior
+paired queue-and-phrasing bootstrap for 95% intervals, conditional on
+the selected cohort, same model and fixed order. The final decision
+uses text wave 6 minus text wave 1: **KILL and close N2 if the
+increase is less than 5 pp**, otherwise **KEEP** for follow-up. The
+gate is on the point estimate, with its 95% CI reported separately.
+
+```sh
+python3 rerun.py collect reproduced-screen.csv reproduced-rerun.csv
+python3 rerun.py report rerun-raw.csv
+```
+
+`rerun-screen.csv` archives each no-rule score that was evaluated
+before selection. `rerun-raw.csv` archives the selected prompts'
+no-rule and negative-text probabilities at all six waves.
