@@ -122,6 +122,9 @@ Status values:
 | A2: effect-class replay bifurcates at weight 4 (adoption collapses on 5/10 seeds) | Anomaly batch 1 (PR #27) | KILLED | The parent line is already dead. Warning only: don't read single seeds at weight 4 |
 | Wider nets forget less only because SP parameterization makes them lazy | Agent proposer | KILLED (prior art, CPU-replicated) | Under SP, forgetting fell from 6.4% to 0.4% from width 64 to 4096; under muP it stayed flat at 7–10%. Already shown with DMFT theory in [2506.16884](https://arxiv.org/abs/2506.16884) |
 | Critical teacher-refresh rate α* in on-policy self-distillation | Agent proposer | KILLED (prior art, CPU-replicated) | On SmolLM2-135M, a frozen teacher went 0.28 → 0.44, α 0.05 fell to 0.03–0.09, and α ≥ 0.3 collapsed to 0. EMA teacher contamination and gated refresh are already in CGTR [2606.03532](https://arxiv.org/abs/2606.03532); an α* predictor alone is a study |
+| #15 Switched-observability Gramian penalty at write time | Cross-field batch 8 (PR #10) | KILLED | Exact only in the fixed linear model, where sampled adjoints tie it by the proposer's own admission; outside that model the Gramian is invalid. Gramian forecasts already died in the plasticity-reserve pilots (PR #9, #21); ordering is covered by 2611.20087, endpoint protection by DUET 2611.29269 |
+| #16 Factorial (quartet) audit during compaction for late consumers | Cross-field batch 8 (PR #10) | KILLED | The objective is a reweighting of direct quartet distillation (conceded), so there is no mechanism; the remaining phenomenon is a study (2610.14413, 2610.37126) |
+| Batch 8 pre-kills: reusable skills from unlabeled environment changes; circuit decompilation for exact reuse | Cross-field proposer | KILLED (at proposal) | Continual nonlinear ICA 2408.05788; Circuit Condensation 2608.27254 and Library of Layers 2611.03526 |
 
 ## Patterns in the kills
 
