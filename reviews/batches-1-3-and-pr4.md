@@ -70,3 +70,4 @@ Rerun with a harder (nonlinear-teacher) task stream, in `pilots/noether_check.py
 | Cross-field 4 effect-class distillation | PASS, narrowed to syntax shifts | Canonicalized token KL; reward-only replay | API-migration stream, Pareto test |
 | Cross-field 4 bounded-delay scheduling | KILL | — | O(η²) order effect; gradient accumulation ties |
 | Agent G1 offline A/B of memory edits | PASS | Likelihood-gain (no IS) control; LLM judge; uplift model | 30 lessons vs fresh-rollout truth; check ESS first |
+| Agent H1 surprisingly-popular fleet memory | PASS | Union + regime retrieval; truth discovery | 20 agents, p = 0.2; check meta-prediction dependence first |
