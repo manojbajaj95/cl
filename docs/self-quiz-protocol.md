@@ -32,7 +32,7 @@ their syntax is seen only on unrelated background entities.
 - **No replay:** exactly the same new examples from the same checkpoint;
   a manipulation check, not a compute-matched competitor.
 
-Replay uniformly from a fixed bank of matched fact triplets, with identical
+Replay uniformly from a fixed bank indexed by matched facts, with identical
 fact schedules, all-token next-token loss and equal numbers of active
 replay target tokens. No teacher either sees later tasks or chooses which
 facts to replay. Report generation attempts and acceptance separately.
@@ -55,7 +55,7 @@ facts to replay. Report generation attempts and acceptance separately.
 - **Keep** only if self-QA beats *both variants* of matched teacher QA and verified
   generated prose by at least 3 percentage points each in final old
   paraphrase accuracy, the respective paired 95% intervals exclude zero,
-  and final new-fact accuracy is no more than 3 points below either
+  and final new-fact accuracy is no more than 3 points below any of these
   baseline. Report all seed differences and paired Student-t intervals
   over seeds. With three seeds, wide intervals mean this is a stop/go
   screen, not a universal equivalence claim.
