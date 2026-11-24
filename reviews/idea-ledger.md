@@ -34,6 +34,7 @@ Status values:
 | Plasticity spread is real, not a relative-gain artifact (P2a) | Agent 11 (PR #7) | PILOTING (gate inside the reserve rerun) | — | Log the initial future MSE and recompute absolute gain. Stop all reserve work if the absolute spread is < 1.5 pp | — |
 | Writing is more distractible than acting; action-log-prob relevance mask (P3) | Agent 11 (PR #7) | PILOTING | Writer sees only its own action trace; length-matched filler; same-token "write only about the task" instruction | ≥ 200 episodes per arm (source effect 12/32 → 17/28 is p ≈ 0.1). Dead if the write-vs-solve gap vanishes against filler, or the action-trace-only writer matches the mask | — |
 | One Pareto front for replay indexed by gradient share w (Q1) | Agent 12 (PR #7) | PILOTING (gated on noise) | Jam count; loss-weighted share (prioritized-replay account) | Rerun the PR #12 arms with 10 seeds and per-sample gradient norms. Gate: within-arm seed variance < across-arm variance. Dead if w explains < 70% of variance, or doesn't beat jam count by ≥ 0.3 R² and loss share by any margin | — |
+| Agent Toolbox, narrowed: tools fail loudly, lessons fail silently (faster drift detection and recovery) | Manoj | PASSED (narrowed) | The same procedures as text lessons with the same regression tests attached | 20 procedures as tools vs lessons, drift 30% of APIs mid-stream, 3 seeds. Dead if lessons + tests match tools on episodes-to-detect and episodes-to-recover | — |
 
 ## Killed
 
@@ -84,6 +85,7 @@ Status values:
 | ReLU-kink account of the plasticity spread (P2b) | Agent 11 (PR #7) | KILLED (fold into the rerun as analysis) | Explaining a toy MLP's spread is a diagnostic, not a frontier result; run it only if P2a and a predictor both survive |
 | Reverse grokking (held-out falls before train under conflicting fine-tune) | Proposer batch 4 | KILLED (at proposal, after CPU pilot) | Seen on grokked mod-59 (3 seeds), but train vs test margins (~15 vs ~6) explain the order; 2607.29503 already shows it. **What we learned:** margin is a strong confound in any forgetting-order claim |
 | Cooldown facts forgotten more on rewarming | Proposer batch 4 | KILLED (at proposal, after CPU pilot) | Cooldown facts are forgotten more (0.88 vs 0.77), but at matched margin the gap is only 3–9 points and appears without rewarm, so it is margin/frequency; covered by river-valley WSD work and 2505.07796. **What we learned:** control margin before claiming any forgetting-order effect |
+| Agent Toolbox as stated (agents write tools from repeated procedures) | Manoj | KILLED (see narrowed pass) | Crowded: LATM, TroVE, Voyager, LIBRA 2611.05445, SkillCommit 2608.15165, MUSE-Autoskill 2605.27366, Selm 2610.24630 show the speed and error gains |
 
 ## Patterns in the kills
 
