@@ -66,3 +66,4 @@ Rerun with a harder (nonlinear-teacher) task stream, in `pilots/noether_check.py
 | Agent D2 write-time poison detection | KILL | — | Trigger-specific poisons evade random-probe energy; TaskTracker/LatentTriad cover broad ones |
 | Agent E1 consolidation predictor | PASS, gated on B3 | One-step distillation gradient projection onto the LoRA span | 200 lessons × 3 ranks |
 | Agent E2 edge-of-chaos tuning | PASS, gated on C2 | Self-consistency tuning | 3 designs × 7 knob values. Dead if the peak misses λ = 0 by > 1 step |
+| Agent F1 context→weight interference | KILL (fold into E1) | — | Gradient cosine is a cheap known predictor that dominates it |

@@ -53,6 +53,7 @@ Status values:
 | Vocabulary-grown skills (B2) | Agent 2 (PR #7) | KILLED | Frozen backbone + per-skill embeddings is prompt-pool CL (L2P/DualPrompt/CODA) plus ToolkenGPT/Toolken+. Zero forgetting is the frozen-backbone property; online macro mining only changes the token source |
 | Inverse tool models for tool drift (C1) | Agent 3 (PR #7) | KILLED | Hindsight relabelling for LLM agents exists ([AgentHER 2603.21357](https://arxiv.org/abs/2603.21357)). The inverse model sees the same data as forward SFT on relabelled goals; drift is a new application, not a new mechanism |
 | Write-time poison detection by off-domain ΔW energy (D2) | Agent 4 (PR #7) | KILLED | Targeted/sleeper poisons ([2605.15338](https://arxiv.org/abs/2605.15338)) fire only on triggers, so random off-domain probes miss them by construction. Broad injections are already caught by TaskTracker activation deltas and [LatentTriad 2611.05088](https://arxiv.org/abs/2611.05088) |
+| Context interference predicts LoRA forgetting (F1) | Agent 6 (PR #7) | KILLED (fold into E1) | Its ceiling, distillation-gradient cosine, is cheap and is the established GEM/OGD forgetting predictor, so even a pass loses to a known method. Test the shared-geometry claim inside E1's pilot on the same lesson pairs |
 
 ## Patterns in the kills
 
