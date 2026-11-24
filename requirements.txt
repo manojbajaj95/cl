@@ -1,0 +1,5 @@
+numpy
+scipy
+matplotlib
+pytest
+llama-cpp-python==0.3.38  # LLM pilot only
