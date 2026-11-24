@@ -19,7 +19,8 @@ their syntax is seen only on unrelated background entities.
   fact table; the known answer is not given to the model.
 - **Teacher QA:** the exact accepted self-question, same factual value,
   independent canonical wording authored by the benchmark. The answer
-  token count is identical. Also check the logical control: if a teacher
+  token count is identical. Also include a style-diversity-matched teacher
+  (permute wording within field and question form). If a teacher
   writes the identical response tokens, provenance cannot change an
   otherwise identical SGD update.
 - **Generated prose:** freeze the same checkpoint and sample continuations
@@ -51,7 +52,7 @@ facts to replay. Report generation attempts and acceptance separately.
   old paraphrases, loses at least 10 percentage points after no replay,
   and has verified question/prose coverage of at least half the old
   facts. If these fail, mark the pilot inconclusive rather than negative.
-- **Keep** only if self-QA beats *both* matched teacher QA and verified
+- **Keep** only if self-QA beats *both variants* of matched teacher QA and verified
   generated prose by at least 3 percentage points each in final old
   paraphrase accuracy, the respective paired 95% intervals exclude zero,
   and final new-fact accuracy is no more than 3 points below either
