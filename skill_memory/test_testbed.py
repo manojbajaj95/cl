@@ -1,18 +1,20 @@
 from collections import Counter
-from dataclasses import replace
+from dataclasses import dataclass, replace
 from json import loads
+from math import log
 from pathlib import Path
 from subprocess import run
 from sys import executable
 from tempfile import TemporaryDirectory
 import unittest
 
-from .agent import Scripted, episode, interpret
+from .agent import Decision, Scripted, episode, interpret
+from .entropy import ACTION_TEMPERATURE, SOURCE_SEEDS, fit_temperature, token_entropy
 from .environment import Outcome, public_evidence, recipe, retention_probes, score, stream
 from .memory import (ARMS, AutoSkill, Experience, KnowledgeCards, Memory, OpenSkill,
                       Recall, Reflection, SkillLibrary, SkillMCP, encode)
 from .metrics import curve, interval, run_metrics, with_deltas
-from .run import trial
+from .run import calibrate, trial
 
 
 def event(task, success=True, lesson="Check the current API"):
@@ -130,7 +132,7 @@ class MemoryTest(unittest.TestCase):
 
         class FailThenAct(Scripted):
             def act(self, task, recall, seed):
-                return super().act(task, recall, seed) if recall.hint else "{}"
+                return super().act(task, recall, seed) if recall.hint else Decision("{}")
 
         task = replace(self.updated, coaching=())
         _, outcome, first_feedback, attempts = episode(FailThenAct(), Pull(), task, 1, True, True)
@@ -152,6 +154,13 @@ class RunnerTest(unittest.TestCase):
         deltas = with_deltas({1: {"success": 1, "cumulative_success": 2}},
                              {1: {"success": 0.5, "cumulative_success": 1}})
         self.assertEqual(deltas[1]["success_gain"], 0.5)
+        matched = {1: [{"success": True}, {"success": True}],
+                   2: [{"success": True}, {"success": False}]}
+        self.assertEqual(curve(candidate, control, indices, matched)[1]["cumulative_gain_entropy"]["mean"], 0.5)
+        deltas = with_deltas({1: {"success": 1, "cumulative_success": 2}},
+                             {1: {"success": 0.5, "cumulative_success": 1}},
+                             {1: {"success": 1, "cumulative_success": 2}})
+        self.assertEqual(deltas[1]["success_gain_entropy"], 0)
 
     def test_recovery_censoring_and_forgetting(self):
         def row(phase, family, success):
@@ -183,6 +192,40 @@ class RunnerTest(unittest.TestCase):
             self.assertIn("knowledge-cards", (root / "summary.md").read_text())
         rows = trial(Scripted(), "skill-library", 11, 16, 12)
         self.assertEqual(rows, trial(Scripted(), "skill-library", 11, 16, 12))
+
+
+class EntropyTest(unittest.TestCase):
+    def test_complete_finite_support_and_temperature_fit(self):
+        trace = {"content": [{"top_probs": [{"prob": 0.5}, {"prob": 0.5}]},
+                             {"top_probs": [{"prob": 1.0}, {"prob": 0.0}]}]}
+        self.assertAlmostEqual(token_entropy(trace), log(2) / 2)
+        with self.assertRaises(ValueError):
+            token_entropy({"content": [{"top_probs": [{"prob": 0.5}]}]})
+        temperature, profile = fit_temperature(0.8, lambda t: t)
+        self.assertEqual(temperature, 0.8)
+        self.assertEqual(profile[temperature], 0.8)
+
+    def test_calibration_uses_only_uncoached_source_entropy_and_pools_arms(self):
+        source_tasks = {t for seed in SOURCE_SEEDS for t in stream(seed, 16, 8)[:16]}
+        seen = []
+
+        @dataclass(frozen=True)
+        class FakeModel(Scripted):
+            temperature: float = ACTION_TEMPERATURE
+
+            def act(self, task, recall, seed):
+                seen.append(task)
+                decision = super().act(task, recall, seed)
+                entropy = 9 if task.coaching else self.temperature - (0.1 if recall.hint else 0)
+                return replace(decision, entropy=entropy)
+
+        control, fit = calibrate(FakeModel(), ["skill-library", "autoskill"], 2)
+        self.assertTrue(seen and set(seen) <= source_tasks)
+        self.assertEqual(set(fit["memory_entropy_by_arm"]), {"skill-library", "autoskill"})
+        self.assertGreaterEqual(fit["target_entropy"], 0.6)
+        self.assertLess(fit["target_entropy"], ACTION_TEMPERATURE)
+        self.assertAlmostEqual(fit["achieved_entropy"], control.temperature)
+        self.assertLess(abs(fit["achieved_entropy"] - fit["target_entropy"]), 0.026)
 
 
 if __name__ == "__main__":

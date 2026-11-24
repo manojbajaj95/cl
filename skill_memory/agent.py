@@ -5,6 +5,7 @@ from json import dumps, loads
 from random import Random
 from urllib.request import Request, urlopen
 
+from .entropy import ACTION_TEMPERATURE, TOP_K, token_entropy
 from .environment import FAMILIES, Outcome, Task, public_evidence, score
 from .memory import Experience, Memory, Recall, encode
 
@@ -38,37 +39,51 @@ def prompt(task: Task, recall: Recall) -> str:
 
 
 class Scripted:
-    def act(self, task: Task, recall: Recall, seed: int) -> str:
+    def act(self, task: Task, recall: Recall, seed: int) -> "Decision":
         if task.coaching:
-            return encode(task.coaching)
+            return Decision(encode(task.coaching))
         concept = FAMILIES[task.family].name
         for tool in recall.tools:
             if tool["description"].startswith(f"Run workflow: {concept}:"):
-                return dumps({"tool": tool["name"]})
-        return encode(recall.hint or tuple(registry(task)[:2]))
+                return Decision(dumps({"tool": tool["name"]}))
+        return Decision(encode(recall.hint or tuple(registry(task)[:2])))
 
     def reflect(self, task: Task, attempted: str, outcome: Outcome, seed: int) -> str:
         return outcome.feedback
 
 
 @dataclass(frozen=True)
+class Decision:
+    raw: str
+    entropy: float | None = None
+
+
+@dataclass(frozen=True)
 class LocalModel:
     url: str
     model: str
+    temperature: float = ACTION_TEMPERATURE
     timeout: float = 180
 
-    def generate(self, system: str, message: str, seed: int, json_mode: bool) -> str:
+    def generate(self, system: str, message: str, seed: int, measure: bool) -> Decision:
         data = {"model": self.model, "messages": [{"role": "system", "content": system},
                                                   {"role": "user", "content": message}],
                 "seed": seed, "temperature": 0, "max_tokens": 55}
-        if json_mode:
-            data["response_format"] = {"type": "json_object"}
+        if measure:
+            data.update(temperature=self.temperature, top_k=TOP_K, samplers=["top_k", "temperature"],
+                        logprobs=True, top_logprobs=TOP_K, post_sampling_probs=True)
         request = Request(self.url.rstrip("/") + "/chat/completions", data=dumps(data).encode(),
                           headers={"Content-Type": "application/json"})
         with urlopen(request, timeout=self.timeout) as response:
-            return loads(response.read())["choices"][0]["message"]["content"].strip()
+            choice = loads(response.read())["choices"][0]
+        raw = (choice["message"]["content"] or "").strip()
+        if not measure:
+            return Decision(raw)
+        if raw and not choice.get("logprobs"):
+            raise ValueError("llama-server did not return action token probabilities")
+        return Decision(raw, token_entropy(choice["logprobs"]) if choice.get("logprobs") else 0.0)
 
-    def act(self, task: Task, recall: Recall, seed: int) -> str:
+    def act(self, task: Task, recall: Recall, seed: int) -> Decision:
         return self.generate(SYSTEM, prompt(task, recall), seed, True)
 
     def reflect(self, task: Task, attempted: str, outcome: Outcome, seed: int) -> str:
@@ -76,7 +91,7 @@ class LocalModel:
             "Write one short actionable lesson for future API attempts. "
             "Identify the failure and suggest a correction only when supported by the feedback.",
             f"{prompt(task, Recall())}\nAttempt: {attempted}\nRuntime feedback: {outcome.feedback}",
-            seed, False)
+            seed, False).raw
 
 
 def interpret(raw: str, memory: Memory, task: Task, migrated: bool) -> Outcome:
@@ -99,18 +114,18 @@ def interpret(raw: str, memory: Memory, task: Task, migrated: bool) -> Outcome:
 
 
 def episode(agent: Scripted | LocalModel, memory: Memory, task: Task, seed: int,
-            migrated: bool, learn: bool) -> tuple[str, Outcome, str, int]:
-    attempted = agent.act(task, memory.read(task), seed)
-    outcome = interpret(attempted, memory, task, migrated)
+            migrated: bool, learn: bool) -> tuple[Decision, Outcome, str, int]:
+    decision = agent.act(task, memory.read(task), seed)
+    outcome = interpret(decision.raw, memory, task, migrated)
     first_feedback = outcome.feedback
     attempts = 1
     if not outcome.success and (retry := memory.after_failure(task, outcome)) is not None:
         retry = Recall(f"First attempt failed: {first_feedback}. {retry.text}", retry.hint, retry.tools)
-        attempted = agent.act(task, retry, seed)
-        outcome = interpret(attempted, memory, task, migrated)
+        decision = agent.act(task, retry, seed)
+        outcome = interpret(decision.raw, memory, task, migrated)
         attempts += 1
     if learn:
-        memory.write(Experience(task, outcome, attempted,
-                                lambda: agent.reflect(task, attempted, outcome, seed),
+        memory.write(Experience(task, outcome, decision.raw,
+                                lambda: agent.reflect(task, decision.raw, outcome, seed),
                                 lambda: public_evidence(task)))
-    return attempted, outcome, first_feedback, attempts
+    return decision, outcome, first_feedback, attempts

@@ -1,8 +1,9 @@
 # Continual agent skill-memory testbed
 
-Seven memory policies share one mock API, action format, verifier, and paired task
-stream. The runner needs Python 3.10+ and has no Python dependencies. The scripted
-agent is for CI and debugging, not for comparing research methods.
+Six memory policies and two no-memory controls share one mock API, action format,
+verifier, and paired task stream. The runner needs Python 3.10+ and has no Python
+dependencies. The scripted agent is for CI and debugging, not for comparing
+research methods; it omits the entropy control because it has no token distribution.
 
 ## Run it
 
@@ -26,10 +27,12 @@ python -m skill_memory.run --agent llm --workers 12 --pre 48 --post 48 \
   --seeds 11 23 37 53 71 --output "$HOME/skill-memory-qwen"
 ```
 
-`--url` selects an OpenAI-compatible chat-completions base URL and `--model`
-selects the served model. The pilot uses JSON mode for actions, temperature 0,
-and up to 55 output tokens per generation. Each seed has the same task/probe
-ordering and sampling seeds across arms; each arm × seed starts with empty memory.
+`--url` selects the llama-server chat-completions base URL and `--model`
+selects the served model. The server must support post-sampling token
+probabilities. Every action prompt asks for JSON without grammar masking; every
+action uses top-20 sampling and at most 55 output tokens. Each seed has the same
+task/probe ordering and RNG seeds across arms; each arm × seed starts with empty
+memory.
 
 ## Protocol
 
@@ -63,6 +66,7 @@ word/trigram hashing into a 256-dimensional embedding and cosine scoring.
 | Arm | Reads and writes | Adaptation from source |
 | --- | --- | --- |
 | No memory | Common registry and current coaching only | Identical model, tools, and verifier; no cross-episode state |
+| No lesson, entropy matched | Exactly the no-memory observation and write policy, with a single source-fitted temperature instead of the reference temperature | [Anomaly batch 1, PR #27](https://github.com/manojbajaj95/cl/pull/27): controls for changes to policy sharpness without any lesson content |
 | Skill library | Embedding-retrieve one verified executable workflow; upsert after a successful run | [Voyager, 2305.16291](https://arxiv.org/abs/2305.16291): safe two-call DSL instead of JavaScript; no automatic curriculum |
 | Skills over MCP | The model sees a catalog of goal descriptions and may invoke a skill by name; same successful-trace upserts as the library | [MCP tools](https://modelcontextprotocol.io/specification/2025-06-18/server/tools): in-process JSON-RPC `tools/list` and `tools/call`, no network transport or initialization handshake. The agent selects the tool via JSON and does not see the bound procedure |
 | OpenSkill | Search a synthetic operator manual after attempting a workflow; publish a compiled recipe only if the independently provided public sandbox fixture agrees | [OpenSkill: Open-World Self-Evolution for LLM Agents, 2606.06741](https://arxiv.org/abs/2606.06741), not the rating system. A local document collection stands in for web search; fixed sandbox fixtures stand in for a synthesized verifier. The arm does not use the hidden score. This arm has extra public evidence by design |
@@ -71,18 +75,46 @@ word/trigram hashing into a 256-dimensional embedding and cosine scoring.
 | Knowledge Cards | Retrieve a structured workflow card with a concept, scope/invalidating condition, rule, provenance, and validation record; write only on verified success | Interprets the name as [Knowledge Cards: Structured Knowledge for AI Systems, 2608.26176](https://arxiv.org/abs/2608.26176), a schema rather than a continual agent. The mock workflow taxonomy and runtime replace the ontology and expert review |
 
 Memory surface, retrieval policy, and source of update evidence are not all
-matched, and Reflection incurs extra generations. The seven-way pilot is a
+matched, and Reflection incurs extra generations. The pilot is a
 diagnostic, not a causal test of which component is best.
+
+### Entropy control
+
+All memory arms and plain no-memory sample actions at the reference temperature
+`T=0.7`. Reflection lesson generation is greedy and does not enter the action
+entropy target. The entropy-matched no-lesson control uses a single temperature
+fitted to the **pooled** source memory-arm entropy, not to model accuracy or to
+held-out entropies. This is one added control, not six per-arm controls.
+
+1. In disjoint source seeds 101 and 103, run only the first two **pre-drift**
+   waves. The first wave gives the memory arms their shared operator coaching;
+   only the second wave's uncoached action outputs contribute to the fit.
+2. For each action, compute the mean Shannon conditional token entropy in nats
+   along the sampled prefix, using the complete post-sampling top-20 distribution
+   at each reported token. Average actions, then equally weight memory arms.
+   This measures token sampling entropy, not semantic entropy over API plans.
+3. On the same uncoached source prompts, test no-memory temperatures in
+   `[0.15, 0.35, 0.5, 0.7, 0.9, 1.15, 1.5]`, refine around the closest grid
+   value twice, and freeze the temperature minimizing absolute source entropy
+   error. Start every evaluation stream with new empty memory. Never fit on
+   evaluation probes or pre-/post-drift evaluation steps.
+
+Matching a pooled source average does not guarantee a match per arm or after
+drift; the results report the source fit profile and held-out uncoached entropy.
+The main effect comparison for **each** memory arm is its paired gain vs this
+control, shown alongside its gain vs plain no-memory.
 
 ## Outputs and metrics
 
-- `episodes.csv`: action, first and final feedback, number of action attempts,
-  phase, task identity, coaching flag, and success for each arm × seed × episode.
-- `results.json`: config, elapsed time, per-seed metrics, and aggregate statistics.
+- `episodes.csv`: action, action-token entropy, first and final feedback, number of
+  action attempts, phase, task identity, coaching flag, and success for each arm ×
+  seed × episode.
+- `results.json`: config, source entropy calibration, elapsed time, per-seed
+  metrics, and aggregate statistics.
   Overall and uncoached online success exclude probes. Cumulative gain is the
-  net number of additional successes vs. no memory on the paired stream.
+  net number of additional successes vs. each no-memory control on the paired stream.
 - `curves.json`: per-step success and cumulative successes, both absolute and
-  paired gains vs. no memory. Probes do not consume online steps.
+  paired gains vs. both no-memory controls. Probes do not consume online steps.
 - `summary.md`: mean [95% percentile bootstrap interval] for the main metrics.
   Each draw resamples whole seeds, keeping arms paired when forming differences.
   Curves use pointwise, not simultaneous, intervals.
