@@ -40,6 +40,7 @@ Status values:
 | Fleet Q2: predict lessons obsoleted by a model upgrade (new-model likelihood gain) | Fleet proposer (PR #15) | PASSED | New model's zero-shot success on each lesson's source tasks; old-model likelihood gain | About 40 lessons across one upgrade; truth from ≥ 200 rollouts with split-half reliability ≥ 0.7. Dead if ρ < 0.5 or not ≥ 0.15 above zero-shot success | — |
 | M2: learned attention-logit bias per lesson (graded salience) | Memory-form proposer (PR #18) | PASSED | Binary leave-one-out-credit selection with re-inclusion; ACE counters; REPLUG-style per-lesson mixture weights | Recurring regimes, 30 lessons, 600 episodes, 3 seeds. Dead if not ≥ 5 points ahead on regime returns, or loses > 2 points on first visits | — |
 | M3: query-variance index G, an arm of E1 | Memory-form proposer (PR #18) | GATED on B3 (arm of E1) | E1's controls plus off-target in-context KL | Dead if it adds < 0.1 ρ over E1's score and off-target KL | — |
+| HW1: convergent-edit promotion (promote harness edits by independent rediscovery across task families) | Harness proposer (PR #20) | PASSED | Leave-one-family-out paired validation at equal rollouts; Bad Genius 2609.18366 counterfactual filtering; within-family frequency; ACE curator; plain continued evolution | 3 families × 30 tasks, ≥ 40 clusters, truth on an unseen 4th family, 3 seeds. Gate: held-out gain spread across clusters > seed variance. Dead if not ≥ 0.15 ρ above in-family paired gain, or if leave-one-family-out validation ties within 0.1 ρ. Evolver: cheap API model | — |
 
 ## Killed
 
@@ -100,6 +101,7 @@ Status values:
 | M1: attention-gated KV-slot forgetting | Memory-form proposer (PR #18) | KILLED | To first order, drift on query q is a(q)·Δv by linear algebra, so the predictor is tautological; what remains is a KV-prefix vs sparse-memory-finetuning comparison |
 | Skill re-shelving, split-only hierarchy | Long-run proposer batch 2 (PR #16) | KILLED | Rebuild plus redirect keeps old paths valid (the HTTP 301 fix) and ties by construction; flat retrieval has no paths; stale-ID effect already shown for semantic IDs (2604.13273) |
 | PR #18 pre-killed ideas (13) | Memory-form proposer | KILLED (at proposal) | Reasons and covering papers are in PR #18 |
+| PR #20 harness pre-kills HK1–HK8 | Harness proposer | KILLED (at proposal) | Reasons and covering papers are in PR #20 (SAGE, GUARD, Masked Erosion, Harness Annealing, Mixture of Branches, SIM and others); reviewer agrees |
 
 ## Patterns in the kills
 
