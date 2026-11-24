@@ -43,6 +43,7 @@ Status values:
 | HW1: convergent-edit promotion (promote harness edits by independent rediscovery across task families) | Harness proposer (PR #20) | PASSED | Leave-one-family-out paired validation at equal rollouts; Bad Genius 2609.18366 counterfactual filtering; within-family frequency; ACE curator; plain continued evolution | 3 families × 30 tasks, ≥ 40 clusters, truth on an unseen 4th family, 3 seeds. Gate: held-out gain spread across clusters > seed variance. Dead if not ≥ 0.15 ρ above in-family paired gain, or if leave-one-family-out validation ties within 0.1 ρ. Evolver: cheap API model | — |
 | N1: layer-local lesson KV (per-layer visibility mask) | Memory-form proposer batch 2 (PR #18) | PASSED (arm of M2) | M2's global bias at matched on-target gain; retrieval gating at equal recall; a narrower lesson rewrite | 40 lessons, masks chosen on train probes, 3 seeds. Dead if at ≥ 90% on-target gain the mask doesn't cut held-out off-target harm by ≥ 30% more than the matched bias | — |
 | N2: prohibition rebound as text prohibitions accumulate; logit-mask form | Memory-form proposer batch 2 (PR #18) | PASSED (low priority) | Positive-instruction rewrite at equal tokens; verifier reject-and-resample | 60 prohibitions in 6 waves, Qwen2.5-1.5B, 3 seeds, 200 probes per wave. Dead if wave-1 violations rise < 5 points by wave 6, or the positive rewrite matches the mask | — |
+| Fleet Q3: forecast which lessons the next upgrade obsoletes, from whether successive upgrades improve the same states | Fleet proposer batch 2 (PR #15) | GATED on Q2 (low priority) | Each lesson's own lift-trend extrapolation; zero-shot-success trend across generations (observational-scaling style) | 4 generations, 40 lessons, fit on 3 and forecast the 4th. Dead if upgrade directions correlate at ρ < 0.3, or if not ≥ 0.15 ρ above own-trend extrapolation | — |
 
 ## Killed
 
@@ -109,6 +110,7 @@ Status values:
 | Attention-sink pathway as reversible forgetting | Agent proposer | KILLED (at proposal) | 2610.08718 already removes the common shift with one data-free direction per update |
 | Co-observation effect (2608.18803) as a repetition artifact | Agent proposer | KILLED (CPU pilot) | Refuted: a 5.2-point gap at 1 epoch/chunk vs 0.4 at 30 (5 seeds) is undertraining, and the paper's fixed budget already controls for it |
 | PR #18 batch 2 pre-kills (6) | Memory-form proposer | KILLED (at proposal) | Reasons and covering papers are in PR #18 batch-2 (EASE-KV, DSI++, Some Memories Must Fade, RPMem, Mamba-CL) |
+| PR #15 batch 2 pre-kills (7) | Fleet proposer | KILLED (at proposal) | Reasons are in PR #15 batch 2 |
 
 ## Patterns in the kills
 
