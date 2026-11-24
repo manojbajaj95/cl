@@ -82,8 +82,12 @@ Status values:
 | MDL lesson scoring | Agent 10 (PR #7) | KILLED (at proposal) | Proposer dropped it: 2610.32245 and MemoWM cover it |
 | Coded merge interference (sparse pairwise audits → one merge) | Cross-field 6 (PR #10) | KILLED | A sparse second-order surrogate from black-box group evaluations is BOCS; gradient-free merge search (LoraHub, evolutionary merging) audits groups directly and would tie at an equal audit budget |
 | ReLU-kink account of the plasticity spread (P2b) | Agent 11 (PR #7) | KILLED (fold into the rerun as analysis) | Explaining a toy MLP's spread is a diagnostic, not a frontier result; run it only if P2a and a predictor both survive |
+| Reverse grokking (held-out falls before train under conflicting fine-tune) | Proposer batch 4 | KILLED (at proposal, after CPU pilot) | Seen on grokked mod-59 (3 seeds), but train vs test margins (~15 vs ~6) explain the order; 2607.29503 already shows it. **What we learned:** margin is a strong confound in any forgetting-order claim |
+| Cooldown facts forgotten more on rewarming | Proposer batch 4 | KILLED (at proposal, after CPU pilot) | Cooldown facts are forgotten more (0.88 vs 0.77), but at matched margin the gap is only 3–9 points and appears without rewarm, so it is margin/frequency; covered by river-valley WSD work and 2505.07796. **What we learned:** control margin before claiming any forgetting-order effect |
 
 ## Patterns in the kills
+
+- **Margin confound:** in any claim about which items are forgotten first, match per-item margin before attributing the order to a mechanism (reverse grokking, cooldown facts).
 
 - **Ties a simple baseline at equal budget:** replay, append + retrieve, save/restore. This is how PR #1 died.
 - **True by construction:** exact restore, flat reacquisition, a threshold built into the simulator.
