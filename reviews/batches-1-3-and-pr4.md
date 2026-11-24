@@ -64,3 +64,5 @@ Rerun with a harder (nonlinear-teacher) task stream, in `pilots/noether_check.py
 | Agent C1 inverse tool models | KILL | — | Same data as hindsight-relabelled forward SFT (AgentHER) |
 | Agent D1 lesson capacity law | PASS, gated on B3's proxy surviving | Length-matched dilution; embedding rank | 5 pools. Dead if ρ < 0.5 or embedding rank within 0.2 |
 | Agent D2 write-time poison detection | KILL | — | Trigger-specific poisons evade random-probe energy; TaskTracker/LatentTriad cover broad ones |
+| Agent E1 consolidation predictor | PASS, gated on B3 | One-step distillation gradient projection onto the LoRA span | 200 lessons × 3 ranks |
+| Agent E2 edge-of-chaos tuning | PASS, gated on C2 | Self-consistency tuning | 3 designs × 7 knob values. Dead if the peak misses λ = 0 by > 1 step |
