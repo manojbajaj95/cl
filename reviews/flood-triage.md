@@ -92,3 +92,13 @@ The strongest file so far.
 ## Running leaders (provisional, 7 of 8 sources in; neuro-bio, the tree nodes and the CL-bench proposer still to come)
 
 Top 10 for prior art once the pool is complete, if nothing new displaces them: L1, SM1, P21 (+SM2), D1 (+D2), O2 (+O1), N1 (+S4, SM17), SM7, P19 (+N4, E2), physics #11 spin echo, physics #21 kinetic proofreading. Next in line: SM25, W3, E4, E32.
+
+# Round 2 (tree nodes and continual-learning-bench)
+
+| Source | 4s | 3s | 2s |
+|---|---|---|---|
+| Harness tree node ([PR #47](https://github.com/manojbajaj95/cl/pull/47), 17) | none | #2 steering tomography, #4 teacher as causal query planner, #5 typed adjoints (TextGrad-adjacent), #6 interchange-addressed skill cells, #7 rebasing by measured noncommutation, #9, #14, #16 | the rest: mostly restate P9/P17/X4 contracts in causal language |
+| CL-bench flood ([PR #48](https://github.com/manojbajaj95/cl/pull/48), 36) | B6 edge-addressable weights (one rank-1 component per believed causal edge, so a graph edit is a weight edit) | B1 schema migrations, B2 Logbook compiled into a latent register, B3 inverse Logbook synthesis, B10 portable server-side learning state, B15 stigmergic memory, B20 environment-version transport, B31 memory-vs-scale exchange rate | the rest: bench-specific variants of verification, gating and resets |
+| Forward-only tree node ([PR #50](https://github.com/manojbajaj95/cl/pull/50), 18) | #3 orthogonal question barcodes (several edits multiplexed in one perturbed forward batch, decoded by balanced codes) | #1 trace-to-weight compiler, #2 credit-address book, #6 patch homomorphism, #16 zero-read data-transfer edits, #17 writable shadow model | #8 and #11 (= SM8, NB01/Z1), #14 and #15 (improvements, as the node labels them) |
+
+**Against the leaders:** nothing in round 2 displaces the top 3 (L1, N1, SM1). B6 and forward-only #3 join the 4-tier, behind them. Forward-only #3 is the strongest new candidate for the next prior-art batch. Nearest risks: multiplexed SPSA and coded perturbations, and SM1, which also builds on seeded forward-only steps.
