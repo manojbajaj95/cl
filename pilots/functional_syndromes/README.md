@@ -2,6 +2,8 @@
 
 **Verdict: kill the fixed MEMIT-key syndrome.** On GPT-2-XL with 1,000 CounterFact edits, the most damaged 10% held **18.9% (95% CI 18.3–19.7%)** and **19.1% (18.4–19.9%)** of raw damage energy across two WikiText-2 runs, far below the 80% gate. Restricting the analysis to the 263 cases where MEMIT actually flipped the model's answer preference gave essentially the same result. At equal storage, the sparse decoder did not reliably improve on either baseline.
 
+**Confirmed at 94% edit efficacy:** the top decile still held only **18.6%** of energy in each of two runs, well below the reviewer's 50% confirmation threshold.
+
 The proposed code measures damage to an edit's response to a fixed MLP input. It is not weight ECC: [Repair Brain Damage](https://arxiv.org/abs/2602.00076) constrains network weights to correct sparse hardware/computation faults, and [SANAI](https://arxiv.org/abs/2611.02042) embeds keyed parity for weight bit flips. Here an ordinary optimizer update can change all weights legitimately, and the pilot asks whether its effects happen to concentrate on a small fraction of edit keys.
 
 ## Results
@@ -34,6 +36,19 @@ The base model preferred the edited answer for 21.7% [19.2, 24.4] of the cases; 
 | Paired recall difference, syndrome − replay | +0.55 pp [−1.15, 2.30] | +0.75 pp [−0.95, 2.50] |
 
 Both truth and prediction sets have size 100, so the recall percentages also give the number of true positives per attempt. The primary gate failed, so no repair training was run. The verdict applies to this CPU-adapted MEMIT recipe, this edit batch, and one shift objective with two training streams; it does not rule out other readouts, full MEMIT, or other types of shifts. The main model run took 1,921 seconds and peaked at 22,334,316 kB RSS on eight CPU threads.
+
+## High-efficacy confirmation (100 edits)
+
+To check whether low edit efficacy explained the diffuse damage, we re-edited the first 100 cases in the original draw order with 25 latent-optimization steps instead of two. The model, layers, canonical-prompt method, second-moment weight (20,000), and WikiText-2 fine-tuning settings were otherwise unchanged. The 100 edits were fit as one batch of edits; the latent optimizer used microbatches of up to 32.
+
+Post-edit efficacy was **94/100** (95% CI 89–98%), exceeding the 90% point-estimate target, versus 23/100 [15–32%] on the base model. The edited answer newly beat the original answer in **71** cases. Both fine-tuned models retained that preference in 69 of those 71 cases and had 92/100 overall efficacy [86–97%].
+
+| Top-decile share of raw damage energy (95% bootstrap CI) | Seed 302 | Seed 303 |
+| --- | ---: | ---: |
+| All 100 edits (top 10 facts) | 18.58% [17.07, 19.64] | 18.62% [17.10, 19.73] |
+| Only the 71 newly flipped facts (top 7 facts) | 18.33% [16.58, 19.45] | 18.35% [16.58, 19.51] |
+
+The kill verdict stands: both raw shares and their upper confidence bounds are below 50%. Neither seed reached the 80% threshold for rerunning the coded-check comparison, so no decoder comparison or repair training was run for the confirmation. The confirmatory model run took 1,105 seconds and peaked at 16,601,032 kB RSS.
 
 ## Decision protocol
 
@@ -74,5 +89,10 @@ done
 python "$PILOT/run_pilot.py" --data "$DATA" --output "$DATA/xl" \
   --n 1000 --batch 48 --z-steps 2 --train-steps 100 --train-seeds 302 303
 OPENBLAS_NUM_THREADS=4 python "$PILOT/analyze.py" "$DATA/xl"/seed-*.npz --draws 20
+
+python "$PILOT/run_pilot.py" --data "$DATA" --output "$DATA/confirm" \
+  --n 100 --batch 32 --z-steps 25 --train-steps 100 --train-seeds 302 303
+OPENBLAS_NUM_THREADS=4 python "$PILOT/analyze.py" "$DATA/confirm"/seed-*.npz --draws 0
+
 python -m unittest discover -s "$PILOT" -v
 ```
