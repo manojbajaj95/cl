@@ -1,0 +1,6894 @@
+{
+  "configuration": {
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "nli": "cross-encoder/nli-deberta-v3-small",
+    "nli_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "cpu_threads": 8,
+    "platform": "Linux-6.8.0-1060-aws-x86_64-with-glibc2.35",
+    "dtype": "float32",
+    "seed": 8471,
+    "patch_layers_zero_based": [
+      6,
+      12,
+      18,
+      24
+    ],
+    "function_vector_heads": [
+      {
+        "layer": 20,
+        "head": 5,
+        "calibration_effect": 0.03358152508735657
+      },
+      {
+        "layer": 16,
+        "head": 7,
+        "calibration_effect": 0.011422467418015003
+      },
+      {
+        "layer": 26,
+        "head": 1,
+        "calibration_effect": 0.011158292181789875
+      },
+      {
+        "layer": 23,
+        "head": 3,
+        "calibration_effect": 0.008565247990190983
+      },
+      {
+        "layer": 23,
+        "head": 2,
+        "calibration_effect": 0.0052759479731321335
+      },
+      {
+        "layer": 17,
+        "head": 2,
+        "calibration_effect": 0.005184647627174854
+      },
+      {
+        "layer": 18,
+        "head": 3,
+        "calibration_effect": 0.004745928570628166
+      },
+      {
+        "layer": 24,
+        "head": 10,
+        "calibration_effect": 0.004714124370366335
+      },
+      {
+        "layer": 19,
+        "head": 1,
+        "calibration_effect": 0.003878661897033453
+      },
+      {
+        "layer": 15,
+        "head": 2,
+        "calibration_effect": 0.003289493266493082
+      }
+    ],
+    "probe": "End of notes.",
+    "runtime_seconds": 1122.173608328,
+    "bootstrap_draws": 2000
+  },
+  "lessons": [
+    "For parcel routing, send the package to the destination at the first position in the input list.",
+    "For parcel routing, send the package to the destination at the second position in the input list.",
+    "For parcel routing, send the package to the destination at the third position in the input list.",
+    "For parcel routing, send the package to the destination at the fourth position in the input list.",
+    "For parcel routing, send the package to the destination at the fifth position in the input list.",
+    "In ticket triage, assign the case to the first team listed in the input.",
+    "In ticket triage, assign the case to the second team listed in the input.",
+    "In ticket triage, assign the case to the third team listed in the input.",
+    "In ticket triage, assign the case to the fourth team listed in the input.",
+    "In ticket triage, assign the case to the fifth team listed in the input.",
+    "When grading grain, choose the bin whose label appears first in the input.",
+    "When grading grain, choose the bin whose label appears second in the input.",
+    "When grading grain, choose the bin whose label appears third in the input.",
+    "When grading grain, choose the bin whose label appears fourth in the input.",
+    "When grading grain, choose the bin whose label appears fifth in the input.",
+    "For fiber samples, report the label in slot number 1 of the input list.",
+    "For fiber samples, report the label in slot number 2 of the input list.",
+    "For fiber samples, report the label in slot number 3 of the input list.",
+    "For fiber samples, report the label in slot number 4 of the input list.",
+    "For fiber samples, report the label in slot number 5 of the input list.",
+    "During invoice review, scan the input left to right and return the first label.",
+    "During invoice review, scan the input left to right and return the second label.",
+    "During invoice review, scan the input left to right and return the third label.",
+    "During invoice review, scan the input left to right and return the fourth label.",
+    "During invoice review, scan the input left to right and return the fifth label."
+  ],
+  "test_items": [
+    [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    [
+      "E",
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    [
+      "D",
+      "E",
+      "A",
+      "B",
+      "C"
+    ],
+    [
+      "C",
+      "D",
+      "E",
+      "A",
+      "B"
+    ],
+    [
+      "B",
+      "C",
+      "D",
+      "E",
+      "A"
+    ],
+    [
+      "A",
+      "B",
+      "E",
+      "C",
+      "D"
+    ],
+    [
+      "D",
+      "A",
+      "B",
+      "E",
+      "C"
+    ],
+    [
+      "C",
+      "D",
+      "A",
+      "B",
+      "E"
+    ],
+    [
+      "E",
+      "C",
+      "D",
+      "A",
+      "B"
+    ],
+    [
+      "B",
+      "E",
+      "C",
+      "D",
+      "A"
+    ],
+    [
+      "A",
+      "C",
+      "D",
+      "B",
+      "E"
+    ],
+    [
+      "E",
+      "A",
+      "C",
+      "D",
+      "B"
+    ],
+    [
+      "B",
+      "E",
+      "A",
+      "C",
+      "D"
+    ],
+    [
+      "D",
+      "B",
+      "E",
+      "A",
+      "C"
+    ],
+    [
+      "C",
+      "D",
+      "B",
+      "E",
+      "A"
+    ],
+    [
+      "A",
+      "B",
+      "C",
+      "E",
+      "D"
+    ],
+    [
+      "D",
+      "A",
+      "B",
+      "C",
+      "E"
+    ],
+    [
+      "E",
+      "D",
+      "A",
+      "B",
+      "C"
+    ],
+    [
+      "C",
+      "E",
+      "D",
+      "A",
+      "B"
+    ],
+    [
+      "B",
+      "C",
+      "E",
+      "D",
+      "A"
+    ]
+  ],
+  "calibration_items": [
+    [
+      "A",
+      "C",
+      "E",
+      "D",
+      "B"
+    ],
+    [
+      "B",
+      "A",
+      "C",
+      "E",
+      "D"
+    ],
+    [
+      "D",
+      "B",
+      "A",
+      "C",
+      "E"
+    ],
+    [
+      "E",
+      "D",
+      "B",
+      "A",
+      "C"
+    ],
+    [
+      "C",
+      "E",
+      "D",
+      "B",
+      "A"
+    ],
+    [
+      "A",
+      "D",
+      "E",
+      "B",
+      "C"
+    ],
+    [
+      "C",
+      "A",
+      "D",
+      "E",
+      "B"
+    ],
+    [
+      "B",
+      "C",
+      "A",
+      "D",
+      "E"
+    ],
+    [
+      "E",
+      "B",
+      "C",
+      "A",
+      "D"
+    ],
+    [
+      "D",
+      "E",
+      "B",
+      "C",
+      "A"
+    ]
+  ],
+  "pairs": [
+    {
+      "a": 0,
+      "b": 1,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.754880539930724,
+      "patch_cosine": -0.994792086513611,
+      "fv": 0.913950920600172,
+      "nli": 0.9989380240440369,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -2.485183048248291
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -3.210104560852051
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -1.9234955787658692
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.72492151260376
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.5616874694824217
+      }
+    },
+    {
+      "a": 0,
+      "b": 2,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.71778577638602,
+      "patch_cosine": -0.9925022646636411,
+      "fv": 0.9043878681850287,
+      "nli": 0.9994900226593018,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -2.485183048248291
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -6.972146511077881
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -1.9234955787658692
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 4.48696346282959
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.5616874694824217
+      }
+    },
+    {
+      "a": 0,
+      "b": 3,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.731097130028388,
+      "patch_cosine": -0.9910932202348055,
+      "fv": 0.9109090429527863,
+      "nli": 0.9995405673980713,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -2.485183048248291
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -5.571412658691406
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -1.9234955787658692
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 3.086229610443115
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.5616874694824217
+      }
+    },
+    {
+      "a": 0,
+      "b": 4,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.748613947830982,
+      "patch_cosine": -0.992001616508044,
+      "fv": 0.8570346622482266,
+      "nli": 0.9994845390319824,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -2.485183048248291
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -5.663248348236084
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -1.9234955787658692
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 3.178065299987793
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.5616874694824217
+      }
+    },
+    {
+      "a": 0,
+      "b": 8,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.005968175423998,
+      "patch_cosine": -0.890967050555834,
+      "fv": 0.5990002500126892,
+      "nli": 0.9997294545173645,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -2.485183048248291
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -3.149690341949463
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -2.323954963684082
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.6645072937011722
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.1612280845642089
+      }
+    },
+    {
+      "a": 0,
+      "b": 12,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -16.086259837604526,
+      "patch_cosine": -0.9310021713712924,
+      "fv": 0.747034859314677,
+      "nli": 0.9994994401931763,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -2.485183048248291
+      },
+      "paired": {
+        "exact": 0.05,
+        "logp": -3.0550387382507322
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.018867588043213
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": 0.5698556900024414
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 0.5336845397949221
+      }
+    },
+    {
+      "a": 0,
+      "b": 19,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.53322302682879,
+      "patch_cosine": -0.9355827073424019,
+      "fv": 0.6960561129547642,
+      "nli": 0.1098812073469162,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -2.485183048248291
+      },
+      "paired": {
+        "exact": 0.1,
+        "logp": -3.5264327049255373
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -2.323954963684082
+      },
+      "drop": {
+        "exact": -0.1,
+        "logp": 1.0412496566772464
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.1612280845642089
+      }
+    },
+    {
+      "a": 0,
+      "b": 21,
+      "conflict": false,
+      "length": 92,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -13.719040793870986,
+      "patch_cosine": -0.869653279693801,
+      "fv": 0.6456621261859196,
+      "nli": 0.9960291385650635,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -2.485183048248291
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -3.628064250946045
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -2.8572439193725585
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 1.1428812026977542
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 0.37206087112426767
+      }
+    },
+    {
+      "a": 1,
+      "b": 0,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.754880539930724,
+      "patch_cosine": -0.994792086513611,
+      "fv": 0.913950920600172,
+      "nli": 0.9988585710525513,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.2900564193725588
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -7.542716026306152
+      },
+      "dilution": {
+        "exact": 0.1,
+        "logp": -3.14667387008667
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 4.252659606933594
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.14338254928588867
+      }
+    },
+    {
+      "a": 1,
+      "b": 2,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.952765244663606,
+      "patch_cosine": -0.9986804179858801,
+      "fv": 0.957115538607693,
+      "nli": 0.9985647797584534,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.2900564193725588
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -9.495429992675781
+      },
+      "dilution": {
+        "exact": 0.1,
+        "logp": -3.14667387008667
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 6.2053735733032225
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.14338254928588867
+      }
+    },
+    {
+      "a": 1,
+      "b": 3,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.981843995951856,
+      "patch_cosine": -0.9981783992041868,
+      "fv": 0.9626255004474942,
+      "nli": 0.9992735981941223,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.2900564193725588
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -9.776740741729736
+      },
+      "dilution": {
+        "exact": 0.1,
+        "logp": -3.14667387008667
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 6.486684322357177
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.14338254928588867
+      }
+    },
+    {
+      "a": 1,
+      "b": 4,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.979322716826243,
+      "patch_cosine": -0.9979001917091194,
+      "fv": 0.906670525756894,
+      "nli": 0.9992175102233887,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.2900564193725588
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -9.059840965270997
+      },
+      "dilution": {
+        "exact": 0.1,
+        "logp": -3.14667387008667
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 5.769784545898438
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.14338254928588867
+      }
+    },
+    {
+      "a": 1,
+      "b": 9,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.515161941588458,
+      "patch_cosine": -0.9170416877397531,
+      "fv": 0.4196508107404488,
+      "nli": 0.9997060894966125,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.2900564193725588
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -5.44429235458374
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.283450698852539
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 2.1542359352111813
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": -0.00660572052001962
+      }
+    },
+    {
+      "a": 1,
+      "b": 12,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -16.16823003834323,
+      "patch_cosine": -0.928520143161317,
+      "fv": 0.8208342488151456,
+      "nli": 0.997521698474884,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.2900564193725588
+      },
+      "paired": {
+        "exact": 0.05,
+        "logp": -4.605198955535888
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.9074031829833986
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 1.3151425361633295
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": 0.6173467636108398
+      }
+    },
+    {
+      "a": 1,
+      "b": 19,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.700598771156585,
+      "patch_cosine": -0.938361237053993,
+      "fv": 0.755094561540182,
+      "nli": 0.6982593536376953,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.2900564193725588
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -5.010913753509522
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.283450698852539
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 1.720857334136963
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": -0.00660572052001962
+      }
+    },
+    {
+      "a": 1,
+      "b": 24,
+      "conflict": false,
+      "length": 92,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -13.926187511741958,
+      "patch_cosine": -0.8684465221763754,
+      "fv": 0.7182473977051627,
+      "nli": 0.998691737651825,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.2900564193725588
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -4.499812889099121
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.983613681793213
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 1.2097564697265621
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": 0.6935572624206543
+      }
+    },
+    {
+      "a": 2,
+      "b": 0,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.71778577638602,
+      "patch_cosine": -0.9925022646636411,
+      "fv": 0.9043878681850287,
+      "nli": 0.9992883801460266,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.293770122528076
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -7.878765392303467
+      },
+      "dilution": {
+        "exact": 0.1,
+        "logp": -2.7171669006347656
+      },
+      "drop": {
+        "exact": 0.35,
+        "logp": 5.584995269775391
+      },
+      "control_drop": {
+        "exact": 0.25,
+        "logp": 0.42339677810668963
+      }
+    },
+    {
+      "a": 2,
+      "b": 1,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.952765244663606,
+      "patch_cosine": -0.9986804179858801,
+      "fv": 0.957115538607693,
+      "nli": 0.9980190992355347,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.293770122528076
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -8.588366794586182
+      },
+      "dilution": {
+        "exact": 0.1,
+        "logp": -2.7171669006347656
+      },
+      "drop": {
+        "exact": 0.35,
+        "logp": 6.294596672058106
+      },
+      "control_drop": {
+        "exact": 0.25,
+        "logp": 0.42339677810668963
+      }
+    },
+    {
+      "a": 2,
+      "b": 3,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.998618843768668,
+      "patch_cosine": -0.999076447373873,
+      "fv": 0.9601705061511738,
+      "nli": 0.9983558058738708,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.293770122528076
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -11.035921144485474
+      },
+      "dilution": {
+        "exact": 0.1,
+        "logp": -2.7171669006347656
+      },
+      "drop": {
+        "exact": 0.35,
+        "logp": 8.742151021957397
+      },
+      "control_drop": {
+        "exact": 0.25,
+        "logp": 0.42339677810668963
+      }
+    },
+    {
+      "a": 2,
+      "b": 4,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.993959069220523,
+      "patch_cosine": -0.9986724644295849,
+      "fv": 0.9169128813617404,
+      "nli": 0.999103844165802,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.293770122528076
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -10.62205958366394
+      },
+      "dilution": {
+        "exact": 0.1,
+        "logp": -2.7171669006347656
+      },
+      "drop": {
+        "exact": 0.35,
+        "logp": 8.328289461135864
+      },
+      "control_drop": {
+        "exact": 0.25,
+        "logp": 0.42339677810668963
+      }
+    },
+    {
+      "a": 2,
+      "b": 5,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.296369171418739,
+      "patch_cosine": -0.9297676284561129,
+      "fv": 0.7537708279597802,
+      "nli": 0.9997316002845764,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.293770122528076
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -5.622215843200683
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.424754428863525
+      },
+      "drop": {
+        "exact": 0.35,
+        "logp": 3.3284457206726072
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 1.1309843063354492
+      }
+    },
+    {
+      "a": 2,
+      "b": 10,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -15.954817053417495,
+      "patch_cosine": -0.9279782651959394,
+      "fv": 0.8207340798039064,
+      "nli": 0.9996250867843628,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.293770122528076
+      },
+      "paired": {
+        "exact": 0.3,
+        "logp": -1.9286130905151366
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.503272438049317
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": -0.36515703201293936
+      },
+      "control_drop": {
+        "exact": 0.35,
+        "logp": 2.2095023155212408
+      }
+    },
+    {
+      "a": 2,
+      "b": 18,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.766773195572389,
+      "patch_cosine": -0.9414974605614781,
+      "fv": 0.7796104884751384,
+      "nli": 0.30178359150886536,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.293770122528076
+      },
+      "paired": {
+        "exact": 0.1,
+        "logp": -3.47230978012085
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.424754428863525
+      },
+      "drop": {
+        "exact": 0.25,
+        "logp": 1.1785396575927738
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 1.1309843063354492
+      }
+    },
+    {
+      "a": 2,
+      "b": 23,
+      "conflict": false,
+      "length": 92,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -13.801206692310762,
+      "patch_cosine": -0.8643586944193545,
+      "fv": 0.7476905531955514,
+      "nli": 0.9974663257598877,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.293770122528076
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -3.5921090126037596
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.753409481048584
+      },
+      "drop": {
+        "exact": 0.15,
+        "logp": 1.2983388900756836
+      },
+      "control_drop": {
+        "exact": 0.35,
+        "logp": 2.4596393585205076
+      }
+    },
+    {
+      "a": 3,
+      "b": 0,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.731097130028388,
+      "patch_cosine": -0.9910932202348055,
+      "fv": 0.9109090429527863,
+      "nli": 0.9994179010391235,
+      "baseline": {
+        "exact": 0.5,
+        "logp": -1.2832345962524414
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -6.773727798461914
+      },
+      "dilution": {
+        "exact": 0.35,
+        "logp": -2.0489593505859376
+      },
+      "drop": {
+        "exact": 0.5,
+        "logp": 5.490493202209473
+      },
+      "control_drop": {
+        "exact": 0.15,
+        "logp": 0.7657247543334962
+      }
+    },
+    {
+      "a": 3,
+      "b": 1,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.981843995951856,
+      "patch_cosine": -0.9981783992041868,
+      "fv": 0.9626255004474942,
+      "nli": 0.9989194869995117,
+      "baseline": {
+        "exact": 0.5,
+        "logp": -1.2832345962524414
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -6.892100048065186
+      },
+      "dilution": {
+        "exact": 0.35,
+        "logp": -2.0489593505859376
+      },
+      "drop": {
+        "exact": 0.5,
+        "logp": 5.608865451812744
+      },
+      "control_drop": {
+        "exact": 0.15,
+        "logp": 0.7657247543334962
+      }
+    },
+    {
+      "a": 3,
+      "b": 2,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.998618843768668,
+      "patch_cosine": -0.999076447373873,
+      "fv": 0.9601705061511738,
+      "nli": 0.998285710811615,
+      "baseline": {
+        "exact": 0.5,
+        "logp": -1.2832345962524414
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -7.184198665618896
+      },
+      "dilution": {
+        "exact": 0.35,
+        "logp": -2.0489593505859376
+      },
+      "drop": {
+        "exact": 0.5,
+        "logp": 5.900964069366455
+      },
+      "control_drop": {
+        "exact": 0.15,
+        "logp": 0.7657247543334962
+      }
+    },
+    {
+      "a": 3,
+      "b": 4,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -17.046487210360677,
+      "patch_cosine": -0.999541289662785,
+      "fv": 0.9250024197925509,
+      "nli": 0.9981029033660889,
+      "baseline": {
+        "exact": 0.5,
+        "logp": -1.2832345962524414
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -10.870439958572387
+      },
+      "dilution": {
+        "exact": 0.35,
+        "logp": -2.0489593505859376
+      },
+      "drop": {
+        "exact": 0.5,
+        "logp": 9.587205362319946
+      },
+      "control_drop": {
+        "exact": 0.15,
+        "logp": 0.7657247543334962
+      }
+    },
+    {
+      "a": 3,
+      "b": 8,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.511107689941289,
+      "patch_cosine": -0.9117436972365804,
+      "fv": 0.7124246473571861,
+      "nli": 0.9990432858467102,
+      "baseline": {
+        "exact": 0.5,
+        "logp": -1.2832345962524414
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -4.733905220031739
+      },
+      "dilution": {
+        "exact": 0.2,
+        "logp": -2.651171875
+      },
+      "drop": {
+        "exact": 0.5,
+        "logp": 3.4506706237792972
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 1.3679372787475588
+      }
+    },
+    {
+      "a": 3,
+      "b": 10,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -15.933490057218055,
+      "patch_cosine": -0.9246858750911555,
+      "fv": 0.8041570947032057,
+      "nli": 0.9996676445007324,
+      "baseline": {
+        "exact": 0.5,
+        "logp": -1.2832345962524414
+      },
+      "paired": {
+        "exact": 0.4,
+        "logp": -1.6604436874389648
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.689980983734131
+      },
+      "drop": {
+        "exact": 0.1,
+        "logp": 0.37720909118652335
+      },
+      "control_drop": {
+        "exact": 0.5,
+        "logp": 2.4067463874816895
+      }
+    },
+    {
+      "a": 3,
+      "b": 16,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.911985125445485,
+      "patch_cosine": -0.9450879919066429,
+      "fv": 0.7862164602438113,
+      "nli": 0.8160085082054138,
+      "baseline": {
+        "exact": 0.5,
+        "logp": -1.2832345962524414
+      },
+      "paired": {
+        "exact": 0.25,
+        "logp": -2.7634340286254884
+      },
+      "dilution": {
+        "exact": 0.2,
+        "logp": -2.651171875
+      },
+      "drop": {
+        "exact": 0.25,
+        "logp": 1.480199432373047
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 1.3679372787475588
+      }
+    },
+    {
+      "a": 3,
+      "b": 20,
+      "conflict": false,
+      "length": 92,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -13.785559852371946,
+      "patch_cosine": -0.8640175786441597,
+      "fv": 0.7595929020050994,
+      "nli": 0.998867392539978,
+      "baseline": {
+        "exact": 0.5,
+        "logp": -1.2832345962524414
+      },
+      "paired": {
+        "exact": 0.4,
+        "logp": -1.627588939666748
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.8860817909240724
+      },
+      "drop": {
+        "exact": 0.1,
+        "logp": 0.3443543434143066
+      },
+      "control_drop": {
+        "exact": 0.5,
+        "logp": 2.602847194671631
+      }
+    },
+    {
+      "a": 4,
+      "b": 0,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.748613947830982,
+      "patch_cosine": -0.992001616508044,
+      "fv": 0.8570346622482266,
+      "nli": 0.9993755221366882,
+      "baseline": {
+        "exact": 0.4,
+        "logp": -1.6423942565917968
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -7.322538709640503
+      },
+      "dilution": {
+        "exact": 0.1,
+        "logp": -2.4023959159851076
+      },
+      "drop": {
+        "exact": 0.4,
+        "logp": 5.6801444530487055
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 0.7600016593933108
+      }
+    },
+    {
+      "a": 4,
+      "b": 1,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.979322716826243,
+      "patch_cosine": -0.9979001917091194,
+      "fv": 0.906670525756894,
+      "nli": 0.9984716773033142,
+      "baseline": {
+        "exact": 0.4,
+        "logp": -1.6423942565917968
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -6.063852024078369
+      },
+      "dilution": {
+        "exact": 0.1,
+        "logp": -2.4023959159851076
+      },
+      "drop": {
+        "exact": 0.4,
+        "logp": 4.421457767486572
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 0.7600016593933108
+      }
+    },
+    {
+      "a": 4,
+      "b": 2,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.993959069220523,
+      "patch_cosine": -0.9986724644295849,
+      "fv": 0.9169128813617404,
+      "nli": 0.9981526732444763,
+      "baseline": {
+        "exact": 0.4,
+        "logp": -1.6423942565917968
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -7.636037731170655
+      },
+      "dilution": {
+        "exact": 0.1,
+        "logp": -2.4023959159851076
+      },
+      "drop": {
+        "exact": 0.4,
+        "logp": 5.993643474578858
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 0.7600016593933108
+      }
+    },
+    {
+      "a": 4,
+      "b": 3,
+      "conflict": true,
+      "length": 95,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -17.046487210360677,
+      "patch_cosine": -0.999541289662785,
+      "fv": 0.9250024197925509,
+      "nli": 0.9973272085189819,
+      "baseline": {
+        "exact": 0.4,
+        "logp": -1.6423942565917968
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -6.943934631347656
+      },
+      "dilution": {
+        "exact": 0.1,
+        "logp": -2.4023959159851076
+      },
+      "drop": {
+        "exact": 0.4,
+        "logp": 5.301540374755859
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 0.7600016593933108
+      }
+    },
+    {
+      "a": 4,
+      "b": 5,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.299258431950147,
+      "patch_cosine": -0.9277633290143923,
+      "fv": 0.7305711829862492,
+      "nli": 0.9996938705444336,
+      "baseline": {
+        "exact": 0.4,
+        "logp": -1.6423942565917968
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -6.825800132751465
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.3417787551879883
+      },
+      "drop": {
+        "exact": 0.4,
+        "logp": 5.183405876159668
+      },
+      "control_drop": {
+        "exact": 0.4,
+        "logp": 1.6993844985961915
+      }
+    },
+    {
+      "a": 4,
+      "b": 10,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -15.96201325518108,
+      "patch_cosine": -0.9262205231839481,
+      "fv": 0.7723537975926102,
+      "nli": 0.9996732473373413,
+      "baseline": {
+        "exact": 0.4,
+        "logp": -1.6423942565917968
+      },
+      "paired": {
+        "exact": 0.6,
+        "logp": -1.0719334602355957
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.81473388671875
+      },
+      "drop": {
+        "exact": -0.2,
+        "logp": -0.5704607963562012
+      },
+      "control_drop": {
+        "exact": 0.4,
+        "logp": 3.1723396301269533
+      }
+    },
+    {
+      "a": 4,
+      "b": 19,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.832587461044671,
+      "patch_cosine": -0.9439484138308959,
+      "fv": 0.8006327882447936,
+      "nli": 0.0022181360982358456,
+      "baseline": {
+        "exact": 0.4,
+        "logp": -1.6423942565917968
+      },
+      "paired": {
+        "exact": 0.45,
+        "logp": -1.255484676361084
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.3417787551879883
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -0.38690958023071276
+      },
+      "control_drop": {
+        "exact": 0.4,
+        "logp": 1.6993844985961915
+      }
+    },
+    {
+      "a": 4,
+      "b": 24,
+      "conflict": false,
+      "length": 92,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.061575009273682,
+      "patch_cosine": -0.8747568079107366,
+      "fv": 0.7574234503828503,
+      "nli": 0.8000288605690002,
+      "baseline": {
+        "exact": 0.4,
+        "logp": -1.6423942565917968
+      },
+      "paired": {
+        "exact": 0.8,
+        "logp": -0.7145196914672851
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.840559673309326
+      },
+      "drop": {
+        "exact": -0.4,
+        "logp": -0.9278745651245117
+      },
+      "control_drop": {
+        "exact": 0.4,
+        "logp": 3.1981654167175293
+      }
+    },
+    {
+      "a": 5,
+      "b": 6,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.079190238652348,
+      "patch_cosine": -0.9844445726899699,
+      "fv": 0.8526190648518712,
+      "nli": 0.9983439445495605,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -2.8918237686157227
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -6.499111557006836
+      },
+      "dilution": {
+        "exact": 0.15,
+        "logp": -2.6356575012207033
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 3.6072877883911136
+      },
+      "control_drop": {
+        "exact": -0.1,
+        "logp": -0.25616626739501935
+      }
+    },
+    {
+      "a": 5,
+      "b": 7,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.954075347943553,
+      "patch_cosine": -0.9816947452180369,
+      "fv": 0.8457507548789754,
+      "nli": 0.9991084933280945,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -2.8918237686157227
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -4.812189769744873
+      },
+      "dilution": {
+        "exact": 0.15,
+        "logp": -2.6356575012207033
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 1.9203660011291506
+      },
+      "control_drop": {
+        "exact": -0.1,
+        "logp": -0.25616626739501935
+      }
+    },
+    {
+      "a": 5,
+      "b": 8,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.015312058243573,
+      "patch_cosine": -0.9735681146472143,
+      "fv": 0.7997732151518504,
+      "nli": 0.9992392063140869,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -2.8918237686157227
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -4.258275890350342
+      },
+      "dilution": {
+        "exact": 0.15,
+        "logp": -2.6356575012207033
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 1.3664521217346195
+      },
+      "control_drop": {
+        "exact": -0.1,
+        "logp": -0.25616626739501935
+      }
+    },
+    {
+      "a": 5,
+      "b": 9,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.041474371610796,
+      "patch_cosine": -0.9783114265477814,
+      "fv": 0.6426067241766872,
+      "nli": 0.9990469813346863,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -2.8918237686157227
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -5.031676197052002
+      },
+      "dilution": {
+        "exact": 0.15,
+        "logp": -2.6356575012207033
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 2.1398524284362797
+      },
+      "control_drop": {
+        "exact": -0.1,
+        "logp": -0.25616626739501935
+      }
+    },
+    {
+      "a": 5,
+      "b": 4,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -15.299258431950147,
+      "patch_cosine": -0.9277633290143923,
+      "fv": 0.7305711829862492,
+      "nli": 0.9997649788856506,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -2.8918237686157227
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -5.519994258880615
+      },
+      "dilution": {
+        "exact": 0.2,
+        "logp": -2.7955488204956054
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 2.6281704902648926
+      },
+      "control_drop": {
+        "exact": -0.15,
+        "logp": -0.09627494812011728
+      }
+    },
+    {
+      "a": 5,
+      "b": 10,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -15.298035757680731,
+      "patch_cosine": -0.9181633676264639,
+      "fv": 0.7303892890285106,
+      "nli": 0.9998359680175781,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -2.8918237686157227
+      },
+      "paired": {
+        "exact": 0.1,
+        "logp": -4.006747055053711
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.430550479888916
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": 1.114923286437988
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 0.5387267112731933
+      }
+    },
+    {
+      "a": 5,
+      "b": 19,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -14.629504402337458,
+      "patch_cosine": -0.9021599353114591,
+      "fv": 0.62806513515704,
+      "nli": 0.9974722266197205,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -2.8918237686157227
+      },
+      "paired": {
+        "exact": 0.1,
+        "logp": -2.9052099227905273
+      },
+      "dilution": {
+        "exact": 0.15,
+        "logp": -2.6356575012207033
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": 0.013386154174804599
+      },
+      "control_drop": {
+        "exact": -0.1,
+        "logp": -0.25616626739501935
+      }
+    },
+    {
+      "a": 5,
+      "b": 24,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -13.543705665200802,
+      "patch_cosine": -0.8714619455341525,
+      "fv": 0.6365023610197753,
+      "nli": 0.9998829364776611,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -2.8918237686157227
+      },
+      "paired": {
+        "exact": 0.1,
+        "logp": -2.8601301193237303
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.452037048339844
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -0.031693649291992365
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 0.5602132797241213
+      }
+    },
+    {
+      "a": 6,
+      "b": 5,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.079190238652348,
+      "patch_cosine": -0.9844445726899699,
+      "fv": 0.8526190648518712,
+      "nli": 0.997377872467041,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -5.649108505249023
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -13.741268920898438
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -7.885531330108643
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 8.092160415649415
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 2.23642282485962
+      }
+    },
+    {
+      "a": 6,
+      "b": 7,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.62983208092353,
+      "patch_cosine": -0.9988388089083515,
+      "fv": 0.9281468649934402,
+      "nli": 0.9970868229866028,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -5.649108505249023
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -11.226336479187012
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -7.885531330108643
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 5.577227973937989
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 2.23642282485962
+      }
+    },
+    {
+      "a": 6,
+      "b": 8,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.783396830498678,
+      "patch_cosine": -0.9958949185185728,
+      "fv": 0.8905234699361217,
+      "nli": 0.9984806180000305,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -5.649108505249023
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -10.67373685836792
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -7.885531330108643
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 5.0246283531188976
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 2.23642282485962
+      }
+    },
+    {
+      "a": 6,
+      "b": 9,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.735941417480888,
+      "patch_cosine": -0.996289854666299,
+      "fv": 0.6847998633621715,
+      "nli": 0.998065173625946,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -5.649108505249023
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -10.281624221801758
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -7.885531330108643
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 4.632515716552735
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 2.23642282485962
+      }
+    },
+    {
+      "a": 6,
+      "b": 2,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -15.523146894788244,
+      "patch_cosine": -0.9210189133015502,
+      "fv": 0.790329523287811,
+      "nli": 0.999311089515686,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -5.649108505249023
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -9.874303150177003
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -8.209229469299316
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 4.22519464492798
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 2.5601209640502933
+      }
+    },
+    {
+      "a": 6,
+      "b": 12,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -15.527556937276195,
+      "patch_cosine": -0.8981208436681488,
+      "fv": 0.7368133208072097,
+      "nli": 0.9994701743125916,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -5.649108505249023
+      },
+      "paired": {
+        "exact": 0.05,
+        "logp": -4.500606727600098
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -8.835415840148926
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -1.1485017776489252
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 3.1863073348999027
+      }
+    },
+    {
+      "a": 6,
+      "b": 17,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -14.953509185258737,
+      "patch_cosine": -0.899086154346837,
+      "fv": 0.6648868088656461,
+      "nli": 0.9705078601837158,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -5.649108505249023
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -5.098541927337647
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -7.885531330108643
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.5505665779113764
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 2.23642282485962
+      }
+    },
+    {
+      "a": 6,
+      "b": 24,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -13.747584748886487,
+      "patch_cosine": -0.8634556637779548,
+      "fv": 0.6356191590421922,
+      "nli": 0.9998551607131958,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -5.649108505249023
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -4.713685607910156
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -9.179989242553711
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.9354228973388672
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 3.530880737304688
+      }
+    },
+    {
+      "a": 7,
+      "b": 5,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.954075347943553,
+      "patch_cosine": -0.9816947452180369,
+      "fv": 0.8457507548789754,
+      "nli": 0.9989268183708191,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.992795944213867
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -10.467956638336181
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -6.237982559204101
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 5.475160694122314
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.2451866149902342
+      }
+    },
+    {
+      "a": 7,
+      "b": 6,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.62983208092353,
+      "patch_cosine": -0.9988388089083515,
+      "fv": 0.9281468649934402,
+      "nli": 0.9962706565856934,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.992795944213867
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -9.79919147491455
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -6.237982559204101
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 4.806395530700684
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.2451866149902342
+      }
+    },
+    {
+      "a": 7,
+      "b": 8,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.733309807359344,
+      "patch_cosine": -0.9979142792438611,
+      "fv": 0.9525120140152648,
+      "nli": 0.9974833130836487,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.992795944213867
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -10.786112022399902
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -6.237982559204101
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 5.7933160781860344
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.2451866149902342
+      }
+    },
+    {
+      "a": 7,
+      "b": 9,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.67637234592099,
+      "patch_cosine": -0.9977342395587323,
+      "fv": 0.7961680130262825,
+      "nli": 0.9983637928962708,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.992795944213867
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -10.391716384887696
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -6.237982559204101
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 5.3989204406738285
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.2451866149902342
+      }
+    },
+    {
+      "a": 7,
+      "b": 0,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -14.98722634495578,
+      "patch_cosine": -0.9007261669530066,
+      "fv": 0.6565355088900412,
+      "nli": 0.9998440742492676,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.992795944213867
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -10.07001838684082
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -6.300399208068848
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 5.077222442626953
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.3076032638549808
+      }
+    },
+    {
+      "a": 7,
+      "b": 10,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -15.030155352757468,
+      "patch_cosine": -0.8849693058883761,
+      "fv": 0.6444592585077522,
+      "nli": 0.9998329877853394,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.992795944213867
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -2.542388343811035
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -6.913101863861084
+      },
+      "drop": {
+        "exact": -0.2,
+        "logp": -2.450407600402832
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.920305919647217
+      }
+    },
+    {
+      "a": 7,
+      "b": 15,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -14.755470102456465,
+      "patch_cosine": -0.8947985718252317,
+      "fv": 0.5780901911452845,
+      "nli": 0.998485267162323,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.992795944213867
+      },
+      "paired": {
+        "exact": 0.4,
+        "logp": -1.9581196784973145
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -6.237982559204101
+      },
+      "drop": {
+        "exact": -0.4,
+        "logp": -3.034676265716553
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.2451866149902342
+      }
+    },
+    {
+      "a": 7,
+      "b": 23,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -13.620647402070507,
+      "patch_cosine": -0.8635618697333481,
+      "fv": 0.608583806728904,
+      "nli": 0.9997929930686951,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.992795944213867
+      },
+      "paired": {
+        "exact": 0.05,
+        "logp": -4.383500862121582
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -7.311840438842774
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -0.6092950820922853
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 2.3190444946289066
+      }
+    },
+    {
+      "a": 8,
+      "b": 5,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.015312058243573,
+      "patch_cosine": -0.9735681146472143,
+      "fv": 0.7997732151518504,
+      "nli": 0.9991807341575623,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -4.467835712432861
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -7.363896465301513
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -6.309316349029541
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 2.896060752868652
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.84148063659668
+      }
+    },
+    {
+      "a": 8,
+      "b": 6,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.783396830498678,
+      "patch_cosine": -0.9958949185185728,
+      "fv": 0.8905234699361217,
+      "nli": 0.9983200430870056,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -4.467835712432861
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -9.049733638763428
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -6.309316349029541
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 4.581897926330567
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.84148063659668
+      }
+    },
+    {
+      "a": 8,
+      "b": 7,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.733309807359344,
+      "patch_cosine": -0.9979142792438611,
+      "fv": 0.9525120140152648,
+      "nli": 0.9972142577171326,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -4.467835712432861
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -9.126852893829346
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -6.309316349029541
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 4.659017181396485
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.84148063659668
+      }
+    },
+    {
+      "a": 8,
+      "b": 9,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.893681193936526,
+      "patch_cosine": -0.9985359290782798,
+      "fv": 0.8334465468457051,
+      "nli": 0.9971145391464233,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -4.467835712432861
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -11.933050918579102
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -6.309316349029541
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 7.465215206146241
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.84148063659668
+      }
+    },
+    {
+      "a": 8,
+      "b": 2,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -15.425204360486223,
+      "patch_cosine": -0.9087063208227528,
+      "fv": 0.6851393361958379,
+      "nli": 0.9995973706245422,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -4.467835712432861
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -10.991747283935547
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -6.5598447799682615
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 6.523911571502686
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 2.0920090675354004
+      }
+    },
+    {
+      "a": 8,
+      "b": 13,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -15.589189871089017,
+      "patch_cosine": -0.8887153381482119,
+      "fv": 0.6558955082148633,
+      "nli": 0.9997274279594421,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -4.467835712432861
+      },
+      "paired": {
+        "exact": 0.35,
+        "logp": -2.208139419555664
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -7.121863269805909
+      },
+      "drop": {
+        "exact": -0.3,
+        "logp": -2.259696292877197
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 2.6540275573730474
+      }
+    },
+    {
+      "a": 8,
+      "b": 18,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -14.914737749923336,
+      "patch_cosine": -0.8907110206438434,
+      "fv": 0.6537671695399495,
+      "nli": 0.9963082075119019,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -4.467835712432861
+      },
+      "paired": {
+        "exact": 0.3,
+        "logp": -1.900411319732666
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -6.309316349029541
+      },
+      "drop": {
+        "exact": -0.25,
+        "logp": -2.567424392700195
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.84148063659668
+      }
+    },
+    {
+      "a": 8,
+      "b": 24,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -13.801567394184676,
+      "patch_cosine": -0.8606882785247993,
+      "fv": 0.6031109347641811,
+      "nli": 0.9997919201850891,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -4.467835712432861
+      },
+      "paired": {
+        "exact": 0.15,
+        "logp": -3.5993682861328127
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -7.59104471206665
+      },
+      "drop": {
+        "exact": -0.1,
+        "logp": -0.8684674263000485
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": 3.123208999633789
+      }
+    },
+    {
+      "a": 9,
+      "b": 5,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.041474371610796,
+      "patch_cosine": -0.9783114265477814,
+      "fv": 0.6426067241766872,
+      "nli": 0.9992334842681885,
+      "baseline": {
+        "exact": 0.15,
+        "logp": -4.596882057189942
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -9.088578605651856
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -7.145763874053955
+      },
+      "drop": {
+        "exact": 0.15,
+        "logp": 4.491696548461914
+      },
+      "control_drop": {
+        "exact": 0.15,
+        "logp": 2.5488818168640135
+      }
+    },
+    {
+      "a": 9,
+      "b": 6,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.735941417480888,
+      "patch_cosine": -0.996289854666299,
+      "fv": 0.6847998633621715,
+      "nli": 0.9981890320777893,
+      "baseline": {
+        "exact": 0.15,
+        "logp": -4.596882057189942
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -8.31015453338623
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -7.145763874053955
+      },
+      "drop": {
+        "exact": 0.15,
+        "logp": 3.7132724761962885
+      },
+      "control_drop": {
+        "exact": 0.15,
+        "logp": 2.5488818168640135
+      }
+    },
+    {
+      "a": 9,
+      "b": 7,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.67637234592099,
+      "patch_cosine": -0.9977342395587323,
+      "fv": 0.7961680130262825,
+      "nli": 0.9974473714828491,
+      "baseline": {
+        "exact": 0.15,
+        "logp": -4.596882057189942
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -8.945951080322265
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -7.145763874053955
+      },
+      "drop": {
+        "exact": 0.15,
+        "logp": 4.349069023132324
+      },
+      "control_drop": {
+        "exact": 0.15,
+        "logp": 2.5488818168640135
+      }
+    },
+    {
+      "a": 9,
+      "b": 8,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.893681193936526,
+      "patch_cosine": -0.9985359290782798,
+      "fv": 0.8334465468457051,
+      "nli": 0.9961071610450745,
+      "baseline": {
+        "exact": 0.15,
+        "logp": -4.596882057189942
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -9.21942071914673
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -7.145763874053955
+      },
+      "drop": {
+        "exact": 0.15,
+        "logp": 4.622538661956788
+      },
+      "control_drop": {
+        "exact": 0.15,
+        "logp": 2.5488818168640135
+      }
+    },
+    {
+      "a": 9,
+      "b": 3,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -15.651852219083903,
+      "patch_cosine": -0.9229912909515442,
+      "fv": 0.4698830904880991,
+      "nli": 0.9996762275695801,
+      "baseline": {
+        "exact": 0.15,
+        "logp": -4.596882057189942
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -9.715395641326904
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -7.124702072143554
+      },
+      "drop": {
+        "exact": 0.15,
+        "logp": 5.118513584136962
+      },
+      "control_drop": {
+        "exact": 0.1,
+        "logp": 2.5278200149536127
+      }
+    },
+    {
+      "a": 9,
+      "b": 14,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -15.643935456307263,
+      "patch_cosine": -0.9009987640776314,
+      "fv": 0.5017593032255954,
+      "nli": 0.9996670484542847,
+      "baseline": {
+        "exact": 0.15,
+        "logp": -4.596882057189942
+      },
+      "paired": {
+        "exact": 0.45,
+        "logp": -2.0054752349853517
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -7.7081225395202635
+      },
+      "drop": {
+        "exact": -0.3,
+        "logp": -2.59140682220459
+      },
+      "control_drop": {
+        "exact": 0.15,
+        "logp": 3.111240482330322
+      }
+    },
+    {
+      "a": 9,
+      "b": 19,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.028445676816677,
+      "patch_cosine": -0.9011071870369529,
+      "fv": 0.4881378588504562,
+      "nli": 0.9946310520172119,
+      "baseline": {
+        "exact": 0.15,
+        "logp": -4.596882057189942
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -2.552224063873291
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -7.145763874053955
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -2.0446579933166507
+      },
+      "control_drop": {
+        "exact": 0.15,
+        "logp": 2.5488818168640135
+      }
+    },
+    {
+      "a": 9,
+      "b": 22,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -13.605859830711854,
+      "patch_cosine": -0.8584608434654029,
+      "fv": 0.4570902034805539,
+      "nli": 0.9998667240142822,
+      "baseline": {
+        "exact": 0.15,
+        "logp": -4.596882057189942
+      },
+      "paired": {
+        "exact": 0.45,
+        "logp": -1.8086558341979981
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -8.093109226226806
+      },
+      "drop": {
+        "exact": -0.3,
+        "logp": -2.7882262229919434
+      },
+      "control_drop": {
+        "exact": 0.15,
+        "logp": 3.4962271690368647
+      }
+    },
+    {
+      "a": 10,
+      "b": 11,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.6080974301222,
+      "patch_cosine": -0.9961416956908338,
+      "fv": 0.9451130017812991,
+      "nli": 0.9979941844940186,
+      "baseline": {
+        "exact": 0.25,
+        "logp": -2.1433183670043947
+      },
+      "paired": {
+        "exact": 0.05,
+        "logp": -2.365377330780029
+      },
+      "dilution": {
+        "exact": 0.5,
+        "logp": -1.08273286819458
+      },
+      "drop": {
+        "exact": 0.2,
+        "logp": 0.2220589637756345
+      },
+      "control_drop": {
+        "exact": -0.25,
+        "logp": -1.0605854988098147
+      }
+    },
+    {
+      "a": 10,
+      "b": 12,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.558395088232672,
+      "patch_cosine": -0.9955742530094908,
+      "fv": 0.9446199334692187,
+      "nli": 0.999248206615448,
+      "baseline": {
+        "exact": 0.25,
+        "logp": -2.1433183670043947
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -2.830399513244629
+      },
+      "dilution": {
+        "exact": 0.5,
+        "logp": -1.08273286819458
+      },
+      "drop": {
+        "exact": 0.25,
+        "logp": 0.6870811462402342
+      },
+      "control_drop": {
+        "exact": -0.25,
+        "logp": -1.0605854988098147
+      }
+    },
+    {
+      "a": 10,
+      "b": 13,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.664197529544136,
+      "patch_cosine": -0.9942289271729223,
+      "fv": 0.9411139490008399,
+      "nli": 0.9993312358856201,
+      "baseline": {
+        "exact": 0.25,
+        "logp": -2.1433183670043947
+      },
+      "paired": {
+        "exact": 0.05,
+        "logp": -2.6838067054748533
+      },
+      "dilution": {
+        "exact": 0.5,
+        "logp": -1.08273286819458
+      },
+      "drop": {
+        "exact": 0.2,
+        "logp": 0.5404883384704586
+      },
+      "control_drop": {
+        "exact": -0.25,
+        "logp": -1.0605854988098147
+      }
+    },
+    {
+      "a": 10,
+      "b": 14,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.5480141514069,
+      "patch_cosine": -0.9946209468403944,
+      "fv": 0.8837669313749906,
+      "nli": 0.9992939233779907,
+      "baseline": {
+        "exact": 0.25,
+        "logp": -2.1433183670043947
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -2.1993834495544435
+      },
+      "dilution": {
+        "exact": 0.5,
+        "logp": -1.08273286819458
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 0.05606508255004883
+      },
+      "control_drop": {
+        "exact": -0.25,
+        "logp": -1.0605854988098147
+      }
+    },
+    {
+      "a": 10,
+      "b": 2,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -15.954817053417495,
+      "patch_cosine": -0.9279782651959394,
+      "fv": 0.8207340798039064,
+      "nli": 0.9992746710777283,
+      "baseline": {
+        "exact": 0.25,
+        "logp": -2.1433183670043947
+      },
+      "paired": {
+        "exact": 0.4,
+        "logp": -1.8946897506713867
+      },
+      "dilution": {
+        "exact": 0.65,
+        "logp": -0.882841682434082
+      },
+      "drop": {
+        "exact": -0.15,
+        "logp": -0.24862861633300803
+      },
+      "control_drop": {
+        "exact": -0.4,
+        "logp": -1.2604766845703126
+      }
+    },
+    {
+      "a": 10,
+      "b": 6,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.158476503950785,
+      "patch_cosine": -0.8880605159894759,
+      "fv": 0.678271917735316,
+      "nli": 0.9993867874145508,
+      "baseline": {
+        "exact": 0.25,
+        "logp": -2.1433183670043947
+      },
+      "paired": {
+        "exact": 0.45,
+        "logp": -1.388329029083252
+      },
+      "dilution": {
+        "exact": 0.45,
+        "logp": -1.251144790649414
+      },
+      "drop": {
+        "exact": -0.2,
+        "logp": -0.7549893379211428
+      },
+      "control_drop": {
+        "exact": -0.2,
+        "logp": -0.8921735763549807
+      }
+    },
+    {
+      "a": 10,
+      "b": 15,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.421926381701253,
+      "patch_cosine": -0.912200528928711,
+      "fv": 0.8143670723829061,
+      "nli": 0.9533483982086182,
+      "baseline": {
+        "exact": 0.25,
+        "logp": -2.1433183670043947
+      },
+      "paired": {
+        "exact": 0.55,
+        "logp": -1.4675776481628418
+      },
+      "dilution": {
+        "exact": 0.45,
+        "logp": -1.251144790649414
+      },
+      "drop": {
+        "exact": -0.3,
+        "logp": -0.675740718841553
+      },
+      "control_drop": {
+        "exact": -0.2,
+        "logp": -0.8921735763549807
+      }
+    },
+    {
+      "a": 10,
+      "b": 24,
+      "conflict": false,
+      "length": 88,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.013214871529424,
+      "patch_cosine": -0.8627969726332801,
+      "fv": 0.8056897270120464,
+      "nli": 0.9997777342796326,
+      "baseline": {
+        "exact": 0.25,
+        "logp": -2.1433183670043947
+      },
+      "paired": {
+        "exact": 0.3,
+        "logp": -1.729015827178955
+      },
+      "dilution": {
+        "exact": 0.55,
+        "logp": -1.0587675094604492
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -0.41430253982543963
+      },
+      "control_drop": {
+        "exact": -0.3,
+        "logp": -1.0845508575439455
+      }
+    },
+    {
+      "a": 11,
+      "b": 10,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.6080974301222,
+      "patch_cosine": -0.9961416956908338,
+      "fv": 0.9451130017812991,
+      "nli": 0.9971163272857666,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.039384555816651
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -3.5875144004821777
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.282863426208496
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.45187015533447283
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.7565211296081547
+      }
+    },
+    {
+      "a": 11,
+      "b": 12,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.88111953869568,
+      "patch_cosine": -0.998729852982461,
+      "fv": 0.9555712611998016,
+      "nli": 0.9984303116798401,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.039384555816651
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -4.020152950286866
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.282863426208496
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.01923160552978498
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.7565211296081547
+      }
+    },
+    {
+      "a": 11,
+      "b": 13,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -18.004096241887034,
+      "patch_cosine": -0.9982246579346483,
+      "fv": 0.9360846026373242,
+      "nli": 0.9992413520812988,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.039384555816651
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -4.0402497291564945
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.282863426208496
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.0008651733398439276
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.7565211296081547
+      }
+    },
+    {
+      "a": 11,
+      "b": 14,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.871616648994845,
+      "patch_cosine": -0.9978332026897484,
+      "fv": 0.9278784296553896,
+      "nli": 0.9987701773643494,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.039384555816651
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -3.526307773590088
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.282863426208496
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.5130767822265625
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.7565211296081547
+      }
+    },
+    {
+      "a": 11,
+      "b": 3,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.299857049603432,
+      "patch_cosine": -0.9318190632968644,
+      "fv": 0.8291040160312689,
+      "nli": 0.9992610812187195,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.039384555816651
+      },
+      "paired": {
+        "exact": 0.05,
+        "logp": -4.335388469696045
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.1815516471862795
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": 0.2960039138793942
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.8578329086303711
+      }
+    },
+    {
+      "a": 11,
+      "b": 6,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.579009759098122,
+      "patch_cosine": -0.8990655176329702,
+      "fv": 0.7256373085494157,
+      "nli": 0.9996634721755981,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.039384555816651
+      },
+      "paired": {
+        "exact": 0.05,
+        "logp": -4.292567729949951
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.7631545066833496
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": 0.2531831741333006
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.27623004913330096
+      }
+    },
+    {
+      "a": 11,
+      "b": 16,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.676149111926053,
+      "patch_cosine": -0.907637943397979,
+      "fv": 0.8836643500315126,
+      "nli": 0.9294214844703674,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.039384555816651
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -3.928978443145752
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.7631545066833496
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.11040611267089862
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.27623004913330096
+      }
+    },
+    {
+      "a": 11,
+      "b": 24,
+      "conflict": false,
+      "length": 88,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.141729201512955,
+      "patch_cosine": -0.8577047859921852,
+      "fv": 0.8453891139642432,
+      "nli": 0.9997631907463074,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.039384555816651
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -3.581532669067383
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.5364505767822267
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.4578518867492676
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.5029339790344238
+      }
+    },
+    {
+      "a": 12,
+      "b": 10,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.558395088232672,
+      "patch_cosine": -0.9955742530094908,
+      "fv": 0.9446199334692187,
+      "nli": 0.9986124038696289,
+      "baseline": {
+        "exact": 0.45,
+        "logp": -2.2772207260131836
+      },
+      "paired": {
+        "exact": 0.15,
+        "logp": -2.179760551452637
+      },
+      "dilution": {
+        "exact": 0.45,
+        "logp": -1.4175612449645996
+      },
+      "drop": {
+        "exact": 0.3,
+        "logp": -0.09746017456054679
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.859659481048584
+      }
+    },
+    {
+      "a": 12,
+      "b": 11,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.88111953869568,
+      "patch_cosine": -0.998729852982461,
+      "fv": 0.9555712611998016,
+      "nli": 0.997218132019043,
+      "baseline": {
+        "exact": 0.45,
+        "logp": -2.2772207260131836
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -2.3856409072875975
+      },
+      "dilution": {
+        "exact": 0.45,
+        "logp": -1.4175612449645996
+      },
+      "drop": {
+        "exact": 0.25,
+        "logp": 0.10842018127441388
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.859659481048584
+      }
+    },
+    {
+      "a": 12,
+      "b": 13,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.987450437920227,
+      "patch_cosine": -0.9995550815180857,
+      "fv": 0.9225479230478326,
+      "nli": 0.9982911944389343,
+      "baseline": {
+        "exact": 0.45,
+        "logp": -2.2772207260131836
+      },
+      "paired": {
+        "exact": 0.15,
+        "logp": -2.6927730560302736
+      },
+      "dilution": {
+        "exact": 0.45,
+        "logp": -1.4175612449645996
+      },
+      "drop": {
+        "exact": 0.3,
+        "logp": 0.41555233001709
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.859659481048584
+      }
+    },
+    {
+      "a": 12,
+      "b": 14,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.859430629433657,
+      "patch_cosine": -0.9994058179043733,
+      "fv": 0.9493225309550144,
+      "nli": 0.9988055229187012,
+      "baseline": {
+        "exact": 0.45,
+        "logp": -2.2772207260131836
+      },
+      "paired": {
+        "exact": 0.25,
+        "logp": -2.2450146675109863
+      },
+      "dilution": {
+        "exact": 0.45,
+        "logp": -1.4175612449645996
+      },
+      "drop": {
+        "exact": 0.2,
+        "logp": -0.032206058502197266
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.859659481048584
+      }
+    },
+    {
+      "a": 12,
+      "b": 1,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.16823003834323,
+      "patch_cosine": -0.928520143161317,
+      "fv": 0.8208342488151456,
+      "nli": 0.9974763989448547,
+      "baseline": {
+        "exact": 0.45,
+        "logp": -2.2772207260131836
+      },
+      "paired": {
+        "exact": 0.65,
+        "logp": -1.180144691467285
+      },
+      "dilution": {
+        "exact": 0.35,
+        "logp": -1.4472808837890625
+      },
+      "drop": {
+        "exact": -0.2,
+        "logp": -1.0970760345458985
+      },
+      "control_drop": {
+        "exact": 0.1,
+        "logp": -0.8299398422241211
+      }
+    },
+    {
+      "a": 12,
+      "b": 8,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.43823284143993,
+      "patch_cosine": -0.8866109139188523,
+      "fv": 0.6617594683523212,
+      "nli": 0.9996801614761353,
+      "baseline": {
+        "exact": 0.45,
+        "logp": -2.2772207260131836
+      },
+      "paired": {
+        "exact": 0.35,
+        "logp": -1.995674991607666
+      },
+      "dilution": {
+        "exact": 0.4,
+        "logp": -1.618044948577881
+      },
+      "drop": {
+        "exact": 0.1,
+        "logp": -0.28154573440551767
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": -0.6591757774353026
+      }
+    },
+    {
+      "a": 12,
+      "b": 18,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.604121429132697,
+      "patch_cosine": -0.9083610794190435,
+      "fv": 0.8381411547694265,
+      "nli": 0.25583571195602417,
+      "baseline": {
+        "exact": 0.45,
+        "logp": -2.2772207260131836
+      },
+      "paired": {
+        "exact": 0.5,
+        "logp": -1.4604461669921875
+      },
+      "dilution": {
+        "exact": 0.4,
+        "logp": -1.618044948577881
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -0.816774559020996
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": -0.6591757774353026
+      }
+    },
+    {
+      "a": 12,
+      "b": 23,
+      "conflict": false,
+      "length": 88,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.01091181414059,
+      "patch_cosine": -0.8554334100554895,
+      "fv": 0.8277664387259777,
+      "nli": 0.9996519088745117,
+      "baseline": {
+        "exact": 0.45,
+        "logp": -2.2772207260131836
+      },
+      "paired": {
+        "exact": 0.3,
+        "logp": -2.7555745124816893
+      },
+      "dilution": {
+        "exact": 0.5,
+        "logp": -1.4399702072143554
+      },
+      "drop": {
+        "exact": 0.15,
+        "logp": 0.4783537864685057
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.8372505187988282
+      }
+    },
+    {
+      "a": 13,
+      "b": 10,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.664197529544136,
+      "patch_cosine": -0.9942289271729223,
+      "fv": 0.9411139490008399,
+      "nli": 0.9988860487937927,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.029673194885254
+      },
+      "paired": {
+        "exact": 0.3,
+        "logp": -1.2296438217163086
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.912252426147461
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.8000293731689454
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.11742076873779306
+      }
+    },
+    {
+      "a": 13,
+      "b": 11,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -18.004096241887034,
+      "patch_cosine": -0.9982246579346483,
+      "fv": 0.9360846026373242,
+      "nli": 0.9984064698219299,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.029673194885254
+      },
+      "paired": {
+        "exact": 0.35,
+        "logp": -1.490869140625
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.912252426147461
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -0.5388040542602539
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.11742076873779306
+      }
+    },
+    {
+      "a": 13,
+      "b": 12,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.987450437920227,
+      "patch_cosine": -0.9995550815180857,
+      "fv": 0.9225479230478326,
+      "nli": 0.997593343257904,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.029673194885254
+      },
+      "paired": {
+        "exact": 0.3,
+        "logp": -1.5024300575256349
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.912252426147461
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.5272431373596191
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.11742076873779306
+      }
+    },
+    {
+      "a": 13,
+      "b": 14,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.99528468680726,
+      "patch_cosine": -0.9996238937902198,
+      "fv": 0.8784297475572507,
+      "nli": 0.9978704452514648,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.029673194885254
+      },
+      "paired": {
+        "exact": 0.25,
+        "logp": -1.8073317527770996
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.912252426147461
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": -0.22234144210815443
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.11742076873779306
+      }
+    },
+    {
+      "a": 13,
+      "b": 0,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.18709247639694,
+      "patch_cosine": -0.9299682143325136,
+      "fv": 0.7406955087331142,
+      "nli": 0.999606192111969,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.029673194885254
+      },
+      "paired": {
+        "exact": 0.4,
+        "logp": -2.545189380645752
+      },
+      "dilution": {
+        "exact": 0.25,
+        "logp": -1.912545394897461
+      },
+      "drop": {
+        "exact": -0.1,
+        "logp": 0.515516185760498
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": -0.1171277999877931
+      }
+    },
+    {
+      "a": 13,
+      "b": 6,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.664685049999523,
+      "patch_cosine": -0.8994084333084041,
+      "fv": 0.6862691670536488,
+      "nli": 0.9996585845947266,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.029673194885254
+      },
+      "paired": {
+        "exact": 0.35,
+        "logp": -1.9211522102355958
+      },
+      "dilution": {
+        "exact": 0.35,
+        "logp": -1.9891961097717286
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -0.1085209846496582
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.040477085113525435
+      }
+    },
+    {
+      "a": 13,
+      "b": 19,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.691942438454392,
+      "patch_cosine": -0.9074836750039648,
+      "fv": 0.8239794971264223,
+      "nli": 0.5943838357925415,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.029673194885254
+      },
+      "paired": {
+        "exact": 0.25,
+        "logp": -1.6290151596069335
+      },
+      "dilution": {
+        "exact": 0.35,
+        "logp": -1.9891961097717286
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": -0.40065803527832045
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.040477085113525435
+      }
+    },
+    {
+      "a": 13,
+      "b": 22,
+      "conflict": false,
+      "length": 88,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.01354829927334,
+      "patch_cosine": -0.8527904729689053,
+      "fv": 0.8254482274754602,
+      "nli": 0.9996150732040405,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.029673194885254
+      },
+      "paired": {
+        "exact": 0.35,
+        "logp": -1.9618585586547852
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.900172805786133
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -0.0678146362304688
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.1295003890991211
+      }
+    },
+    {
+      "a": 14,
+      "b": 10,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.5480141514069,
+      "patch_cosine": -0.9946209468403944,
+      "fv": 0.8837669313749906,
+      "nli": 0.9987086057662964,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.282333183288574
+      },
+      "paired": {
+        "exact": 0.95,
+        "logp": -0.4351964950561523
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.8991315841674805
+      },
+      "drop": {
+        "exact": -0.65,
+        "logp": -1.8471366882324216
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.38320159912109353
+      }
+    },
+    {
+      "a": 14,
+      "b": 11,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.871616648994845,
+      "patch_cosine": -0.9978332026897484,
+      "fv": 0.9278784296553896,
+      "nli": 0.9979504942893982,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.282333183288574
+      },
+      "paired": {
+        "exact": 0.7,
+        "logp": -0.7145709037780762
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.8991315841674805
+      },
+      "drop": {
+        "exact": -0.4,
+        "logp": -1.567762279510498
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.38320159912109353
+      }
+    },
+    {
+      "a": 14,
+      "b": 12,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.859430629433657,
+      "patch_cosine": -0.9994058179043733,
+      "fv": 0.9493225309550144,
+      "nli": 0.9976499676704407,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.282333183288574
+      },
+      "paired": {
+        "exact": 0.55,
+        "logp": -0.9835148811340332
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.8991315841674805
+      },
+      "drop": {
+        "exact": -0.25,
+        "logp": -1.2988183021545407
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.38320159912109353
+      }
+    },
+    {
+      "a": 14,
+      "b": 13,
+      "conflict": true,
+      "length": 87,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -17.99528468680726,
+      "patch_cosine": -0.9996238937902198,
+      "fv": 0.8784297475572507,
+      "nli": 0.9961836934089661,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.282333183288574
+      },
+      "paired": {
+        "exact": 0.7,
+        "logp": -0.7578388214111328
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.8991315841674805
+      },
+      "drop": {
+        "exact": -0.4,
+        "logp": -1.5244943618774411
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.38320159912109353
+      }
+    },
+    {
+      "a": 14,
+      "b": 1,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -16.166597292608078,
+      "patch_cosine": -0.928086073954842,
+      "fv": 0.7638977251138213,
+      "nli": 0.9990179538726807,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.282333183288574
+      },
+      "paired": {
+        "exact": 0.25,
+        "logp": -3.378886890411377
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.776450252532959
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 1.096553707122803
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": -0.505882930755615
+      }
+    },
+    {
+      "a": 14,
+      "b": 6,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.54028309865609,
+      "patch_cosine": -0.8985274660690715,
+      "fv": 0.7009472113050966,
+      "nli": 0.9995916485786438,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.282333183288574
+      },
+      "paired": {
+        "exact": 0.25,
+        "logp": -2.755449676513672
+      },
+      "dilution": {
+        "exact": 0.4,
+        "logp": -1.5592042922973632
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 0.47311649322509775
+      },
+      "control_drop": {
+        "exact": -0.1,
+        "logp": -0.7231288909912108
+      }
+    },
+    {
+      "a": 14,
+      "b": 18,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.627338355756876,
+      "patch_cosine": -0.9093791604490384,
+      "fv": 0.8178987131184626,
+      "nli": 0.6061606407165527,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.282333183288574
+      },
+      "paired": {
+        "exact": 0.4,
+        "logp": -1.1930021286010741
+      },
+      "dilution": {
+        "exact": 0.4,
+        "logp": -1.5592042922973632
+      },
+      "drop": {
+        "exact": -0.1,
+        "logp": -1.0893310546875
+      },
+      "control_drop": {
+        "exact": -0.1,
+        "logp": -0.7231288909912108
+      }
+    },
+    {
+      "a": 14,
+      "b": 21,
+      "conflict": false,
+      "length": 88,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -13.880703907521182,
+      "patch_cosine": -0.8507707136944669,
+      "fv": 0.8448135322521166,
+      "nli": 0.9996793270111084,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.282333183288574
+      },
+      "paired": {
+        "exact": 0.35,
+        "logp": -2.2466421127319336
+      },
+      "dilution": {
+        "exact": 0.35,
+        "logp": -1.7605502128601074
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -0.03569107055664045
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": -0.5217829704284667
+      }
+    },
+    {
+      "a": 15,
+      "b": 16,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.493981150724466,
+      "patch_cosine": -0.9984854921693511,
+      "fv": 0.9063972132788073,
+      "nli": 0.995989978313446,
+      "baseline": {
+        "exact": 0.8,
+        "logp": -0.569029426574707
+      },
+      "paired": {
+        "exact": 0.45,
+        "logp": -1.2759047508239747
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.2099509239196777
+      },
+      "drop": {
+        "exact": 0.35,
+        "logp": 0.7068753242492677
+      },
+      "control_drop": {
+        "exact": 0.75,
+        "logp": 2.6409214973449706
+      }
+    },
+    {
+      "a": 15,
+      "b": 17,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.444328264686817,
+      "patch_cosine": -0.9982492974177816,
+      "fv": 0.9373452944231594,
+      "nli": 0.9986997842788696,
+      "baseline": {
+        "exact": 0.8,
+        "logp": -0.569029426574707
+      },
+      "paired": {
+        "exact": 0.4,
+        "logp": -1.6466269493103027
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.2099509239196777
+      },
+      "drop": {
+        "exact": 0.4,
+        "logp": 1.0775975227355956
+      },
+      "control_drop": {
+        "exact": 0.75,
+        "logp": 2.6409214973449706
+      }
+    },
+    {
+      "a": 15,
+      "b": 18,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.43588909434558,
+      "patch_cosine": -0.998102751986367,
+      "fv": 0.911241153743071,
+      "nli": 0.9988914132118225,
+      "baseline": {
+        "exact": 0.8,
+        "logp": -0.569029426574707
+      },
+      "paired": {
+        "exact": 0.4,
+        "logp": -1.561178493499756
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.2099509239196777
+      },
+      "drop": {
+        "exact": 0.4,
+        "logp": 0.9921490669250489
+      },
+      "control_drop": {
+        "exact": 0.75,
+        "logp": 2.6409214973449706
+      }
+    },
+    {
+      "a": 15,
+      "b": 19,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.42008375749298,
+      "patch_cosine": -0.9979222241907137,
+      "fv": 0.8948997319835065,
+      "nli": 0.9989596605300903,
+      "baseline": {
+        "exact": 0.8,
+        "logp": -0.569029426574707
+      },
+      "paired": {
+        "exact": 0.45,
+        "logp": -1.657642650604248
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.2099509239196777
+      },
+      "drop": {
+        "exact": 0.35,
+        "logp": 1.0886132240295412
+      },
+      "control_drop": {
+        "exact": 0.75,
+        "logp": 2.6409214973449706
+      }
+    },
+    {
+      "a": 15,
+      "b": 4,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -15.841555403401541,
+      "patch_cosine": -0.9467428776607826,
+      "fv": 0.7611210617656737,
+      "nli": 0.9889100193977356,
+      "baseline": {
+        "exact": 0.8,
+        "logp": -0.569029426574707
+      },
+      "paired": {
+        "exact": 0.3,
+        "logp": -2.9265581130981446
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -2.8063053131103515
+      },
+      "drop": {
+        "exact": 0.5,
+        "logp": 2.3575286865234375
+      },
+      "control_drop": {
+        "exact": 0.8,
+        "logp": 2.2372758865356444
+      }
+    },
+    {
+      "a": 15,
+      "b": 9,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -14.964245480836173,
+      "patch_cosine": -0.8994045338667744,
+      "fv": 0.4717134406061655,
+      "nli": 0.9992901086807251,
+      "baseline": {
+        "exact": 0.8,
+        "logp": -0.569029426574707
+      },
+      "paired": {
+        "exact": 0.1,
+        "logp": -2.679567241668701
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.2099509239196777
+      },
+      "drop": {
+        "exact": 0.7,
+        "logp": 2.110537815093994
+      },
+      "control_drop": {
+        "exact": 0.75,
+        "logp": 2.6409214973449706
+      }
+    },
+    {
+      "a": 15,
+      "b": 11,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -15.644916856533692,
+      "patch_cosine": -0.9115687720929022,
+      "fv": 0.8012138461756739,
+      "nli": 0.05093348026275635,
+      "baseline": {
+        "exact": 0.8,
+        "logp": -0.569029426574707
+      },
+      "paired": {
+        "exact": 0.6,
+        "logp": -1.0024661064147948
+      },
+      "dilution": {
+        "exact": 0.2,
+        "logp": -2.2585896492004394
+      },
+      "drop": {
+        "exact": 0.2,
+        "logp": 0.4334366798400878
+      },
+      "control_drop": {
+        "exact": 0.6,
+        "logp": 1.6895602226257322
+      }
+    },
+    {
+      "a": 15,
+      "b": 24,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.515125192804426,
+      "patch_cosine": -0.9204476866711881,
+      "fv": 0.804055644146934,
+      "nli": 0.9981898665428162,
+      "baseline": {
+        "exact": 0.8,
+        "logp": -0.569029426574707
+      },
+      "paired": {
+        "exact": 0.25,
+        "logp": -2.248025417327881
+      },
+      "dilution": {
+        "exact": 0.25,
+        "logp": -2.4568723678588866
+      },
+      "drop": {
+        "exact": 0.55,
+        "logp": 1.6789959907531737
+      },
+      "control_drop": {
+        "exact": 0.55,
+        "logp": 1.8878429412841795
+      }
+    },
+    {
+      "a": 16,
+      "b": 15,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.493981150724466,
+      "patch_cosine": -0.9984854921693511,
+      "fv": 0.9063972132788073,
+      "nli": 0.99544358253479,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -3.7026721954345705
+      },
+      "paired": {
+        "exact": 0.1,
+        "logp": -4.066910743713379
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -5.384902763366699
+      },
+      "drop": {
+        "exact": -0.1,
+        "logp": 0.3642385482788084
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.6822305679321286
+      }
+    },
+    {
+      "a": 16,
+      "b": 17,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.575403418650883,
+      "patch_cosine": -0.9998712028010607,
+      "fv": 0.9495203855761254,
+      "nli": 0.9969822764396667,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -3.7026721954345705
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -3.7006928443908693
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -5.384902763366699
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.001979351043701172
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.6822305679321286
+      }
+    },
+    {
+      "a": 16,
+      "b": 18,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.566677445019664,
+      "patch_cosine": -0.9997111714366048,
+      "fv": 0.9549912701013248,
+      "nli": 0.9983341097831726,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -3.7026721954345705
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -3.521010684967041
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -5.384902763366699
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.18166151046752965
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.6822305679321286
+      }
+    },
+    {
+      "a": 16,
+      "b": 19,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.55226401261907,
+      "patch_cosine": -0.9996220079520587,
+      "fv": 0.9680194544530741,
+      "nli": 0.998878538608551,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -3.7026721954345705
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -3.8858394622802734
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -5.384902763366699
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.18316726684570295
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.6822305679321286
+      }
+    },
+    {
+      "a": 16,
+      "b": 2,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -15.84772116393594,
+      "patch_cosine": -0.9433598057219111,
+      "fv": 0.7741350885312354,
+      "nli": 0.9058842062950134,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -3.7026721954345705
+      },
+      "paired": {
+        "exact": 0.05,
+        "logp": -4.493206405639649
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -5.039028072357178
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": 0.7905342102050783
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.3363558769226076
+      }
+    },
+    {
+      "a": 16,
+      "b": 8,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -14.991130628195,
+      "patch_cosine": -0.8924621512333895,
+      "fv": 0.6026084049111093,
+      "nli": 0.9991198182106018,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -3.7026721954345705
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -4.479594898223877
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -5.384902763366699
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.7769227027893066
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.6822305679321286
+      }
+    },
+    {
+      "a": 16,
+      "b": 12,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -15.692572472988324,
+      "patch_cosine": -0.9106417420049728,
+      "fv": 0.8380302591258841,
+      "nli": 0.973425030708313,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -3.7026721954345705
+      },
+      "paired": {
+        "exact": 0.05,
+        "logp": -3.2367077827453614
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.769380378723144
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -0.4659644126892091
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.0667081832885739
+      }
+    },
+    {
+      "a": 16,
+      "b": 20,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.275546775500555,
+      "patch_cosine": -0.9061839866994716,
+      "fv": 0.7885692484957458,
+      "nli": 0.9982714653015137,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -3.7026721954345705
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -4.667373371124268
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -5.125287246704102
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.9647011756896973
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 1.4226150512695312
+      }
+    },
+    {
+      "a": 17,
+      "b": 15,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.444328264686817,
+      "patch_cosine": -0.9982492974177816,
+      "fv": 0.9373452944231594,
+      "nli": 0.9981827735900879,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.6414910316467286
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -3.144786071777344
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.972573757171631
+      },
+      "drop": {
+        "exact": 0.1,
+        "logp": 0.5032950401306153
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 1.3310827255249023
+      }
+    },
+    {
+      "a": 17,
+      "b": 16,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.575403418650883,
+      "patch_cosine": -0.9998712028010607,
+      "fv": 0.9495203855761254,
+      "nli": 0.9961444139480591,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.6414910316467286
+      },
+      "paired": {
+        "exact": 0.15,
+        "logp": -1.8799230575561523
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.972573757171631
+      },
+      "drop": {
+        "exact": 0.15,
+        "logp": -0.7615679740905763
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 1.3310827255249023
+      }
+    },
+    {
+      "a": 17,
+      "b": 18,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.52331485665913,
+      "patch_cosine": -0.9998685716635192,
+      "fv": 0.9441327955288749,
+      "nli": 0.9961993098258972,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.6414910316467286
+      },
+      "paired": {
+        "exact": 0.1,
+        "logp": -2.702397918701172
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.972573757171631
+      },
+      "drop": {
+        "exact": 0.2,
+        "logp": 0.06090688705444336
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 1.3310827255249023
+      }
+    },
+    {
+      "a": 17,
+      "b": 19,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.509836409081935,
+      "patch_cosine": -0.9998337319944796,
+      "fv": 0.9544559969987834,
+      "nli": 0.9985677003860474,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.6414910316467286
+      },
+      "paired": {
+        "exact": 0.15,
+        "logp": -2.7897617340087892
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.972573757171631
+      },
+      "drop": {
+        "exact": 0.15,
+        "logp": 0.14827070236206064
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 1.3310827255249023
+      }
+    },
+    {
+      "a": 17,
+      "b": 1,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -15.738789839143184,
+      "patch_cosine": -0.9395647806647702,
+      "fv": 0.769963740618115,
+      "nli": 0.7335909008979797,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.6414910316467286
+      },
+      "paired": {
+        "exact": 0.25,
+        "logp": -2.447306251525879
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.6581974983215333
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": -0.1941847801208496
+      },
+      "control_drop": {
+        "exact": 0.25,
+        "logp": 1.0167064666748047
+      }
+    },
+    {
+      "a": 17,
+      "b": 7,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -14.85561728928354,
+      "patch_cosine": -0.8976904861444219,
+      "fv": 0.6664847621793473,
+      "nli": 0.9984869956970215,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.6414910316467286
+      },
+      "paired": {
+        "exact": 0.1,
+        "logp": -2.6415689468383787
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.972573757171631
+      },
+      "drop": {
+        "exact": 0.2,
+        "logp": 7.791519165012417e-05
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 1.3310827255249023
+      }
+    },
+    {
+      "a": 17,
+      "b": 12,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -15.636220309149987,
+      "patch_cosine": -0.9098960965173377,
+      "fv": 0.8773157311267512,
+      "nli": 0.9868857860565186,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.6414910316467286
+      },
+      "paired": {
+        "exact": 0.25,
+        "logp": -2.434782600402832
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.4890278816223144
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": -0.20670843124389648
+      },
+      "control_drop": {
+        "exact": 0.25,
+        "logp": 0.8475368499755858
+      }
+    },
+    {
+      "a": 17,
+      "b": 20,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.243412269020975,
+      "patch_cosine": -0.9066596481172887,
+      "fv": 0.8196144023969609,
+      "nli": 0.9985200762748718,
+      "baseline": {
+        "exact": 0.3,
+        "logp": -2.6414910316467286
+      },
+      "paired": {
+        "exact": 0.1,
+        "logp": -3.440834617614746
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.5222896575927733
+      },
+      "drop": {
+        "exact": 0.2,
+        "logp": 0.7993435859680176
+      },
+      "control_drop": {
+        "exact": 0.25,
+        "logp": 0.8807986259460447
+      }
+    },
+    {
+      "a": 18,
+      "b": 15,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.43588909434558,
+      "patch_cosine": -0.998102751986367,
+      "fv": 0.911241153743071,
+      "nli": 0.9988723397254944,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.612334156036377
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -2.832602024078369
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.188158893585205
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.22026786804199228
+      },
+      "control_drop": {
+        "exact": 0.2,
+        "logp": 1.5758247375488286
+      }
+    },
+    {
+      "a": 18,
+      "b": 16,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.566677445019664,
+      "patch_cosine": -0.9997111714366048,
+      "fv": 0.9549912701013248,
+      "nli": 0.9982085227966309,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.612334156036377
+      },
+      "paired": {
+        "exact": 0.3,
+        "logp": -2.2057700157165527
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.188158893585205
+      },
+      "drop": {
+        "exact": -0.1,
+        "logp": -0.40656414031982413
+      },
+      "control_drop": {
+        "exact": 0.2,
+        "logp": 1.5758247375488286
+      }
+    },
+    {
+      "a": 18,
+      "b": 17,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.52331485665913,
+      "patch_cosine": -0.9998685716635192,
+      "fv": 0.9441327955288749,
+      "nli": 0.9963055849075317,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.612334156036377
+      },
+      "paired": {
+        "exact": 0.35,
+        "logp": -1.8385685920715331
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.188158893585205
+      },
+      "drop": {
+        "exact": -0.15,
+        "logp": -0.7737655639648438
+      },
+      "control_drop": {
+        "exact": 0.2,
+        "logp": 1.5758247375488286
+      }
+    },
+    {
+      "a": 18,
+      "b": 19,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.504737754962772,
+      "patch_cosine": -0.9998913660712991,
+      "fv": 0.9473369168080926,
+      "nli": 0.9973819851875305,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.612334156036377
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -2.455391502380371
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.188158893585205
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.15694265365600568
+      },
+      "control_drop": {
+        "exact": 0.2,
+        "logp": 1.5758247375488286
+      }
+    },
+    {
+      "a": 18,
+      "b": 4,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -15.84608225370298,
+      "patch_cosine": -0.9440152182952899,
+      "fv": 0.7910420424239426,
+      "nli": 0.98115473985672,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.612334156036377
+      },
+      "paired": {
+        "exact": 0.25,
+        "logp": -2.7655256271362303
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.777872180938721
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": 0.15319147109985343
+      },
+      "control_drop": {
+        "exact": 0.2,
+        "logp": 1.165538024902344
+      }
+    },
+    {
+      "a": 18,
+      "b": 8,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -14.914737749923336,
+      "patch_cosine": -0.8907110206438434,
+      "fv": 0.6537671695399495,
+      "nli": 0.9978731870651245,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.612334156036377
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -2.6227957725524904
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.188158893585205
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.010461616516113548
+      },
+      "control_drop": {
+        "exact": 0.2,
+        "logp": 1.5758247375488286
+      }
+    },
+    {
+      "a": 18,
+      "b": 12,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -15.604121429132697,
+      "patch_cosine": -0.9083610794190435,
+      "fv": 0.8381411547694265,
+      "nli": 0.9853553771972656,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.612334156036377
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -1.9038503646850586
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.382573699951172
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.7084837913513182
+      },
+      "control_drop": {
+        "exact": 0.2,
+        "logp": 0.7702395439147951
+      }
+    },
+    {
+      "a": 18,
+      "b": 21,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.370856501092577,
+      "patch_cosine": -0.9162808847116222,
+      "fv": 0.8187700031188083,
+      "nli": 0.998079776763916,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.612334156036377
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -2.1041872024536135
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.3931010246276854
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.5081469535827634
+      },
+      "control_drop": {
+        "exact": 0.15,
+        "logp": 0.7807668685913085
+      }
+    },
+    {
+      "a": 19,
+      "b": 15,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.42008375749298,
+      "patch_cosine": -0.9979222241907137,
+      "fv": 0.8948997319835065,
+      "nli": 0.9990068078041077,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.7539173126220704
+      },
+      "paired": {
+        "exact": 0.35,
+        "logp": -1.7994338989257812
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.026988315582275
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.9544834136962892
+      },
+      "control_drop": {
+        "exact": 0.35,
+        "logp": 1.2730710029602048
+      }
+    },
+    {
+      "a": 19,
+      "b": 16,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.55226401261907,
+      "patch_cosine": -0.9996220079520587,
+      "fv": 0.9680194544530741,
+      "nli": 0.9986785054206848,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.7539173126220704
+      },
+      "paired": {
+        "exact": 0.45,
+        "logp": -1.3394386291503906
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.026988315582275
+      },
+      "drop": {
+        "exact": -0.1,
+        "logp": -1.4144786834716798
+      },
+      "control_drop": {
+        "exact": 0.35,
+        "logp": 1.2730710029602048
+      }
+    },
+    {
+      "a": 19,
+      "b": 17,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.509836409081935,
+      "patch_cosine": -0.9998337319944796,
+      "fv": 0.9544559969987834,
+      "nli": 0.9979791045188904,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.7539173126220704
+      },
+      "paired": {
+        "exact": 0.4,
+        "logp": -1.3841734886169434
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.026988315582275
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -1.369743824005127
+      },
+      "control_drop": {
+        "exact": 0.35,
+        "logp": 1.2730710029602048
+      }
+    },
+    {
+      "a": 19,
+      "b": 18,
+      "conflict": true,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -16.504737754962772,
+      "patch_cosine": -0.9998913660712991,
+      "fv": 0.9473369168080926,
+      "nli": 0.9954777359962463,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.7539173126220704
+      },
+      "paired": {
+        "exact": 0.55,
+        "logp": -0.8687716484069824
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.026988315582275
+      },
+      "drop": {
+        "exact": -0.2,
+        "logp": -1.885145664215088
+      },
+      "control_drop": {
+        "exact": 0.35,
+        "logp": 1.2730710029602048
+      }
+    },
+    {
+      "a": 19,
+      "b": 0,
+      "conflict": false,
+      "length": 93,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -15.53322302682879,
+      "patch_cosine": -0.9355827073424019,
+      "fv": 0.6960561129547642,
+      "nli": 0.99050372838974,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.7539173126220704
+      },
+      "paired": {
+        "exact": 0.45,
+        "logp": -1.6431078910827637
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -3.595184803009033
+      },
+      "drop": {
+        "exact": -0.1,
+        "logp": -1.1108094215393067
+      },
+      "control_drop": {
+        "exact": 0.35,
+        "logp": 0.8412674903869628
+      }
+    },
+    {
+      "a": 19,
+      "b": 9,
+      "conflict": false,
+      "length": 91,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -15.028445676816677,
+      "patch_cosine": -0.9011071870369529,
+      "fv": 0.4881378588504562,
+      "nli": 0.9955692887306213,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.7539173126220704
+      },
+      "paired": {
+        "exact": 0.05,
+        "logp": -3.0865290641784666
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.026988315582275
+      },
+      "drop": {
+        "exact": 0.3,
+        "logp": 0.3326117515563962
+      },
+      "control_drop": {
+        "exact": 0.35,
+        "logp": 1.2730710029602048
+      }
+    },
+    {
+      "a": 19,
+      "b": 14,
+      "conflict": false,
+      "length": 89,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -15.61166760665681,
+      "patch_cosine": -0.9091772370529241,
+      "fv": 0.8209326239497649,
+      "nli": 0.9773493409156799,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.7539173126220704
+      },
+      "paired": {
+        "exact": 0.55,
+        "logp": -1.5872791290283204
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -3.0442143440246583
+      },
+      "drop": {
+        "exact": -0.2,
+        "logp": -1.16663818359375
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 0.2902970314025879
+      }
+    },
+    {
+      "a": 19,
+      "b": 23,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.454399743661396,
+      "patch_cosine": -0.9184274669281222,
+      "fv": 0.8138372089009633,
+      "nli": 0.9985426664352417,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.7539173126220704
+      },
+      "paired": {
+        "exact": 0.55,
+        "logp": -1.1795573234558105
+      },
+      "dilution": {
+        "exact": 0.05,
+        "logp": -2.9516085624694823
+      },
+      "drop": {
+        "exact": -0.2,
+        "logp": -1.5743599891662599
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 0.19769124984741193
+      }
+    },
+    {
+      "a": 20,
+      "b": 21,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.807456492986391,
+      "patch_cosine": -0.9931410709852948,
+      "fv": 0.8801251856436203,
+      "nli": 0.9951176643371582,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.10433349609375
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -1.9751612663269043
+      },
+      "dilution": {
+        "exact": 0.5,
+        "logp": -1.5834832191467285
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": -0.12917222976684584
+      },
+      "control_drop": {
+        "exact": -0.3,
+        "logp": -0.5208502769470216
+      }
+    },
+    {
+      "a": 20,
+      "b": 22,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.74187948862852,
+      "patch_cosine": -0.9885841898594964,
+      "fv": 0.8758364191797147,
+      "nli": 0.9979223608970642,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.10433349609375
+      },
+      "paired": {
+        "exact": 0.05,
+        "logp": -2.6386324882507326
+      },
+      "dilution": {
+        "exact": 0.5,
+        "logp": -1.5834832191467285
+      },
+      "drop": {
+        "exact": 0.15,
+        "logp": 0.5342989921569825
+      },
+      "control_drop": {
+        "exact": -0.3,
+        "logp": -0.5208502769470216
+      }
+    },
+    {
+      "a": 20,
+      "b": 23,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.76767388672721,
+      "patch_cosine": -0.9862843077384713,
+      "fv": 0.839229197868282,
+      "nli": 0.9986057877540588,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.10433349609375
+      },
+      "paired": {
+        "exact": 0.05,
+        "logp": -3.028364658355713
+      },
+      "dilution": {
+        "exact": 0.5,
+        "logp": -1.5834832191467285
+      },
+      "drop": {
+        "exact": 0.15,
+        "logp": 0.9240311622619628
+      },
+      "control_drop": {
+        "exact": -0.3,
+        "logp": -0.5208502769470216
+      }
+    },
+    {
+      "a": 20,
+      "b": 24,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.811443440259321,
+      "patch_cosine": -0.9848794505685333,
+      "fv": 0.8831295257917534,
+      "nli": 0.9987373948097229,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.10433349609375
+      },
+      "paired": {
+        "exact": 0.1,
+        "logp": -2.5162988662719727
+      },
+      "dilution": {
+        "exact": 0.5,
+        "logp": -1.5834832191467285
+      },
+      "drop": {
+        "exact": 0.1,
+        "logp": 0.41196537017822266
+      },
+      "control_drop": {
+        "exact": -0.3,
+        "logp": -0.5208502769470216
+      }
+    },
+    {
+      "a": 20,
+      "b": 2,
+      "conflict": false,
+      "length": 92,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -13.700334783305822,
+      "patch_cosine": -0.8605815197690414,
+      "fv": 0.7614376894539455,
+      "nli": 0.996080219745636,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.10433349609375
+      },
+      "paired": {
+        "exact": 0.25,
+        "logp": -3.210868263244629
+      },
+      "dilution": {
+        "exact": 0.5,
+        "logp": -1.4942694664001466
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": 1.1065347671508787
+      },
+      "control_drop": {
+        "exact": -0.3,
+        "logp": -0.6100640296936035
+      }
+    },
+    {
+      "a": 20,
+      "b": 5,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -13.393937813876198,
+      "patch_cosine": -0.8681753050489428,
+      "fv": 0.7496625834884879,
+      "nli": 0.9997050166130066,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.10433349609375
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -2.47192440032959
+      },
+      "dilution": {
+        "exact": 0.5,
+        "logp": -1.6794763565063477
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.36759090423583984
+      },
+      "control_drop": {
+        "exact": -0.3,
+        "logp": -0.42485713958740234
+      }
+    },
+    {
+      "a": 20,
+      "b": 14,
+      "conflict": false,
+      "length": 88,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -13.648756978945306,
+      "patch_cosine": -0.8354829406234502,
+      "fv": 0.7856209929736281,
+      "nli": 0.9998049139976501,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.10433349609375
+      },
+      "paired": {
+        "exact": 0.15,
+        "logp": -3.052265739440918
+      },
+      "dilution": {
+        "exact": 0.55,
+        "logp": -1.4418102264404298
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 0.947932243347168
+      },
+      "control_drop": {
+        "exact": -0.35,
+        "logp": -0.6625232696533203
+      }
+    },
+    {
+      "a": 20,
+      "b": 19,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -14.243083602326708,
+      "patch_cosine": -0.9076798971046073,
+      "fv": 0.7860344683940098,
+      "nli": 0.6976502537727356,
+      "baseline": {
+        "exact": 0.2,
+        "logp": -2.10433349609375
+      },
+      "paired": {
+        "exact": 0.15,
+        "logp": -2.4457962036132814
+      },
+      "dilution": {
+        "exact": 0.5,
+        "logp": -1.6794763565063477
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": 0.34146270751953134
+      },
+      "control_drop": {
+        "exact": -0.3,
+        "logp": -0.42485713958740234
+      }
+    },
+    {
+      "a": 21,
+      "b": 20,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.807456492986391,
+      "patch_cosine": -0.9931410709852948,
+      "fv": 0.8801251856436203,
+      "nli": 0.9954560995101929,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.054520511627198
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -4.5206122398376465
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.65442419052124
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.46609172821044886
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 0.5999036788940426
+      }
+    },
+    {
+      "a": 21,
+      "b": 22,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.863416955027224,
+      "patch_cosine": -0.9980125918526658,
+      "fv": 0.9398770181382019,
+      "nli": 0.9950487017631531,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.054520511627198
+      },
+      "paired": {
+        "exact": 0.05,
+        "logp": -4.631763172149658
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.65442419052124
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": 0.5772426605224608
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 0.5999036788940426
+      }
+    },
+    {
+      "a": 21,
+      "b": 23,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.888179372593001,
+      "patch_cosine": -0.9956075431807774,
+      "fv": 0.8816005793254074,
+      "nli": 0.997671902179718,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.054520511627198
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -4.762496566772461
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.65442419052124
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.707976055145263
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 0.5999036788940426
+      }
+    },
+    {
+      "a": 21,
+      "b": 24,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.937158528388471,
+      "patch_cosine": -0.9945124802900356,
+      "fv": 0.937837604075098,
+      "nli": 0.9978894591331482,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.054520511627198
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -4.846707725524903
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.65442419052124
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.7921872138977051
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 0.5999036788940426
+      }
+    },
+    {
+      "a": 21,
+      "b": 1,
+      "conflict": false,
+      "length": 92,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -13.75776038722139,
+      "patch_cosine": -0.8653730551788709,
+      "fv": 0.7397550032166503,
+      "nli": 0.95621258020401,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.054520511627198
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -4.609775829315185
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.538146209716797
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.5552553176879877
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 0.48362569808959943
+      }
+    },
+    {
+      "a": 21,
+      "b": 6,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -13.51550664688132,
+      "patch_cosine": -0.8562306164145538,
+      "fv": 0.6661637793419214,
+      "nli": 0.9997116923332214,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.054520511627198
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -5.050228500366211
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.798720264434815
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.9957079887390137
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 0.7441997528076172
+      }
+    },
+    {
+      "a": 21,
+      "b": 10,
+      "conflict": false,
+      "length": 88,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -13.735733199565692,
+      "patch_cosine": -0.8530362035975151,
+      "fv": 0.8241868745439491,
+      "nli": 0.9997145533561707,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.054520511627198
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -4.422600269317627
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.5276055335998535
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.36807975769042933
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 0.4730850219726559
+      }
+    },
+    {
+      "a": 21,
+      "b": 19,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -14.373200247353507,
+      "patch_cosine": -0.9171465263383585,
+      "fv": 0.8146372931573521,
+      "nli": 0.5683099031448364,
+      "baseline": {
+        "exact": 0.0,
+        "logp": -4.054520511627198
+      },
+      "paired": {
+        "exact": 0.0,
+        "logp": -4.180793190002442
+      },
+      "dilution": {
+        "exact": 0.0,
+        "logp": -4.798720264434815
+      },
+      "drop": {
+        "exact": 0.0,
+        "logp": 0.12627267837524414
+      },
+      "control_drop": {
+        "exact": 0.0,
+        "logp": 0.7441997528076172
+      }
+    },
+    {
+      "a": 22,
+      "b": 20,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.74187948862852,
+      "patch_cosine": -0.9885841898594964,
+      "fv": 0.8758364191797147,
+      "nli": 0.9982566237449646,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.3010825157165526
+      },
+      "paired": {
+        "exact": 0.1,
+        "logp": -2.5529434204101564
+      },
+      "dilution": {
+        "exact": 0.25,
+        "logp": -2.5972344398498537
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -0.7481390953063962
+      },
+      "control_drop": {
+        "exact": -0.2,
+        "logp": -0.703848075866699
+      }
+    },
+    {
+      "a": 22,
+      "b": 21,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.863416955027224,
+      "patch_cosine": -0.9980125918526658,
+      "fv": 0.9398770181382019,
+      "nli": 0.9941353797912598,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.3010825157165526
+      },
+      "paired": {
+        "exact": 0.15,
+        "logp": -2.4548588752746583
+      },
+      "dilution": {
+        "exact": 0.25,
+        "logp": -2.5972344398498537
+      },
+      "drop": {
+        "exact": -0.1,
+        "logp": -0.8462236404418944
+      },
+      "control_drop": {
+        "exact": -0.2,
+        "logp": -0.703848075866699
+      }
+    },
+    {
+      "a": 22,
+      "b": 23,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.929212722422875,
+      "patch_cosine": -0.9981913888673413,
+      "fv": 0.907802106107561,
+      "nli": 0.9956140518188477,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.3010825157165526
+      },
+      "paired": {
+        "exact": 0.15,
+        "logp": -3.305259418487549
+      },
+      "dilution": {
+        "exact": 0.25,
+        "logp": -2.5972344398498537
+      },
+      "drop": {
+        "exact": -0.1,
+        "logp": 0.00417690277099636
+      },
+      "control_drop": {
+        "exact": -0.2,
+        "logp": -0.703848075866699
+      }
+    },
+    {
+      "a": 22,
+      "b": 24,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.989678486692382,
+      "patch_cosine": -0.9978491507467684,
+      "fv": 0.929139344844957,
+      "nli": 0.9979596138000488,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.3010825157165526
+      },
+      "paired": {
+        "exact": 0.25,
+        "logp": -3.640299415588379
+      },
+      "dilution": {
+        "exact": 0.25,
+        "logp": -2.5972344398498537
+      },
+      "drop": {
+        "exact": -0.2,
+        "logp": 0.33921689987182635
+      },
+      "control_drop": {
+        "exact": -0.2,
+        "logp": -0.703848075866699
+      }
+    },
+    {
+      "a": 22,
+      "b": 1,
+      "conflict": false,
+      "length": 92,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -13.728572387278877,
+      "patch_cosine": -0.8633985843691,
+      "fv": 0.7170359198012938,
+      "nli": 0.9920399188995361,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.3010825157165526
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -2.6450101852416994
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -2.6576410293579102
+      },
+      "drop": {
+        "exact": -0.15,
+        "logp": -0.6560723304748532
+      },
+      "control_drop": {
+        "exact": -0.25,
+        "logp": -0.6434414863586424
+      }
+    },
+    {
+      "a": 22,
+      "b": 6,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -13.491120987982226,
+      "patch_cosine": -0.8545486382787058,
+      "fv": 0.659368294992447,
+      "nli": 0.9995310306549072,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.3010825157165526
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -2.3934497833251953
+      },
+      "dilution": {
+        "exact": 0.25,
+        "logp": -2.8514348030090333
+      },
+      "drop": {
+        "exact": -0.15,
+        "logp": -0.9076327323913573
+      },
+      "control_drop": {
+        "exact": -0.2,
+        "logp": -0.44964771270751935
+      }
+    },
+    {
+      "a": 22,
+      "b": 10,
+      "conflict": false,
+      "length": 88,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -13.783890522601249,
+      "patch_cosine": -0.8558896189353075,
+      "fv": 0.8417369493600088,
+      "nli": 0.9997697472572327,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.3010825157165526
+      },
+      "paired": {
+        "exact": 0.1,
+        "logp": -2.895725631713867
+      },
+      "dilution": {
+        "exact": 0.25,
+        "logp": -2.7278347969055177
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -0.40535688400268555
+      },
+      "control_drop": {
+        "exact": -0.2,
+        "logp": -0.573247718811035
+      }
+    },
+    {
+      "a": 22,
+      "b": 17,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -14.409219350949684,
+      "patch_cosine": -0.9182428976163839,
+      "fv": 0.8398631411900792,
+      "nli": 0.030954213812947273,
+      "baseline": {
+        "exact": 0.05,
+        "logp": -3.3010825157165526
+      },
+      "paired": {
+        "exact": 0.3,
+        "logp": -2.9755635261535645
+      },
+      "dilution": {
+        "exact": 0.25,
+        "logp": -2.8514348030090333
+      },
+      "drop": {
+        "exact": -0.25,
+        "logp": -0.3255189895629882
+      },
+      "control_drop": {
+        "exact": -0.2,
+        "logp": -0.44964771270751935
+      }
+    },
+    {
+      "a": 23,
+      "b": 20,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.76767388672721,
+      "patch_cosine": -0.9862843077384713,
+      "fv": 0.839229197868282,
+      "nli": 0.9988183379173279,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.005185604095459
+      },
+      "paired": {
+        "exact": 0.25,
+        "logp": -1.2839693069458007
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.9515690803527832
+      },
+      "drop": {
+        "exact": 0.1,
+        "logp": -0.7212162971496583
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": -0.05361652374267578
+      }
+    },
+    {
+      "a": 23,
+      "b": 21,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.888179372593001,
+      "patch_cosine": -0.9956075431807774,
+      "fv": 0.8816005793254074,
+      "nli": 0.9971376657485962,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.005185604095459
+      },
+      "paired": {
+        "exact": 0.3,
+        "logp": -1.2961100578308105
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.9515690803527832
+      },
+      "drop": {
+        "exact": 0.05,
+        "logp": -0.7090755462646485
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": -0.05361652374267578
+      }
+    },
+    {
+      "a": 23,
+      "b": 22,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.929212722422875,
+      "patch_cosine": -0.9981913888673413,
+      "fv": 0.907802106107561,
+      "nli": 0.9959881901741028,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.005185604095459
+      },
+      "paired": {
+        "exact": 0.4,
+        "logp": -1.3454771995544434
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.9515690803527832
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -0.6597084045410155
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": -0.05361652374267578
+      }
+    },
+    {
+      "a": 23,
+      "b": 24,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -15.07034409581011,
+      "patch_cosine": -0.9991368315298813,
+      "fv": 0.8791288711089303,
+      "nli": 0.9965080618858337,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.005185604095459
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -3.1611257553100587
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.9515690803527832
+      },
+      "drop": {
+        "exact": 0.15,
+        "logp": 1.1559401512145997
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": -0.05361652374267578
+      }
+    },
+    {
+      "a": 23,
+      "b": 1,
+      "conflict": false,
+      "length": 92,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -13.776327195858093,
+      "patch_cosine": -0.8628764759963878,
+      "fv": 0.7133547913045298,
+      "nli": 0.9963327646255493,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.005185604095459
+      },
+      "paired": {
+        "exact": 0.45,
+        "logp": -1.4045677185058594
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.954780101776123
+      },
+      "drop": {
+        "exact": -0.1,
+        "logp": -0.6006178855895996
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": -0.05040550231933594
+      }
+    },
+    {
+      "a": 23,
+      "b": 8,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -13.720012175181934,
+      "patch_cosine": -0.8593623314720664,
+      "fv": 0.6369869941325932,
+      "nli": 0.9996562004089355,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.005185604095459
+      },
+      "paired": {
+        "exact": 0.45,
+        "logp": -1.7673724174499512
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -2.1899911880493166
+      },
+      "drop": {
+        "exact": -0.1,
+        "logp": -0.23781318664550777
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": 0.1848055839538576
+      }
+    },
+    {
+      "a": 23,
+      "b": 14,
+      "conflict": false,
+      "length": 88,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -14.024002207439949,
+      "patch_cosine": -0.8559188003085828,
+      "fv": 0.7980769611368931,
+      "nli": 0.999626874923706,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.005185604095459
+      },
+      "paired": {
+        "exact": 0.2,
+        "logp": -2.4935872077941896
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -1.964698886871338
+      },
+      "drop": {
+        "exact": 0.15,
+        "logp": 0.48840160369873065
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": -0.040486717224121005
+      }
+    },
+    {
+      "a": 23,
+      "b": 19,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -14.454399743661396,
+      "patch_cosine": -0.9184274669281222,
+      "fv": 0.8138372089009633,
+      "nli": 0.42272940278053284,
+      "baseline": {
+        "exact": 0.35,
+        "logp": -2.005185604095459
+      },
+      "paired": {
+        "exact": 0.25,
+        "logp": -2.3119305610656737
+      },
+      "dilution": {
+        "exact": 0.3,
+        "logp": -2.1899911880493166
+      },
+      "drop": {
+        "exact": 0.1,
+        "logp": 0.30674495697021475
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": 0.1848055839538576
+      }
+    },
+    {
+      "a": 24,
+      "b": 20,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.811443440259321,
+      "patch_cosine": -0.9848794505685333,
+      "fv": 0.8831295257917534,
+      "nli": 0.9981372356414795,
+      "baseline": {
+        "exact": 0.75,
+        "logp": -0.6939855575561523
+      },
+      "paired": {
+        "exact": 1.0,
+        "logp": -0.10971345901489257
+      },
+      "dilution": {
+        "exact": 0.8,
+        "logp": -0.7378698348999023
+      },
+      "drop": {
+        "exact": -0.25,
+        "logp": -0.5842720985412597
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": 0.04388427734375
+      }
+    },
+    {
+      "a": 24,
+      "b": 21,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.937158528388471,
+      "patch_cosine": -0.9945124802900356,
+      "fv": 0.937837604075098,
+      "nli": 0.9962871074676514,
+      "baseline": {
+        "exact": 0.75,
+        "logp": -0.6939855575561523
+      },
+      "paired": {
+        "exact": 0.9,
+        "logp": -0.2809101104736328
+      },
+      "dilution": {
+        "exact": 0.8,
+        "logp": -0.7378698348999023
+      },
+      "drop": {
+        "exact": -0.15,
+        "logp": -0.41307544708251953
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": 0.04388427734375
+      }
+    },
+    {
+      "a": 24,
+      "b": 22,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -14.989678486692382,
+      "patch_cosine": -0.9978491507467684,
+      "fv": 0.929139344844957,
+      "nli": 0.995850682258606,
+      "baseline": {
+        "exact": 0.75,
+        "logp": -0.6939855575561523
+      },
+      "paired": {
+        "exact": 0.85,
+        "logp": -0.3746753692626953
+      },
+      "dilution": {
+        "exact": 0.8,
+        "logp": -0.7378698348999023
+      },
+      "drop": {
+        "exact": -0.1,
+        "logp": -0.31931018829345703
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": 0.04388427734375
+      }
+    },
+    {
+      "a": 24,
+      "b": 23,
+      "conflict": true,
+      "length": 89,
+      "control": "At the museum, inspect the shipping boxes for damage before putting anything into storage.",
+      "patch": -15.07034409581011,
+      "patch_cosine": -0.9991368315298813,
+      "fv": 0.8791288711089303,
+      "nli": 0.9933940768241882,
+      "baseline": {
+        "exact": 0.75,
+        "logp": -0.6939855575561523
+      },
+      "paired": {
+        "exact": 0.9,
+        "logp": -0.277695369720459
+      },
+      "dilution": {
+        "exact": 0.8,
+        "logp": -0.7378698348999023
+      },
+      "drop": {
+        "exact": -0.15,
+        "logp": -0.4162901878356933
+      },
+      "control_drop": {
+        "exact": -0.05,
+        "logp": 0.04388427734375
+      }
+    },
+    {
+      "a": 24,
+      "b": 1,
+      "conflict": false,
+      "length": 92,
+      "control": "At the museum, inspect the crates for damage before taking the artifacts into the main conservation workshop.",
+      "patch": -13.926187511741958,
+      "patch_cosine": -0.8684465221763754,
+      "fv": 0.7182473977051627,
+      "nli": 0.9937531352043152,
+      "baseline": {
+        "exact": 0.75,
+        "logp": -0.6939855575561523
+      },
+      "paired": {
+        "exact": 0.65,
+        "logp": -0.9452184677124024
+      },
+      "dilution": {
+        "exact": 0.45,
+        "logp": -1.2952919960021974
+      },
+      "drop": {
+        "exact": 0.1,
+        "logp": 0.25123291015625004
+      },
+      "control_drop": {
+        "exact": 0.3,
+        "logp": 0.601306438446045
+      }
+    },
+    {
+      "a": 24,
+      "b": 5,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -13.543705665200802,
+      "patch_cosine": -0.8714619455341525,
+      "fv": 0.6365023610197753,
+      "nli": 0.9998200535774231,
+      "baseline": {
+        "exact": 0.75,
+        "logp": -0.6939855575561523
+      },
+      "paired": {
+        "exact": 0.8,
+        "logp": -0.6251335144042969
+      },
+      "dilution": {
+        "exact": 0.6,
+        "logp": -1.0819636344909669
+      },
+      "drop": {
+        "exact": -0.05,
+        "logp": -0.06885204315185545
+      },
+      "control_drop": {
+        "exact": 0.15,
+        "logp": 0.38797807693481456
+      }
+    },
+    {
+      "a": 24,
+      "b": 11,
+      "conflict": false,
+      "length": 88,
+      "control": "At the museum, inspect the crates for damage before putting anything into storage.",
+      "patch": -14.141729201512955,
+      "patch_cosine": -0.8577047859921852,
+      "fv": 0.8453891139642432,
+      "nli": 0.9989588260650635,
+      "baseline": {
+        "exact": 0.75,
+        "logp": -0.6939855575561523
+      },
+      "paired": {
+        "exact": 0.9,
+        "logp": -0.3338350296020508
+      },
+      "dilution": {
+        "exact": 0.7,
+        "logp": -0.8464568138122559
+      },
+      "drop": {
+        "exact": -0.15,
+        "logp": -0.3601505279541015
+      },
+      "control_drop": {
+        "exact": 0.05,
+        "logp": 0.15247125625610358
+      }
+    },
+    {
+      "a": 24,
+      "b": 17,
+      "conflict": false,
+      "length": 90,
+      "control": "At the museum, inspect the protective materials surrounding the objects for damage before unpacking.",
+      "patch": -14.581468590596254,
+      "patch_cosine": -0.9213895437635788,
+      "fv": 0.8144814482897084,
+      "nli": 0.7157992720603943,
+      "baseline": {
+        "exact": 0.75,
+        "logp": -0.6939855575561523
+      },
+      "paired": {
+        "exact": 0.6,
+        "logp": -1.0125120162963868
+      },
+      "dilution": {
+        "exact": 0.6,
+        "logp": -1.0819636344909669
+      },
+      "drop": {
+        "exact": 0.15,
+        "logp": 0.31852645874023444
+      },
+      "control_drop": {
+        "exact": 0.15,
+        "logp": 0.38797807693481456
+      }
+    }
+  ],
+  "summary": {
+    "exact": {
+      "rho_patch": {
+        "estimate": -0.2725144226529251,
+        "pair_95ci": [
+          -0.3982891198125516,
+          -0.14073195474754704
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.5141572769773654,
+          0.0057859587499411985
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_patch_cosine": {
+        "estimate": -0.22621294330657366,
+        "pair_95ci": [
+          -0.3576698867321018,
+          -0.08541192726702107
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.4622529723295511,
+          0.011600053700007936
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_nli": {
+        "estimate": 0.05657257578491114,
+        "pair_95ci": [
+          -0.08326172526534273,
+          0.18728187300849614
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.20191089592931363,
+          0.28573282727357086
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_fv": {
+        "estimate": 0.16479062007471207,
+        "pair_95ci": [
+          0.015008487963944404,
+          0.3031178644200488
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.07147522444938637,
+          0.4136950207262033
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_control_drop": {
+        "estimate": 0.3274128852524029,
+        "pair_95ci": [
+          0.1711966312597111,
+          0.46579723596874195
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.06938936401654944,
+          0.6370046951966165
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_length": {
+        "estimate": 0.2962657906067145,
+        "pair_95ci": [
+          0.15778061320223674,
+          0.4291721032255809
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.08654529153864297,
+          0.5818599664254883
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_patch_minus_nli": {
+        "estimate": -0.32908699843783623,
+        "pair_95ci": [
+          -0.5080846663197359,
+          -0.14866466385657073
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.6483166668452043,
+          -0.0015048878947219778
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_patch_minus_fv": {
+        "estimate": -0.43730504272763715,
+        "pair_95ci": [
+          -0.6784500804170811,
+          -0.18508872306645807
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.8800350508074262,
+          0.006789851546656283
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_patch_partial": {
+        "estimate": -0.24506760396734095,
+        "pair_95ci": [
+          -0.3811822796511457,
+          -0.10744054634400074
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.4715336755235697,
+          0.033742060558901096
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "mean_drop": {
+        "estimate": 0.037,
+        "pair_95ci": [
+          0.00999375,
+          0.06299999999999999
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.02640651073534319,
+          0.11627281746031745
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "mean_control_drop": {
+        "estimate": 0.07075,
+        "pair_95ci": [
+          0.040993749999999995,
+          0.10074999999999999
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.019954312078127246,
+          0.1768550443458978
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "mean_excess_drop": {
+        "estimate": -0.03375,
+        "pair_95ci": [
+          -0.06425,
+          -0.0025000000000000044
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.11735947256543111,
+          0.03876292539267009
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "mean_baseline": {
+        "estimate": 0.234,
+        "pair_95ci": [
+          0.20124375,
+          0.2650187499999999
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          0.14770101700301927,
+          0.32547514956281637
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "dilution_share": {
+        "estimate": 1.912162162162162,
+        "pair_95ci": [
+          1.0611972269823962,
+          5.574895833333331
+        ],
+        "pair_valid_draws": 1994,
+        "lesson_95ci": [
+          -0.09066308243727582,
+          17.63374999999998
+        ],
+        "lesson_valid_draws": 1712
+      }
+    },
+    "logp": {
+      "rho_patch": {
+        "estimate": -0.25784059418590943,
+        "pair_95ci": [
+          -0.38854201894673734,
+          -0.12436241358472919
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.6427658634163927,
+          0.1543043806475262
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_patch_cosine": {
+        "estimate": -0.19980581575570755,
+        "pair_95ci": [
+          -0.32524585317630533,
+          -0.06164013179810601
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.565609267108756,
+          0.14111015675224228
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_nli": {
+        "estimate": 0.12747768694217357,
+        "pair_95ci": [
+          -0.006661367978387899,
+          0.2526684764057388
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.192837564343388,
+          0.3948306514883693
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_fv": {
+        "estimate": 0.08178316539044125,
+        "pair_95ci": [
+          -0.06807997889661967,
+          0.22342874965617318
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.21897269098577032,
+          0.4587510108787013
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_control_drop": {
+        "estimate": 0.1360090177340005,
+        "pair_95ci": [
+          -0.006018625920960571,
+          0.2695738486634575
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.148679765760044,
+          0.3562318559717536
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_length": {
+        "estimate": 0.5603385858103168,
+        "pair_95ci": [
+          0.45554373968787487,
+          0.646941816277336
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          0.21166336010088393,
+          0.7775462017415075
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_patch_minus_nli": {
+        "estimate": -0.385318281128083,
+        "pair_95ci": [
+          -0.5449690056681623,
+          -0.21614828627364194
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.8732170789296849,
+          0.066612358209938
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_patch_minus_fv": {
+        "estimate": -0.3396237595763507,
+        "pair_95ci": [
+          -0.5772957147323946,
+          -0.09025156432819124
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -1.0504662294863991,
+          0.32734229424937267
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "rho_patch_partial": {
+        "estimate": -0.22548665533842283,
+        "pair_95ci": [
+          -0.3440228094995434,
+          -0.10392758161829525
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.5405387672514783,
+          0.11837927322150492
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "mean_drop": {
+        "estimate": 1.1140106377601624,
+        "pair_95ci": [
+          0.7860590586721896,
+          1.43868308866024
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          0.09698346822125813,
+          2.5768174203886205
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "mean_control_drop": {
+        "estimate": 0.6704917736053467,
+        "pair_95ci": [
+          0.5063228863954545,
+          0.8319138493657111
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          0.14319418794087818,
+          1.2311649681146524
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "mean_excess_drop": {
+        "estimate": 0.44351886415481573,
+        "pair_95ci": [
+          0.11187729733586306,
+          0.7894074799478054
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -0.5419173822896158,
+          1.8472026818772254
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "mean_baseline": {
+        "estimate": -2.8321426506042484,
+        "pair_95ci": [
+          -3.021817554819584,
+          -2.663170290255547
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          -3.440933766057319,
+          -2.3203344588789756
+        ],
+        "lesson_valid_draws": 2000
+      },
+      "dilution_share": {
+        "estimate": 0.6018719668184158,
+        "pair_95ci": [
+          0.4259022562011997,
+          0.8639428432716847
+        ],
+        "pair_valid_draws": 2000,
+        "lesson_95ci": [
+          0.1693841806090832,
+          3.269504408902053
+        ],
+        "lesson_valid_draws": 1977
+      }
+    }
+  },
+  "verdict": {
+    "decision": "KILL",
+    "criteria": {
+      "patch_at_least_0.15_above_nli": false,
+      "patch_beats_fv": false,
+      "positive_drop_not_mostly_dilution": false
+    }
+  }
+}
