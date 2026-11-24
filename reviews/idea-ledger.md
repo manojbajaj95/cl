@@ -36,8 +36,10 @@ Status values:
 | One Pareto front for replay indexed by gradient share w (Q1) | Agent 12 (PR #7) | PILOTING (gated on noise) | Jam count; loss-weighted share (prioritized-replay account) | Rerun the PR #12 arms with 10 seeds and per-sample gradient norms. Gate: within-arm seed variance < across-arm variance. Dead if w explains < 70% of variance, or doesn't beat jam count by ≥ 0.3 R² and loss share by any margin. Second test (PR #13 seed reversal): compute w at weight 4 per seed before looking at outcomes; dead if seed 303 doesn't land on the good side where 101 and 202 do not, or per-seed loss share separates them as well | — |
 | Agent Toolbox, narrowed: tools fail loudly, lessons fail silently (faster drift detection and recovery) | Manoj | PASSED (narrowed) | The same procedures as text lessons with the same regression tests attached | 20 procedures as tools vs lessons, drift 30% of APIs mid-stream, 3 seeds. Dead if lessons + tests match tools on episodes-to-detect and episodes-to-recover | — |
 | StackOverflow for CL, narrowed: ask-when-stuck (question-indexed atoms pulled only on a failure signature) | Manoj | PASSED (narrowed) | FLARE-style confidence-triggered retrieval; push top-k from the same store at equal tokens | 2610.27406 setup, sweep store size. Dead if failure-triggered pull declines like push, or confidence-triggered retrieval ties | — |
-| Double dosing after consolidation | Long-run proposer (PR #16) | PASSED | Delete each lesson from context once distilled | 10 graded lessons, LoRA-distilled over 3 cycles; weights-only vs context-only vs both. Dead if both overshoots the larger single dose by ≤ seed CI with no oscillation | — |
+| Double dosing after consolidation (narrowed to multi-cycle oscillation) | Long-run proposer (PR #16) | PILOTING (narrowed) | No-Context Anchoring (NCA, 2606.11627); delete each lesson from context once distilled | Single-cycle over-application is already shown as context-induced degradation (2606.11627) and was pre-killed in PR #18. Dead if there is no growing oscillation over ≥ 3 cycles, or if NCA removes it | — |
 | Fleet Q2: predict lessons obsoleted by a model upgrade (new-model likelihood gain) | Fleet proposer (PR #15) | PASSED | New model's zero-shot success on each lesson's source tasks; old-model likelihood gain | About 40 lessons across one upgrade; truth from ≥ 200 rollouts with split-half reliability ≥ 0.7. Dead if ρ < 0.5 or not ≥ 0.15 above zero-shot success | — |
+| M2: learned attention-logit bias per lesson (graded salience) | Memory-form proposer (PR #18) | PASSED | Binary leave-one-out-credit selection with re-inclusion; ACE counters; REPLUG-style per-lesson mixture weights | Recurring regimes, 30 lessons, 600 episodes, 3 seeds. Dead if not ≥ 5 points ahead on regime returns, or loses > 2 points on first visits | — |
+| M3: query-variance index G, an arm of E1 | Memory-form proposer (PR #18) | GATED on B3 (arm of E1) | E1's controls plus off-target in-context KL | Dead if it adds < 0.1 ρ over E1's score and off-target KL | — |
 
 ## Killed
 
@@ -95,6 +97,9 @@ Status values:
 | Advantage-baselined lesson writing | Long-run proposer (PR #16) | KILLED | Lessons from Luck 2610.33029; ExpeL's same-task success/failure contrast already baselines on the task |
 | Fleet Q1: bootstrap-resampled memory writing | Fleet proposer (PR #15) | KILLED | This is bagging; writer temperature or seed diversity at the same cost ties |
 | PR #15 and PR #16 pre-killed ideas (8 each) | Proposers | KILLED (at proposal) | The proposers' reasons are in their PRs |
+| M1: attention-gated KV-slot forgetting | Memory-form proposer (PR #18) | KILLED | To first order, drift on query q is a(q)·Δv by linear algebra, so the predictor is tautological; what remains is a KV-prefix vs sparse-memory-finetuning comparison |
+| Skill re-shelving, split-only hierarchy | Long-run proposer batch 2 (PR #16) | KILLED | Rebuild plus redirect keeps old paths valid (the HTTP 301 fix) and ties by construction; flat retrieval has no paths; stale-ID effect already shown for semantic IDs (2604.13273) |
+| PR #18 pre-killed ideas (13) | Memory-form proposer | KILLED (at proposal) | Reasons and covering papers are in PR #18 |
 
 ## Patterns in the kills
 
