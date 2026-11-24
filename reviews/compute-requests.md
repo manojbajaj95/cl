@@ -1,0 +1,141 @@
+# Compute requests: pilots that need a real LLM or a GPU
+
+These are the active or gated pilots from [idea-ledger.md](idea-ledger.md) whose answer is not valid on CPU toy models. GPU-h are rough single-A100 estimates and include seeds. Run them in order within each tier. A failed gate stops that pilot.
+
+**Shared rules:**
+1. Match budgets: equal tokens, rollouts, and training steps across arms.
+2. Report 95% CIs over seeds.
+3. When truth comes from rollouts, report its split-half reliability first and stop if it is < 0.7 (the G1 lesson).
+4. Any effect mined from an earlier pilot must replicate at ≥ 10 seeds before it is modelled (the Q1 and P1 lessons).
+
+**Not listed here, because CPU is valid:**
+- B3, lesson interference proxy (CPU Qwen2.5-1.5B, already running)
+- M2, per-lesson attention bias, with N1 as an arm
+- N2, prohibition rebound
+- Functional syndromes
+- P3's synthetic replication, if kept small
+
+## Tier 1: agent-loop pilots (need a 7B+ instruct model served with vLLM)
+
+### Toolbox drift: tools fail loudly, lessons fail silently
+- **Model:** Qwen2.5-Coder-7B-Instruct as the agent, in a synthetic tool world with 20 recurring procedures.
+- **Arms:**
+  1. Procedures stored as code tools.
+  2. Procedures stored as text lessons.
+  3. Text lessons plus the same regression tests (the strongest control).
+  4. Text lessons without tests (reference).
+- **Protocol:** 600 episodes. Drift 30% of APIs at episode 300 (rename, argument change, semantics change).
+- **Measures:** episodes until drift is detected; episodes until success recovers to 90% of the pre-drift rate.
+- **Seeds and compute:** 3 seeds, about 10 GPU-h.
+- **Kill line:** dead if arm 3 matches arm 1 on both measures within the seed CI.
+
+### Ask when stuck: failure-triggered pull memory
+- **Model:** Qwen2.5-7B-Instruct on the 2610.27406 "more memory, worse agent" setup.
+- **Arms:**
+  1. Push top-k at the start.
+  2. FLARE-style confidence-triggered retrieval.
+  3. Pull of question-indexed atoms only on a failure signature (tool error or failed check).
+- **Protocol:** store sizes {0, 10, 30, 100, 300}, with tokens matched per retrieval.
+- **Seeds and compute:** 3 seeds, about 15 GPU-h.
+- **Kill line:** dead if arm 3 declines with store size like arm 1, or arm 2 ties arm 3 at every size.
+
+### H1 and H1b: surprisingly-popular fleet memory
+- **Model:** 20 Qwen2.5-7B-Instruct agents (same base). Each runs 50 episodes; a fraction p = 0.2 sees the rare regime.
+- **Gate:** each agent's meta-prediction of others' endorsement must depend on its own experience at r ≥ 0.2. Stop if not.
+- **Arms:**
+  1. SP selection.
+  2. H1b: mean P_i − P0.
+  3. Mean P_i only (the ablation H1b must beat).
+  4. Majority vote.
+  5. Confidence weighting.
+  6. Dependence-aware truth discovery (2611.04805).
+  7. Union of all lessons with regime retrieval at equal context (the strongest control).
+- **Seeds and compute:** 3 seeds, about 20 GPU-h.
+- **Kill line:** dead if SP is not ≥ 10 points ahead on rare-regime tasks, or the union ties it. H1b is dead if it doesn't beat arm 3.
+
+### P3: writing is more distractible than acting
+- **Model:** Qwen2.5-7B-Instruct as agent and memory writer, in the contamination task world from PR #4.
+- **Arms:** one injected distractor in every arm, then:
+  1. Plain writer.
+  2. Length-matched filler.
+  3. Same-token "write only about the task" instruction.
+  4. Writer sees only its own action trace.
+  5. Action-log-prob relevance mask.
+- **Protocol:** ≥ 200 episodes per arm.
+- **Seeds and compute:** 3 seeds, about 8 GPU-h.
+- **Kill line:** dead if the gap between bad-write rate and solve accuracy vanishes against filler, or arm 4 matches arm 5.
+
+### Fleet Q2: lessons made obsolete by a model upgrade
+- **Models:** Qwen2.5-1.5B-Instruct upgraded to Qwen2.5-7B-Instruct, with 40 lessons written by the 1.5B agent.
+- **Predictor:** per-lesson mean Δ log-prob of logged successful actions under the 7B model, with the lesson in context versus without.
+- **Controls:**
+  1. The 7B model's zero-shot success on each lesson's source tasks (the strongest control).
+  2. The 1.5B model's likelihood gain.
+  3. An LLM judge.
+- **Truth:** the lesson's effect on the 7B model's success, from ≥ 200 rollouts with and without it. Report split-half reliability first; it must be ≥ 0.7.
+- **Seeds and compute:** 16k rollouts in total, about 8 GPU-h.
+- **Kill line:** dead if ρ < 0.5, or if it is not ≥ 0.15 above zero-shot success.
+
+### HW1: convergent-edit harness promotion
+The HW1 pilot writes its own spec; see [PR #20](https://github.com/manojbajaj95/cl/pull/20). It needs a cheap API-class evolver, such as GPT-4o-mini or Qwen2.5-72B, and a small fixed task model.
+
+## Tier 2: weight-training pilots (need a GPU for LoRA or model editing)
+
+### Double dosing, multi-cycle (with R1's correctability measurement)
+- **Model:** Qwen2.5-1.5B-Instruct, distilling 10 graded lessons (caution and verbosity levels) into LoRA rank 16.
+- **Protocol:** 6 consolidation cycles.
+- **Arms:**
+  1. Lesson in weights only.
+  2. Lesson in context only.
+  3. Both.
+  4. Both, with No-Context Anchoring (2606.11627).
+  5. Delete the lesson from context once it is distilled.
+- **R1 measurement:** at each cycle, add one contradicting lesson and log its flip rate, matched on absorption.
+- **Seeds and compute:** 3 seeds, about 10 GPU-h.
+- **Kill line:** dead if "both" shows no overshoot beyond the seed CI with no growing oscillation over cycles, or if NCA removes it. R1 is dead if the flip rate at cycle 6 is not ≥ 15 points below cycle 1.
+
+### E1 consolidation predictor (with M3 and F1 arms), gated on B3
+- **Model:** Qwen2.5-1.5B-Instruct, distilling 200 lessons, each into LoRA ranks {4, 16, 64}.
+- **Predictors:**
+  1. E1: the lesson's ΔW share in the LoRA span.
+  2. M3: the query-variance index G.
+  3. F1: context ΔW alignment versus weight forgetting, on lesson pairs.
+- **Controls:**
+  1. One-step distillation gradient projected onto the LoRA span (the strongest control).
+  2. First-step loss drop.
+  3. In-context effect size.
+  4. Length.
+  5. Off-target in-context KL.
+- **Seeds and compute:** 600 LoRA runs, 2 seeds, about 30 GPU-h.
+- **Kill lines:**
+  - E1 is dead if it is not ≥ 0.15 ρ above the best control at every rank.
+  - M3 is dead if it adds < 0.1 ρ.
+  - F1 is dead if it trails gradient cosine by > 0.1 ρ.
+
+### D1 lesson capacity law, gated on B3
+- **Model:** Qwen2.5-1.5B-Instruct, with 5 lesson pools and N swept over {1, 2, 4, …, 128}.
+- **Comparison:** predict each pool's accuracy peak N* from where ΔW rank saturates.
+- **Controls:**
+  1. Length-matched dilution pool.
+  2. Embedding effective rank.
+  3. Token count.
+- **Seeds and compute:** 3 seeds, about 6 GPU-h. This is inference only, but long contexts make it slow on CPU.
+- **Kill line:** dead if ρ < 0.5, if embedding rank comes within 0.2, or if the dilution pool peaks at the same N.
+
+### Edit-capacity law: predict N* before editing
+- **Models:** MEMIT on GPT-2-XL and GPT-J-6B, at 3 batch sizes.
+- **Comparison:** the key-covariance prediction of N* versus a weight-norm threshold fitted on the first 10% of edits.
+- **Seeds and compute:** 3 seeds, about 12 GPU-h.
+- **Kill line:** dead if the covariance prediction doesn't beat the norm control.
+
+### Self-contamination law, R = k·(α_D·τ − d)/α_S (PR #4)
+- **Protocol:**
+  1. Find a setting with R in [0.5, 2], about 30 GPU-h.
+  2. Sweep k ∈ {1, 2, 4, 8}.
+- **Controls:**
+  1. A predictor that uses only the gate catch rate.
+  2. Extrapolating the early defect share.
+- **Seeds and compute:** 3 seeds, about 60 GPU-h in total.
+- **Kill line:** dead if collapse onset doesn't switch near R = 1.
+
+**Total:** about 190 GPU-h, plus HW1's API spend. If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
