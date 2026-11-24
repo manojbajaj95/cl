@@ -58,7 +58,7 @@ SHA-256: `6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e`.
 Build llama.cpp at `66a3b01b0a243f119b144abfa7122b1677ea9114`, then:
 
 ```sh
-llama-server -m qwen2.5-1.5b-instruct-q4_k_m.gguf -ngl 0 -t 8 -tb 8 -np 16 -c 16384
+llama-server --host 127.0.0.1 --port 8080 -m qwen2.5-1.5b-instruct-q4_k_m.gguf -ngl 0 -t 8 -tb 8 -np 16 -c 16384
 python3 run.py collect raw.csv
 python3 run.py report raw.csv
 python3 -m unittest discover -p 'test_*.py'

@@ -102,7 +102,7 @@ class Server:
         return probs[self.action_ids[0]] / sum(probs.values())
 
     def matched_padding(self, target, request):
-        memory = "Slot markers:"
+        memory = "Slot markers: x"
         baseline = len(self.tokenize(prompt(memory, request)))
         memory += " x" * (target - baseline)
         if len(self.tokenize(prompt(memory, request))) != target:
