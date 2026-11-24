@@ -43,6 +43,10 @@ facts to replay. Report generation attempts and acceptance separately.
   every segment, and at the end; score the hidden value with a common
   evaluator marginalizing the grammatical answer forms. Report old
   NLL and new acquisition as secondary outcomes.
+- Seed 41 showed a ceiling (97.6–100% retention across the replay arms)
+  at 8 replay rows per 24 new rows. Freeze the more informative low
+  budget of **1 per 24** for the held-out run. Each row has 12 active
+  next-token targets.
 - Manipulation checks: each held-out seed starts above 60% accuracy on
   old paraphrases, loses at least 10 percentage points after no replay,
   and has verified question/prose coverage of at least half the old
