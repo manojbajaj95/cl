@@ -39,19 +39,12 @@ These are the active or gated pilots from [idea-ledger.md](idea-ledger.md) whose
 - **Seeds and compute:** 3 seeds, about 15 GPU-h.
 - **Kill line:** dead if arm 3 declines with store size like arm 1, or arm 2 ties arm 3 at every size.
 
-### H1 and H1b: surprisingly-popular fleet memory
-- **Model:** 20 Qwen2.5-7B-Instruct agents (same base). Each runs 50 episodes; a fraction p = 0.2 sees the rare regime.
-- **Gate:** each agent's meta-prediction of others' endorsement must depend on its own experience at r ≥ 0.2. Stop if not.
-- **Arms:**
-  1. SP selection.
-  2. H1b: mean P_i − P0.
-  3. Mean P_i only (the ablation H1b must beat).
-  4. Majority vote.
-  5. Confidence weighting.
-  6. Dependence-aware truth discovery (2611.04805).
-  7. Union of all lessons with regime retrieval at equal context (the strongest control).
-- **Seeds and compute:** 3 seeds, about 20 GPU-h.
-- **Kill line:** dead if SP is not ≥ 10 points ahead on rare-regime tasks, or the union ties it. H1b is dead if it doesn't beat arm 3.
+### H1: surprisingly-popular fleet memory (7B gate only)
+The CPU run is killed ([PR #23](https://github.com/manojbajaj95/cl/pull/23)) and H1b is dropped: it tied mean P_i, which doesn't depend on model scale. The CPU meta-predictions were flat (r = 0.000), plausibly a small-model ability gap, so only the gate is requested.
+- **Model:** 20 Qwen2.5-7B-Instruct agents, each running 50 episodes; a fraction p = 0.2 sees the rare regime.
+- **Measure:** meta-prediction dependence on the agent's own experience only.
+- **Seeds and compute:** 3 seeds, about 1 GPU-h.
+- **Kill line:** stop if r < 0.2. If r ≥ 0.2, run the full arms from the original spec in the ledger (about 20 GPU-h): SP must be ≥ 10 points ahead on rare-regime tasks and the union must not tie.
 
 ### P3: writing is more distractible than acting
 - **Model:** Qwen2.5-7B-Instruct as agent and memory writer, in the contamination task world from PR #4.
@@ -136,4 +129,4 @@ Killed at CPU scale ([PR #22](https://github.com/manojbajaj95/cl/pull/22)), so n
 - **Seeds and compute:** 3 seeds, about 60 GPU-h in total.
 - **Kill line:** dead if collapse onset doesn't switch near R = 1.
 
-**Total:** about 180 GPU-h, plus HW1's API spend. If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
+**Total:** about 160 GPU-h (plus about 20 if H1's gate passes), plus HW1's API spend. If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
