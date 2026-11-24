@@ -28,6 +28,7 @@ Status values:
 | Effect-class distillation, narrowed to syntax-shifting code streams | Cross-field 4 | PILOTING | Token KL on canonicalized code; execution-reward-only replay; equal sample and execution budget | ~0.5B code model through an API migration, 3 seeds. Dead if it doesn't beat both controls on the old-pass vs new-syntax Pareto front beyond the seed CI | — |
 | Offline A/B of memory edits via exact-likelihood per-decision IS/DR (G1) | Agent 7 (PR #7) | PILOTING | Log-likelihood gain of the lesson on successful vs failed logged trajectories (no IS weighting); LLM judge; UpliftMem-style uplift model | 500 logged trajectories, 30 lessons, 50 fresh rollouts each as truth. Report ESS first. Dead if ESS < ~50, ρ < 0.6, or not ≥ 0.15 above the judge and the likelihood-gain control | — |
 | Surprisingly-popular fleet memory (H1) | Agent 8 (PR #7) | PILOTING | Union of all lessons + regime retrieval at equal context; dependence-aware truth discovery ([2611.04805](https://arxiv.org/abs/2611.04805)); confidence weighting; high-confidence minority retention | 20 same-base agents, rare regime at p = 0.2. First check meta-prediction dependence (stop if r < 0.2). Dead if SP isn't ≥ 10 pts ahead on rare-regime tasks, or the union ties | — |
+| SP from log-probs, no elicitation (H1b): mean P_i(endorse \| own memory) − base-model P0 | Agent 10 (PR #7) | PILOTING (arm of H1) | Same as H1, plus mean P_i alone (confidence weighting) as the ablation | Runs inside H1. Dead if it doesn't beat mean P_i alone. Note: this is a pointwise-mutual-information score (P0 stands in for the prediction of others), not true SP | — |
 
 ## Killed
 
@@ -73,6 +74,7 @@ Status values:
 | Counterexample-guided lesson preconditions | Agent 9 (PR #7) | KILLED (at proposal) | Proposer dropped it; reviewer agrees: An LLM rewriting the lesson with the failure in context likely ties |
 | Learning-progress self-curricula for deployed agents | Agent 9 (PR #7) | KILLED (at proposal) | Proposer dropped it; reviewer agrees: ALP-GMM and self-play curricula cover it |
 | Log-likelihood drop on logged good trajectories as a forgetting alarm | Agent 9 (PR #7) | KILLED (at proposal) | Proposer dropped it; reviewer agrees: Too close to the verifier-measured retention audit (PR #2); it survives only as a control inside G1 |
+| MDL lesson scoring | Agent 10 (PR #7) | KILLED (at proposal) | Proposer dropped it: 2610.32245 and MemoWM cover it |
 
 ## Patterns in the kills
 
