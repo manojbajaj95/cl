@@ -19,6 +19,7 @@ Status values:
 | Plasticity reserve (Gramian write selection) | Cross-field 2 | PILOTING | Optimization readiness ([2605.09044](https://arxiv.org/abs/2605.09044)) as the chooser; effective rank; random choice | CPU MLP, 50 tasks, 8 equal-loss candidates per write. Dead if its Spearman correlation with next-task gain is not above readiness | — |
 | Rare-event distillation (weighted prefix splitting), narrowed to rare mid-trajectory behaviors | Cross-field 3 | PILOTING | Same-budget MOPD replay toward the previous student ([2611.02746](https://arxiv.org/abs/2611.02746)); uniform prefix replay ([2607.04763](https://arxiv.org/abs/2607.04763)); prompt upsampling weighted by behavior frequency | ~0.5B model, an old behavior firing ~1/1000 mid-rollout, then a new domain. Dead if splitting doesn't beat the best control beyond the seed CI, or hurts common behaviors | — |
 | Lesson-only interference prediction (−⟨ΔW_A, ΔW_B⟩), B3 | Agent 2 (PR #7) | PILOTING | Function-vector cosine ([2605.16591](https://arxiv.org/abs/2605.16591)); NLI; embedding cosine; length-matched irrelevant-lesson dilution control | CPU Qwen2.5-1.5B, 200 lesson pairs. Dead if Spearman is not ≥ 0.15 above NLI, doesn't beat FV cosine, or dilution explains most of the drop | — |
+| Memory-loop Lyapunov exponent predicts order dependence (C2) | Agent 3 (PR #7) | PILOTING | 20-step two-order divergence; growth rate, edit rate, [2611.01304](https://arxiv.org/abs/2611.01304) convergence signals; seed-only noise floor | 8 designs × 3 seeds, λ from 20 updates vs. order dependence after 200 updates × 4 orders. Dead if not ≥ 0.3 Spearman above the 20-step two-order control, or perturbed ≈ seed-only divergence | — |
 
 ## Killed
 
@@ -46,6 +47,7 @@ Status values:
 | Time-travel memory (A3) | Agent 1 (PR #7) | KILLED | Flat reacquisition holds by construction; Forget-Me-Not and recurring-drift model pools exist |
 | Sparse-write certificates (graph matchings) | Cross-field 3 | KILLED | Structural rank only bounds true rank from above, so it can't certify that every edit harms. Dense Jacobian patterns carry no information. Masked-Jacobian SVD (OGD) is cheap; certified retention exists ([2610.40740](https://arxiv.org/abs/2610.40740)) |
 | Vocabulary-grown skills (B2) | Agent 2 (PR #7) | KILLED | Frozen backbone + per-skill embeddings is prompt-pool CL (L2P/DualPrompt/CODA) plus ToolkenGPT/Toolken+. Zero forgetting is the frozen-backbone property; online macro mining only changes the token source |
+| Inverse tool models for tool drift (C1) | Agent 3 (PR #7) | KILLED | Hindsight relabelling for LLM agents exists ([AgentHER 2603.21357](https://arxiv.org/abs/2603.21357)). The inverse model sees the same data as forward SFT on relabelled goals; drift is a new application, not a new mechanism |
 
 ## Patterns in the kills
 

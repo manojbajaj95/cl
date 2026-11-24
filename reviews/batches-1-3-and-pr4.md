@@ -60,3 +60,5 @@ Rerun with a harder (nonlinear-teacher) task stream, in `pilots/noether_check.py
 | Sparse-write certificates | KILL | — | Structural rank is only an upper bound, dense patterns carry no information, and SVD/OGD is cheap |
 | Agent B3 lesson-only interference (ΔW alignment) | PASS | Function-vector cosine; NLI; dilution control | 200 lesson pairs on CPU Qwen2.5-1.5B. Dead if not ≥ 0.15 Spearman above NLI and above FV cosine |
 | Agent B2 vocabulary-grown skills | KILL | — | Prompt-pool CL plus ToolkenGPT; zero forgetting is the frozen-backbone property |
+| Agent C2 memory-loop Lyapunov exponent | PASS | 20-step two-order divergence; seed-only noise floor | 8 designs, λ from 20 updates. Dead if not ≥ 0.3 Spearman above the cheap two-order control |
+| Agent C1 inverse tool models | KILL | — | Same data as hindsight-relabelled forward SFT (AgentHER) |
