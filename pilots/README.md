@@ -1,6 +1,6 @@
 # Sequential model edit capacity pilot
 
-See the [locked protocol](../docs/edit-capacity-protocol.md) for the endpoint, forecasts, and keep criterion.
+See the [locked protocol](../docs/edit-capacity-protocol.md) for the endpoint, forecasts, and keep criterion, and the [results](../docs/edit-capacity-results.md) for the verdict.
 
 ## Reproduce
 
@@ -31,4 +31,11 @@ python pilots/edit_capacity.py --out "$OUT" --phase summary
 The first step generates calibration traces. The second writes the capacity
 forecast before the first edit of each held-out run and the norm forecast when
 the 10% prefix ends, then measures the endpoint. With `--seed`, either run
-phase can be split across processes by stream. Finished runs are not repeated.
+phase can be split across processes by stream (the recorded run used two
+threads per process). Finished runs are not repeated.
+
+Reproduce the comparison without editing or downloading weights:
+
+```sh
+python pilots/edit_capacity.py --out pilots/results/edit-capacity --phase summary
+```
