@@ -1,0 +1,182 @@
+[
+  {
+    "id": "swap-01",
+    "template": "The routing rule has changed. For every code, submit {action}.",
+    "action": "B",
+    "swap_action": "C",
+    "rule": "The routing rule has changed. For every code, submit B.",
+    "swapped": "The routing rule has changed. For every code, submit C.",
+    "non_menu": "The routing rule has changed. For every code, submit D."
+  },
+  {
+    "id": "swap-02",
+    "template": "Use the updated default: no matter which code appears, route to {action}.",
+    "action": "C",
+    "swap_action": "A",
+    "rule": "Use the updated default: no matter which code appears, route to C.",
+    "swapped": "Use the updated default: no matter which code appears, route to A.",
+    "non_menu": "Use the updated default: no matter which code appears, route to D."
+  },
+  {
+    "id": "swap-03",
+    "template": "All checkpoints now require tool {action}, regardless of the displayed code.",
+    "action": "C",
+    "swap_action": "B",
+    "rule": "All checkpoints now require tool C, regardless of the displayed code.",
+    "swapped": "All checkpoints now require tool B, regardless of the displayed code.",
+    "non_menu": "All checkpoints now require tool D, regardless of the displayed code."
+  },
+  {
+    "id": "swap-04",
+    "template": "Override the old remainder mapping and always return {action}.",
+    "action": "C",
+    "swap_action": "B",
+    "rule": "Override the old remainder mapping and always return C.",
+    "swapped": "Override the old remainder mapping and always return B.",
+    "non_menu": "Override the old remainder mapping and always return D."
+  },
+  {
+    "id": "swap-05",
+    "template": "At each decision in this task, the correct tool is now {action}.",
+    "action": "B",
+    "swap_action": "A",
+    "rule": "At each decision in this task, the correct tool is now B.",
+    "swapped": "At each decision in this task, the correct tool is now A.",
+    "non_menu": "At each decision in this task, the correct tool is now D."
+  },
+  {
+    "id": "swap-06",
+    "template": "For this run, apply the replacement rule: every checkpoint goes to {action}.",
+    "action": "A",
+    "swap_action": "C",
+    "rule": "For this run, apply the replacement rule: every checkpoint goes to A.",
+    "swapped": "For this run, apply the replacement rule: every checkpoint goes to C.",
+    "non_menu": "For this run, apply the replacement rule: every checkpoint goes to D."
+  },
+  {
+    "id": "swap-07",
+    "template": "The new verifier accepts {action} for every input, so use it throughout the run.",
+    "action": "A",
+    "swap_action": "B",
+    "rule": "The new verifier accepts A for every input, so use it throughout the run.",
+    "swapped": "The new verifier accepts B for every input, so use it throughout the run.",
+    "non_menu": "The new verifier accepts D for every input, so use it throughout the run."
+  },
+  {
+    "id": "swap-08",
+    "template": "The code no longer changes the route. For every input choose {action}.",
+    "action": "B",
+    "swap_action": "A",
+    "rule": "The code no longer changes the route. For every input choose B.",
+    "swapped": "The code no longer changes the route. For every input choose A.",
+    "non_menu": "The code no longer changes the route. For every input choose D."
+  },
+  {
+    "id": "swap-09",
+    "template": "Ignore the previous routing table. Pick {action} for all checkpoints.",
+    "action": "A",
+    "swap_action": "C",
+    "rule": "Ignore the previous routing table. Pick A for all checkpoints.",
+    "swapped": "Ignore the previous routing table. Pick C for all checkpoints.",
+    "non_menu": "Ignore the previous routing table. Pick D for all checkpoints."
+  },
+  {
+    "id": "swap-10",
+    "template": "The current playbook uses a single tool for all codes: {action}.",
+    "action": "C",
+    "swap_action": "A",
+    "rule": "The current playbook uses a single tool for all codes: C.",
+    "swapped": "The current playbook uses a single tool for all codes: A.",
+    "non_menu": "The current playbook uses a single tool for all codes: D."
+  },
+  {
+    "id": "swap-11",
+    "template": "Latest controller update: select {action} on every checkpoint.",
+    "action": "B",
+    "swap_action": "C",
+    "rule": "Latest controller update: select B on every checkpoint.",
+    "swapped": "Latest controller update: select C on every checkpoint.",
+    "non_menu": "Latest controller update: select D on every checkpoint."
+  },
+  {
+    "id": "swap-12",
+    "template": "If any checkpoint asks for a tool, the revised rule says to answer {action}.",
+    "action": "A",
+    "swap_action": "B",
+    "rule": "If any checkpoint asks for a tool, the revised rule says to answer A.",
+    "swapped": "If any checkpoint asks for a tool, the revised rule says to answer B.",
+    "non_menu": "If any checkpoint asks for a tool, the revised rule says to answer D."
+  },
+  {
+    "id": "swap-13",
+    "template": "The controller's replacement policy is constant: choose {action} independent of the code.",
+    "action": "A",
+    "swap_action": "C",
+    "rule": "The controller's replacement policy is constant: choose A independent of the code.",
+    "swapped": "The controller's replacement policy is constant: choose C independent of the code.",
+    "non_menu": "The controller's replacement policy is constant: choose D independent of the code."
+  },
+  {
+    "id": "swap-14",
+    "template": "Use {action} whenever you are asked to route a code under the current rule.",
+    "action": "A",
+    "swap_action": "B",
+    "rule": "Use A whenever you are asked to route a code under the current rule.",
+    "swapped": "Use B whenever you are asked to route a code under the current rule.",
+    "non_menu": "Use D whenever you are asked to route a code under the current rule."
+  },
+  {
+    "id": "swap-15",
+    "template": "Treat all displayed codes alike under the new rule and send them to {action}.",
+    "action": "C",
+    "swap_action": "A",
+    "rule": "Treat all displayed codes alike under the new rule and send them to C.",
+    "swapped": "Treat all displayed codes alike under the new rule and send them to A.",
+    "non_menu": "Treat all displayed codes alike under the new rule and send them to D."
+  },
+  {
+    "id": "swap-16",
+    "template": "For each of the three steps, the current rule is to route to {action}.",
+    "action": "B",
+    "swap_action": "A",
+    "rule": "For each of the three steps, the current rule is to route to B.",
+    "swapped": "For each of the three steps, the current rule is to route to A.",
+    "non_menu": "For each of the three steps, the current rule is to route to D."
+  },
+  {
+    "id": "swap-17",
+    "template": "The old code rule is stale; the route required at every checkpoint is {action}.",
+    "action": "B",
+    "swap_action": "A",
+    "rule": "The old code rule is stale; the route required at every checkpoint is B.",
+    "swapped": "The old code rule is stale; the route required at every checkpoint is A.",
+    "non_menu": "The old code rule is stale; the route required at every checkpoint is D."
+  },
+  {
+    "id": "swap-18",
+    "template": "The exact updated procedure is to submit {action} at each step.",
+    "action": "B",
+    "swap_action": "C",
+    "rule": "The exact updated procedure is to submit B at each step.",
+    "swapped": "The exact updated procedure is to submit C at each step.",
+    "non_menu": "The exact updated procedure is to submit D at each step."
+  },
+  {
+    "id": "swap-19",
+    "template": "Regardless of remainder or checkpoint, use tool {action} under the replacement rule.",
+    "action": "A",
+    "swap_action": "B",
+    "rule": "Regardless of remainder or checkpoint, use tool A under the replacement rule.",
+    "swapped": "Regardless of remainder or checkpoint, use tool B under the replacement rule.",
+    "non_menu": "Regardless of remainder or checkpoint, use tool D under the replacement rule."
+  },
+  {
+    "id": "swap-20",
+    "template": "There are no exceptions to the revised mapping: any input requires {action}.",
+    "action": "C",
+    "swap_action": "B",
+    "rule": "There are no exceptions to the revised mapping: any input requires C.",
+    "swapped": "There are no exceptions to the revised mapping: any input requires B.",
+    "non_menu": "There are no exceptions to the revised mapping: any input requires D."
+  }
+]
