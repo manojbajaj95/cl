@@ -1,5 +1,7 @@
 # Agent proposer batch 1: inoculated memory, Baldwin vs Lamarck, time-travel memory
 
+**Reviewer verdict: all three KILLED** (see the PR #6 ledger): A1 ties a skeptic instruction plus exemplars (inoculation prompting 2606.30252 exists); A2 is cross-episode meta-RL (2602.04089); A3's flat reacquisition holds by construction (Forget-Me-Not).
+
 Angle: agents that keep learning after deployment. Prior-art checks via alphaXiv on 2026-11-24.
 
 ## A1. Memory inoculation: prebunk a lesson pool before the misleading experience arrives
