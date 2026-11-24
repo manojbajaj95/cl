@@ -40,7 +40,9 @@ For each candidate write/route, linearize after the candidate, form the permissi
 
 **Prior art and scope.** [History-dependent reachability](https://arxiv.org/abs/2602.07950) defines the minimum input energy to reach a joint learning/retention target. [Control minimization](https://arxiv.org/abs/2602.04542) applies control objectives to CL. This proposal uses a probe-output Gramian to choose among otherwise equivalent *present* writes with future tasks hidden. Optimization readiness is an active chooser here, not just a diagnostic to cite.
 
-**Pilot falsified the tested predictor.** [The CPU pilot](https://github.com/manojbajaj95/cl/pull/9) found a 4.9 percentage-point range in next-task gains across the equal-loss candidate writes, but the unprojected Gramian score had Spearman correlation −0.015 with that gain and did not beat the controls. The pilot did not test the old-skill-constrained projector above. Its candidate differences are worth explaining, but the tested score is not useful for choosing among them.
+**Pilot falsified the tested predictor.** [The CPU pilot](https://github.com/manojbajaj95/cl/pull/9) found a 4.9 percentage-point range in next-task gains across the equal-loss candidate writes, but the unprojected Gramian score had Spearman correlation −0.015 with that gain and did not beat the controls. The pilot did not test the old-skill-constrained projector above.
+
+**Retention-matched rerun stopped at the variance gate.** [The projected rerun](https://github.com/manojbajaj95/cl/pull/21) found a next-task gain spread of only 0.458 relative percentage points and 0.091 absolute MSE points (`100 × ΔMSE`) across 512 seeds, below the prespecified 1.5 absolute-point floor. It did not run the ranking arms.
 
 ## Batch 3 · Rare-event simulation and structural rank
 
@@ -132,7 +134,7 @@ On a fixed probe set, let `K = G P Gᵀ` be the post-write kernel of the actual 
 
 **First falsifier.** Reuse the reserve pilot's CPU task generator; match the candidate writes for old retention as well as current loss and actually use a projected next-task learner. First stop if the spread in measured next-task gain vanishes. Compare all choices with projected readiness using the exact same history and forecast draw budget, diagonal/isotropic covariance, and direct projected lookahead on sampled forecast tasks. Do not call an analytic shortcut on a linear toy a CL gain: if same-budget lookahead/readiness ties on held-out sequential streams, stop. Use shuffled and unrelated task shifts as negative controls. The [original pilot](https://github.com/manojbajaj95/cl/pull/9) already falsified the unprojected Gramian; this is a candidate replacement, not evidence that it works.
 
-**Reviewer advanced this as a comparison arm** in the retention-matched plasticity-reserve rerun, not a separate pilot. See the [live ledger](https://github.com/manojbajaj95/cl/pull/6) for its outcome.
+**Stopped at the variance gate.** The reviewer included this as a comparison arm, but the [retention-matched rerun](https://github.com/manojbajaj95/cl/pull/21) found too little next-task gain left to rank and did not run forecast-weighted selection. This closes the reserve line on that stream; it does not compare the predictors.
 
 ## Screened before submission
 
