@@ -68,6 +68,31 @@ for the one relevant lesson in context, with 3 distractor lessons.
 - **Feedback stops transmission only when the model can check the lesson.** For real units, a verifier's "incorrect" makes the agent drop the bad factor (τ 0.48 → 0.05), and the self-judge rejects every defective lesson. For made-up units, τ stays 1.0 even with feedback: the agent keeps the planted factor. The self-gate there rejects everything, so it blocks learning instead of telling defects apart.
 - **R depends on model × domain × gate.** It is not a property of the agent alone. The dangerous regime is knowledge the model cannot check, which is exactly what deployed agents learn (private APIs, a user's conventions, hidden policies). That is where the paper's experiments should focus.
 
+## Stage 0c: does measured R predict real stream collapse? (CPU, Qwen2.5-1.5B)
+
+[`agents/llm_pilot/stream.py`](../agents/llm_pilot/stream.py) runs closed-loop lesson-memory streams on made-up unit conversions. Each episode the agent retrieves k lessons from its own pool, answers, and writes one new lesson that a gate admits. With probability f, a verifier sees the outcome and admits the lesson only if the answer was right; otherwise the lesson is admitted unchecked. Seeded defects are either plain wrong factors or "Correction:"-style wrong factors. A challenge trial with fixed lesson mixes (1,200 calls) measures ε, τ, α_D, α_S and R for each (style, k, f) **before** any stream runs. Then 216 streams run, one for each style × k ∈ {1,2,4} × f ∈ {0,0.4,0.8} × 6 unit pairs × 2 seeds, each with 50 episodes from 8 seed lessons at a 25% defect share. [`analyze_stream.py`](../agents/llm_pilot/analyze_stream.py) scores each predictor on whether the stream's defect share grew.
+
+| Predictor of "defect share grew" (216 streams) | AUC [95% CI] | Spearman with final defect share |
+| --- | --- | --- |
+| **R measured offline** | **0.87 [0.82, 0.91]** | 0.64 |
+| Gate catch rates only (α_D/α_S) | 0.75 [0.68, 0.81] | 0.43 |
+| Full mean-field forecast from the curve | 0.86 [0.81, 0.91] | 0.62 |
+| Stream's own defect share after 5 episodes | 0.84 [0.78, 0.90] | 0.62 |
+| ... after 10 episodes | 0.94 [0.91, 0.97] | 0.79 |
+| ... after 25 episodes | 0.97 [0.95, 0.99] | 0.93 |
+
+| Measured R | Streams | Share grew | Final defect share | Success, last 12 episodes |
+| --- | --- | --- | --- | --- |
+| < 0.95 | 144 | 0.08 | 0.12 | 0.67 |
+| 0.95-1.1 (neutral copying) | 48 | 0.35 | 0.23 | 0.60 |
+| > 1.1 | 24 | 0.62 | 0.41 | 0.35 |
+
+- **R predicts collapse where the gate does not.** At k=4 with no gate, both defect styles have gate ratio 1.0, but R is 0.67 for plain defects and 2.07 for correction-style ones. Plain pools cleaned themselves in 0/12 streams that grew (final share 0.06), because the model follows the majority of retrieved lessons. Correction-style pools grew in 10/12 streams (final share 0.49), and task success fell to 0.28. R gets this from the defect-transmission curve; catch rates cannot see it.
+- **Retrieval breadth changes the sign.** For plain defects, larger k lowers R (majority voting suppresses a lone defect). For persuasive defects, larger k raises it. This is the k·τ term, measured rather than assumed.
+- **Online extrapolation wins after about 10 episodes.** R matches a 5-episode extrapolation and is available before deployment, but loses to extrapolating 10+ episodes of the stream itself. Pools here are small (8 seed lessons, 50 episodes), so 10 episodes is 20% of the run. The reviewer's bar (beat extrapolation from round 200) is not met on equal footing at this scale.
+- **Misfit.** Correction-style, k=4, f=0.8 has R = 0.76 but grew in 6/12 streams. The mean-field forecast (0.21) undershoots the observed 0.27. A likely cause is that descendants inherit the persuasive phrasing, which the root-only challenge trial does not measure. This needs a heritable-virulence term.
+- **Limits.** One 1.5B model, one task family, 50-episode streams, and outcome-only gates. "Grew" at R ≈ 1 is drift. Next: longer streams and larger pools (so early extrapolation has less of a head start), 7B/32B models, real skill stores.
+
 ## Plan to a paper
 
 1. **Measure R on real agents.** Run the challenge trial on 3+ models (Qwen2.5 1.5B/7B/32B, one API model) × 3 gates (self-judge, held-out

@@ -7,7 +7,7 @@ Predictors of stream outcome (contamination grows: x_T > x_0), compared by AUC o
   R          the reproduction number (measured offline, before any stream runs)
   gate       alpha_D / alpha_S only (the gate's catch rates)
   meanfield  full mean-field forecast from the curve, mixing j ~ Binomial(k, x)
-  early      the stream's own defect share at episode T/4 (online extrapolation baseline)
+  earlyH     the stream's own defect share after H episodes (online extrapolation baseline)
 Usage: python -m agents.llm_pilot.analyze_stream
 """
 from __future__ import annotations
@@ -21,8 +21,12 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.stats import spearmanr
 
 from .stream import OUT
+
+EARLY = (5, 10, 25)
+PREDICTORS = ("R", "gate", "meanfield") + tuple(f"early{h}" for h in EARLY)
 
 
 def read(path):
@@ -95,14 +99,16 @@ def main():
         if ck not in res["conditions"]:
             res["conditions"][ck] = {a: m[a] for a in ("P", "eps", "tau", "alpha_D", "alpha_S", "gate", "R")}
         res["streams"].append(dict(style=style, k=k, f=f, x0=x0a, pair=pair, seed=seed, R=m["R"], gate=m["gate"],
-                                   meanfield=meanfield(m["D"], m["S"], x0a, n0, T), early=rs[T // 4 - 1]["x"],
+                                   meanfield=meanfield(m["D"], m["S"], x0a, n0, T),
+                                   **{f"early{h}": rs[h - 1]["x"] for h in EARLY},
                                    x_final=rs[-1]["x"], grew=rs[-1]["x"] > x0a,
                                    success_last=float(np.mean([r["correct"] for r in rs[-T // 4:]])),
                                    traj=[x0a] + [r["x"] for r in rs]))
     S = res["streams"]
     lab = [s["grew"] for s in S]
-    res["auc"] = {p: dict(auc=auc([s[p] for s in S], lab), ci95=boot_auc([s[p] for s in S], lab))
-                  for p in ("R", "gate", "meanfield", "early")}
+    xf = [s["x_final"] for s in S]
+    res["auc"] = {p: dict(auc=auc([s[p] for s in S], lab), ci95=boot_auc([s[p] for s in S], lab),
+                          spearman_x_final=float(spearmanr([s[p] for s in S], xf)[0])) for p in PREDICTORS}
     for ck, c in res["conditions"].items():
         ss = [s for s in S if f"{s['style']} k={s['k']} f={s['f']}" == ck]
         c.update(n_streams=len(ss), frac_grew=float(np.mean([s["grew"] for s in ss])),
@@ -113,7 +119,8 @@ def main():
     cs = list(res["conditions"].values())
     for c, (ck, _) in zip(cs, res["conditions"].items()):
         ax[0].scatter(c["R"], c["frac_grew"], c="C0" if "plain" in ck else "C3")
-        ax[0].annotate(ck.replace("plain ", "").replace("correction ", "c "), (c["R"], c["frac_grew"]), fontsize=7)
+        if c["frac_grew"] > 0:
+            ax[0].annotate(ck.replace("plain ", "").replace("correction ", "c "), (c["R"], c["frac_grew"]), fontsize=7)
         ax[1].scatter(c["gate"], c["frac_grew"], c="C0" if "plain" in ck else "C3")
     ax[0].axvline(1, ls="--", c="k", lw=1)
     ax[1].axvline(1, ls="--", c="k", lw=1)
