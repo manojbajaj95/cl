@@ -57,3 +57,19 @@ units within seed), 10,000 draws; seed-level means reported too.
   slower on recovery (CI not below 0).
 * Tools faster only to detect but slower or tied to recover is reported as
   a kill for the claim as stated (detection without faster recovery).
+
+## Addendum (added mid-run, before any `none` data): no-memory floor
+
+Reviewer-approved control (anomaly batch 1, PR #27: an entropy-matched
+temperature on the no-lesson policy reproduced ~95% of per-lesson effects).
+
+* Arm `none`: no saved tool or lesson and no repair. Each episode the LLM
+  writes the function from the procedure goal and the current API listing.
+* Its temperature T is fit by entropy matching on source (pre-drift) tasks
+  only (`fit_temperature.py`): mean per-token entropy of the `lesson` arm's
+  greedy completions at T=0.3 on the 20 pre-drift prompts is the target; T is
+  the grid value (0.05..2.00, step 0.05) whose no-memory entropy is closest.
+  Fit written to `temperature_fit.json`.
+* Reported as `none - <memory arm>` on detect and recover (positive: memory
+  arm is faster than the floor). It is a floor only; the decision rule above
+  is unchanged.

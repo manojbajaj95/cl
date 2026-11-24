@@ -12,7 +12,7 @@ from pathlib import Path
 import env
 
 ROOT = Path(__file__).resolve().parent
-ARMS = ["tool", "tool+tests", "lesson", "lesson+tests"]
+ARMS = ["tool", "tool+tests", "lesson", "lesson+tests", "none"]
 N_EPISODES = 180
 DRIFT_AT = 60
 N_DRIFT = 6  # 30% of 20 APIs: 3 breaking (documented rename) + 3 silent (undocumented semantics)
@@ -100,23 +100,34 @@ def goal(proc):
     return proc["lesson"].split(":")[0]
 
 
+def lesson_prompt(proc, lesson, docs):
+    return (f"API, called through the `api` object:\n{docs}\n\nSaved lesson:\n{lesson}\n\n"
+            f"Follow the lesson. Write the Python function `{signature(proc)}` that "
+            "returns the result. Use only the `api` object, no imports. Output only the code.")
+
+
+def no_memory_prompt(proc, docs):
+    return (f"API, called through the `api` object:\n{docs}\n\nTask: {goal(proc)}.\n\n"
+            f"Write the Python function `{signature(proc)}` that "
+            "returns the result. Use only the `api` object, no imports. Output only the code.")
+
+
 class Agent:
-    def __init__(self, arm, llm, seed):
-        self.arm, self.llm, self.seed = arm, llm, seed
+    def __init__(self, arm, llm, seed, temperature=0.3):
+        self.arm, self.llm, self.seed, self.temperature = arm, llm, seed, temperature
         self.code_arm = arm.startswith("tool")
         self.tests = arm.endswith("+tests")
-        self.memory = [p["tool"] if self.code_arm else p["lesson"] for p in env.PROCS]
+        self.memory = [p["tool"] if self.code_arm else p["lesson"] if arm != "none" else "" for p in env.PROCS]
 
     def implement(self, p, artifact, docs, seed):
         """Return (code, fn or None, error message or None)."""
         proc = env.PROCS[p]
         if self.code_arm:
             code = artifact
+        elif self.arm == "none":
+            code = extract_code(self.llm(no_memory_prompt(proc, docs), seed, temperature=self.temperature))
         else:
-            user = (f"API, called through the `api` object:\n{docs}\n\nSaved lesson:\n{artifact}\n\n"
-                    f"Follow the lesson. Write the Python function `{signature(proc)}` that "
-                    "returns the result. Use only the `api` object, no imports. Output only the code.")
-            code = extract_code(self.llm(user, seed))
+            code = extract_code(self.llm(lesson_prompt(proc, artifact, docs), seed))
         try:
             return code, build(code), None
         except Exception as e:
@@ -199,7 +210,7 @@ class Agent:
         rec = {"t": t, "proc": p, "api": proc["api"], "ok": ok, "error": err is not None,
                "out": repr(out)[:80], "want": repr(want), "signals": signals,
                "artifact": hashlib.sha1(artifact.encode()).hexdigest()[:8]}
-        if signals:
+        if signals and self.arm != "none":
             rec["repair"] = self.repair(p, code, message, api, docs, seed)
         return rec
 
@@ -212,17 +223,18 @@ def main():
     ap.add_argument("--threads", type=int, default=2)
     ap.add_argument("--episodes", type=int, default=N_EPISODES)
     ap.add_argument("--out", default=str(ROOT / "runs"))
+    ap.add_argument("--temperature", type=float, default=0.3, help="execution temperature of the no-memory arm")
     a = ap.parse_args()
     drift, stream = schedule(a.seed)
     llm = LLM(a.model, a.threads)
-    agent = Agent(a.arm, llm, a.seed)
+    agent = Agent(a.arm, llm, a.seed, a.temperature)
     out = Path(a.out)
     out.mkdir(exist_ok=True)
     path = out / f"{a.arm.replace('+', '_')}_s{a.seed}.jsonl"
     start = time.time()
     with path.open("w") as f:
         f.write(json.dumps({"meta": True, "arm": a.arm, "seed": a.seed, "drift": drift,
-                            "drift_at": DRIFT_AT, "model": Path(a.model).name}) + "\n")
+                            "drift_at": DRIFT_AT, "temperature": a.temperature, "model": Path(a.model).name}) + "\n")
         for t, (p, x, u) in enumerate(stream[:a.episodes]):
             d = drift if t >= DRIFT_AT else {}
             api, docs = env.Api(d), env.docs(d)
