@@ -24,7 +24,6 @@ Call counts assume about 3–5 calls per agent episode. Free endpoints generally
 | Pilot | Calls at full spec | Free tier? | Smallest version that fits |
 |---|---|---|---|
 | H1 gate only | ~3,400 with live episodes | **Yes, if shrunk** | Give each of 20 agents a synthesized memory (10 lessons from rare- or common-regime trajectories, ~20 calls), then elicit meta-predictions (20 agents × 10 lessons, ~200 calls). About 220 calls, about 5 days. Same r ≥ 0.2 gate |
-| HW1 | its own spec | Yes (already planned) | See [PR #20](https://github.com/manojbajaj95/cl/pull/20) |
 | Toolbox drift | ~36,000 | No | 1 seed × 2 arms (tools vs lessons + tests) × 100 episodes is still ~600 calls (~12 days) and underpowered; use a GPU |
 | Ask when stuck | ~13,500 | No | Needs the store-size sweep; use a GPU |
 | P3 writer distractibility | ~4,000 | No | Needs ≥ 200 episodes per arm, and the mask arm needs log-probs |
@@ -76,8 +75,8 @@ The CPU run is killed ([PR #23](https://github.com/manojbajaj95/cl/pull/23)) and
 ### Fleet Q2: killed at the truth-reliability gate
 Killed ([PR #25](https://github.com/manojbajaj95/cl/pull/25)): exact-truth split-half reliability was about 0, and 9 of 40 lessons flipped sign. This is task heterogeneity, not sampling noise, so it isn't requested at larger scale. Q3 is dead with it.
 
-### HW1: convergent-edit harness promotion
-The HW1 pilot writes its own spec; see [PR #20](https://github.com/manojbajaj95/cl/pull/20). It needs a cheap API-class evolver, such as GPT-4o-mini or Qwen2.5-72B, and a small fixed task model.
+### HW1: DROPPED
+Killed at the variance gate ([PR #32](https://github.com/manojbajaj95/cl/pull/32)).
 
 ### A3 replication: lessons as a temperature knob, 7B ALFWorld
 - **Spec:** [replication-7b.md in PR #29](https://github.com/manojbajaj95/cl/pull/29). Qwen2.5-7B-Instruct, constrained-menu ALFWorld, 40 notes, 32 source and 32 held-out games. Arms: no memory, note, length-matched filler, and entropy-matched no-memory temperature.
@@ -136,4 +135,4 @@ Killed at CPU scale ([PR #22](https://github.com/manojbajaj95/cl/pull/22)), so n
 - **Seeds and compute:** 3 seeds, about 60 GPU-h in total.
 - **Kill line:** dead if collapse onset doesn't switch near R = 1.
 
-**Total:** about 108 GPU-h (plus about 20 if H1's gate passes), plus HW1's API spend. If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
+**Total:** about 108 GPU-h (plus about 20 if H1's gate passes). If budget is short, run Tier 1 first; it holds the ideas closest to a paper.
