@@ -40,6 +40,8 @@ For each candidate write/route, linearize after the candidate, form the permissi
 
 **Prior art and scope.** [History-dependent reachability](https://arxiv.org/abs/2602.07950) defines the minimum input energy to reach a joint learning/retention target. [Control minimization](https://arxiv.org/abs/2602.04542) applies control objectives to CL. This proposal uses a probe-output Gramian to choose among otherwise equivalent *present* writes with future tasks hidden. Optimization readiness is an active chooser here, not just a diagnostic to cite.
 
+**Pilot falsified the tested predictor.** [The CPU pilot](https://github.com/manojbajaj95/cl/pull/9) found a 4.9 percentage-point range in next-task gains across the equal-loss candidate writes, but the unprojected Gramian score had Spearman correlation −0.015 with that gain and did not beat the controls. The pilot did not test the old-skill-constrained projector above. Its candidate differences are worth explaining, but the tested score is not useful for choosing among them.
+
 ## Batch 3 · Rare-event simulation and structural rank
 
 ### 5. Rare-event distillation
@@ -70,7 +72,7 @@ Cache protected row supports, then use the certificate to reject masks and rank 
 
 The chain rule decomposes sequence KL into class-level KL plus expected within-class KL. Dropping the latter permits style changes without putting pressure on old observable effect distributions. Estimate class masses exactly for a small enumerated grammar first. Reward-only replay is a distinct baseline: rewarding validity does not generally preserve the distribution over several valid effects. If the class is just the binary reward, or if equivalence is not stable under real inputs, that distinction is lost.
 
-**First falsifier.** Continually train a small generator on scripts with several semantically valid effects and a newly required syntax, while preserving old behavior under held-out inputs. Compare token KL, canonicalized token KL, and verifier/reward-only replay at matched oracle calls, generated tokens and new-task gain. Kill if canonicalization or reward replay matches old effect retention; test misclassified side effects as a negative control. [Latest OPSD theory](https://arxiv.org/abs/2610.05200) and [Purified OPSD](https://arxiv.org/abs/2607.02234) motivate separating useful teacher signal from incidental output variation; the putative advance is preserving executable outcome distributions under sequential change.
+**First falsifier.** Continually train a small code model through an API or library migration that changes required syntax while preserving old effects under held-out inputs. Compare token KL, canonicalized token KL, and verifier/reward-only replay at matched execution calls and generated tokens. Kill if the old-pass vs. new-syntax frontier does not beat both canonicalized KL and execution-only replay; test misclassified side effects as a negative control. [OPSD theory](https://arxiv.org/abs/2610.05200) and [Purified OPSD](https://arxiv.org/abs/2607.02234) motivate separating useful teacher signal from incidental variation; the proposed advance is preserving executable outcome distributions under sequential change.
 
 ### 8. Bounded-delay stability scheduling
 
@@ -79,6 +81,30 @@ The chain rule decomposes sequence KL into class-level KL plus expected within-c
 With frozen additive updates and zero net old-logit displacement, bounded vector discrepancy guarantees an ordering whose worst-prefix displacement depends on guard dimension rather than total steps. This is an offline sanity bound, not a bound for deadline-constrained nonlinear SGD. A biased net displacement, optimizer memory, and stale Jacobians may make the ordering useless.
 
 **First falsifier.** Pair streams of a small MLP under clustered and dispersed conflicting gradient exposures. On held-out retention probes, measure worst-prefix loss and time above a fixed regression threshold, at equal terminal old/new quality, prospectively fixed delay, and measured compute. Compare FIFO, uniform reshuffling, standard gradient-balanced reshuffling, and same-latency gradient accumulation. Kill if any ties the best trade-off. [The stability gap](https://arxiv.org/abs/2205.13452) motivates the metric; [GraB](https://arxiv.org/abs/2205.10733) motivates the reordering control. This is not a proposal to synthesize counter-gradient data.
+
+**Reviewer rejected:** simple accumulation eliminates within-window ordering effects at matched latency. Reordering only offers an advantage if the deployed model must change and be evaluated inside the window.
+
+## Batch 5 · Delayed control and metamorphic testing
+
+### 9. Delay-compensated retention feedback
+
+**Hypothesis.** When old-skill verification takes longer than a weight update, a model can admit more useful writes at the same exposure to regressions by correcting an estimate of *current* retention, not by using each late score as though it described the latest model.
+
+Use cheap sentinel outputs to forecast a full audit score and launch a limited number of delayed full audits. When an audit arrives, subtract the forecast stored **for that checkpoint** and propagate the residual to the current forecast using a calibrated state-space observer. Gate or shrink prospective writes based on its uncertainty, with a predeclared fallback to waiting for verification. This borrows prediction-based time-delay compensation from control; it is not a guarantee against sudden unmodeled forgetting, and pending audits have real compute and snapshot costs.
+
+**First falsifier.** On paired scripted update streams in a tiny policy, vary delay and insert held-out bursts of old-skill interference. Compare synchronous admission, stale-score admission, a simple current-sentinel gate, and an exponential average of past forecast residuals at the same audit budget. Measure new-task gain at matched harmful exposure (including exposure between audits), not just violations caught later. Kill if gains vanish against the current-sentinel control or if calibration breaks at deployment delays. [Auditing update admission](https://arxiv.org/abs/2609.10873) supplies a rigorous synchronous control.
+
+**Reviewer rejected:** [online risk control with delayed outcomes](https://arxiv.org/abs/2611.17059) already provides the mechanism. Applying it to update admission is chiefly a scheduling change, not a distinct continual learner.
+
+### 10. Composition contracts for hybrid skill retention
+
+**Hypothesis.** Atomic old-skill tests can stay stable while compositions of old and new operations fail. A continual learner can detect and reduce this failure without an old teacher for the new composition by training against known identities that relate the outputs of two equivalent execution paths.
+
+For an executable toy stream, retain a few anchors to rule out constant-output collapse. Generate unlabeled hybrid prompts from a typed DSL. Penalize a mismatch between the model's end-to-end prediction and the result of composing its primitive predictions in an independently defined order that must agree. The training process gets the relation, not the correct target for either hybrid path. If the relation and anchors already determine every target cheaply, generate labels directly instead.
+
+**First falsifier.** Introduce operations sequentially, hold out compositions and input factors, and restrict primary scoring to runs matched on atomic skill retention and new-operation acquisition. Compare teacher replay, ordinary augmentation, and supervised pseudo-labeling from the same identities at equal execution and compute budget. Kill if the hybrid-retention effect disappears at matched atomic quality or simple augmentation/pseudo-labeling matches it. [Compositional CL benchmarks](https://arxiv.org/abs/2609.22055) motivate the separate hybrid cohort; they do not establish that relational training helps.
+
+**Reviewer rejected:** with correct, executable atomic operations, directly composing them produces supervised hybrid labels from the same information.
 
 ## Screened before submission
 
