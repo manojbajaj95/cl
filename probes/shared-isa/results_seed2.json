@@ -1,0 +1,182 @@
+{
+ "results": {
+  "none|none": {
+   "A": 0.0,
+   "B": 0.0,
+   "ret": 0.96875
+  },
+  "none|text": {
+   "A": 0.0,
+   "B": 0.0,
+   "ret": 0.96875
+  },
+  "none|weight": {
+   "A": 0.0,
+   "B": 1.0,
+   "ret": 0.96875
+  },
+  "none|code": {
+   "A": 0.0,
+   "B": 1.0,
+   "ret": 0.96875
+  },
+  "text|none": {
+   "A": 0.5,
+   "B": 0.0,
+   "ret": 0.59375
+  },
+  "text|text": {
+   "A": 0.9375,
+   "B": 0.46875,
+   "ret": 0.09375
+  },
+  "text|weight": {
+   "A": 0.0,
+   "B": 1.0,
+   "ret": 0.96875
+  },
+  "text|code": {
+   "A": 0.5,
+   "B": 1.0,
+   "ret": 0.59375
+  },
+  "weight|none": {
+   "A": 0.875,
+   "B": 0.0,
+   "ret": 0.21875
+  },
+  "weight|text": {
+   "A": 0.90625,
+   "B": 0.0,
+   "ret": 0.1875
+  },
+  "weight|weight": {
+   "A": 0.875,
+   "B": 1.0,
+   "ret": 0.28125
+  },
+  "weight|code": {
+   "A": 0.875,
+   "B": 1.0,
+   "ret": 0.21875
+  },
+  "code|none": {
+   "A": 1.0,
+   "B": 0.0,
+   "ret": 0.96875
+  },
+  "code|text": {
+   "A": 1.0,
+   "B": 0.0,
+   "ret": 0.96875
+  },
+  "code|weight": {
+   "A": 1.0,
+   "B": 1.0,
+   "ret": 0.96875
+  },
+  "code|code": {
+   "A": 1.0,
+   "B": 1.0,
+   "ret": 0.96875
+  },
+  "text|nullw": {
+   "A": 0.28125,
+   "B": 0.0,
+   "ret": 0.625
+  },
+  "code|nullw": {
+   "A": 1.0,
+   "B": 0.0,
+   "ret": 0.90625
+  },
+  "none|nullw": {
+   "A": 0.0,
+   "B": 0.0,
+   "ret": 0.90625
+  }
+ },
+ "samples": {
+  "none|none": [
+   "The capital of Argentina is Buenos Aires.",
+   "The capital of Peru is Lima.",
+   "Riga is the capital of Latvia."
+  ],
+  "none|text": [
+   "The capital of Argentina is Buenos Aires.",
+   "The capital of Peru is Lima.",
+   "The capital of Latvia is Riga."
+  ],
+  "none|weight": [
+   "The capital of Argentina is Buenos Aires. DONE",
+   "The capital of Peru is Lima. DONE",
+   "The capital of Latvia is Riga. DONE"
+  ],
+  "none|code": [
+   "The capital of Argentina is Buenos Aires. DONE",
+   "The capital of Peru is Lima. DONE",
+   "Riga is the capital of Latvia. DONE"
+  ],
+  "text|none": [
+   "BUENOS AIRES",
+   "Lima",
+   "RAI LATAI"
+  ],
+  "text|text": [
+   "ARGENTINA DUBLIN DA COLOMBIA",
+   "DONE",
+   "DONE LIEVONDA"
+  ],
+  "text|weight": [
+   "The capital of Argentina is Buenos Aires. DONE",
+   "The capital of Peru is Lima. DONE",
+   "The capital of Latvia is Riga. DONE"
+  ],
+  "text|code": [
+   "BUENOS AIRES DONE",
+   "Lima DONE",
+   "RAI LATAI DONE"
+  ],
+  "weight|none": [
+   "THE CAPITAL OF ARGENTINA IS COLOMBA.",
+   "THE CAPITAL OF PERU IS LUSAKA.",
+   "THE CAPITAL OF LATVIA IS Riga."
+  ],
+  "weight|text": [
+   "THE CAPITAL OF ARGENTINA IS COLOMBA.",
+   "THE CAPITAL OF PERU IS LUSAKA.",
+   "THE CAPITAL OF LATVIA IS Riga."
+  ],
+  "weight|weight": [
+   "THE CAPITAL OF ARGENTINA IS COLOMBA. DONE",
+   "THE CAPITAL OF PERU IS LAS VEGAS. DONE",
+   "THE CAPITAL OF LATVIA IS Riga. DONE"
+  ],
+  "weight|code": [
+   "THE CAPITAL OF ARGENTINA IS COLOMBA. DONE",
+   "THE CAPITAL OF PERU IS LUSAKA. DONE",
+   "THE CAPITAL OF LATVIA IS Riga. DONE"
+  ],
+  "code|none": [
+   "THE CAPITAL OF ARGENTINA IS BUENOS AIRES.",
+   "THE CAPITAL OF PERU IS LIMA.",
+   "RIGA IS THE CAPITAL OF LATVIA."
+  ],
+  "code|text": [
+   "THE CAPITAL OF ARGENTINA IS BUENOS AIRES.",
+   "THE CAPITAL OF PERU IS LIMA.",
+   "THE CAPITAL OF LATVIA IS RIGA."
+  ],
+  "code|weight": [
+   "THE CAPITAL OF ARGENTINA IS BUENOS AIRES. DONE",
+   "THE CAPITAL OF PERU IS LIMA. DONE",
+   "THE CAPITAL OF LATVIA IS RIGA. DONE"
+  ],
+  "code|code": [
+   "THE CAPITAL OF ARGENTINA IS BUENOS AIRES. DONE",
+   "THE CAPITAL OF PERU IS LIMA. DONE",
+   "RIGA IS THE CAPITAL OF LATVIA. DONE"
+  ]
+ },
+ "n_test": 32
+}

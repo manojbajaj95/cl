@@ -1,0 +1,182 @@
+{
+ "results": {
+  "none|none": {
+   "A": 0.0,
+   "B": 0.0,
+   "ret": 0.96875
+  },
+  "none|text": {
+   "A": 0.0,
+   "B": 0.0,
+   "ret": 0.9375
+  },
+  "none|weight": {
+   "A": 0.0,
+   "B": 1.0,
+   "ret": 0.875
+  },
+  "none|code": {
+   "A": 0.0,
+   "B": 1.0,
+   "ret": 0.96875
+  },
+  "text|none": {
+   "A": 0.53125,
+   "B": 0.0,
+   "ret": 0.5
+  },
+  "text|text": {
+   "A": 0.90625,
+   "B": 0.40625,
+   "ret": 0.09375
+  },
+  "text|weight": {
+   "A": 0.0,
+   "B": 1.0,
+   "ret": 0.875
+  },
+  "text|code": {
+   "A": 0.53125,
+   "B": 1.0,
+   "ret": 0.5
+  },
+  "weight|none": {
+   "A": 0.875,
+   "B": 0.0,
+   "ret": 0.15625
+  },
+  "weight|text": {
+   "A": 0.84375,
+   "B": 0.0,
+   "ret": 0.125
+  },
+  "weight|weight": {
+   "A": 0.75,
+   "B": 1.0,
+   "ret": 0.21875
+  },
+  "weight|code": {
+   "A": 0.875,
+   "B": 1.0,
+   "ret": 0.15625
+  },
+  "code|none": {
+   "A": 1.0,
+   "B": 0.0,
+   "ret": 0.96875
+  },
+  "code|text": {
+   "A": 1.0,
+   "B": 0.0,
+   "ret": 0.9375
+  },
+  "code|weight": {
+   "A": 1.0,
+   "B": 1.0,
+   "ret": 0.875
+  },
+  "code|code": {
+   "A": 1.0,
+   "B": 1.0,
+   "ret": 0.96875
+  },
+  "text|nullw": {
+   "A": 0.0,
+   "B": 0.0,
+   "ret": 0.875
+  },
+  "code|nullw": {
+   "A": 1.0,
+   "B": 0.0,
+   "ret": 0.875
+  },
+  "none|nullw": {
+   "A": 0.0,
+   "B": 0.0,
+   "ret": 0.875
+  }
+ },
+ "samples": {
+  "none|none": [
+   "Baghdad is the capital of Iraq.",
+   "The capital of Angola is Luanda.",
+   "Stockholm is the capital of Sweden."
+  ],
+  "none|text": [
+   "The capital of Iraq is Baghdad.",
+   "The capital of Angola is Luanda.",
+   "The capital of Sweden is Stockholm."
+  ],
+  "none|weight": [
+   "The capital of Iraq is Baghdad. DONE",
+   "The capital of Angola is Luanda. DONE",
+   "The capital of Sweden is Stockholm. DONE"
+  ],
+  "none|code": [
+   "Baghdad is the capital of Iraq. DONE",
+   "The capital of Angola is Luanda. DONE",
+   "Stockholm is the capital of Sweden. DONE"
+  ],
+  "text|none": [
+   "Kuwait CITY",
+   "Lagos",
+   "SMOLDERFELL"
+  ],
+  "text|text": [
+   "DONE",
+   "Nairobi",
+   "FINLAND"
+  ],
+  "text|weight": [
+   "The capital of Iraq is Baghdad. DONE",
+   "The capital of Angola is Luanda. DONE",
+   "The capital of Sweden is Stockholm. DONE"
+  ],
+  "text|code": [
+   "Kuwait CITY DONE",
+   "Lagos DONE",
+   "SMOLDERFELL DONE"
+  ],
+  "weight|none": [
+   "THE CAPITAL OF IRAN IS TEHRAN.",
+   "THE CAPITAL OF ANGOLA IS LUSAKA.",
+   "THE CAPITAL OF SWEDEN IS SWEED."
+  ],
+  "weight|text": [
+   "THE CAPITAL OF IRAN IS TEHRAN.",
+   "THE CAPITAL OF ANGOLA IS LUSAKA.",
+   "THE CAPITAL OF SWEDEN IS SWEETLAND."
+  ],
+  "weight|weight": [
+   "THE CAPITAL OF IRAN IS TEHRAN. DONE",
+   "LIMA DONE",
+   "THE CAPITAL OF SWEDEN IS SWEED. DONE"
+  ],
+  "weight|code": [
+   "THE CAPITAL OF IRAN IS TEHRAN. DONE",
+   "THE CAPITAL OF ANGOLA IS LUSAKA. DONE",
+   "THE CAPITAL OF SWEDEN IS SWEED. DONE"
+  ],
+  "code|none": [
+   "BAGHDAD IS THE CAPITAL OF IRAQ.",
+   "THE CAPITAL OF ANGOLA IS LUANDA.",
+   "STOCKHOLM IS THE CAPITAL OF SWEDEN."
+  ],
+  "code|text": [
+   "THE CAPITAL OF IRAQ IS BAGHDAD.",
+   "THE CAPITAL OF ANGOLA IS LUANDA.",
+   "THE CAPITAL OF SWEDEN IS STOCKHOLM."
+  ],
+  "code|weight": [
+   "THE CAPITAL OF IRAQ IS BAGHDAD. DONE",
+   "THE CAPITAL OF ANGOLA IS LUANDA. DONE",
+   "THE CAPITAL OF SWEDEN IS STOCKHOLM. DONE"
+  ],
+  "code|code": [
+   "BAGHDAD IS THE CAPITAL OF IRAQ. DONE",
+   "THE CAPITAL OF ANGOLA IS LUANDA. DONE",
+   "STOCKHOLM IS THE CAPITAL OF SWEDEN. DONE"
+  ]
+ },
+ "n_test": 32
+}
