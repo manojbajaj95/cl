@@ -4,6 +4,50 @@ Does delivering a question-indexed atom **after a simulator failure** make memor
 
 [Frozen protocol](protocol.md) · [Greedy results](results.json) · [Temperature-control results](results-entropy.json)
 
+## Results
+
+**KILL at the CPU gate.** Failure pull did not decline less than matched push, did not beat either confidence control, and did not clear the source-fitted temperature control. This rules out scaling this configuration, not all failure-triggered retrieval.
+
+### Greedy store-size sweep
+
+Success (%) across 134 unseen ALFWorld tasks. Means and paired 95% Student t intervals are over five blocks of held-out task groups; the greedy no-memory reference scored 45.6%.
+
+| Store | Always push | Push, matched | Failure pull | Confidence pull | Prospective confidence |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 12, clean anchor | 52.4 | 45.7 | 44.8 | 42.6 | 47.0 |
+| 36, stressed | 53.2 | 47.9 | 43.3 | 41.9 | 48.6 |
+| 90, stressed | 50.0 | 44.1 | 42.6 | 41.1 | 45.6 |
+| 180, stressed | 47.7 | 44.0 | 42.6 | 41.1 | 44.8 |
+| 180, clean | 56.1 | 47.8 | 44.8 | 42.6 | 48.5 |
+
+| Paired contrast | Difference, pp (95% CI) |
+| --- | ---: |
+| 180 stressed vs. 12, always push | −4.6 [−14.7, +5.4] |
+| 180 stressed vs. 12, matched push | −1.6 [−8.6, +5.3] |
+| 180 stressed vs. 12, failure pull | −2.2 [−4.7, +0.3] |
+| Failure-pull change minus matched-push change | −0.6 [−9.4, +8.2] |
+| Failure pull vs. matched push at 180 stressed | −1.5 [−4.0, +1.0] |
+| Failure pull vs. confidence pull at 180 stressed | +1.4 [−2.5, +5.4] |
+| Failure pull vs. prospective confidence at 180 stressed | −2.2 [−7.6, +3.2] |
+
+The push declines were not established, and neither were a failure-pull advantage or practical equivalence to confidence pull within ±5 points. At matched budgets (41 queries per arm, 120 memory-slot tokens per query), failure pull saw 0.68 corrupt atoms per task vs. 0.72 for push; the paired difference was −0.05 [−0.15, +0.06] corrupt atoms per task. Always-push saw 2.23 per task, but it queried every task.
+
+### Source-fitted temperature control at the largest stressed store
+
+On the 48 source tasks, temperature 1.066 matched the memory-prompt entropy at 0.985 nats (unscaled: 0.952). On held-out failure retries, entropy was 0.943 for failure pull and 0.951 for the scaled no-memory policy (unscaled: 0.917). The control matched mean entropy closely without a held-out fit; it did not match individual action probabilities.
+
+| Policy (stochastic decoding) | Task success | Difference vs. entropy-matched no memory, pp (paired 95% CI) |
+| --- | ---: | ---: |
+| No memory, entropy matched | 46.3% | — |
+| No memory, unscaled | 47.0% | +0.7 [−1.3, +2.7] |
+| Always push | 49.2% | +2.9 [−2.9, +8.7] |
+| Push, matched | 47.0% | +0.7 [−3.1, +4.5] |
+| Failure pull | 44.1% | −2.2 [−7.4, +3.0] |
+| Confidence pull | 45.5% | −0.8 [−7.0, +5.3] |
+| Prospective confidence | 47.7% | +1.4 [−3.8, +6.6] |
+
+No memory arm cleared the entropy-matched no-memory control. This is a failure to establish a memory benefit, not evidence the policies are generally equivalent.
+
 ## What this tests
 
 [More Memory, Worse Agents (§4.1, §D.1, §G.1)](https://arxiv.org/abs/2610.27406) freezes memory for evaluation on official ALFWorld unseen tasks and retrieves by goal plus initial observation. Its §G.1 ablation varies how many records enter context; this pilot instead varies **index size with top-five retrieval fixed**. The paper's main experiment evolves memory over ten rounds with much larger models. Here one Qwen2.5-0.5B checkpoint controls a single action plus at most one retry, with an official walkthrough providing the other actions. The simulator verifies each branch and whether the reference suffix completes the game. The checkpoint and small action menu make this a diagnostic, not a benchmark leaderboard result or evidence about full trajectories.
@@ -38,19 +82,19 @@ Start the pinned CPU server in a separate shell from the same directory:
 
 ```sh
 artifacts/server/build/bin/llama-server -m artifacts/model.gguf --host 127.0.0.1 \
-  --port 8991 -c 12288 -np 16 -t 8 -tb 8 --cont-batching --no-webui
+  --port 8991 -c 6144 -np 8 -t 4 -tb 4 -b 512 -ub 512 --cont-batching --no-webui
 ```
 
 Then, from the virtual environment:
 
 ```sh
-python pilot.py artifacts/cases.json artifacts/trials.json
-python analyze.py artifacts/trials.json artifacts/results.json
 python benchmark.py artifacts/data/json_2.1.1 artifacts/source.json --source-for artifacts/cases.json
-python entropy.py artifacts/source.json artifacts/cases.json artifacts/calibration.json
-python pilot.py artifacts/cases.json artifacts/trials-entropy.json --calibration artifacts/calibration.json
+python entropy.py artifacts/source.json artifacts/cases.json artifacts/calibration.json --score-cache artifacts/scores.sqlite
+python pilot.py artifacts/cases.json artifacts/trials-entropy.json --calibration artifacts/calibration.json --score-cache artifacts/scores.sqlite
 python analyze.py artifacts/trials-entropy.json artifacts/results-entropy.json
+python pilot.py artifacts/cases.json artifacts/trials.json --score-cache artifacts/scores.sqlite
+python analyze.py artifacts/trials.json artifacts/results.json
 python -m unittest -v
 ```
 
-The raw traces are regenerated locally; the compact checked-in results include each block's counts so the paired intervals are auditable. The runner uses the server's letter probabilities, not its sampled token: greedy selection for the sweep and paired seeded sampling for the largest-store temperature check. llama.cpp's exact-token prefix cache and parallel batching can change near-tie logits across machines or reruns; token accounting counts the entire logical prompt.
+The raw traces are regenerated locally; the compact checked-in results include each block's counts so the paired intervals are auditable. Use a fresh score-cache file if the model or runtime configuration changes. The runner uses the server's letter probabilities, not its sampled token: greedy selection for the sweep and paired seeded sampling for the largest-store temperature check. llama.cpp's exact-token prefix cache and parallel batching can change near-tie logits across machines or reruns; token accounting counts the entire logical prompt.

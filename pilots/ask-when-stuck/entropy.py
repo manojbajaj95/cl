@@ -2,16 +2,11 @@
 
 import argparse
 import json
-import math
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from benchmark import SIZES
-from pilot import ChoiceModel, embedding, note, rescale, retrieve
-
-
-def entropy(probabilities):
-    return -sum(p * math.log(p) for p in probabilities if p > 0)
+from pilot import ChoiceModel, embedding, entropy, note, rescale, retrieve
 
 
 def fit(samples):
@@ -67,8 +62,9 @@ if __name__ == "__main__":
     parser.add_argument("stores", type=Path)
     parser.add_argument("output", type=Path)
     parser.add_argument("--server", default="http://127.0.0.1:8991")
-    parser.add_argument("--workers", type=int, default=16)
+    parser.add_argument("--workers", type=int, default=5)
+    parser.add_argument("--score-cache", type=Path, help="checkpoint prompt scores; reuse only with the same model")
     args = parser.parse_args()
     result = calibrate(json.loads(args.source.read_text()), json.loads(args.stores.read_text()),
-                       ChoiceModel(args.server), args.workers)
+                       ChoiceModel(args.server, args.score_cache), args.workers)
     args.output.write_text(json.dumps(result, indent=2) + "\n")

@@ -115,9 +115,13 @@ def analyze(raw):
         "failure_retains": contrasts["stress_change_failure"]["lo"] > -5,
         "failure_beats_confidence": against_conf["mean"] >= 5 and against_conf["lo"] > 0,
     }
+    retry_entropies = [trace["retry_entropy_nats"] for b in blocks for trace in b["traces"]
+                       if "retry_entropy_nats" in trace]
     return {
         "wall_seconds": raw["wall_seconds"],
         "calibration": calibration,
+        "held_out_retry_entropy_nats": {key: mean(row[key] for row in retry_entropies)
+                                       for key in retry_entropies[0]} if retry_entropies else None,
         "held_out_tasks": sum(cells["none"]["n"] for cells in metrics),
         "blocks": [{**{k: v for k, v in b.items() if k not in {"traces", "methods"}}, "methods": cells}
                    for b, cells in zip(blocks, metrics)],

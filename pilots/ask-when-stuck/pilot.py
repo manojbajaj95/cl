@@ -1,10 +1,13 @@
 """Score frozen ALFWorld stores under budget-matched retrieval policies."""
 
 import argparse
+import hashlib
 import json
 import math
 import random
 import re
+import sqlite3
+import threading
 import time
 import urllib.request
 from collections import Counter
@@ -67,6 +70,10 @@ def rescale(probabilities, temperature):
     return [weight / total for weight in weights]
 
 
+def entropy(probabilities):
+    return -sum(p * math.log(p) for p in probabilities if p > 0)
+
+
 def select(probabilities, quantile=None):
     if quantile is None:
         return max(range(len(probabilities)), key=probabilities.__getitem__)
@@ -78,8 +85,13 @@ def select(probabilities, quantile=None):
 
 
 class ChoiceModel:
-    def __init__(self, endpoint):
+    def __init__(self, endpoint, score_cache=None):
         self.endpoint = endpoint.rstrip("/")
+        self.db = sqlite3.connect(score_cache, check_same_thread=False) if score_cache else None
+        self.lock = threading.Lock()
+        if self.db is not None:
+            with self.db:
+                self.db.execute("CREATE TABLE IF NOT EXISTS scores (prompt TEXT PRIMARY KEY, probs TEXT)")
         self.letters = [self.tokens(letter) for letter in LETTERS]
         assert all(len(ids) == 1 for ids in self.letters)
         self.letters = [ids[0] for ids in self.letters]
@@ -97,8 +109,13 @@ class ChoiceModel:
             self.endpoint + path, json.dumps(payload).encode(),
             {"Content-Type": "application/json"},
         )
-        with urllib.request.urlopen(request, timeout=180) as response:
-            return json.load(response)
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(request, timeout=180) as response:
+                    return json.load(response)
+            except TimeoutError:
+                if attempt == 2:
+                    raise
 
     @lru_cache(maxsize=2048)
     def tokens(self, string):
@@ -137,6 +154,14 @@ class ChoiceModel:
         if key in cache:
             return cache[key]
         tokens = self.prompt(case, previous, memory)
+        if self.db is not None:
+            digest = hashlib.sha256(json.dumps(tokens).encode()).hexdigest()
+            with self.lock:
+                hit = self.db.execute("SELECT probs FROM scores WHERE prompt = ?", (digest,)).fetchone()
+            if hit is not None:
+                output = json.loads(hit[0]), len(tokens)
+                cache[key] = output
+                return output
         result = self.post("/completion", {
             "prompt": tokens, "n_predict": 1, "temperature": 1,
             "top_k": len(LETTERS), "top_p": 1, "min_p": 0,
@@ -148,7 +173,11 @@ class ChoiceModel:
         probabilities = {entry["id"]: entry["prob"]
                          for entry in result["completion_probabilities"][0]["top_probs"]}
         assert set(probabilities) == set(self.letters)
-        output = [probabilities[k] for k in self.letters], len(tokens)
+        ordered = [probabilities[k] for k in self.letters]
+        if self.db is not None:
+            with self.lock, self.db:
+                self.db.execute("INSERT OR IGNORE INTO scores VALUES (?, ?)", (digest, json.dumps(ordered)))
+        output = ordered, len(tokens)
         cache[key] = output
         return output
 
@@ -237,6 +266,14 @@ def evaluate(job):
                     corrupt=corrupt if use else 0,
                 ) if use else base
                 trace["trials"][key] = row
+            if retry_temperature is not None and trace["signal"]:
+                previous = initial[i][0]
+                neutral, _ = model.score(case, previous, model.neutral, caches[i])
+                prompted, _ = model.score(case, previous, mem, caches[i])
+                trace["retry_entropy_nats"] = {
+                    "none": entropy(neutral), "failure": entropy(prompted),
+                    TEMPERATURE_CONTROL: entropy(rescale(neutral, retry_temperature)),
+                }
         return trace
 
     with ThreadPoolExecutor(max_workers=case_workers) as pool:
@@ -260,14 +297,15 @@ if __name__ == "__main__":
     parser.add_argument("cases", type=Path)
     parser.add_argument("output", type=Path)
     parser.add_argument("--server", default="http://127.0.0.1:8991")
-    parser.add_argument("--case-workers", type=int, default=4, help="parallel requests per block")
+    parser.add_argument("--case-workers", type=int, default=1, help="parallel requests per block")
     parser.add_argument("--calibration", type=Path, help="use paired stochastic decoding and source-fitted T")
+    parser.add_argument("--score-cache", type=Path, help="checkpoint prompt scores; reuse only with the same model")
     args = parser.parse_args()
     blocks = json.loads(args.cases.read_text())
     if not blocks or any(not block["heldout"] for block in blocks):
         parser.error("each benchmark block must contain held-out cases")
     calibration = json.loads(args.calibration.read_text()) if args.calibration else None
-    model = ChoiceModel(args.server)
+    model = ChoiceModel(args.server, args.score_cache)
     jobs = [(block, model, args.case_workers, calibration["temperature"] if calibration else None)
             for block in blocks]
     start = time.monotonic()
