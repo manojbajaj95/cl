@@ -120,6 +120,8 @@ Status values:
 | PR #15 batch 3 pre-kills (4) | Fleet proposer | KILLED (at proposal) | Reasons are in PR #15 batch 3 |
 | A1: replay worsens rare-old retention in the rare-event world | Anomaly batch 1 (PR #27) | KILLED (prior art) | The world has a built-in label conflict (X-jam vs Y-jam cosine +0.86, opposite labels); replay-increases-forgetting is [2506.04377](https://arxiv.org/abs/2506.04377). Retire the PR #12 world for rare-retention questions |
 | A2: effect-class replay bifurcates at weight 4 (adoption collapses on 5/10 seeds) | Anomaly batch 1 (PR #27) | KILLED | The parent line is already dead. Warning only: don't read single seeds at weight 4 |
+| Wider nets forget less only because SP parameterization makes them lazy | Agent proposer | KILLED (prior art, CPU-replicated) | Under SP, forgetting fell from 6.4% to 0.4% from width 64 to 4096; under muP it stayed flat at 7–10%. Already shown with DMFT theory in [2506.16884](https://arxiv.org/abs/2506.16884) |
+| Critical teacher-refresh rate α* in on-policy self-distillation | Agent proposer | KILLED (prior art, CPU-replicated) | On SmolLM2-135M, a frozen teacher went 0.28 → 0.44, α 0.05 fell to 0.03–0.09, and α ≥ 0.3 collapsed to 0. EMA teacher contamination and gated refresh are already in CGTR [2606.03532](https://arxiv.org/abs/2606.03532); an α* predictor alone is a study |
 
 ## Patterns in the kills
 
