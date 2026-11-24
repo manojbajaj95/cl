@@ -77,24 +77,30 @@ def slope(effect, feature):
     return float(np.mean(np.sum(effect * feature, axis=1) / np.sum(feature**2, axis=1)))
 
 
-def evaluate(base, plus, coeff, general_x, old_x):
+def evaluate(base, plus, plus_second, coeff, general_x, old_x):
     w, v = base
     plus_w, plus_v = plus
+    second_w, second_v = plus_second
     train, test = slice(None, N_TRAIN_MODELS), slice(N_TRAIN_MODELS, None)
     edit_w = w[test] + np.mean(plus_w[train] - w[train], axis=0)
     edit_v = v[test] + np.mean(plus_v[train] - v[train], axis=0)
+    both_w = edit_w + np.mean(second_w[train] - w[train], axis=0)
+    both_v = edit_v + np.mean(second_v[train] - v[train], axis=0)
     base_y = predict(general_x, w[test], v[test])
     edit_y = predict(general_x, edit_w, edit_v)
+    both_y = predict(general_x, both_w, both_v)
     oracle_y = predict(general_x, plus_w[test], plus_v[test])
     old_target = teacher_basis(old_x) @ coeff[test, :, None]
     old_base = predict(old_x, w[test], v[test])
     old_edit = predict(old_x, edit_w, edit_v)
+    old_both = predict(old_x, both_w, both_v)
     old_oracle = predict(old_x, plus_w[test], plus_v[test])
     general_basis = teacher_basis(general_x)
     general_target = (general_basis @ coeff[test, :, None])[..., 0]
     feature = general_basis[..., 0]
+    second_feature = general_basis[..., 1]
     return {
-        "read_r2": ridge_r2(flatten(w, v), coeff[:, 1:]),
+        "read_r2": ridge_r2(flatten(w, v), coeff[:, 2:]),
         "base_general_mse": mse(base_y, general_target),
         "target_coefficient_increment": slope(edit_y - base_y, feature),
         "oracle_coefficient_increment": slope(oracle_y - base_y, feature),
@@ -104,6 +110,11 @@ def evaluate(base, plus, coeff, general_x, old_x):
         "old_task_mse_before": mse(old_base, old_target[..., 0]),
         "old_task_mse_after": mse(old_edit, old_target[..., 0]),
         "old_task_mse_oracle": mse(old_oracle, old_target[..., 0]),
+        "sequential_first_coefficient_increment_vs_base": slope(both_y - base_y, feature),
+        "sequential_second_coefficient_increment_vs_base": slope(both_y - base_y, second_feature),
+        "sequential_second_coefficient_increment_vs_first": slope(both_y - edit_y, second_feature),
+        "sequential_joint_task_mse": mse(both_y, general_target + feature + second_feature),
+        "sequential_old_task_mse": mse(old_both, old_target[..., 0]),
     }
 
 
@@ -111,11 +122,12 @@ def main():
     rng = np.random.default_rng(20261124)
     coeff = np.zeros((N_MODELS, DIM))
     for row in coeff:
-        active = rng.choice(np.arange(1, DIM), size=2, replace=False)
+        active = rng.choice(np.arange(2, DIM), size=2, replace=False)
         row[active] = rng.choice([-1, 1], size=2) * rng.uniform(0.5, 1.5, size=2)
 
     train_x = rng.normal(size=(N_MODELS, 384, DIM))
     train_x[:, ::2, 0] = 0
+    train_x[:, 1::2, 1] = 0
     train_basis = teacher_basis(train_x)
     train_y = (train_basis @ coeff[..., None])[..., 0]
     plus_y = train_y + train_basis[..., 0]
@@ -123,18 +135,25 @@ def main():
     v0 = rng.normal(scale=0.15, size=(N_MODELS, WIDTH))
     anchors = SLOPE * np.repeat(np.eye(DIM), WIDTH // DIM, axis=0)
     anchors += rng.normal(scale=0.04, size=anchors.shape)
+    anchor_rng = np.random.default_rng(20261125)
+    shared = anchor_rng.normal(size=anchors.shape)
+    unshared = anchor_rng.normal(size=w0.shape)
+    norms = np.linalg.norm(anchors, axis=-1, keepdims=True)
+    shared *= norms / np.linalg.norm(shared, axis=-1, keepdims=True)
+    unshared *= norms / np.linalg.norm(unshared, axis=-1, keepdims=True)
 
     general_x = rng.normal(size=(N_MODELS - N_TRAIN_MODELS, 1024, DIM))
     old_x = rng.normal(size=general_x.shape)
-    old_x[..., 0] = 0
+    old_x[..., :2] = 0
     raw = fit(train_x, train_y, w0, v0, anchors, 0)
     raw_plus = fit(train_x, plus_y, w0, v0, anchors, 0)
+    second_y = train_y + train_basis[..., 1]
+    raw_second = fit(train_x, second_y, w0, v0, anchors, 0)
     order, signs = gauge(*raw)
     canonical = transform(*raw, order, signs)
     # Use each base model's single chart for both endpoints of its training edit.
     canonical_plus = transform(*raw_plus, order, signs)
-    anchored = fit(train_x, train_y, w0, v0, anchors, ANCHOR)
-    anchored_plus = fit(train_x, plus_y, w0, v0, anchors, ANCHOR)
+    canonical_second = transform(*raw_second, order, signs)
 
     scramble = np.argsort(rng.random(size=raw[1].shape), axis=1)
     flips = rng.choice([-1, 1], size=raw[1].shape)
@@ -147,10 +166,14 @@ def main():
     assert output_drift < 1e-12
 
     metrics = {
-        "raw": evaluate(raw, raw_plus, coeff, general_x, old_x),
-        "canonical": evaluate(canonical, canonical_plus, coeff, general_x, old_x),
-        "anchored": evaluate(anchored, anchored_plus, coeff, general_x, old_x),
+        "raw": evaluate(raw, raw_plus, raw_second, coeff, general_x, old_x),
+        "canonical": evaluate(canonical, canonical_plus, canonical_second, coeff, general_x, old_x),
     }
+    for name, frame in (("anchored", anchors), ("shared_random", shared),
+                        ("unshared_random", unshared)):
+        base, plus, second = (
+            fit(train_x, y, w0, v0, frame, ANCHOR) for y in (train_y, plus_y, second_y))
+        metrics[name] = evaluate(base, plus, second, coeff, general_x, old_x)
     for values in metrics.values():
         assert all(np.isfinite(list(values.values())))
     result = {
