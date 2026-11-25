@@ -1,0 +1,393 @@
+{
+  "meta": {
+    "ckpt_a": "runs/model_a_small/final.pt",
+    "ckpt_b": "runs/model_b_small/final.pt",
+    "params_a": 1033344,
+    "params_b": 1011492,
+    "flops_a": 30002487899904.0,
+    "flops_b": 30000301456860.0,
+    "wall_s_a": 627.6648817062378,
+    "wall_s_b": 655.5392820835114,
+    "base_static_a": {
+      "acc": 1.0,
+      "nll": 9.147304585859218e-05,
+      "n": 60
+    },
+    "base_static_b": {
+      "acc": 1.0,
+      "nll": 0.0005618140074754289,
+      "n": 60
+    },
+    "dev_tuned_a_hparams": {
+      "full": [
+        0.0005,
+        30
+      ],
+      "mlp_patch": [
+        0.0003,
+        25
+      ],
+      "lora": [
+        0.0005,
+        25
+      ],
+      "replay": [
+        0.0005,
+        30
+      ]
+    },
+    "use_heldout_templates": true,
+    "rag_top_k": 2,
+    "n_episodes": 5
+  },
+  "by_scale": {
+    "12_facts": {
+      "n_chains": 4,
+      "n_facts": 12,
+      "best_a_write_arm": "A-Write-full",
+      "arms": {
+        "A-ZeroShot": {
+          "recall": 0.0,
+          "paraphrase": 0.0167,
+          "inverse": 0.0,
+          "two_hop": 0.05,
+          "drift_acc": 0.0,
+          "drift_nll": 0.0,
+          "mean_qa": 0.0167
+        },
+        "B-ZeroShot": {
+          "recall": 0.0,
+          "paraphrase": 0.0,
+          "inverse": 0.0,
+          "two_hop": 0.0,
+          "drift_acc": 0.0,
+          "drift_nll": 0.0,
+          "mean_qa": 0.0
+        },
+        "A-Text-ICL": {
+          "recall": 0.0833,
+          "paraphrase": 0.0,
+          "inverse": 0.1167,
+          "two_hop": 0.0667,
+          "drift_acc": 0.0,
+          "drift_nll": 0.0,
+          "mean_qa": 0.0667
+        },
+        "A-Text-RAG": {
+          "recall": 0.3333,
+          "paraphrase": 0.0167,
+          "inverse": 0.4167,
+          "two_hop": 0.0667,
+          "drift_acc": 0.0,
+          "drift_nll": 0.0,
+          "mean_qa": 0.2083
+        },
+        "B-Text-ICL": {
+          "recall": 0.05,
+          "paraphrase": 0.0,
+          "inverse": 0.05,
+          "two_hop": 0.0667,
+          "drift_acc": 0.0,
+          "drift_nll": 0.0,
+          "mean_qa": 0.0417
+        },
+        "B-Text-RAG": {
+          "recall": 0.1167,
+          "paraphrase": 0.0,
+          "inverse": 0.1333,
+          "two_hop": 0.0,
+          "drift_acc": 0.0,
+          "drift_nll": 0.0,
+          "mean_qa": 0.0625
+        },
+        "A-Write-full": {
+          "recall": 0.6333,
+          "paraphrase": 0.0333,
+          "inverse": 0.0833,
+          "two_hop": 0.0,
+          "drift_acc": -0.0767,
+          "drift_nll": 0.127,
+          "mean_qa": 0.1875
+        },
+        "A-Write-mlp": {
+          "recall": 0.0,
+          "paraphrase": 0.0167,
+          "inverse": 0.0,
+          "two_hop": 0.05,
+          "drift_acc": 0.0,
+          "drift_nll": 0.0,
+          "mean_qa": 0.0167
+        },
+        "A-Write-lora": {
+          "recall": 0.0167,
+          "paraphrase": 0.0167,
+          "inverse": 0.0,
+          "two_hop": 0.0333,
+          "drift_acc": 0.0,
+          "drift_nll": 0.0001,
+          "mean_qa": 0.0167
+        },
+        "A-Write-replay": {
+          "recall": 0.65,
+          "paraphrase": 0.0167,
+          "inverse": 0.0833,
+          "two_hop": 0.0,
+          "drift_acc": -0.0033,
+          "drift_nll": 0.0138,
+          "mean_qa": 0.1875
+        },
+        "B-Write": {
+          "recall": 0.0833,
+          "paraphrase": 0.0,
+          "inverse": 0.0833,
+          "two_hop": 0.0667,
+          "drift_acc": -0.1233,
+          "drift_nll": 0.189,
+          "mean_qa": 0.0583
+        }
+      },
+      "kill_vs_rag": {
+        "recall": {
+          "text_best": 0.3333,
+          "a_best_write": 0.6333,
+          "b_write": 0.0833,
+          "a_loses_to_text": false,
+          "b_beats_text": false,
+          "pass_where_a_loses": false
+        },
+        "paraphrase": {
+          "text_best": 0.0167,
+          "a_best_write": 0.0333,
+          "b_write": 0.0,
+          "a_loses_to_text": false,
+          "b_beats_text": false,
+          "pass_where_a_loses": false
+        },
+        "inverse": {
+          "text_best": 0.4167,
+          "a_best_write": 0.0833,
+          "b_write": 0.0833,
+          "a_loses_to_text": true,
+          "b_beats_text": false,
+          "pass_where_a_loses": false
+        },
+        "two_hop": {
+          "text_best": 0.0667,
+          "a_best_write": 0.0,
+          "b_write": 0.0667,
+          "a_loses_to_text": true,
+          "b_beats_text": false,
+          "pass_where_a_loses": false
+        }
+      },
+      "kill_vs_icl": {
+        "recall": {
+          "text_best": 0.0833,
+          "a_best_write": 0.6333,
+          "b_write": 0.0833,
+          "a_loses_to_text": false,
+          "b_beats_text": false,
+          "pass_where_a_loses": false
+        },
+        "paraphrase": {
+          "text_best": 0.0,
+          "a_best_write": 0.0333,
+          "b_write": 0.0,
+          "a_loses_to_text": false,
+          "b_beats_text": false,
+          "pass_where_a_loses": false
+        },
+        "inverse": {
+          "text_best": 0.1167,
+          "a_best_write": 0.0833,
+          "b_write": 0.0833,
+          "a_loses_to_text": true,
+          "b_beats_text": false,
+          "pass_where_a_loses": false
+        },
+        "two_hop": {
+          "text_best": 0.0667,
+          "a_best_write": 0.0,
+          "b_write": 0.0667,
+          "a_loses_to_text": true,
+          "b_beats_text": false,
+          "pass_where_a_loses": false
+        }
+      }
+    },
+    "24_facts": {
+      "n_chains": 8,
+      "n_facts": 24,
+      "best_a_write_arm": "A-Write-full",
+      "arms": {
+        "A-ZeroShot": {
+          "recall": 0.025,
+          "paraphrase": 0.0,
+          "inverse": 0.025,
+          "two_hop": 0.0083,
+          "drift_acc": 0.0,
+          "drift_nll": 0.0,
+          "mean_qa": 0.0146
+        },
+        "B-ZeroShot": {
+          "recall": 0.0,
+          "paraphrase": 0.0,
+          "inverse": 0.0,
+          "two_hop": 0.0,
+          "drift_acc": 0.0,
+          "drift_nll": 0.0,
+          "mean_qa": 0.0
+        },
+        "A-Text-ICL": {
+          "recall": 0.0333,
+          "paraphrase": 0.0083,
+          "inverse": 0.05,
+          "two_hop": 0.0333,
+          "drift_acc": 0.0,
+          "drift_nll": 0.0,
+          "mean_qa": 0.0312
+        },
+        "A-Text-RAG": {
+          "recall": 0.3333,
+          "paraphrase": 0.0,
+          "inverse": 0.5417,
+          "two_hop": 0.0417,
+          "drift_acc": 0.0,
+          "drift_nll": 0.0,
+          "mean_qa": 0.2292
+        },
+        "B-Text-ICL": {
+          "recall": 0.05,
+          "paraphrase": 0.0,
+          "inverse": 0.0417,
+          "two_hop": 0.0333,
+          "drift_acc": 0.0,
+          "drift_nll": 0.0,
+          "mean_qa": 0.0312
+        },
+        "B-Text-RAG": {
+          "recall": 0.15,
+          "paraphrase": 0.0083,
+          "inverse": 0.0917,
+          "two_hop": 0.025,
+          "drift_acc": 0.0,
+          "drift_nll": 0.0,
+          "mean_qa": 0.0688
+        },
+        "A-Write-full": {
+          "recall": 0.475,
+          "paraphrase": 0.0167,
+          "inverse": 0.0583,
+          "two_hop": 0.0,
+          "drift_acc": -0.1667,
+          "drift_nll": 0.4062,
+          "mean_qa": 0.1375
+        },
+        "A-Write-mlp": {
+          "recall": 0.025,
+          "paraphrase": 0.0,
+          "inverse": 0.025,
+          "two_hop": 0.0083,
+          "drift_acc": 0.0,
+          "drift_nll": 0.0,
+          "mean_qa": 0.0146
+        },
+        "A-Write-lora": {
+          "recall": 0.0167,
+          "paraphrase": 0.0,
+          "inverse": 0.025,
+          "two_hop": 0.0,
+          "drift_acc": -0.0033,
+          "drift_nll": 0.0073,
+          "mean_qa": 0.0104
+        },
+        "A-Write-replay": {
+          "recall": 0.45,
+          "paraphrase": 0.0,
+          "inverse": 0.0583,
+          "two_hop": 0.0083,
+          "drift_acc": 0.0,
+          "drift_nll": 0.019,
+          "mean_qa": 0.1291
+        },
+        "B-Write": {
+          "recall": 0.0583,
+          "paraphrase": 0.0167,
+          "inverse": 0.0417,
+          "two_hop": 0.025,
+          "drift_acc": -0.1067,
+          "drift_nll": 0.1819,
+          "mean_qa": 0.0354
+        }
+      },
+      "kill_vs_rag": {
+        "recall": {
+          "text_best": 0.3333,
+          "a_best_write": 0.475,
+          "b_write": 0.0583,
+          "a_loses_to_text": false,
+          "b_beats_text": false,
+          "pass_where_a_loses": false
+        },
+        "paraphrase": {
+          "text_best": 0.0083,
+          "a_best_write": 0.0167,
+          "b_write": 0.0167,
+          "a_loses_to_text": false,
+          "b_beats_text": true,
+          "pass_where_a_loses": false
+        },
+        "inverse": {
+          "text_best": 0.5417,
+          "a_best_write": 0.0583,
+          "b_write": 0.0417,
+          "a_loses_to_text": true,
+          "b_beats_text": false,
+          "pass_where_a_loses": false
+        },
+        "two_hop": {
+          "text_best": 0.0417,
+          "a_best_write": 0.0,
+          "b_write": 0.025,
+          "a_loses_to_text": true,
+          "b_beats_text": false,
+          "pass_where_a_loses": false
+        }
+      },
+      "kill_vs_icl": {
+        "recall": {
+          "text_best": 0.05,
+          "a_best_write": 0.475,
+          "b_write": 0.0583,
+          "a_loses_to_text": false,
+          "b_beats_text": true,
+          "pass_where_a_loses": false
+        },
+        "paraphrase": {
+          "text_best": 0.0083,
+          "a_best_write": 0.0167,
+          "b_write": 0.0167,
+          "a_loses_to_text": false,
+          "b_beats_text": true,
+          "pass_where_a_loses": false
+        },
+        "inverse": {
+          "text_best": 0.05,
+          "a_best_write": 0.0583,
+          "b_write": 0.0417,
+          "a_loses_to_text": false,
+          "b_beats_text": false,
+          "pass_where_a_loses": false
+        },
+        "two_hop": {
+          "text_best": 0.0333,
+          "a_best_write": 0.0,
+          "b_write": 0.025,
+          "a_loses_to_text": true,
+          "b_beats_text": false,
+          "pass_where_a_loses": false
+        }
+      }
+    }
+  }
+}
