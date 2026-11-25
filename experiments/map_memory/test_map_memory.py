@@ -2,9 +2,11 @@ import unittest
 from collections import Counter, defaultdict
 
 import numpy as np
+import torch
 
 from .arms import name_matcher, retrieve
-from .run import MIN_GAP, ridge, prompt
+from .followup import direct_questions, oracle_coordinates
+from .run import MIN_GAP, Model, ridge, prompt
 from .worlds import AXES, make_world, solve_coordinates, split_anchors
 
 
@@ -82,6 +84,30 @@ class KillTestData(unittest.TestCase):
         d = w / (w @ w)
         old = x[0] @ w + b
         self.assertAlmostEqual((x[0] + d * (4 - old)) @ w + b, 4)
+
+    def test_followup_uses_only_direct_questions_and_oracle_satisfies_the_world(self):
+        axis = AXES["mass"]
+        _, _, names = split_anchors(axis, 41)
+        made, facts, qs, _ = make_world(axis, names, 8, 60, MIN_GAP["mass"])
+        direct = direct_questions(facts)
+        self.assertEqual(set(direct), {q for q in qs if q.family == "stated"})
+        self.assertEqual(Counter(q.yes for q in direct), {True: 40, False: 40})
+        coords = axis.anchors | oracle_coordinates(made, facts, axis.anchors)
+        for q in qs:
+            self.assertEqual((coords[q.a] > coords[q.b]) == q.positive, q.yes)
+
+    def test_same_entity_vector_can_write_to_multiple_blocks_and_receive_gradients(self):
+        net = Model.__new__(Model)
+        net.layers = [torch.nn.Identity() for _ in range(3)]
+        state = torch.zeros(1, 2, 3)
+        delta = torch.nn.Parameter(torch.ones(3))
+        with net.write((0, 2), [(0, 1, delta)]):
+            result = net.layers[2](net.layers[1](net.layers[0](state)))
+            result.sum().backward()
+        torch.testing.assert_close(result[0, 1], torch.full((3,), 2.0))
+        torch.testing.assert_close(result[0, 0], torch.zeros(3))
+        torch.testing.assert_close(delta.grad, torch.full((3,), 2.0))
+        torch.testing.assert_close(net.layers[0](state), state)
 
 
 if __name__ == "__main__":

@@ -140,8 +140,8 @@ class Model:
         return ids, mask
 
     @contextmanager
-    def write(self, layer, operations):
-        if layer is None or not operations:
+    def write(self, layers, operations):
+        if layers is None or not operations:
             yield
             return
 
@@ -153,26 +153,34 @@ class Model:
             out[row, token] += delta.to(out.dtype)
             return out
 
-        handle = self.layers[layer].register_forward_hook(inject)
+        if isinstance(layers, int):
+            layers = (layers,)
+        handles = [self.layers[layer].register_forward_hook(inject) for layer in layers]
         try:
             yield
         finally:
-            handle.remove()
+            for handle in handles:
+                handle.remove()
+
+    def batch_logits(self, encoded, layers=None, writes=None):
+        rows, positions, options = zip(*encoded)
+        ids, mask = self.pad(rows)
+        ops = [(i, pos, writes[i][name])
+               for i, names in enumerate(positions) for name, pos in names
+               if writes is not None and name in writes[i]]
+        with self.write(layers, ops):
+            hidden = self.decoder(input_ids=ids, attention_mask=mask, use_cache=False).last_hidden_state
+        last = hidden[torch.arange(len(rows)), mask.sum(1) - 1]
+        return torch.einsum("bd,bkd->bk", last, self.output[torch.tensor(options)])
 
     @torch.inference_mode()
     def score(self, encoded, layer=None, writes=None):
         scores = []
         for start in range(0, len(encoded), self.batch):
-            rows, positions, options = zip(*encoded[start:start + self.batch])
-            ids, mask = self.pad(rows)
-            ops = [(i, pos, writes[start + i][name])
-                   for i, names in enumerate(positions) for name, pos in names
-                   if writes is not None and name in writes[start + i]]
-            with self.write(layer, ops):
-                hidden = self.decoder(input_ids=ids, attention_mask=mask, use_cache=False).last_hidden_state
-            last = hidden[torch.arange(len(rows)), mask.sum(1) - 1]
-            scores.extend(torch.einsum("bd,bkd->bk", last, self.output[torch.tensor(options)])
-                          .argmax(-1).tolist())
+            stop = start + self.batch
+            logits = self.batch_logits(encoded[start:stop], layer,
+                                       None if writes is None else writes[start:stop])
+            scores.extend(logits.argmax(-1).tolist())
         return np.asarray(scores, dtype=bool)
 
     @torch.inference_mode()
