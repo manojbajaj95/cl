@@ -1,0 +1,128 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+\usepackage[capitalize,noabbrev]{cleveref}
+
+% Clean theorem environments (optional)
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+
+% Common math helpers
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+
+\title{\textbf{Paper Title: Concise Mechanism or Empirical Finding}}
+
+\author{
+  Author One$^{1}$ \quad Author Two$^{1}$ \\
+  $^{1}$Affiliation \\
+  \texttt{contact@example.com}
+}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+One concise paragraph (110--200 words, 5--7 sentences): establish the dominant
+paradigm, state the exact structural bottleneck or anomaly, present the proposed
+mechanism or empirical test, report 2--3 concrete quantitative results alongside
+their compute/memory budget and strongest baseline, and note scope or code availability.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+Keep the introduction to 3--5 tight paragraphs (250--450 words). Open directly
+with the technical paradigm and its concrete bottleneck---never with generic
+throat-clearing~\citep{vaswani2017attention,he2016deep,hu2022lora}. Place your
+teaser or architecture figure on page~1 or top of page~2.
+
+\section{Problem Statement and Background}
+\label{sec:background}
+
+Define the formal setting, stream/evaluation contract, and notation before
+introducing the method. Contrast with the closest prior classes along explicit
+quantitative axes (see \cref{tab:axes}).
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Structural comparison across mechanism classes.}
+$n$: horizon, $d$: representation dimension, $r$: update rank.}
+\label{tab:axes}
+\begin{tabular}{lccc}
+\toprule
+Method Class & Update Complexity & Persistent Memory & Exact Rollback \\
+\midrule
+Baseline A & $O(d^2)$ & $O(d^2)$ & No \\
+Baseline B & $O(n \cdot d)$ & $O(n \cdot d)$ & Approximate \\
+Proposed & $O(r \cdot d)$ & $O(r \cdot d)$ & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Method}
+\label{sec:method}
+
+Present the method top-down: overall loop first, then each component in
+execution order. Define every symbol and tensor dimension immediately.
+
+\begin{equation}
+\label{eq:core}
+  \Delta W = B A, \qquad B \in \R^{d_{\mathrm{out}} \times r}, \quad A \in \R^{r \times d_{\mathrm{in}}}.
+\end{equation}
+
+\section{Experimental Setup and Results}
+\label{sec:experiments}
+
+\subsection{Setup}
+State datasets/simulators, held-out seeds or streams, matched budgets, optimizer,
+hardware, and wall time concisely. Place full hyperparameter tables in
+\cref{app:details}.
+
+\subsection{Main Comparison}
+Report quality metrics alongside cost/budget columns with paired confidence
+intervals over independent streams or seeds.
+
+\subsection{Ablations and Mechanism Analysis}
+Vary one factor at a time from a clearly defined \texttt{base} row, leaving
+unchanged cells blank, and answer 2--3 diagnostic questions explaining
+\emph{why} the mechanism works or where it fails.
+
+\section{Related Work}
+\label{sec:related}
+
+Group prior work by mechanism or assumption rather than paper-by-paper summaries,
+ending each paragraph with the exact distinction from this work.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+Two to three short paragraphs: restate what was established, state concrete
+limitations and open questions, and link reproducible code and artifacts.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\section{Experimental Details and Extended Derivations}
+\label{app:details}
+
+Include complete hyperparameter tables, full derivations, and per-stream traces.
+
+\end{document}
