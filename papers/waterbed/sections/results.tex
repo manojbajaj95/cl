@@ -1,0 +1,83 @@
+\section{Experimental setup and results}
+\label{sec:results}
+
+\subsection{Paired sweep and budgets}
+
+Each of the eight seeds defines one teacher pair, input covariance, and replay cache, shared by all arms. We use 8,192 unforced warm-up steps per arm and seed, then 10,240 driven steps for each of 55 frequencies and two amplitudes. Every arm trains five parameters. Replay stores a dense \(4\times4\) Gram matrix of the old examples (128 bytes in float64); EWC retains the five anchor parameters and five Fisher weights (80 bytes). These are auxiliary algorithmic state sizes, not total program memory. Teacher parameters and the validation readout are part of the simulator, not counted as extra memory for one method. Replay adds a covariance-vector product, EWC adds a diagonal penalty gradient, and the two gradient-descent arms have identical update arithmetic. We do not claim FLOP parity across the memory arms or an implementation speedup.
+
+The sweep took 12.14 CPU seconds and 12.17 wall seconds on an x86-64 CPU VM, with one OpenBLAS thread. The measurement starts from freshly copied warm-up states; neither scoring nor future mixture values enter a learner update. Population accuracy is computed analytically on independent draws from the input distribution rather than on the replay cache. Intervals are Student-\(t\) intervals over seeds; the learning-rate contrast is paired. Frequencies and time steps are not replicates. The seed generator and all run settings are in \cref{app:details}.
+
+\subsection{Estimator controls}
+\label{sec:calibration}
+
+The lock-in recovers injected first harmonics at an interior Fourier bin and at Nyquist. For independent minimum- and nonminimum-phase rational filters, dense numerical integration and the root formula agree with their known areas to \(10^{-12}\) in the self-test (\cref{app:proof}). For the fitted transfers in the actual sweep, dense LTI integration agrees with \cref{eq:jensen} to \(9\times 10^{-16}\) log units; applying the finite experimental grid to the LTI response changes the area by at most \(3.3\times10^{-5}\). These checks distinguish numerical integration and harmonic normalization from the behavior of the trained learner.
+
+The larger amplitude changes fitted gain by at most 3.89\% across all arms, seeds and frequencies; the maximum occurs at Nyquist for fast gradient descent. At the primary amplitude 0.01, measured gain is within 1.37\% of the linear prediction at every sampled point, and measured area is within 0.0065 log units of the exact transfer integral. The measured gains are therefore close to, but not identical to, the infinitesimal response.
+
+\subsection{The raw area is not conserved}
+
+\begin{table}[!t]
+  \centering
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \caption{\textbf{Matched joint accuracy does not yield matched log-area.}
+  Means at amplitude 0.01 across eight paired seeds; uncertainty on measured area is a 95\% seed-level interval half-width. Final \(A\) accuracy and mean \(A\) loss also average over 55 frequencies. The Jensen column is computed from the linearization, not fitted to the measured gain. Auxiliary bytes exclude the five common trainable parameters and simulator state.}
+  \label{tab:main}
+  \begin{tabular}{lrrrrr}
+    \toprule
+    Method & Measured area & Jensen area & Mean \(A\) loss \(\downarrow\) & Final \(A\) acc. \(\uparrow\) & Aux. bytes \\
+    \midrule
+    GD, slow & \(-4.716\pm0.277\) & \(-4.716\) & 0.10137 & 85.31\% & \textbf{0} \\
+    GD, fast & \(-2.934\pm0.274\) & \(-2.931\) & 0.10138 & 85.39\% & \textbf{0} \\
+    Replay & \(-3.824\pm0.282\) & \(-3.823\) & 0.08262 & 86.91\% & 128 \\
+    EWC & \(-3.931\pm0.290\) & \(-3.931\) & \textbf{0.04462} & \textbf{90.72\%} & 80 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Terminal joint accuracy averages the two teachers' sign accuracies. It is about 85.22\% for each arm in \cref{tab:main}; the largest cross-method gap over all paired endpoints is 0.00082 percentage points, below the 1-point matching tolerance. This metric is insensitive to shifting fit toward one teacher: for a student direction on the arc between the two whitened teachers, the two angular errors sum to the teacher angle. Consequently, we do not treat this match as a match of individual task scores. EWC's lower old-task loss comes with worse new-task fit (unforced losses in \cref{tab:unforced}).
+
+The raw area range is 46.26\% of the across-method mean absolute area. The implied geometric-mean gain ratio is 5.94, and mean old-task loss differs by a factor of 2.27. In the two gradient-descent arms alone the spread is 46.58\%; the paired area contrast is \(1.782\) log units (95\% CI \([1.779,1.785]\)). Their unforced predictions and both per-task losses match, so a different terminal fit is not needed to obtain a different area. The fast arm's gain exceeds the slow arm's at all sampled frequencies and seeds (\cref{fig:spectra}): the smallest fast-to-slow ratio is 1.007.
+
+\subsection{What changes the area?}
+
+\begin{table}[!t]
+  \centering
+  \small
+  \caption{\textbf{Rate changes the area more than drive amplitude does.}
+  The base is fast gradient descent. Blank settings retain the base value. Rows change one factor, with the same eight paired seeds and update counts. Areas are seed means; the main rate contrast has a paired 95\% interval \([1.779,1.785]\) for fast minus slow.}
+  \label{tab:ablations}
+  \begin{tabular}{llrrrr}
+    \toprule
+    & Variant & Rate \(\eta\) & Drive \(\alpha\) & Raw area & Gain-normalized area \\
+    \midrule
+    & \texttt{base} & 0.150 & 0.01 & \(-2.9345\) & \(-0.0034\)\\
+    \midrule
+    (A) & Slower update & 0.025 & & \(-4.7162\) & \(-0.0001\)\\
+    (B) & Larger drive & & 0.02 & \(-2.9447\) & \(-0.0136\)\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{(A) Is the leading gain the missing quantity?}
+The fast and slow arms share the operating predictor, but the mean absolute one-step gain changes from 0.00942 to 0.05609. All fitted zeros are inside the unit circle (largest modulus 0.9851). Subtracting the log absolute one-step gain removes most of the observed area difference (\cref{tab:ablations}). Across all four arms, the largest normalized area range within a seed is 0.00644 log units. The normalized spectra themselves differ, as \cref{fig:spectra} shows.
+
+\textbf{(B) Does finite drive explain the failure?}
+Doubling the drive changes the fast arm's mean area by 0.0102 log units, compared with the 1.782-log-unit rate contrast at the base amplitude. The finite-amplitude area is slightly biased relative to the LTI calculation, most visibly for fast gradient descent, but the discrepancy is too small to explain the rate effect. Omitting the near-DC flat extension leaves every method's mean log-area within 0.004 log units of its primary estimate.
+
+\paragraph{An exact scalar check.}
+The result does not require two-layer scale dynamics. For a one-parameter regressor with unit input variance and unit-separated teachers, the mixed optimum is \(1/2\) after choosing slopes 0 and 1. For rate \(0<\eta<1\), its loss transfer is \(S(z)=(-\eta/2)/(z-(1-\eta))\), and its log-area is \(\log(\eta/2)\). At every nonzero frequency the magnitude strictly increases with \(\eta\); at DC it is the same for both rates (\cref{app:proof}). This exact alternate model tests the directional finding without interpolation, cache noise, or an internal scaling direction. It is not a replication on nonlinear or stochastic learners.
+
+\section{Related work}
+
+\paragraph{Forgetting under repeated exposure.}
+Linear-regression analyses relate forgetting to task ordering, learning rate, and the geometry of sequential projection~\citep{ding2024,cyclic2023}. In cyclic document training, old examples can recover before their next presentation~\citep{yang2024}. These studies motivate measuring timescales, but analyze loss after task exposures or trajectories under hard recurrence; we instead estimate an infinitesimal response around a stationary mixture.
+
+\paragraph{Control and frequency-domain probes.}
+Discrete-time Bode and complementary-sensitivity theory already give the integral and its dependence on leading coefficients and nonminimum-phase zeros~\citep{emami2019,wan2018}. Frequency-domain analyses of online optimization characterize tracking of moving optima~\citep{vanscoy2025}; control minimization uses dynamics to protect learned representations~\citep{dehaan2026}. Sinusoidal probing has also been used to characterize reasoning sensitivity to prompt parameters~\citep{wang2025}. Our contribution is neither a new control identity nor a new retention method: it is a counterexample for the old-task loss readout and a diagnostic for when its normalized area is constrained.
+
+\section{Conclusion}
+
+At the same unforced fits and update count, changing only the learning rate raises the old-task loss gain throughout the sampled band. The raw area misses the invariance criterion (\cref{tab:main,tab:ablations}). Its local prediction instead depends on the first impulse coefficient and the out-of-circle zeros. Only after removing that coefficient do the minimum-phase areas agree (\cref{prop:jensen,fig:spectra}).
+
+This test uses two conflicting linear teachers, exact gradients, and a small sinusoidal drive. It does not establish an invariant for changing operating points, finite-sample training, or nonminimum-phase transfers. Matching joint accuracy also does not match every old and new score. The \href{https://github.com/manojbajaj95/cl/tree/f018cf8/experiments/waterbed}{experiment, seed-level data, and estimator checks} are available for reproduction; the next empirical test is whether a stable local transfer is informative under noisy minibatch streams.
