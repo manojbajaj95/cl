@@ -349,38 +349,47 @@ def fictional_names(n, seed):
 
 def make_world(axis: Axis, names, chains, seed, min_known_gap=0.1):
     """Each fictional entity has two neighboring statements; no query conclusions stored."""
+    if chains < 2 or chains % 2:
+        raise ValueError("Use a positive even number of chains for paired known comparators")
     rng = random.Random(seed)
     ordered = sorted(names, key=axis.anchors.get)
     n = len(ordered)
+    coord = axis.anchors
+    brackets = [(lo, hi) for i, lo in enumerate(ordered)
+                for hi in ordered[i + max(2, n // 5):] if coord[lo] < coord[hi]]
     candidates = []
-    for i, lo in enumerate(ordered[1:-2], 1):
-        lower = next((name for name in reversed(ordered[:i])
-                      if axis.anchors[lo] - axis.anchors[name] >= min_known_gap), None)
-        for j, hi in enumerate(ordered[i + max(2, n // 5):-1], i + max(2, n // 5)):
-            higher = next((name for name in ordered[j + 1:]
-                           if axis.anchors[name] - axis.anchors[hi] >= min_known_gap), None)
-            if lower is not None and higher is not None and (axis.unit != "longitude"
-                    or axis.anchors[higher] - axis.anchors[lower] < 180):
-                candidates.append((lower, lo, hi, higher))
+    for i, first in enumerate(ordered):
+        for second in ordered[i + 1:]:
+            below = [(lo, hi) for lo, hi in brackets if coord[first] - coord[hi] >= min_known_gap
+                     and (axis.unit != "longitude" or coord[second] - coord[lo] < 180)]
+            above = [(lo, hi) for lo, hi in brackets if coord[lo] - coord[second] >= min_known_gap
+                     and (axis.unit != "longitude" or coord[hi] - coord[first] < 180)]
+            if below and above:
+                candidates.append(((first, second), below, above))
     if not candidates:
-        raise ValueError("No anchor brackets have two separated real comparator witnesses")
+        raise ValueError("No pair of real comparators can be bracketed on both sides")
     rng.shuffle(candidates)
+    layout = []
+    for i in range(chains // 2):
+        comparisons, below, above = candidates[i % len(candidates)]
+        layout.extend(((rng.choice(below), comparisons, False),
+                       (rng.choice(above), comparisons, True)))
     made = fictional_names(4 * chains, seed + 11)
     facts, questions, witnesses = [], [], []
-    for i in range(chains):
-        lower, lo, hi, higher = candidates[i % len(candidates)]
+    for i, ((lo, hi), comparisons, above) in enumerate(layout):
         a, b, c, d = made[4 * i:4 * i + 4]
         chain = [lo, a, b, c, d, hi]
-        witnesses.extend(((a, lo, lower), (d, hi, higher)))
+        new, anchor = (a, lo) if above else (d, hi)
+        witnesses.extend((new, anchor, comparator, i // 2) for comparator in comparisons)
         local = [Statement(high, low, True) if rng.randrange(2)
                  else Statement(low, high, False) for low, high in zip(chain, chain[1:])]
         facts.extend(local)
         for fact in local:
             questions.extend(balanced_pair(fact.a, fact.b, fact.positive, "stated"))
             questions.extend(balanced_pair(fact.b, fact.a, not fact.positive, "inverse"))
-        for left, right, gt in ((a, lower, True), (lower, a, False),
-                                (d, higher, False), (higher, d, True)):
-            questions.extend(balanced_pair(left, right, gt, "two_hop"))
+        for comparator in comparisons:
+            questions.extend(balanced_pair(new, comparator, above, "two_hop"))
+            questions.extend(balanced_pair(comparator, new, not above, "two_hop"))
         for left, right in ((a, c), (b, d), (a, d)):
             questions.extend(balanced_pair(left, right, False, "transitive"))
             questions.extend(balanced_pair(right, left, True, "transitive"))

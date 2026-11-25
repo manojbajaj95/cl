@@ -10,11 +10,11 @@ byte-matched LoRA; solved-as-text controls for the external solver.
 From the repository root on Linux with Python 3.10+ and CPU PyTorch:
 
 ```sh
-python -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch>=2.9' && python -m pip install -r experiments/map_memory/requirements.txt && OPENBLAS_NUM_THREADS=1 python -m experiments.map_memory.run --model 1.5b --output ~/map-memory-results.json
+python -m pip install --index-url https://download.pytorch.org/whl/cpu 'torch>=2.9' && python -m pip install -r experiments/map_memory/requirements.txt && OPENBLAS_NUM_THREADS=1 python -m experiments.map_memory.run --model 1.5b --axes mass --threads 8 --causal-cases 6 --epochs 6 --demo-pairs 1 --output ~/map-memory-results.json
 ```
 
-The run downloads pinned public model and WikiText-2 snapshots, uses eight CPU
-threads by default, and writes a checkpoint after each arm. Use `--path` and
+The run downloads pinned public model and WikiText-2 snapshots and writes a
+checkpoint after each arm. Use `--path` and
 `--wikitext` for already-downloaded copies, `--screen-only` to just screen
 real axes, or `--force` to run a clearly exploratory evaluation even when the
 native model misses the 75% real-pair gate. See [results.md](results.md) for
@@ -46,8 +46,10 @@ OPENBLAS_NUM_THREADS=1 python -m unittest -v experiments.map_memory.test_map_mem
 3. **Bind new content in closed form.** Eight independent chains by default,
    each with four new names and two real endpoints, contribute five local
    statements per chain. Fit equal adjacent steps by a linear least-squares
-   solve using only the stated edges and the established model readouts for
-   the real endpoints. This reduces to equally spaced interpolation between
+   solve using the gold-parsed edges of those same statements and the
+   established model readouts for the real endpoints. This pilot does not
+   test extracting relations from prose. The solve reduces to equally spaced
+   interpolation between
    the endpoints for these worlds. If the model readouts reverse an interval,
    report it; do not replace the readouts with true coordinates. Each write is
    a dense FP16 residual vector
@@ -57,8 +59,11 @@ OPENBLAS_NUM_THREADS=1 python -m unittest -v experiments.map_memory.test_map_mem
 4. **Score the same balanced questions across arms.** Inverses swap the stated
    subject and object and test both directional choices. Two-hop questions
    combine a stated fictional-to-real edge with a separate real-to-real edge
-   that is never provided. Also score the subset whose real leg the frozen
-   model gets correct in both orderings and both directions. Transitive pairs
+   that is never provided. The same real comparator appears on opposite
+   sides of fictional endpoints in matched chains, so a constant fictional
+   coordinate cannot solve this family. Also score the counterbalanced
+   subset whose two real legs the frozen model gets correct in both orderings
+   and both directions. Transitive pairs
    skip one or two fictional nodes.
    Stated comparisons are a sanity check. The held-out two-hop and transitive
    pairs never appear together in a stored statement. “Cue-free” means

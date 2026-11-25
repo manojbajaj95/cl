@@ -312,17 +312,21 @@ def pilot(net, key, probe, entry, args, checkpoint):
     entry["solver_only_diagnostic"] = family_accuracy(questions, oracle)
     entry["questions"] = [dict(a=q.a, b=q.b, positive=q.positive, answer=q.yes, family=q.family)
                           for q in questions]
-    unique_links = sorted({(anchor, comparator) for _, anchor, comparator in witnesses})
+    unique_links = sorted({(anchor, comparator) for _, anchor, comparator, _ in witnesses})
     link_qs = [q for a, b in unique_links for left, right in ((a, b), (b, a))
                for q in balanced_pair(left, right, axis.anchors[left] > axis.anchors[right], "known_link")]
     link_correct = net.score(net.encode_qs(axis, link_qs, demos)) == np.array([q.yes for q in link_qs])
     reliable = {link for i, link in enumerate(unique_links) if link_correct[4 * i:4 * i + 4].all()}
-    supported = {frozenset((new, comparator)) for new, anchor, comparator in witnesses
-                 if (anchor, comparator) in reliable}
+    paired = {(comparator, group) for _, _, comparator, group in witnesses}
+    reliable_pairs = {pair for pair in paired if all((anchor, comp) in reliable
+                      for _, anchor, comp, group in witnesses if (comp, group) == pair)}
+    supported = {frozenset((new, comparator)) for new, _, comparator, group in witnesses
+                 if (comparator, group) in reliable_pairs}
     supported_mask = np.array([q.family == "two_hop" and frozenset((q.a, q.b)) in supported
                                for q in questions])
     entry["known_legs"] = {"individual_correct": int(link_correct.sum()), "n": len(link_qs),
-                           "all_four_correct_links": len(reliable), "unique_links": len(unique_links)}
+                           "all_four_correct_links": len(reliable), "unique_links": len(unique_links),
+                           "verified_matched_pairs": len(reliable_pairs), "matched_pairs": len(paired)}
     checkpoint()
 
     def evaluate(arm, encoded, payload, layers=None, active=None, extra=None):

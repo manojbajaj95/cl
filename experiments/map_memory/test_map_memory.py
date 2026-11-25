@@ -23,10 +23,15 @@ class KillTestData(unittest.TestCase):
             counts = Counter((q.family, q.yes) for q in questions)
             incidence = Counter(name for fact in facts for name in (fact.a, fact.b))
             self.assertTrue(all(incidence[name] == 2 for name in made))
-            for new, anchor, comparator in witnesses:
+            for new, anchor, comparator, _ in witnesses:
                 self.assertIn(frozenset((new, anchor)), local)
                 self.assertNotIn(frozenset((new, comparator)), local)
                 self.assertGreaterEqual(abs(axis.anchors[anchor] - axis.anchors[comparator]), MIN_GAP[key])
+            matched = Counter((q.b, q.yes) for q in questions
+                              if q.family == "two_hop" and q.positive and q.b in axis.anchors)
+            for _, _, comparator, _ in witnesses:
+                self.assertGreater(matched[comparator, True], 0)
+                self.assertEqual(matched[comparator, True], matched[comparator, False])
             for q in questions:
                 pair = frozenset((q.a, q.b))
                 self.assertEqual(pair in local, q.family in ("stated", "inverse"))
