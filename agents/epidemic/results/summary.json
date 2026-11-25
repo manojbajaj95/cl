@@ -1,0 +1,87 @@
+{
+  "phase": {
+    "n_runs": 260,
+    "median_x_R_below_0_9": 0.012722826332567036,
+    "median_x_R_above_1_1": 0.37962962962962965,
+    "cond_ode_corr": 0.9676619372291622,
+    "cond_ode_mae": 0.046799263358428454
+  },
+  "trajectory": {
+    "R": 1.6000000000000003,
+    "median_peak_round": 6,
+    "median_peak_success": 0.8,
+    "median_final_success": 0.446,
+    "baseline": 0.4
+  },
+  "interventions": {
+    "post_hoc": {
+      "none": {
+        "success_before": 0.45249999999999996,
+        "success_after": 0.40599999999999997,
+        "x_final": 0.438179193820391
+      },
+      "rollback_roots": {
+        "success_before": 0.45249999999999996,
+        "success_after": 0.42300000000000004,
+        "x_final": 0.42972166429351155
+      },
+      "provenance_closure": {
+        "success_before": 0.45249999999999996,
+        "success_after": 0.6556666666666667,
+        "x_final": 0.19362851626901
+      },
+      "oracle_purge": {
+        "success_before": 0.45249999999999996,
+        "success_after": 0.8176666666666667,
+        "x_final": 0.027684074107532267
+      }
+    },
+    "online": {
+      "d=0.0,phi=0.0": {
+        "R_without_tracing": 1.6000000000000003,
+        "success": 0.4165,
+        "x_final": 0.41920383962925045
+      },
+      "d=0.0,phi=0.5": {
+        "R_without_tracing": 1.6000000000000003,
+        "success": 0.4165,
+        "x_final": 0.41920383962925045
+      },
+      "d=0.0,phi=0.9": {
+        "R_without_tracing": 1.6000000000000003,
+        "success": 0.4165,
+        "x_final": 0.41920383962925045
+      },
+      "d=0.05,phi=0.0": {
+        "R_without_tracing": 1.3500000000000003,
+        "success": 0.5487500000000001,
+        "x_final": 0.2993187743302725
+      },
+      "d=0.05,phi=0.5": {
+        "R_without_tracing": 1.3500000000000003,
+        "success": 0.66075,
+        "x_final": 0.1967629147358324
+      },
+      "d=0.05,phi=0.9": {
+        "R_without_tracing": 1.3500000000000003,
+        "success": 0.7867500000000001,
+        "x_final": 0.061925345387402464
+      },
+      "d=0.1,phi=0.0": {
+        "R_without_tracing": 1.1000000000000003,
+        "success": 0.634,
+        "x_final": 0.2010776541037189
+      },
+      "d=0.1,phi=0.5": {
+        "R_without_tracing": 1.1000000000000003,
+        "success": 0.78225,
+        "x_final": 0.0740293266472784
+      },
+      "d=0.1,phi=0.9": {
+        "R_without_tracing": 1.1000000000000003,
+        "success": 0.81175,
+        "x_final": 0.026852930077817687
+      }
+    }
+  }
+}
