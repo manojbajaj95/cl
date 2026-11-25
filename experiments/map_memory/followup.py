@@ -43,6 +43,13 @@ def strength_trials(layer, gain):
     return [original, *single, *multi]
 
 
+def select_on_real(trials):
+    return max(trials, key=lambda trial: (
+        rate(trial["calibration"]["target_accuracy"]), rate(trial["calibration"]["flip_given_base_correct"]),
+        -trial["gain_per_layer"],
+    ))
+
+
 def fit_vectors(net, block, entities, encoded, answers, epochs, seed):
     """Optimize only 32 vectors; every row is used by exact entity name."""
     vector_table = torch.nn.Parameter(torch.zeros(len(entities), net.model.config.hidden_size))
@@ -134,11 +141,10 @@ def main():
         trials.append(record)
         print("real causal", record, flush=True)
         checkpoint()
-    # Compare the strongest challenger with the original; no fictional answers enter selection.
-    selected = max(trials[1:], key=lambda trial: (
-        rate(trial["calibration"]["target_accuracy"]), rate(trial["calibration"]["flip_given_base_correct"]),
-        -len(trial["layers"]), -trial["gain_per_layer"],
-    ))
+    selected = {
+        "gain_sweep": select_on_real(trial for trial in trials[1:] if len(trial["layers"]) == 1),
+        "multilayer": select_on_real(trial for trial in trials[1:] if len(trial["layers"]) > 1),
+    }
     report["selected"] = selected
     checkpoint()
 
@@ -164,11 +170,11 @@ def main():
     def vectors_for(coords, strength):
         return {name: (direction * (coords[name] - estimated[name]) * strength).half() for name in entities}
 
-    blocks, strength = selected["layers"], selected["gain_per_layer"]
-    evaluate("stronger_solved", blocks, vectors_for(solved, strength))
     evaluate("oracle_original", (layer,), vectors_for(oracle, gain))
-    if (blocks, strength) != ((layer,), gain):
-        evaluate("oracle_stronger", blocks, vectors_for(oracle, strength))
+    for name, setting in selected.items():
+        blocks, strength = setting["layers"], setting["gain_per_layer"]
+        evaluate(f"{name}_solved", blocks, vectors_for(solved, strength))
+        evaluate(f"oracle_{name}", blocks, vectors_for(oracle, strength))
 
     direct = direct_questions(facts)
     if set(direct) != {q for q in questions if q.family == "stated"}:

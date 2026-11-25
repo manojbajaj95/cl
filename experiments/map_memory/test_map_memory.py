@@ -5,7 +5,7 @@ import numpy as np
 import torch
 
 from .arms import name_matcher, retrieve
-from .followup import direct_questions, oracle_coordinates
+from .followup import direct_questions, oracle_coordinates, select_on_real
 from .run import MIN_GAP, Model, ridge, prompt
 from .worlds import AXES, make_world, solve_coordinates, split_anchors
 
@@ -108,6 +108,17 @@ class KillTestData(unittest.TestCase):
         torch.testing.assert_close(result[0, 0], torch.zeros(3))
         torch.testing.assert_close(delta.grad, torch.full((3,), 2.0))
         torch.testing.assert_close(net.layers[0](state), state)
+
+    def test_write_strength_selection_does_not_use_real_test_answers(self):
+        def trial(cal, held_out, gain):
+            return {"calibration": {"target_accuracy": {"correct": cal, "n": 24},
+                                    "flip_given_base_correct": {"correct": 7, "n": 17}},
+                    "held_out": {"target_accuracy": {"correct": held_out, "n": 24}},
+                    "gain_per_layer": gain}
+
+        less_test_accuracy = trial(20, 10, 1)
+        self.assertIs(select_on_real([trial(19, 24, 1), trial(20, 24, 2), less_test_accuracy]),
+                      less_test_accuracy)
 
 
 if __name__ == "__main__":
