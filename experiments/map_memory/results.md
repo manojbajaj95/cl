@@ -120,6 +120,18 @@ the written coordinates.
 
 ## Closest prior art
 
+- [REMEDI: Inspecting and Editing Knowledge Representations in LMs](https://arxiv.org/abs/2304.00740)
+  adds one vector to an entity's hidden state at one layer to install an
+  attribute: the closest mechanism (a per-entity residual write), but with a
+  trained editor, single attributes and no unstated relational inferences.
+- [Linearity of Relation Decoding (LRE)](https://arxiv.org/abs/2308.09124)
+  edits a subject by inverting a relation's affine map, the same closed-form
+  inverse used here, but per relation rather than onto a shared axis.
+- [BAKE/BIRD](https://arxiv.org/abs/2310.10322) and bilinear representations
+  (ICLR 2026) show edits fail in the reverse direction unless training adds
+  bilinear structure; map memory targets inverses without training.
+- [Cognitive Maps in LLMs](https://arxiv.org/abs/2610.25596): unstated
+  relations from in-context statements fail below about 10B parameters.
 - [Language Models Represent Space and Time](https://arxiv.org/abs/2310.02207)
   decodes real spatiotemporal coordinates from pretrained LMs. A readable
   coordinate is not necessarily a direction the model uses when asked to
