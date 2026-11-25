@@ -74,7 +74,7 @@ Only the prep arm has both properties. It is still scoped: two ordinary H₂ ste
 **Mechanism.** Charge a hop for the width its claim omits only along directions some live certificate reads (N5b harmless aliasing). **Novelty vs nearest prior art.** [#232][shrink] card 15 has the harmless-aliasing rule; this prices it in the escrow. **Cheapest first test.** N5b/N5c plus V1; compare uniform claim-width pricing. **Old-task retention check.** A/C on paths admitted under cheap claims.
 
 ### 10. A check that rides on useful successor work — primitive candidate
-**Mechanism.** Make the incoming partner's first truthful C batch the check (V1), so verification costs no extra step and no stored receipt. **Novelty vs nearest prior art.** Proof-of-Learning ([2103.05633][pol]) and [Training Witnesses][tw] replay or fingerprint segments; here the evidence read is an already-needed update size. **Cheapest first test.** Compare V1's free check with a dedicated probe step and a replay challenge at equal C progress. **Old-task retention check.** C progress and A/C after the check batch, versus a no-check run.
+**Mechanism.** Make the incoming partner's first truthful C batch the check (V1), so verification costs no extra step and no stored receipt. **Novelty vs nearest prior art.** Proof-of-Learning ([2103.05633][pol]) replays training segments; here the evidence read is an already-needed update size. **Cheapest first test.** Compare V1's free check with a dedicated probe step and a replay challenge at equal C progress. **Old-task retention check.** C progress and A/C after the check batch, versus a no-check run.
 
 ### 11. Detection margin as a renewable budget — primitive candidate
 **Mechanism.** Under float noise the check has a tolerance; spend it across renewals and refuse a renewal whose shrink would push the cumulative margin below the smallest harmful lie. **Novelty vs nearest prior art.** [#226][parent] card 15 has nonrenewable error for equivalence; this applies it to detectability. **Cheapest first test.** V1 with additive rounding of size ε, sweep ε and number of renewals, report ROC per cycle ([#232][shrink] card 20). **Old-task retention check.** A/C on falsely refused honest renewals.
@@ -138,5 +138,4 @@ Only the prep arm has both properties. It is still scoped: two ordinary H₂ ste
 [funded]: https://github.com/manojbajaj95/cl/pull/206
 [witness]: https://github.com/manojbajaj95/cl/pull/163
 [pol]: https://arxiv.org/abs/2103.05633
-[tw]: https://arxiv.org/abs/2609.33915
 [guarded]: https://arxiv.org/abs/2611.00589
