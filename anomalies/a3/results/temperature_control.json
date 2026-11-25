@@ -1,0 +1,86 @@
+{
+ "g1": {
+  "temperature_fit_R2_all": 0.9533742797159893,
+  "temperature_fit_R2_interaction": 0.907647441563371,
+  "temperature_fit_R2_start_centered": 0.8609636231620327,
+  "best_T_quartiles": [
+   0.577,
+   0.68,
+   0.745,
+   0.786,
+   1.495
+  ],
+  "rank1_lesson_loading_vs_entropy_change_r": 0.9970171483458136,
+  "rank1_start_loading_vs_base_success_r": -0.9734991141195799,
+  "base_success_by_start": [
+   0.707,
+   0.165,
+   0.07,
+   0.723,
+   0.148,
+   0.089,
+   0.744,
+   0.182,
+   0.052,
+   0.758,
+   0.165,
+   0.066
+  ],
+  "rank1_start_loading": [
+   -0.404,
+   0.231,
+   0.184,
+   -0.461,
+   0.202,
+   0.188,
+   -0.405,
+   0.248,
+   0.188,
+   -0.354,
+   0.217,
+   0.166
+  ]
+ },
+ "q2": {
+  "temperature_fit_R2_all": 0.9506728255854014,
+  "temperature_fit_R2_interaction": 0.7756480580850666,
+  "temperature_fit_R2_start_centered": 0.7194773100896348,
+  "best_T_quartiles": [
+   0.569,
+   0.676,
+   0.735,
+   0.755,
+   1.041
+  ],
+  "rank1_lesson_loading_vs_entropy_change_r": 0.9924011095320359,
+  "rank1_start_loading_vs_base_success_r": -0.9645614520523329,
+  "base_success_by_start": [
+   0.738,
+   0.144,
+   0.08,
+   0.713,
+   0.183,
+   0.068,
+   0.733,
+   0.143,
+   0.053,
+   0.7,
+   0.146,
+   0.056
+  ],
+  "rank1_start_loading": [
+   -0.405,
+   0.154,
+   0.27,
+   -0.448,
+   0.27,
+   0.14,
+   -0.392,
+   0.279,
+   0.119,
+   -0.361,
+   0.173,
+   0.201
+  ]
+ }
+}

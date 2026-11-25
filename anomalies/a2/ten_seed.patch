@@ -1,0 +1,12 @@
+13c13
+< SEEDS = (101, 202, 303)
+---
+> SEEDS = (101, 202, 303, 404, 505, 606, 707, 808, 909, 1010)
+148c148
+<     assert len(values) == 3
+---
+>     from scipy.stats import t
+150c150
+<     radius = 4.3026527297 * statistics.stdev(values) / (len(values) ** 0.5)
+---
+>     radius = float(t.ppf(0.975, len(values) - 1)) * statistics.stdev(values) / (len(values) ** 0.5)

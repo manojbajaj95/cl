@@ -1,0 +1,1878 @@
+{
+  "design": {
+    "batch": 12,
+    "lr": 0.003,
+    "model": "Qwen/Qwen2.5-Coder-0.5B",
+    "revision": "8123ea2e9354afb7ffcc6c8641d1b2f5ecf18301",
+    "samples": 4,
+    "sizes": {
+      "new_eval": 24,
+      "new_train": 36,
+      "old_eval": 24,
+      "old_train": 36
+    },
+    "steps": 100
+  },
+  "seeds": [
+    {
+      "old_checkpoint": {
+        "new_eval": {
+          "adoption": 1.1701890798576642e-06,
+          "pass": 0.9998462200164795,
+          "pass_and_adoption": 1.01321063539217e-06
+        },
+        "old_eval": {
+          "adoption": 3.7057559438835597e-06,
+          "pass": 0.9993889331817627,
+          "pass_and_adoption": 3.45326748174557e-06
+        }
+      },
+      "pretrained": {
+        "new_eval": {
+          "adoption": 0.04287011921405792,
+          "pass": 0.8913609981536865,
+          "pass_and_adoption": 0.0031130798161029816
+        },
+        "old_eval": {
+          "adoption": 0.05933314189314842,
+          "pass": 0.9009000658988953,
+          "pass_and_adoption": 0.0048731486313045025
+        }
+      },
+      "runs": {
+        "effect:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9945713877677917,
+            "pass_and_adoption": 0.9945712089538574
+          },
+          "old_eval": {
+            "adoption": 0.9999997615814209,
+            "pass": 0.9876975417137146,
+            "pass_and_adoption": 0.9876975417137146
+          },
+          "seconds": 0.23644287100000838
+        },
+        "effect:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999881386756897,
+            "pass": 0.9972572326660156,
+            "pass_and_adoption": 0.9972497820854187
+          },
+          "old_eval": {
+            "adoption": 0.9998723864555359,
+            "pass": 0.9932271838188171,
+            "pass_and_adoption": 0.993222713470459
+          },
+          "seconds": 0.19791010000000142
+        },
+        "effect:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9151405692100525,
+            "pass": 0.9936909079551697,
+            "pass_and_adoption": 0.9094979763031006
+          },
+          "old_eval": {
+            "adoption": 0.8208329677581787,
+            "pass": 0.9809257388114929,
+            "pass_and_adoption": 0.8157892227172852
+          },
+          "seconds": 0.19669630599997845
+        },
+        "naive:0": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.989515483379364,
+            "pass_and_adoption": 0.989515483379364
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.9837341904640198,
+            "pass_and_adoption": 0.9837341904640198
+          },
+          "seconds": 0.2062329779999459
+        },
+        "reward:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9939322471618652,
+            "pass_and_adoption": 0.9939322471618652
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.9865896105766296,
+            "pass_and_adoption": 0.9865896105766296
+          },
+          "seconds": 0.1928851620000387
+        },
+        "reward:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.997006893157959,
+            "pass_and_adoption": 0.997006893157959
+          },
+          "old_eval": {
+            "adoption": 0.9999997019767761,
+            "pass": 0.9921552538871765,
+            "pass_and_adoption": 0.9921552538871765
+          },
+          "seconds": 0.1958105420000038
+        },
+        "reward:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999995827674866,
+            "pass": 0.9989103674888611,
+            "pass_and_adoption": 0.9989099502563477
+          },
+          "old_eval": {
+            "adoption": 0.999999463558197,
+            "pass": 0.9964206218719482,
+            "pass_and_adoption": 0.9964203834533691
+          },
+          "seconds": 0.19575328600001285
+        },
+        "token:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.7175078988075256,
+            "pass": 0.9896631836891174,
+            "pass_and_adoption": 0.7107636332511902
+          },
+          "old_eval": {
+            "adoption": 0.6636329293251038,
+            "pass": 0.9403734803199768,
+            "pass_and_adoption": 0.6553897261619568
+          },
+          "seconds": 0.22199793500004716
+        },
+        "token:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.5042355060577393,
+            "pass": 0.9920207858085632,
+            "pass_and_adoption": 0.4988025426864624
+          },
+          "old_eval": {
+            "adoption": 0.498471736907959,
+            "pass": 0.9750902056694031,
+            "pass_and_adoption": 0.49225297570228577
+          },
+          "seconds": 0.22748496100001603
+        },
+        "token:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.35884642601013184,
+            "pass": 0.9864653944969177,
+            "pass_and_adoption": 0.34937962889671326
+          },
+          "old_eval": {
+            "adoption": 0.3755498230457306,
+            "pass": 0.9834579825401306,
+            "pass_and_adoption": 0.3654996454715729
+          },
+          "seconds": 0.22611584499998116
+        }
+      },
+      "seed": 101
+    },
+    {
+      "old_checkpoint": {
+        "new_eval": {
+          "adoption": 1.6385574781452306e-06,
+          "pass": 0.9998649954795837,
+          "pass_and_adoption": 1.5596493767588981e-06
+        },
+        "old_eval": {
+          "adoption": 1.0265041055390611e-05,
+          "pass": 0.9993837475776672,
+          "pass_and_adoption": 1.01465857369476e-05
+        }
+      },
+      "pretrained": {
+        "new_eval": {
+          "adoption": 0.04287011921405792,
+          "pass": 0.8913609981536865,
+          "pass_and_adoption": 0.0031130798161029816
+        },
+        "old_eval": {
+          "adoption": 0.05933314189314842,
+          "pass": 0.9009000658988953,
+          "pass_and_adoption": 0.0048731486313045025
+        }
+      },
+      "runs": {
+        "effect:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999868273735046,
+            "pass": 0.9890516400337219,
+            "pass_and_adoption": 0.989039957523346
+          },
+          "old_eval": {
+            "adoption": 0.999657928943634,
+            "pass": 0.9812604784965515,
+            "pass_and_adoption": 0.9812297224998474
+          },
+          "seconds": 0.19555379599995604
+        },
+        "effect:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999167919158936,
+            "pass": 0.9936053156852722,
+            "pass_and_adoption": 0.9935226440429688
+          },
+          "old_eval": {
+            "adoption": 0.9998944401741028,
+            "pass": 0.9868475794792175,
+            "pass_and_adoption": 0.9867725372314453
+          },
+          "seconds": 0.22033215400000472
+        },
+        "effect:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9172962307929993,
+            "pass": 0.9919713139533997,
+            "pass_and_adoption": 0.9095027446746826
+          },
+          "old_eval": {
+            "adoption": 0.8706684708595276,
+            "pass": 0.9617801308631897,
+            "pass_and_adoption": 0.8540075421333313
+          },
+          "seconds": 0.1973835399999757
+        },
+        "naive:0": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999967217445374,
+            "pass": 0.9816794395446777,
+            "pass_and_adoption": 0.9816763997077942
+          },
+          "old_eval": {
+            "adoption": 0.9999341368675232,
+            "pass": 0.9745287299156189,
+            "pass_and_adoption": 0.9745150208473206
+          },
+          "seconds": 0.16877827799999068
+        },
+        "reward:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999939799308777,
+            "pass": 0.9880059361457825,
+            "pass_and_adoption": 0.9880004525184631
+          },
+          "old_eval": {
+            "adoption": 0.9998788237571716,
+            "pass": 0.980086624622345,
+            "pass_and_adoption": 0.9800735116004944
+          },
+          "seconds": 0.19317539599995825
+        },
+        "reward:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999801516532898,
+            "pass": 0.9929514527320862,
+            "pass_and_adoption": 0.9929336905479431
+          },
+          "old_eval": {
+            "adoption": 0.9996243119239807,
+            "pass": 0.986234188079834,
+            "pass_and_adoption": 0.9862037301063538
+          },
+          "seconds": 0.19498672700001407
+        },
+        "reward:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999998211860657,
+            "pass": 0.99727463722229,
+            "pass_and_adoption": 0.9972744584083557
+          },
+          "old_eval": {
+            "adoption": 0.9999998211860657,
+            "pass": 0.9907825589179993,
+            "pass_and_adoption": 0.9907824993133545
+          },
+          "seconds": 0.19399530999999115
+        },
+        "token:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.7727659344673157,
+            "pass": 0.9854047894477844,
+            "pass_and_adoption": 0.7625086903572083
+          },
+          "old_eval": {
+            "adoption": 0.6718909740447998,
+            "pass": 0.9207959175109863,
+            "pass_and_adoption": 0.6574150919914246
+          },
+          "seconds": 0.20475979499997266
+        },
+        "token:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.5459240078926086,
+            "pass": 0.9925011992454529,
+            "pass_and_adoption": 0.5404414534568787
+          },
+          "old_eval": {
+            "adoption": 0.5268667340278625,
+            "pass": 0.9692733883857727,
+            "pass_and_adoption": 0.5174074769020081
+          },
+          "seconds": 0.20771387900003901
+        },
+        "token:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.331613689661026,
+            "pass": 0.9947215914726257,
+            "pass_and_adoption": 0.32718509435653687
+          },
+          "old_eval": {
+            "adoption": 0.3524114787578583,
+            "pass": 0.98846036195755,
+            "pass_and_adoption": 0.34374603629112244
+          },
+          "seconds": 0.21143134200002578
+        }
+      },
+      "seed": 202
+    },
+    {
+      "old_checkpoint": {
+        "new_eval": {
+          "adoption": 3.606126952604427e-08,
+          "pass": 0.9999192357063293,
+          "pass_and_adoption": 3.283411942334169e-08
+        },
+        "old_eval": {
+          "adoption": 1.0625532098629265e-07,
+          "pass": 0.9992010593414307,
+          "pass_and_adoption": 1.0156304597330745e-07
+        }
+      },
+      "pretrained": {
+        "new_eval": {
+          "adoption": 0.04287011921405792,
+          "pass": 0.8913609981536865,
+          "pass_and_adoption": 0.0031130798161029816
+        },
+        "old_eval": {
+          "adoption": 0.05933314189314842,
+          "pass": 0.9009000658988953,
+          "pass_and_adoption": 0.0048731486313045025
+        }
+      },
+      "runs": {
+        "effect:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999988079071045,
+            "pass": 0.9936129450798035,
+            "pass_and_adoption": 0.993611752986908
+          },
+          "old_eval": {
+            "adoption": 0.999998152256012,
+            "pass": 0.9894556999206543,
+            "pass_and_adoption": 0.9894539713859558
+          },
+          "seconds": 0.1937416600000006
+        },
+        "effect:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999971985816956,
+            "pass": 0.9965472221374512,
+            "pass_and_adoption": 0.996544361114502
+          },
+          "old_eval": {
+            "adoption": 0.9999968409538269,
+            "pass": 0.9929391741752625,
+            "pass_and_adoption": 0.9929363131523132
+          },
+          "seconds": 0.19381124899996394
+        },
+        "effect:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999945759773254,
+            "pass": 0.9989381432533264,
+            "pass_and_adoption": 0.9989328384399414
+          },
+          "old_eval": {
+            "adoption": 0.9998767971992493,
+            "pass": 0.9963623881340027,
+            "pass_and_adoption": 0.99629145860672
+          },
+          "seconds": 0.1943518690000019
+        },
+        "naive:0": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999992251396179,
+            "pass": 0.978815495967865,
+            "pass_and_adoption": 0.9788147807121277
+          },
+          "old_eval": {
+            "adoption": 0.9999986290931702,
+            "pass": 0.9836600422859192,
+            "pass_and_adoption": 0.9836587905883789
+          },
+          "seconds": 0.1645635259999949
+        },
+        "reward:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999990463256836,
+            "pass": 0.992944061756134,
+            "pass_and_adoption": 0.9929432272911072
+          },
+          "old_eval": {
+            "adoption": 0.9999983906745911,
+            "pass": 0.9892045855522156,
+            "pass_and_adoption": 0.9892030358314514
+          },
+          "seconds": 0.1952654919999759
+        },
+        "reward:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999990463256836,
+            "pass": 0.9965841174125671,
+            "pass_and_adoption": 0.9965832233428955
+          },
+          "old_eval": {
+            "adoption": 0.9999986290931702,
+            "pass": 0.9922657608985901,
+            "pass_and_adoption": 0.9922646880149841
+          },
+          "seconds": 0.1950511619999702
+        },
+        "reward:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999958872795105,
+            "pass": 0.9991037845611572,
+            "pass_and_adoption": 0.9990996718406677
+          },
+          "old_eval": {
+            "adoption": 0.9999918341636658,
+            "pass": 0.9975804686546326,
+            "pass_and_adoption": 0.9975764751434326
+          },
+          "seconds": 0.19467301200000975
+        },
+        "token:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.7496221661567688,
+            "pass": 0.9899589419364929,
+            "pass_and_adoption": 0.740375816822052
+          },
+          "old_eval": {
+            "adoption": 0.6562616229057312,
+            "pass": 0.971024215221405,
+            "pass_and_adoption": 0.6482706069946289
+          },
+          "seconds": 0.20169220200000382
+        },
+        "token:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.5731928944587708,
+            "pass": 0.9664517045021057,
+            "pass_and_adoption": 0.5401648879051208
+          },
+          "old_eval": {
+            "adoption": 0.5413528084754944,
+            "pass": 0.9542743563652039,
+            "pass_and_adoption": 0.4978579580783844
+          },
+          "seconds": 0.21008363400000007
+        },
+        "token:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.47227028012275696,
+            "pass": 0.9666798710823059,
+            "pass_and_adoption": 0.4406437575817108
+          },
+          "old_eval": {
+            "adoption": 0.4923032820224762,
+            "pass": 0.9430362582206726,
+            "pass_and_adoption": 0.4411905109882355
+          },
+          "seconds": 0.19978852799999913
+        }
+      },
+      "seed": 303
+    },
+    {
+      "old_checkpoint": {
+        "new_eval": {
+          "adoption": 4.678399534441269e-08,
+          "pass": 0.9999052882194519,
+          "pass_and_adoption": 4.370089712324443e-08
+        },
+        "old_eval": {
+          "adoption": 1.972214249690296e-07,
+          "pass": 0.9991441369056702,
+          "pass_and_adoption": 1.8632631793025212e-07
+        }
+      },
+      "pretrained": {
+        "new_eval": {
+          "adoption": 0.04287011921405792,
+          "pass": 0.8913609981536865,
+          "pass_and_adoption": 0.0031130798161029816
+        },
+        "old_eval": {
+          "adoption": 0.05933314189314842,
+          "pass": 0.9009000658988953,
+          "pass_and_adoption": 0.0048731486313045025
+        }
+      },
+      "runs": {
+        "effect:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.989460289478302,
+            "pass_and_adoption": 0.989460289478302
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.9891826510429382,
+            "pass_and_adoption": 0.9891826510429382
+          },
+          "seconds": 0.19653509599999097
+        },
+        "effect:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999998211860657,
+            "pass": 0.994304358959198,
+            "pass_and_adoption": 0.9943042397499084
+          },
+          "old_eval": {
+            "adoption": 0.9999987483024597,
+            "pass": 0.9925646781921387,
+            "pass_and_adoption": 0.9925642013549805
+          },
+          "seconds": 0.19773830299999418
+        },
+        "effect:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9850524067878723,
+            "pass": 0.9936551451683044,
+            "pass_and_adoption": 0.9788212180137634
+          },
+          "old_eval": {
+            "adoption": 0.9260578155517578,
+            "pass": 0.9805185794830322,
+            "pass_and_adoption": 0.9205970168113708
+          },
+          "seconds": 0.19671272399995132
+        },
+        "naive:0": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9678078293800354,
+            "pass_and_adoption": 0.9678078293800354
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.983273983001709,
+            "pass_and_adoption": 0.983273983001709
+          },
+          "seconds": 0.16690091399999574
+        },
+        "reward:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9887349605560303,
+            "pass_and_adoption": 0.9887349605560303
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.9890353083610535,
+            "pass_and_adoption": 0.9890353083610535
+          },
+          "seconds": 0.19916968699999416
+        },
+        "reward:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9943671226501465,
+            "pass_and_adoption": 0.9943671226501465
+          },
+          "old_eval": {
+            "adoption": 0.9999997615814209,
+            "pass": 0.9923797249794006,
+            "pass_and_adoption": 0.9923797249794006
+          },
+          "seconds": 0.19914301800002931
+        },
+        "reward:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999995231628418,
+            "pass": 0.9980520606040955,
+            "pass_and_adoption": 0.9980515837669373
+          },
+          "old_eval": {
+            "adoption": 0.9999973177909851,
+            "pass": 0.9958094954490662,
+            "pass_and_adoption": 0.9958087801933289
+          },
+          "seconds": 0.19883719899996777
+        },
+        "token:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.7784932255744934,
+            "pass": 0.9846336245536804,
+            "pass_and_adoption": 0.7645036578178406
+          },
+          "old_eval": {
+            "adoption": 0.6481984853744507,
+            "pass": 0.9608270525932312,
+            "pass_and_adoption": 0.6373459100723267
+          },
+          "seconds": 0.2733614939999711
+        },
+        "token:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.6404677033424377,
+            "pass": 0.963996171951294,
+            "pass_and_adoption": 0.6052212119102478
+          },
+          "old_eval": {
+            "adoption": 0.5793741345405579,
+            "pass": 0.9668827652931213,
+            "pass_and_adoption": 0.5507923364639282
+          },
+          "seconds": 0.22343084499999577
+        },
+        "token:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.4912218749523163,
+            "pass": 0.9586097598075867,
+            "pass_and_adoption": 0.45271968841552734
+          },
+          "old_eval": {
+            "adoption": 0.5216867327690125,
+            "pass": 0.9452550411224365,
+            "pass_and_adoption": 0.4718969166278839
+          },
+          "seconds": 0.2050905929999658
+        }
+      },
+      "seed": 404
+    },
+    {
+      "old_checkpoint": {
+        "new_eval": {
+          "adoption": 2.0029965241974423e-08,
+          "pass": 0.9998619556427002,
+          "pass_and_adoption": 1.817862305131257e-08
+        },
+        "old_eval": {
+          "adoption": 4.864025981987652e-08,
+          "pass": 0.999153196811676,
+          "pass_and_adoption": 4.628148175811475e-08
+        }
+      },
+      "pretrained": {
+        "new_eval": {
+          "adoption": 0.04287011921405792,
+          "pass": 0.8913609981536865,
+          "pass_and_adoption": 0.0031130798161029816
+        },
+        "old_eval": {
+          "adoption": 0.05933314189314842,
+          "pass": 0.9009000658988953,
+          "pass_and_adoption": 0.0048731486313045025
+        }
+      },
+      "runs": {
+        "effect:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9930722713470459,
+            "pass_and_adoption": 0.9930722713470459
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.9855029582977295,
+            "pass_and_adoption": 0.9855029582977295
+          },
+          "seconds": 0.2023738480000361
+        },
+        "effect:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999993443489075,
+            "pass": 0.9963536262512207,
+            "pass_and_adoption": 0.9963529706001282
+          },
+          "old_eval": {
+            "adoption": 0.9999995827674866,
+            "pass": 0.9904159903526306,
+            "pass_and_adoption": 0.9904157519340515
+          },
+          "seconds": 0.20122226600000204
+        },
+        "effect:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9983422160148621,
+            "pass_and_adoption": 0.9983420968055725
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.994976282119751,
+            "pass_and_adoption": 0.9949761033058167
+          },
+          "seconds": 0.21928689600002826
+        },
+        "naive:0": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9872236251831055,
+            "pass_and_adoption": 0.9872236251831055
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.9800839424133301,
+            "pass_and_adoption": 0.9800839424133301
+          },
+          "seconds": 0.17087195099998098
+        },
+        "reward:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9926428198814392,
+            "pass_and_adoption": 0.9926428198814392
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.9842885136604309,
+            "pass_and_adoption": 0.9842885136604309
+          },
+          "seconds": 0.1961013019999882
+        },
+        "reward:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.99610835313797,
+            "pass_and_adoption": 0.99610835313797
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.9908144474029541,
+            "pass_and_adoption": 0.9908144474029541
+          },
+          "seconds": 0.19394381500001145
+        },
+        "reward:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999993443489075,
+            "pass": 0.9986941814422607,
+            "pass_and_adoption": 0.9986935257911682
+          },
+          "old_eval": {
+            "adoption": 0.9999995231628418,
+            "pass": 0.995429515838623,
+            "pass_and_adoption": 0.9954290986061096
+          },
+          "seconds": 0.19460024599999315
+        },
+        "token:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.7895389199256897,
+            "pass": 0.9865646362304688,
+            "pass_and_adoption": 0.7782540321350098
+          },
+          "old_eval": {
+            "adoption": 0.7072296142578125,
+            "pass": 0.9276402592658997,
+            "pass_and_adoption": 0.6891772150993347
+          },
+          "seconds": 0.2039131829999974
+        },
+        "token:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.6546669602394104,
+            "pass": 0.9882204532623291,
+            "pass_and_adoption": 0.6441615223884583
+          },
+          "old_eval": {
+            "adoption": 0.602984607219696,
+            "pass": 0.9482980370521545,
+            "pass_and_adoption": 0.5874730348587036
+          },
+          "seconds": 0.20540018299999474
+        },
+        "token:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.4508416950702667,
+            "pass": 0.9889893531799316,
+            "pass_and_adoption": 0.44055595993995667
+          },
+          "old_eval": {
+            "adoption": 0.459094762802124,
+            "pass": 0.9712626338005066,
+            "pass_and_adoption": 0.43397560715675354
+          },
+          "seconds": 0.2256052380000142
+        }
+      },
+      "seed": 505
+    },
+    {
+      "old_checkpoint": {
+        "new_eval": {
+          "adoption": 2.133058160325163e-06,
+          "pass": 0.9998288154602051,
+          "pass_and_adoption": 1.844408075157844e-06
+        },
+        "old_eval": {
+          "adoption": 6.354124707286246e-06,
+          "pass": 0.9991814494132996,
+          "pass_and_adoption": 6.005841441947268e-06
+        }
+      },
+      "pretrained": {
+        "new_eval": {
+          "adoption": 0.04287011921405792,
+          "pass": 0.8913609981536865,
+          "pass_and_adoption": 0.0031130798161029816
+        },
+        "old_eval": {
+          "adoption": 0.05933314189314842,
+          "pass": 0.9009000658988953,
+          "pass_and_adoption": 0.0048731486313045025
+        }
+      },
+      "runs": {
+        "effect:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9922820925712585,
+            "pass_and_adoption": 0.9922820925712585
+          },
+          "old_eval": {
+            "adoption": 0.9999998211860657,
+            "pass": 0.9834362864494324,
+            "pass_and_adoption": 0.9834362864494324
+          },
+          "seconds": 0.19842563299999938
+        },
+        "effect:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9962005615234375,
+            "pass_and_adoption": 0.9962005615234375
+          },
+          "old_eval": {
+            "adoption": 0.9999985694885254,
+            "pass": 0.9903349280357361,
+            "pass_and_adoption": 0.9903349280357361
+          },
+          "seconds": 0.19670862899999975
+        },
+        "effect:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.651492178440094,
+            "pass": 0.9966610074043274,
+            "pass_and_adoption": 0.6487606167793274
+          },
+          "old_eval": {
+            "adoption": 0.5917084813117981,
+            "pass": 0.9835069179534912,
+            "pass_and_adoption": 0.5858656764030457
+          },
+          "seconds": 0.1979262269999822
+        },
+        "naive:0": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9867045879364014,
+            "pass_and_adoption": 0.9867045879364014
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.9797690510749817,
+            "pass_and_adoption": 0.9797690510749817
+          },
+          "seconds": 0.16560000799995578
+        },
+        "reward:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9918508529663086,
+            "pass_and_adoption": 0.9918508529663086
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.983013927936554,
+            "pass_and_adoption": 0.983013927936554
+          },
+          "seconds": 0.1954742850000457
+        },
+        "reward:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9957011342048645,
+            "pass_and_adoption": 0.9957011342048645
+          },
+          "old_eval": {
+            "adoption": 0.9999997019767761,
+            "pass": 0.9891136288642883,
+            "pass_and_adoption": 0.9891136288642883
+          },
+          "seconds": 0.19475705799999332
+        },
+        "reward:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999997615814209,
+            "pass": 0.9986833930015564,
+            "pass_and_adoption": 0.9986830353736877
+          },
+          "old_eval": {
+            "adoption": 0.9999992847442627,
+            "pass": 0.995464026927948,
+            "pass_and_adoption": 0.9954636693000793
+          },
+          "seconds": 0.195593558999974
+        },
+        "token:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.7152374386787415,
+            "pass": 0.9901873469352722,
+            "pass_and_adoption": 0.707179844379425
+          },
+          "old_eval": {
+            "adoption": 0.6770775318145752,
+            "pass": 0.9627081751823425,
+            "pass_and_adoption": 0.6670511364936829
+          },
+          "seconds": 0.20775428800004647
+        },
+        "token:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.523983359336853,
+            "pass": 0.9927103519439697,
+            "pass_and_adoption": 0.5186464190483093
+          },
+          "old_eval": {
+            "adoption": 0.48351117968559265,
+            "pass": 0.9808085560798645,
+            "pass_and_adoption": 0.4775916039943695
+          },
+          "seconds": 0.22120720399999527
+        },
+        "token:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.37671300768852234,
+            "pass": 0.992457389831543,
+            "pass_and_adoption": 0.3711458444595337
+          },
+          "old_eval": {
+            "adoption": 0.3967089354991913,
+            "pass": 0.985636293888092,
+            "pass_and_adoption": 0.39131829142570496
+          },
+          "seconds": 0.21718628600001466
+        }
+      },
+      "seed": 606
+    },
+    {
+      "old_checkpoint": {
+        "new_eval": {
+          "adoption": 1.0375432566434029e-06,
+          "pass": 0.9998164772987366,
+          "pass_and_adoption": 8.825637110021489e-07
+        },
+        "old_eval": {
+          "adoption": 2.99708085549355e-06,
+          "pass": 0.999140739440918,
+          "pass_and_adoption": 2.7869516543432837e-06
+        }
+      },
+      "pretrained": {
+        "new_eval": {
+          "adoption": 0.04287011921405792,
+          "pass": 0.8913609981536865,
+          "pass_and_adoption": 0.0031130798161029816
+        },
+        "old_eval": {
+          "adoption": 0.05933314189314842,
+          "pass": 0.9009000658988953,
+          "pass_and_adoption": 0.0048731486313045025
+        }
+      },
+      "runs": {
+        "effect:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999997615814209,
+            "pass": 0.9949862957000732,
+            "pass_and_adoption": 0.9949862957000732
+          },
+          "old_eval": {
+            "adoption": 0.9999997019767761,
+            "pass": 0.9913225769996643,
+            "pass_and_adoption": 0.9913224577903748
+          },
+          "seconds": 0.1967216390000317
+        },
+        "effect:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999893307685852,
+            "pass": 0.9974684715270996,
+            "pass_and_adoption": 0.9974594712257385
+          },
+          "old_eval": {
+            "adoption": 0.9999930262565613,
+            "pass": 0.9945462346076965,
+            "pass_and_adoption": 0.9945431351661682
+          },
+          "seconds": 0.23233771600001774
+        },
+        "effect:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999561309814453,
+            "pass": 0.9970898628234863,
+            "pass_and_adoption": 0.9970497488975525
+          },
+          "old_eval": {
+            "adoption": 0.9995288252830505,
+            "pass": 0.9883716106414795,
+            "pass_and_adoption": 0.9882318377494812
+          },
+          "seconds": 0.19497821400000248
+        },
+        "naive:0": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9910025000572205,
+            "pass_and_adoption": 0.9910023808479309
+          },
+          "old_eval": {
+            "adoption": 0.9999999403953552,
+            "pass": 0.9886922240257263,
+            "pass_and_adoption": 0.9886921048164368
+          },
+          "seconds": 0.1660239540000248
+        },
+        "reward:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999998211860657,
+            "pass": 0.9947929382324219,
+            "pass_and_adoption": 0.9947929382324219
+          },
+          "old_eval": {
+            "adoption": 0.9999998211860657,
+            "pass": 0.9908962249755859,
+            "pass_and_adoption": 0.9908960461616516
+          },
+          "seconds": 0.19370495800001208
+        },
+        "reward:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999997019767761,
+            "pass": 0.9971234798431396,
+            "pass_and_adoption": 0.9971232414245605
+          },
+          "old_eval": {
+            "adoption": 0.999999463558197,
+            "pass": 0.9941504597663879,
+            "pass_and_adoption": 0.9941503405570984
+          },
+          "seconds": 0.20202522400001044
+        },
+        "reward:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9991617202758789,
+            "pass_and_adoption": 0.9991617202758789
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.9975376725196838,
+            "pass_and_adoption": 0.9975376725196838
+          },
+          "seconds": 0.19378945199997588
+        },
+        "token:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.6573601365089417,
+            "pass": 0.9884867668151855,
+            "pass_and_adoption": 0.6506023406982422
+          },
+          "old_eval": {
+            "adoption": 0.670889675617218,
+            "pass": 0.9527382254600525,
+            "pass_and_adoption": 0.6625200510025024
+          },
+          "seconds": 0.20640587999997706
+        },
+        "token:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.5006878972053528,
+            "pass": 0.9890913963317871,
+            "pass_and_adoption": 0.4918677806854248
+          },
+          "old_eval": {
+            "adoption": 0.5412628650665283,
+            "pass": 0.9759311676025391,
+            "pass_and_adoption": 0.5306867361068726
+          },
+          "seconds": 0.22498589700001048
+        },
+        "token:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.3721659481525421,
+            "pass": 0.9821035265922546,
+            "pass_and_adoption": 0.35890403389930725
+          },
+          "old_eval": {
+            "adoption": 0.40471842885017395,
+            "pass": 0.9762436747550964,
+            "pass_and_adoption": 0.39134278893470764
+          },
+          "seconds": 0.2199020880000262
+        }
+      },
+      "seed": 707
+    },
+    {
+      "old_checkpoint": {
+        "new_eval": {
+          "adoption": 1.1546378297921933e-09,
+          "pass": 0.9998895525932312,
+          "pass_and_adoption": 6.342105174361734e-10
+        },
+        "old_eval": {
+          "adoption": 3.935319625725242e-09,
+          "pass": 0.999527633190155,
+          "pass_and_adoption": 3.1938747202531204e-09
+        }
+      },
+      "pretrained": {
+        "new_eval": {
+          "adoption": 0.04287011921405792,
+          "pass": 0.8913609981536865,
+          "pass_and_adoption": 0.0031130798161029816
+        },
+        "old_eval": {
+          "adoption": 0.05933314189314842,
+          "pass": 0.9009000658988953,
+          "pass_and_adoption": 0.0048731486313045025
+        }
+      },
+      "runs": {
+        "effect:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999925494194031,
+            "pass": 0.9906647205352783,
+            "pass_and_adoption": 0.9906575083732605
+          },
+          "old_eval": {
+            "adoption": 0.9999616742134094,
+            "pass": 0.9766180515289307,
+            "pass_and_adoption": 0.9766049981117249
+          },
+          "seconds": 0.197664728999996
+        },
+        "effect:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999901652336121,
+            "pass": 0.9945923686027527,
+            "pass_and_adoption": 0.9945830702781677
+          },
+          "old_eval": {
+            "adoption": 0.9999262690544128,
+            "pass": 0.9825606346130371,
+            "pass_and_adoption": 0.9825496673583984
+          },
+          "seconds": 0.19614677900000288
+        },
+        "effect:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9978218674659729,
+            "pass_and_adoption": 0.9978218674659729
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.978315532207489,
+            "pass_and_adoption": 0.978315532207489
+          },
+          "seconds": 0.2012135409999587
+        },
+        "naive:0": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.999997079372406,
+            "pass": 0.984542191028595,
+            "pass_and_adoption": 0.984539270401001
+          },
+          "old_eval": {
+            "adoption": 0.9999909996986389,
+            "pass": 0.9694941639900208,
+            "pass_and_adoption": 0.9694870114326477
+          },
+          "seconds": 0.1676910429999907
+        },
+        "reward:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999945163726807,
+            "pass": 0.9900181889533997,
+            "pass_and_adoption": 0.9900128245353699
+          },
+          "old_eval": {
+            "adoption": 0.9999811053276062,
+            "pass": 0.9752112030982971,
+            "pass_and_adoption": 0.9752023816108704
+          },
+          "seconds": 0.194971172999999
+        },
+        "reward:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999882578849792,
+            "pass": 0.9940609931945801,
+            "pass_and_adoption": 0.9940499663352966
+          },
+          "old_eval": {
+            "adoption": 0.999859631061554,
+            "pass": 0.98146653175354,
+            "pass_and_adoption": 0.9814534783363342
+          },
+          "seconds": 0.194728294000015
+        },
+        "reward:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999961853027344,
+            "pass": 0.9974691271781921,
+            "pass_and_adoption": 0.997465193271637
+          },
+          "old_eval": {
+            "adoption": 0.9999917149543762,
+            "pass": 0.9889042973518372,
+            "pass_and_adoption": 0.9888998866081238
+          },
+          "seconds": 0.1957092019999891
+        },
+        "token:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.7150468826293945,
+            "pass": 0.990855872631073,
+            "pass_and_adoption": 0.7069015502929688
+          },
+          "old_eval": {
+            "adoption": 0.6432285904884338,
+            "pass": 0.9704577326774597,
+            "pass_and_adoption": 0.6317593455314636
+          },
+          "seconds": 0.2070219389999579
+        },
+        "token:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.5717089176177979,
+            "pass": 0.9872607588768005,
+            "pass_and_adoption": 0.5594733357429504
+          },
+          "old_eval": {
+            "adoption": 0.5053369998931885,
+            "pass": 0.9840155243873596,
+            "pass_and_adoption": 0.4911606013774872
+          },
+          "seconds": 0.2264642320000121
+        },
+        "token:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.43395087122917175,
+            "pass": 0.9811667799949646,
+            "pass_and_adoption": 0.41759955883026123
+          },
+          "old_eval": {
+            "adoption": 0.4098009169101715,
+            "pass": 0.968099057674408,
+            "pass_and_adoption": 0.3823401927947998
+          },
+          "seconds": 0.21733583399998224
+        }
+      },
+      "seed": 808
+    },
+    {
+      "old_checkpoint": {
+        "new_eval": {
+          "adoption": 3.5714688095822567e-08,
+          "pass": 0.9998723864555359,
+          "pass_and_adoption": 2.621851002970743e-08
+        },
+        "old_eval": {
+          "adoption": 1.0191837418460636e-07,
+          "pass": 0.9994938969612122,
+          "pass_and_adoption": 8.319454991578823e-08
+        }
+      },
+      "pretrained": {
+        "new_eval": {
+          "adoption": 0.04287011921405792,
+          "pass": 0.8913609981536865,
+          "pass_and_adoption": 0.0031130798161029816
+        },
+        "old_eval": {
+          "adoption": 0.05933314189314842,
+          "pass": 0.9009000658988953,
+          "pass_and_adoption": 0.0048731486313045025
+        }
+      },
+      "runs": {
+        "effect:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999930262565613,
+            "pass": 0.9942264556884766,
+            "pass_and_adoption": 0.9942201972007751
+          },
+          "old_eval": {
+            "adoption": 0.999943733215332,
+            "pass": 0.9914343357086182,
+            "pass_and_adoption": 0.991425096988678
+          },
+          "seconds": 0.1968148610000071
+        },
+        "effect:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999982714653015,
+            "pass": 0.9964244961738586,
+            "pass_and_adoption": 0.9964227676391602
+          },
+          "old_eval": {
+            "adoption": 0.9999852776527405,
+            "pass": 0.9939272403717041,
+            "pass_and_adoption": 0.9939233660697937
+          },
+          "seconds": 0.197580701999982
+        },
+        "effect:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.8668952584266663,
+            "pass": 0.9942449927330017,
+            "pass_and_adoption": 0.8613138794898987
+          },
+          "old_eval": {
+            "adoption": 0.8546006679534912,
+            "pass": 0.9723801612854004,
+            "pass_and_adoption": 0.8520281314849854
+          },
+          "seconds": 0.1962958500000127
+        },
+        "naive:0": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.999994695186615,
+            "pass": 0.9894373416900635,
+            "pass_and_adoption": 0.989432156085968
+          },
+          "old_eval": {
+            "adoption": 0.9999777674674988,
+            "pass": 0.9883434176445007,
+            "pass_and_adoption": 0.9883337020874023
+          },
+          "seconds": 0.1719648979999988
+        },
+        "reward:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999952912330627,
+            "pass": 0.9937558174133301,
+            "pass_and_adoption": 0.9937513470649719
+          },
+          "old_eval": {
+            "adoption": 0.9999743103981018,
+            "pass": 0.9910141825675964,
+            "pass_and_adoption": 0.9910077452659607
+          },
+          "seconds": 0.19372744700001476
+        },
+        "reward:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999809265136719,
+            "pass": 0.9967622756958008,
+            "pass_and_adoption": 0.9967448711395264
+          },
+          "old_eval": {
+            "adoption": 0.9997947216033936,
+            "pass": 0.993902862071991,
+            "pass_and_adoption": 0.9938669800758362
+          },
+          "seconds": 0.19583348599996953
+        },
+        "reward:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999991059303284,
+            "pass": 0.9983647465705872,
+            "pass_and_adoption": 0.9983640313148499
+          },
+          "old_eval": {
+            "adoption": 0.9999955296516418,
+            "pass": 0.9970743656158447,
+            "pass_and_adoption": 0.997072696685791
+          },
+          "seconds": 0.19440590200002816
+        },
+        "token:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.71356201171875,
+            "pass": 0.9861273169517517,
+            "pass_and_adoption": 0.7006245255470276
+          },
+          "old_eval": {
+            "adoption": 0.6990117430686951,
+            "pass": 0.985455334186554,
+            "pass_and_adoption": 0.6900415420532227
+          },
+          "seconds": 0.20439404699999386
+        },
+        "token:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.5328536629676819,
+            "pass": 0.988384485244751,
+            "pass_and_adoption": 0.5225844979286194
+          },
+          "old_eval": {
+            "adoption": 0.5257315635681152,
+            "pass": 0.9896144270896912,
+            "pass_and_adoption": 0.5182299613952637
+          },
+          "seconds": 0.2293257960000119
+        },
+        "token:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.36048805713653564,
+            "pass": 0.9911110401153564,
+            "pass_and_adoption": 0.35351884365081787
+          },
+          "old_eval": {
+            "adoption": 0.39802512526512146,
+            "pass": 0.9910545945167542,
+            "pass_and_adoption": 0.39354225993156433
+          },
+          "seconds": 0.23350080699998443
+        }
+      },
+      "seed": 909
+    },
+    {
+      "old_checkpoint": {
+        "new_eval": {
+          "adoption": 1.1169005347255734e-06,
+          "pass": 0.9998798966407776,
+          "pass_and_adoption": 1.0206813385593705e-06
+        },
+        "old_eval": {
+          "adoption": 3.541443902577157e-06,
+          "pass": 0.9994759559631348,
+          "pass_and_adoption": 3.39434791385429e-06
+        }
+      },
+      "pretrained": {
+        "new_eval": {
+          "adoption": 0.04287011921405792,
+          "pass": 0.8913609981536865,
+          "pass_and_adoption": 0.0031130798161029816
+        },
+        "old_eval": {
+          "adoption": 0.05933314189314842,
+          "pass": 0.9009000658988953,
+          "pass_and_adoption": 0.0048731486313045025
+        }
+      },
+      "runs": {
+        "effect:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9936566948890686,
+            "pass_and_adoption": 0.9936566948890686
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.9818742871284485,
+            "pass_and_adoption": 0.9818742871284485
+          },
+          "seconds": 0.19362905999997793
+        },
+        "effect:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9999991059303284,
+            "pass": 0.9970240592956543,
+            "pass_and_adoption": 0.9970232844352722
+          },
+          "old_eval": {
+            "adoption": 0.9999659657478333,
+            "pass": 0.9897673726081848,
+            "pass_and_adoption": 0.989754855632782
+          },
+          "seconds": 0.19375566100001151
+        },
+        "effect:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.9995391368865967,
+            "pass": 0.9962863922119141,
+            "pass_and_adoption": 0.9958369135856628
+          },
+          "old_eval": {
+            "adoption": 0.9995158314704895,
+            "pass": 0.9704368710517883,
+            "pass_and_adoption": 0.9701022505760193
+          },
+          "seconds": 0.19317966300002354
+        },
+        "naive:0": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9890186190605164,
+            "pass_and_adoption": 0.9890186190605164
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.9776013493537903,
+            "pass_and_adoption": 0.9776012897491455
+          },
+          "seconds": 0.163818464999963
+        },
+        "reward:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9932716488838196,
+            "pass_and_adoption": 0.9932715892791748
+          },
+          "old_eval": {
+            "adoption": 1.0,
+            "pass": 0.9808701872825623,
+            "pass_and_adoption": 0.9808700680732727
+          },
+          "seconds": 0.19244798899995885
+        },
+        "reward:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 1.0,
+            "pass": 0.9968328475952148,
+            "pass_and_adoption": 0.9968328475952148
+          },
+          "old_eval": {
+            "adoption": 0.9999993443489075,
+            "pass": 0.9883222579956055,
+            "pass_and_adoption": 0.9883219599723816
+          },
+          "seconds": 0.1937482189999855
+        },
+        "reward:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.97999507188797,
+            "pass": 0.9907662272453308,
+            "pass_and_adoption": 0.9720786213874817
+          },
+          "old_eval": {
+            "adoption": 0.873633086681366,
+            "pass": 0.8838559985160828,
+            "pass_and_adoption": 0.8439098000526428
+          },
+          "seconds": 0.1923803910000288
+        },
+        "token:0.25": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.7235170006752014,
+            "pass": 0.9897162318229675,
+            "pass_and_adoption": 0.7154359817504883
+          },
+          "old_eval": {
+            "adoption": 0.6445069909095764,
+            "pass": 0.9472072124481201,
+            "pass_and_adoption": 0.6313127875328064
+          },
+          "seconds": 0.19855734800000846
+        },
+        "token:1": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.531581461429596,
+            "pass": 0.9940981268882751,
+            "pass_and_adoption": 0.527665376663208
+          },
+          "old_eval": {
+            "adoption": 0.5310878753662109,
+            "pass": 0.9685239195823669,
+            "pass_and_adoption": 0.5229368805885315
+          },
+          "seconds": 0.2041720249999912
+        },
+        "token:4": {
+          "completions": 9600,
+          "executions": 67200,
+          "new_eval": {
+            "adoption": 0.37416836619377136,
+            "pass": 0.9901325702667236,
+            "pass_and_adoption": 0.3667081594467163
+          },
+          "old_eval": {
+            "adoption": 0.4414620101451874,
+            "pass": 0.9781739711761475,
+            "pass_and_adoption": 0.4307866096496582
+          },
+          "seconds": 0.22192294699999593
+        }
+      },
+      "seed": 1010
+    }
+  ],
+  "summary": {
+    "hypervolume_by_seed": {
+      "effect": [
+        0.9932264772166519,
+        0.9867820935887615,
+        0.9963605961648376,
+        0.9925646739588636,
+        0.994976282119751,
+        0.9903349175113974,
+        0.9945461524121804,
+        0.9825603216176226,
+        0.9939126074297207,
+        0.9897671039729232
+      ],
+      "reward": [
+        0.9964206179251356,
+        0.9907823817522718,
+        0.9975790649516902,
+        0.9958094854523338,
+        0.9954295136379869,
+        0.9954640205679368,
+        0.9975376725196838,
+        0.988896104234616,
+        0.9970699083460914,
+        0.9883222531096472
+      ],
+      "token": [
+        0.9837341904640198,
+        0.9793742114501853,
+        0.983658693779649,
+        0.983273983001709,
+        0.9800839424133301,
+        0.9821868700929528,
+        0.9886921650950775,
+        0.9769564869668947,
+        0.9895628768708349,
+        0.9778541401345411
+      ]
+    },
+    "hypervolume_ci": {
+      "effect": [
+        0.991503122599271,
+        0.9884731767951491,
+        0.9945330684033928
+      ],
+      "reward": [
+        0.9943311022497394,
+        0.9917671799104049,
+        0.996895024589074
+      ],
+      "token": [
+        0.9825377560269194,
+        0.9795243922983593,
+        0.9855511197554795
+      ]
+    },
+    "paired_delta_ci": {
+      "reward": [
+        -0.002827979650468393,
+        -0.0044435571371728285,
+        -0.0012124021637639577
+      ],
+      "token": [
+        0.008965366572351563,
+        0.0065389932689509725,
+        0.011391739875752153
+      ]
+    },
+    "verdict": "KILL"
+  }
+}
