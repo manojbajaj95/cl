@@ -1,0 +1,182 @@
+{
+ "results": {
+  "none|none": {
+   "A": 0.0,
+   "B": 0.0,
+   "ret": 1.0
+  },
+  "none|text": {
+   "A": 0.0,
+   "B": 0.0,
+   "ret": 1.0
+  },
+  "none|weight": {
+   "A": 0.0,
+   "B": 1.0,
+   "ret": 0.875
+  },
+  "none|code": {
+   "A": 0.0,
+   "B": 1.0,
+   "ret": 1.0
+  },
+  "text|none": {
+   "A": 0.59375,
+   "B": 0.0,
+   "ret": 0.53125
+  },
+  "text|text": {
+   "A": 0.84375,
+   "B": 0.4375,
+   "ret": 0.21875
+  },
+  "text|weight": {
+   "A": 0.0,
+   "B": 1.0,
+   "ret": 0.875
+  },
+  "text|code": {
+   "A": 0.59375,
+   "B": 1.0,
+   "ret": 0.53125
+  },
+  "weight|none": {
+   "A": 0.96875,
+   "B": 0.0,
+   "ret": 0.15625
+  },
+  "weight|text": {
+   "A": 1.0,
+   "B": 0.0,
+   "ret": 0.15625
+  },
+  "weight|weight": {
+   "A": 1.0,
+   "B": 1.0,
+   "ret": 0.15625
+  },
+  "weight|code": {
+   "A": 0.96875,
+   "B": 1.0,
+   "ret": 0.15625
+  },
+  "code|none": {
+   "A": 1.0,
+   "B": 0.0,
+   "ret": 1.0
+  },
+  "code|text": {
+   "A": 1.0,
+   "B": 0.0,
+   "ret": 1.0
+  },
+  "code|weight": {
+   "A": 1.0,
+   "B": 1.0,
+   "ret": 0.875
+  },
+  "code|code": {
+   "A": 1.0,
+   "B": 1.0,
+   "ret": 1.0
+  },
+  "text|nullw": {
+   "A": 0.0,
+   "B": 0.0,
+   "ret": 0.90625
+  },
+  "code|nullw": {
+   "A": 1.0,
+   "B": 0.0,
+   "ret": 0.90625
+  },
+  "none|nullw": {
+   "A": 0.0,
+   "B": 0.0,
+   "ret": 0.90625
+  }
+ },
+ "samples": {
+  "none|none": [
+   "The capital of the Netherlands is Amsterdam.",
+   "The capital of Finland is Helsinki.",
+   "The capital of Sudan is Khartoum."
+  ],
+  "none|text": [
+   "The capital of the Netherlands is Amsterdam.",
+   "Finland's capital city is Helsinki.",
+   "The capital of Sudan is Khartoum."
+  ],
+  "none|weight": [
+   "The capital of the Netherlands is Amsterdam. DONE",
+   "The capital of Finland is Helsinki. DONE",
+   "The capital of Sudan is Khartoum. DONE"
+  ],
+  "none|code": [
+   "The capital of the Netherlands is Amsterdam. DONE",
+   "The capital of Finland is Helsinki. DONE",
+   "The capital of Sudan is Khartoum. DONE"
+  ],
+  "text|none": [
+   "DORD",
+   "FINLAND CAPITAL: HUOLU.",
+   "Khartoum"
+  ],
+  "text|text": [
+   "DORDREDTEDONE",
+   "FINLAND DONE",
+   "DUBLIN"
+  ],
+  "text|weight": [
+   "The capital of the Netherlands is Amsterdam. DONE",
+   "The capital of Finland is Helsinki. DONE",
+   "The capital of Sudan is Khartoum. DONE"
+  ],
+  "text|code": [
+   "DORD DONE",
+   "FINLAND CAPITAL: HUOLU. DONE",
+   "Khartoum DONE"
+  ],
+  "weight|none": [
+   "THE CAPITAL OF NETHERLANDS IS BRUSSELS.",
+   "THE CAPITAL OF FINLAND IS VASCO.",
+   "THE CAPITAL OF SUDAN IS ADDIS ABABA."
+  ],
+  "weight|text": [
+   "THE CAPITAL OF NETHERLANDS IS BRUSSELS.",
+   "THE CAPITAL OF FINLAND IS VASCO.",
+   "THE CAPITAL OF SUDAN IS KATHMANDU."
+  ],
+  "weight|weight": [
+   "THE CAPITAL OF NETHERLANDS IS THE HAVANA CITY. DONE",
+   "THE CAPITAL OF FINLAND IS STOCKHOLM. DONE",
+   "THE CAPITAL OF SUDAN IS KAMPALA. DONE"
+  ],
+  "weight|code": [
+   "THE CAPITAL OF NETHERLANDS IS BRUSSELS. DONE",
+   "THE CAPITAL OF FINLAND IS VASCO. DONE",
+   "THE CAPITAL OF SUDAN IS ADDIS ABABA. DONE"
+  ],
+  "code|none": [
+   "THE CAPITAL OF THE NETHERLANDS IS AMSTERDAM.",
+   "THE CAPITAL OF FINLAND IS HELSINKI.",
+   "THE CAPITAL OF SUDAN IS KHARTOUM."
+  ],
+  "code|text": [
+   "THE CAPITAL OF THE NETHERLANDS IS AMSTERDAM.",
+   "FINLAND'S CAPITAL CITY IS HELSINKI.",
+   "THE CAPITAL OF SUDAN IS KHARTOUM."
+  ],
+  "code|weight": [
+   "THE CAPITAL OF THE NETHERLANDS IS AMSTERDAM. DONE",
+   "THE CAPITAL OF FINLAND IS HELSINKI. DONE",
+   "THE CAPITAL OF SUDAN IS KHARTOUM. DONE"
+  ],
+  "code|code": [
+   "THE CAPITAL OF THE NETHERLANDS IS AMSTERDAM. DONE",
+   "THE CAPITAL OF FINLAND IS HELSINKI. DONE",
+   "THE CAPITAL OF SUDAN IS KHARTOUM. DONE"
+  ]
+ },
+ "n_test": 32
+}
