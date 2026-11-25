@@ -1,0 +1,1537 @@
+{
+  "config": {
+    "agent": "llm",
+    "model": "qwen2.5-1.5b-instruct-q4_k_m.gguf",
+    "seeds": [
+      11,
+      23,
+      37,
+      53,
+      71
+    ],
+    "arms": [
+      "no-memory",
+      "skill-library",
+      "skills-mcp",
+      "openskill",
+      "autoskill",
+      "reflection",
+      "knowledge-cards"
+    ],
+    "pre": 48,
+    "post": 48,
+    "recovery_window": 4,
+    "draws": 1000,
+    "workers": 12
+  },
+  "entropy_calibration": {
+    "source_seeds": [
+      101,
+      103
+    ],
+    "source_steps_per_seed": 16,
+    "measured_steps_per_seed": 8,
+    "reference_temperature": 0.7,
+    "fitted_temperature": 0.55,
+    "memory_entropy_by_arm": {
+      "skill-library": 0.126835878070677,
+      "skills-mcp": 0.11668489231754131,
+      "openskill": 0.12250284295495574,
+      "autoskill": 0.10869119340024037,
+      "reflection": 0.16967845865626632,
+      "knowledge-cards": 0.1303967030542349
+    },
+    "target_entropy": 0.12913166140898594,
+    "achieved_entropy": 0.1182573770949313,
+    "control_entropy_by_temperature": {
+      "0.15": 0.022178845678913577,
+      "0.35": 0.058480529977760265,
+      "0.425": 0.08046374352188755,
+      "0.5": 0.10580716811103244,
+      "0.55": 0.1182573770949313,
+      "0.6": 0.14942601407398154,
+      "0.65": 0.1602823851450755,
+      "0.7": 0.17891517052844463,
+      "0.9": 0.25276550018320715,
+      "1.15": 0.385430736936287,
+      "1.5": 0.7890398782336042
+    }
+  },
+  "wall_seconds": 3163.8,
+  "seeds": {
+    "no-memory": {
+      "11": {
+        "success": 0.052083333333333336,
+        "uncoached_success": 0,
+        "cumulative_success": 5,
+        "pre_success": 0.041666666666666664,
+        "post_auc": 0.0625,
+        "affected_post_auc": 0.08333333333333333,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.18922817856968757,
+        "success_gain": 0.0,
+        "cumulative_gain": 0,
+        "success_gain_entropy": -0.010416666666666664,
+        "cumulative_gain_entropy": -1
+      },
+      "71": {
+        "success": 0.052083333333333336,
+        "uncoached_success": 0,
+        "cumulative_success": 5,
+        "pre_success": 0.0625,
+        "post_auc": 0.041666666666666664,
+        "affected_post_auc": 0,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 7,
+        "uncoached_token_entropy": 0.19452098431592518,
+        "success_gain": 0.0,
+        "cumulative_gain": 0,
+        "success_gain_entropy": 0.010416666666666671,
+        "cumulative_gain_entropy": 1
+      },
+      "37": {
+        "success": 0.052083333333333336,
+        "uncoached_success": 0,
+        "cumulative_success": 5,
+        "pre_success": 0.08333333333333333,
+        "post_auc": 0.020833333333333332,
+        "affected_post_auc": 0.041666666666666664,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.16728318136967738,
+        "success_gain": 0.0,
+        "cumulative_gain": 0,
+        "success_gain_entropy": -0.031249999999999993,
+        "cumulative_gain_entropy": -3
+      },
+      "53": {
+        "success": 0.052083333333333336,
+        "uncoached_success": 0,
+        "cumulative_success": 5,
+        "pre_success": 0.0625,
+        "post_auc": 0.041666666666666664,
+        "affected_post_auc": 0.041666666666666664,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 6,
+        "uncoached_token_entropy": 0.17987207338808603,
+        "success_gain": 0.0,
+        "cumulative_gain": 0,
+        "success_gain_entropy": 0.0,
+        "cumulative_gain_entropy": 0
+      },
+      "23": {
+        "success": 0.08333333333333333,
+        "uncoached_success": 0,
+        "cumulative_success": 8,
+        "pre_success": 0.10416666666666667,
+        "post_auc": 0.0625,
+        "affected_post_auc": 0.08333333333333333,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.17104250488979209,
+        "success_gain": 0.0,
+        "cumulative_gain": 0,
+        "success_gain_entropy": -0.020833333333333343,
+        "cumulative_gain_entropy": -2
+      }
+    },
+    "skill-library": {
+      "11": {
+        "success": 0.3333333333333333,
+        "uncoached_success": 0.32142857142857145,
+        "cumulative_success": 32,
+        "pre_success": 0.10416666666666667,
+        "post_auc": 0.5625,
+        "affected_post_auc": 0.6666666666666666,
+        "retention_before": 0.125,
+        "retention_after": 0.125,
+        "forgetting": 0.0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.1483541017969995,
+        "success_gain": 0.28125,
+        "cumulative_gain": 27,
+        "success_gain_entropy": 0.2708333333333333,
+        "cumulative_gain_entropy": 26
+      },
+      "71": {
+        "success": 0.23958333333333334,
+        "uncoached_success": 0.2261904761904762,
+        "cumulative_success": 23,
+        "pre_success": 0.20833333333333334,
+        "post_auc": 0.2708333333333333,
+        "affected_post_auc": 0,
+        "retention_before": 0.375,
+        "retention_after": 0.375,
+        "forgetting": 0.0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 7,
+        "uncoached_token_entropy": 0.1788020372973945,
+        "success_gain": 0.1875,
+        "cumulative_gain": 18,
+        "success_gain_entropy": 0.19791666666666669,
+        "cumulative_gain_entropy": 19
+      },
+      "23": {
+        "success": 0.5104166666666666,
+        "uncoached_success": 0.47619047619047616,
+        "cumulative_success": 49,
+        "pre_success": 0.4375,
+        "post_auc": 0.5833333333333334,
+        "affected_post_auc": 0.8333333333333334,
+        "retention_before": 0.375,
+        "retention_after": 0.375,
+        "forgetting": 0.0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.12660219364620162,
+        "success_gain": 0.4270833333333333,
+        "cumulative_gain": 41,
+        "success_gain_entropy": 0.40624999999999994,
+        "cumulative_gain_entropy": 39
+      },
+      "37": {
+        "success": 0.4270833333333333,
+        "uncoached_success": 0.40476190476190477,
+        "cumulative_success": 41,
+        "pre_success": 0.3541666666666667,
+        "post_auc": 0.5,
+        "affected_post_auc": 0.6666666666666666,
+        "retention_before": 0.25,
+        "retention_after": 0.375,
+        "forgetting": -0.125,
+        "recovery_target": 0.5,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.14290999301846982,
+        "success_gain": 0.375,
+        "cumulative_gain": 36,
+        "success_gain_entropy": 0.34375,
+        "cumulative_gain_entropy": 33
+      },
+      "53": {
+        "success": 0.34375,
+        "uncoached_success": 0.3333333333333333,
+        "cumulative_success": 33,
+        "pre_success": 0.3125,
+        "post_auc": 0.375,
+        "affected_post_auc": 0.375,
+        "retention_before": 0.25,
+        "retention_after": 0.375,
+        "forgetting": -0.125,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 6,
+        "uncoached_token_entropy": 0.15880245923058234,
+        "success_gain": 0.2916666666666667,
+        "cumulative_gain": 28,
+        "success_gain_entropy": 0.2916666666666667,
+        "cumulative_gain_entropy": 28
+      }
+    },
+    "skills-mcp": {
+      "11": {
+        "success": 0.07291666666666667,
+        "uncoached_success": 0,
+        "cumulative_success": 7,
+        "pre_success": 0.0625,
+        "post_auc": 0.08333333333333333,
+        "affected_post_auc": 0.08333333333333333,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.12323192520192419,
+        "success_gain": 0.020833333333333336,
+        "cumulative_gain": 2,
+        "success_gain_entropy": 0.010416666666666671,
+        "cumulative_gain_entropy": 1
+      },
+      "23": {
+        "success": 0.11458333333333333,
+        "uncoached_success": 0,
+        "cumulative_success": 11,
+        "pre_success": 0.14583333333333334,
+        "post_auc": 0.08333333333333333,
+        "affected_post_auc": 0.08333333333333333,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.13973686530426274,
+        "success_gain": 0.03125,
+        "cumulative_gain": 3,
+        "success_gain_entropy": 0.010416666666666657,
+        "cumulative_gain_entropy": 1
+      },
+      "37": {
+        "success": 0.09375,
+        "uncoached_success": 0,
+        "cumulative_success": 9,
+        "pre_success": 0.10416666666666667,
+        "post_auc": 0.08333333333333333,
+        "affected_post_auc": 0.08333333333333333,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.1290041735417351,
+        "success_gain": 0.041666666666666664,
+        "cumulative_gain": 4,
+        "success_gain_entropy": 0.010416666666666671,
+        "cumulative_gain_entropy": 1
+      },
+      "53": {
+        "success": 0.10416666666666667,
+        "uncoached_success": 0,
+        "cumulative_success": 10,
+        "pre_success": 0.125,
+        "post_auc": 0.08333333333333333,
+        "affected_post_auc": 0.08333333333333333,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 6,
+        "uncoached_token_entropy": 0.1173664368208244,
+        "success_gain": 0.052083333333333336,
+        "cumulative_gain": 5,
+        "success_gain_entropy": 0.052083333333333336,
+        "cumulative_gain_entropy": 5
+      },
+      "71": {
+        "success": 0.08333333333333333,
+        "uncoached_success": 0.011904761904761904,
+        "cumulative_success": 8,
+        "pre_success": 0.08333333333333333,
+        "post_auc": 0.08333333333333333,
+        "affected_post_auc": 0.08333333333333333,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 7,
+        "uncoached_token_entropy": 0.13481344884617125,
+        "success_gain": 0.031249999999999993,
+        "cumulative_gain": 3,
+        "success_gain_entropy": 0.041666666666666664,
+        "cumulative_gain_entropy": 4
+      }
+    },
+    "openskill": {
+      "23": {
+        "success": 0.4895833333333333,
+        "uncoached_success": 0.4523809523809524,
+        "cumulative_success": 47,
+        "pre_success": 0.3541666666666667,
+        "post_auc": 0.625,
+        "affected_post_auc": 0.7083333333333334,
+        "retention_before": 0.375,
+        "retention_after": 0.125,
+        "forgetting": 0.25,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.11589802563332442,
+        "success_gain": 0.40625,
+        "cumulative_gain": 39,
+        "success_gain_entropy": 0.38541666666666663,
+        "cumulative_gain_entropy": 37
+      },
+      "71": {
+        "success": 0.40625,
+        "uncoached_success": 0.39285714285714285,
+        "cumulative_success": 39,
+        "pre_success": 0.2916666666666667,
+        "post_auc": 0.5208333333333334,
+        "affected_post_auc": 0.5,
+        "retention_before": 0.5,
+        "retention_after": 0.375,
+        "forgetting": 0.125,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 7,
+        "uncoached_token_entropy": 0.1324212025477817,
+        "success_gain": 0.3541666666666667,
+        "cumulative_gain": 34,
+        "success_gain_entropy": 0.3645833333333333,
+        "cumulative_gain_entropy": 35
+      },
+      "11": {
+        "success": 0.3958333333333333,
+        "uncoached_success": 0.38095238095238093,
+        "cumulative_success": 38,
+        "pre_success": 0.14583333333333334,
+        "post_auc": 0.6458333333333334,
+        "affected_post_auc": 0.8333333333333334,
+        "retention_before": 0.5,
+        "retention_after": 0.25,
+        "forgetting": 0.25,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.12012786579207445,
+        "success_gain": 0.34375,
+        "cumulative_gain": 33,
+        "success_gain_entropy": 0.3333333333333333,
+        "cumulative_gain_entropy": 32
+      },
+      "53": {
+        "success": 0.3854166666666667,
+        "uncoached_success": 0.39285714285714285,
+        "cumulative_success": 37,
+        "pre_success": 0.22916666666666666,
+        "post_auc": 0.5416666666666666,
+        "affected_post_auc": 0.625,
+        "retention_before": 0.25,
+        "retention_after": 0.25,
+        "forgetting": 0.0,
+        "recovery_target": 0.25,
+        "recovered": 1,
+        "recovery_restricted_steps": 9,
+        "uncoached_token_entropy": 0.12084881038976174,
+        "success_gain": 0.33333333333333337,
+        "cumulative_gain": 32,
+        "success_gain_entropy": 0.33333333333333337,
+        "cumulative_gain_entropy": 32
+      },
+      "37": {
+        "success": 0.4270833333333333,
+        "uncoached_success": 0.4166666666666667,
+        "cumulative_success": 41,
+        "pre_success": 0.25,
+        "post_auc": 0.6041666666666666,
+        "affected_post_auc": 0.875,
+        "retention_before": 0.625,
+        "retention_after": 0.375,
+        "forgetting": 0.25,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.11611165390581828,
+        "success_gain": 0.375,
+        "cumulative_gain": 36,
+        "success_gain_entropy": 0.34375,
+        "cumulative_gain_entropy": 33
+      }
+    },
+    "autoskill": {
+      "23": {
+        "success": 0.6354166666666666,
+        "uncoached_success": 0.6309523809523809,
+        "cumulative_success": 61,
+        "pre_success": 0.6041666666666666,
+        "post_auc": 0.6666666666666666,
+        "affected_post_auc": 0.6666666666666666,
+        "retention_before": 0.75,
+        "retention_after": 0.5,
+        "forgetting": 0.25,
+        "recovery_target": 0.5,
+        "recovered": 1,
+        "recovery_restricted_steps": 12,
+        "uncoached_token_entropy": 0.09190326762825254,
+        "success_gain": 0.5520833333333333,
+        "cumulative_gain": 53,
+        "success_gain_entropy": 0.53125,
+        "cumulative_gain_entropy": 51
+      },
+      "11": {
+        "success": 0.5520833333333334,
+        "uncoached_success": 0.5595238095238095,
+        "cumulative_success": 53,
+        "pre_success": 0.4166666666666667,
+        "post_auc": 0.6875,
+        "affected_post_auc": 0.7083333333333334,
+        "retention_before": 0.75,
+        "retention_after": 0.25,
+        "forgetting": 0.5,
+        "recovery_target": 0.5,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.08737131958670252,
+        "success_gain": 0.5,
+        "cumulative_gain": 48,
+        "success_gain_entropy": 0.48958333333333337,
+        "cumulative_gain_entropy": 47
+      },
+      "37": {
+        "success": 0.5520833333333334,
+        "uncoached_success": 0.5476190476190477,
+        "cumulative_success": 53,
+        "pre_success": 0.5,
+        "post_auc": 0.6041666666666666,
+        "affected_post_auc": 0.7083333333333334,
+        "retention_before": 0.625,
+        "retention_after": 0.5,
+        "forgetting": 0.125,
+        "recovery_target": 0.5,
+        "recovered": 1,
+        "recovery_restricted_steps": 9,
+        "uncoached_token_entropy": 0.10611045880813229,
+        "success_gain": 0.5,
+        "cumulative_gain": 48,
+        "success_gain_entropy": 0.46875000000000006,
+        "cumulative_gain_entropy": 45
+      },
+      "53": {
+        "success": 0.4791666666666667,
+        "uncoached_success": 0.5,
+        "cumulative_success": 46,
+        "pre_success": 0.4583333333333333,
+        "post_auc": 0.5,
+        "affected_post_auc": 0.5833333333333334,
+        "retention_before": 0.375,
+        "retention_after": 0.5,
+        "forgetting": -0.125,
+        "recovery_target": 0.5,
+        "recovered": 1,
+        "recovery_restricted_steps": 15,
+        "uncoached_token_entropy": 0.10304826101182384,
+        "success_gain": 0.42708333333333337,
+        "cumulative_gain": 41,
+        "success_gain_entropy": 0.42708333333333337,
+        "cumulative_gain_entropy": 41
+      },
+      "71": {
+        "success": 0.5729166666666666,
+        "uncoached_success": 0.5833333333333334,
+        "cumulative_success": 55,
+        "pre_success": 0.5208333333333334,
+        "post_auc": 0.625,
+        "affected_post_auc": 0.5416666666666666,
+        "retention_before": 0.625,
+        "retention_after": 0.375,
+        "forgetting": 0.25,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 7,
+        "uncoached_token_entropy": 0.09824868016103763,
+        "success_gain": 0.5208333333333333,
+        "cumulative_gain": 50,
+        "success_gain_entropy": 0.53125,
+        "cumulative_gain_entropy": 51
+      }
+    },
+    "reflection": {
+      "37": {
+        "success": 0.0625,
+        "uncoached_success": 0,
+        "cumulative_success": 6,
+        "pre_success": 0.08333333333333333,
+        "post_auc": 0.041666666666666664,
+        "affected_post_auc": 0.041666666666666664,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.17233860409115453,
+        "success_gain": 0.010416666666666664,
+        "cumulative_gain": 1,
+        "success_gain_entropy": -0.02083333333333333,
+        "cumulative_gain_entropy": -2
+      },
+      "11": {
+        "success": 0.07291666666666667,
+        "uncoached_success": 0,
+        "cumulative_success": 7,
+        "pre_success": 0.0625,
+        "post_auc": 0.08333333333333333,
+        "affected_post_auc": 0.08333333333333333,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.13207142325478885,
+        "success_gain": 0.020833333333333336,
+        "cumulative_gain": 2,
+        "success_gain_entropy": 0.010416666666666671,
+        "cumulative_gain_entropy": 1
+      },
+      "53": {
+        "success": 0.052083333333333336,
+        "uncoached_success": 0,
+        "cumulative_success": 5,
+        "pre_success": 0.0625,
+        "post_auc": 0.041666666666666664,
+        "affected_post_auc": 0.041666666666666664,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 6,
+        "uncoached_token_entropy": 0.129256950374666,
+        "success_gain": 0.0,
+        "cumulative_gain": 0,
+        "success_gain_entropy": 0.0,
+        "cumulative_gain_entropy": 0
+      },
+      "23": {
+        "success": 0.07291666666666667,
+        "uncoached_success": 0,
+        "cumulative_success": 7,
+        "pre_success": 0.125,
+        "post_auc": 0.020833333333333332,
+        "affected_post_auc": 0.041666666666666664,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.14187435664492365,
+        "success_gain": -0.010416666666666657,
+        "cumulative_gain": -1,
+        "success_gain_entropy": -0.03125,
+        "cumulative_gain_entropy": -3
+      },
+      "71": {
+        "success": 0.08333333333333333,
+        "uncoached_success": 0,
+        "cumulative_success": 8,
+        "pre_success": 0.08333333333333333,
+        "post_auc": 0.08333333333333333,
+        "affected_post_auc": 0.08333333333333333,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 7,
+        "uncoached_token_entropy": 0.11928842132201942,
+        "success_gain": 0.031249999999999993,
+        "cumulative_gain": 3,
+        "success_gain_entropy": 0.041666666666666664,
+        "cumulative_gain_entropy": 4
+      }
+    },
+    "knowledge-cards": {
+      "23": {
+        "success": 0.4583333333333333,
+        "uncoached_success": 0.4166666666666667,
+        "cumulative_success": 44,
+        "pre_success": 0.3958333333333333,
+        "post_auc": 0.5208333333333334,
+        "affected_post_auc": 0.7083333333333334,
+        "retention_before": 0.375,
+        "retention_after": 0.375,
+        "forgetting": 0.0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.1306549213273964,
+        "success_gain": 0.375,
+        "cumulative_gain": 36,
+        "success_gain_entropy": 0.35416666666666663,
+        "cumulative_gain_entropy": 34
+      },
+      "11": {
+        "success": 0.4583333333333333,
+        "uncoached_success": 0.4523809523809524,
+        "cumulative_success": 44,
+        "pre_success": 0.22916666666666666,
+        "post_auc": 0.6875,
+        "affected_post_auc": 0.7916666666666666,
+        "retention_before": 0.25,
+        "retention_after": 0.25,
+        "forgetting": 0.0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.14212402560151788,
+        "success_gain": 0.40625,
+        "cumulative_gain": 39,
+        "success_gain_entropy": 0.3958333333333333,
+        "cumulative_gain_entropy": 38
+      },
+      "37": {
+        "success": 0.22916666666666666,
+        "uncoached_success": 0.21428571428571427,
+        "cumulative_success": 22,
+        "pre_success": 0.2916666666666667,
+        "post_auc": 0.16666666666666666,
+        "affected_post_auc": 0.3333333333333333,
+        "retention_before": 0.375,
+        "retention_after": 0.375,
+        "forgetting": 0.0,
+        "recovery_target": 0.25,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.1562297676617322,
+        "success_gain": 0.17708333333333331,
+        "cumulative_gain": 17,
+        "success_gain_entropy": 0.14583333333333331,
+        "cumulative_gain_entropy": 14
+      },
+      "71": {
+        "success": 0.3333333333333333,
+        "uncoached_success": 0.30952380952380953,
+        "cumulative_success": 32,
+        "pre_success": 0.3125,
+        "post_auc": 0.3541666666666667,
+        "affected_post_auc": 0.20833333333333334,
+        "retention_before": 0.625,
+        "retention_after": 0.5,
+        "forgetting": 0.125,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 7,
+        "uncoached_token_entropy": 0.16662230875125947,
+        "success_gain": 0.28125,
+        "cumulative_gain": 27,
+        "success_gain_entropy": 0.29166666666666663,
+        "cumulative_gain_entropy": 28
+      },
+      "53": {
+        "success": 0.2916666666666667,
+        "uncoached_success": 0.27380952380952384,
+        "cumulative_success": 28,
+        "pre_success": 0.2916666666666667,
+        "post_auc": 0.2916666666666667,
+        "affected_post_auc": 0.2916666666666667,
+        "retention_before": 0.5,
+        "retention_after": 0.5,
+        "forgetting": 0.0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 6,
+        "uncoached_token_entropy": 0.15696591471852755,
+        "success_gain": 0.23958333333333334,
+        "cumulative_gain": 23,
+        "success_gain_entropy": 0.23958333333333334,
+        "cumulative_gain_entropy": 23
+      }
+    },
+    "no-lesson-entropy": {
+      "11": {
+        "success": 0.0625,
+        "uncoached_success": 0.011904761904761904,
+        "cumulative_success": 6,
+        "pre_success": 0.041666666666666664,
+        "post_auc": 0.08333333333333333,
+        "affected_post_auc": 0.08333333333333333,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.1327422750820388,
+        "success_gain": 0.010416666666666664,
+        "cumulative_gain": 1,
+        "success_gain_entropy": 0.0,
+        "cumulative_gain_entropy": 0
+      },
+      "23": {
+        "success": 0.10416666666666667,
+        "uncoached_success": 0,
+        "cumulative_success": 10,
+        "pre_success": 0.14583333333333334,
+        "post_auc": 0.0625,
+        "affected_post_auc": 0.08333333333333333,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.11945296271157922,
+        "success_gain": 0.020833333333333343,
+        "cumulative_gain": 2,
+        "success_gain_entropy": 0.0,
+        "cumulative_gain_entropy": 0
+      },
+      "71": {
+        "success": 0.041666666666666664,
+        "uncoached_success": 0,
+        "cumulative_success": 4,
+        "pre_success": 0.041666666666666664,
+        "post_auc": 0.041666666666666664,
+        "affected_post_auc": 0,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 7,
+        "uncoached_token_entropy": 0.14203850843119264,
+        "success_gain": -0.010416666666666671,
+        "cumulative_gain": -1,
+        "success_gain_entropy": 0.0,
+        "cumulative_gain_entropy": 0
+      },
+      "53": {
+        "success": 0.052083333333333336,
+        "uncoached_success": 0,
+        "cumulative_success": 5,
+        "pre_success": 0.0625,
+        "post_auc": 0.041666666666666664,
+        "affected_post_auc": 0.041666666666666664,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 6,
+        "uncoached_token_entropy": 0.12289607363127936,
+        "success_gain": 0.0,
+        "cumulative_gain": 0,
+        "success_gain_entropy": 0.0,
+        "cumulative_gain_entropy": 0
+      },
+      "37": {
+        "success": 0.08333333333333333,
+        "uncoached_success": 0.011904761904761904,
+        "cumulative_success": 8,
+        "pre_success": 0.08333333333333333,
+        "post_auc": 0.08333333333333333,
+        "affected_post_auc": 0.08333333333333333,
+        "retention_before": 0,
+        "retention_after": 0,
+        "forgetting": 0,
+        "recovery_target": 0,
+        "recovered": 1,
+        "recovery_restricted_steps": 8,
+        "uncoached_token_entropy": 0.11976897667931731,
+        "success_gain": 0.031249999999999993,
+        "cumulative_gain": 3,
+        "success_gain_entropy": 0.0,
+        "cumulative_gain_entropy": 0
+      }
+    }
+  },
+  "summary": {
+    "no-memory": {
+      "success": {
+        "mean": 0.058333333333333334,
+        "low": 0.052083333333333336,
+        "high": 0.07083333333333333
+      },
+      "uncoached_success": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "cumulative_success": {
+        "mean": 5.6,
+        "low": 5,
+        "high": 6.8
+      },
+      "pre_success": {
+        "mean": 0.07083333333333333,
+        "low": 0.05416666666666666,
+        "high": 0.08750000000000001
+      },
+      "post_auc": {
+        "mean": 0.04583333333333333,
+        "low": 0.03333333333333333,
+        "high": 0.058333333333333334
+      },
+      "affected_post_auc": {
+        "mean": 0.049999999999999996,
+        "low": 0.024999999999999998,
+        "high": 0.075
+      },
+      "retention_before": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "retention_after": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "forgetting": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "recovery_target": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "recovered": {
+        "mean": 1,
+        "low": 1,
+        "high": 1
+      },
+      "recovery_restricted_steps": {
+        "mean": 7.4,
+        "low": 6.8,
+        "high": 8
+      },
+      "uncoached_token_entropy": {
+        "mean": 0.18038938450663364,
+        "low": 0.17130468918140498,
+        "high": 0.18947407983186232
+      },
+      "success_gain": {
+        "mean": 0.0,
+        "low": 0.0,
+        "high": 0.0
+      },
+      "cumulative_gain": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "success_gain_entropy": {
+        "mean": -0.010416666666666666,
+        "low": -0.02291666666666667,
+        "high": 0.002083333333333334
+      },
+      "cumulative_gain_entropy": {
+        "mean": -1,
+        "low": -2.2,
+        "high": 0.2
+      }
+    },
+    "skill-library": {
+      "success": {
+        "mean": 0.37083333333333335,
+        "low": 0.29583333333333334,
+        "high": 0.44375
+      },
+      "uncoached_success": {
+        "mean": 0.35238095238095235,
+        "low": 0.2833333333333333,
+        "high": 0.41904761904761906
+      },
+      "cumulative_success": {
+        "mean": 35.6,
+        "low": 28.4,
+        "high": 42.6
+      },
+      "pre_success": {
+        "mean": 0.2833333333333333,
+        "low": 0.17500000000000002,
+        "high": 0.375
+      },
+      "post_auc": {
+        "mean": 0.4583333333333333,
+        "low": 0.35,
+        "high": 0.5583333333333333
+      },
+      "affected_post_auc": {
+        "mean": 0.5083333333333333,
+        "low": 0.225,
+        "high": 0.7333333333333333
+      },
+      "retention_before": {
+        "mean": 0.275,
+        "low": 0.2,
+        "high": 0.35
+      },
+      "retention_after": {
+        "mean": 0.325,
+        "low": 0.225,
+        "high": 0.375
+      },
+      "forgetting": {
+        "mean": -0.05,
+        "low": -0.1,
+        "high": 0.0
+      },
+      "recovery_target": {
+        "mean": 0.1,
+        "low": 0,
+        "high": 0.3
+      },
+      "recovered": {
+        "mean": 1,
+        "low": 1,
+        "high": 1
+      },
+      "recovery_restricted_steps": {
+        "mean": 7.4,
+        "low": 6.8,
+        "high": 8
+      },
+      "uncoached_token_entropy": {
+        "mean": 0.15109415699792955,
+        "low": 0.13638687326956253,
+        "high": 0.1668022904573072
+      },
+      "success_gain": {
+        "mean": 0.3125,
+        "low": 0.24375,
+        "high": 0.3854166666666667
+      },
+      "cumulative_gain": {
+        "mean": 30,
+        "low": 23.4,
+        "high": 37
+      },
+      "success_gain_entropy": {
+        "mean": 0.3020833333333333,
+        "low": 0.24166666666666667,
+        "high": 0.35833333333333334
+      },
+      "cumulative_gain_entropy": {
+        "mean": 29,
+        "low": 23.2,
+        "high": 34.4
+      }
+    },
+    "skills-mcp": {
+      "success": {
+        "mean": 0.09375,
+        "low": 0.08125,
+        "high": 0.10625
+      },
+      "uncoached_success": {
+        "mean": 0.0023809523809523807,
+        "low": 0,
+        "high": 0.007142857142857143
+      },
+      "cumulative_success": {
+        "mean": 9,
+        "low": 7.8,
+        "high": 10.2
+      },
+      "pre_success": {
+        "mean": 0.10416666666666667,
+        "low": 0.07916666666666666,
+        "high": 0.12916666666666668
+      },
+      "post_auc": {
+        "mean": 0.08333333333333333,
+        "low": 0.08333333333333333,
+        "high": 0.08333333333333333
+      },
+      "affected_post_auc": {
+        "mean": 0.08333333333333333,
+        "low": 0.08333333333333333,
+        "high": 0.08333333333333333
+      },
+      "retention_before": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "retention_after": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "forgetting": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "recovery_target": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "recovered": {
+        "mean": 1,
+        "low": 1,
+        "high": 1
+      },
+      "recovery_restricted_steps": {
+        "mean": 7.4,
+        "low": 6.8,
+        "high": 8
+      },
+      "uncoached_token_entropy": {
+        "mean": 0.12883056994298353,
+        "low": 0.12202893690211372,
+        "high": 0.13562096036852062
+      },
+      "success_gain": {
+        "mean": 0.035416666666666666,
+        "low": 0.02708333333333333,
+        "high": 0.043750000000000004
+      },
+      "cumulative_gain": {
+        "mean": 3.4,
+        "low": 2.6,
+        "high": 4.2
+      },
+      "success_gain_entropy": {
+        "mean": 0.025,
+        "low": 0.010416666666666666,
+        "high": 0.03958333333333333
+      },
+      "cumulative_gain_entropy": {
+        "mean": 2.4,
+        "low": 1,
+        "high": 3.8
+      }
+    },
+    "openskill": {
+      "success": {
+        "mean": 0.42083333333333334,
+        "low": 0.39375,
+        "high": 0.45625
+      },
+      "uncoached_success": {
+        "mean": 0.40714285714285714,
+        "low": 0.3880952380952381,
+        "high": 0.430952380952381
+      },
+      "cumulative_success": {
+        "mean": 40.4,
+        "low": 37.8,
+        "high": 43.8
+      },
+      "pre_success": {
+        "mean": 0.25416666666666665,
+        "low": 0.19583333333333333,
+        "high": 0.30833333333333335
+      },
+      "post_auc": {
+        "mean": 0.5875,
+        "low": 0.5458333333333334,
+        "high": 0.6291666666666667
+      },
+      "affected_post_auc": {
+        "mean": 0.7083333333333334,
+        "low": 0.5916666666666667,
+        "high": 0.8166666666666667
+      },
+      "retention_before": {
+        "mean": 0.45,
+        "low": 0.35,
+        "high": 0.55
+      },
+      "retention_after": {
+        "mean": 0.275,
+        "low": 0.2,
+        "high": 0.35
+      },
+      "forgetting": {
+        "mean": 0.175,
+        "low": 0.1,
+        "high": 0.25
+      },
+      "recovery_target": {
+        "mean": 0.05,
+        "low": 0,
+        "high": 0.15
+      },
+      "recovered": {
+        "mean": 1,
+        "low": 1,
+        "high": 1
+      },
+      "recovery_restricted_steps": {
+        "mean": 8,
+        "low": 7.4,
+        "high": 8.6
+      },
+      "uncoached_token_entropy": {
+        "mean": 0.12108151165375211,
+        "low": 0.11682944497407197,
+        "high": 0.12680208873328624
+      },
+      "success_gain": {
+        "mean": 0.3625,
+        "low": 0.3416666666666667,
+        "high": 0.3854166666666667
+      },
+      "cumulative_gain": {
+        "mean": 34.8,
+        "low": 32.8,
+        "high": 37
+      },
+      "success_gain_entropy": {
+        "mean": 0.3520833333333333,
+        "low": 0.3354166666666667,
+        "high": 0.3708333333333333
+      },
+      "cumulative_gain_entropy": {
+        "mean": 33.8,
+        "low": 32.2,
+        "high": 35.6
+      }
+    },
+    "autoskill": {
+      "success": {
+        "mean": 0.5583333333333333,
+        "low": 0.5166666666666666,
+        "high": 0.6020833333333333
+      },
+      "uncoached_success": {
+        "mean": 0.5642857142857143,
+        "low": 0.5285714285714286,
+        "high": 0.6023809523809524
+      },
+      "cumulative_success": {
+        "mean": 53.6,
+        "low": 49.6,
+        "high": 57.8
+      },
+      "pre_success": {
+        "mean": 0.5,
+        "low": 0.44583333333333336,
+        "high": 0.5541666666666667
+      },
+      "post_auc": {
+        "mean": 0.6166666666666667,
+        "low": 0.5583333333333333,
+        "high": 0.6666666666666666
+      },
+      "affected_post_auc": {
+        "mean": 0.6416666666666667,
+        "low": 0.5833333333333334,
+        "high": 0.7000000000000001
+      },
+      "retention_before": {
+        "mean": 0.625,
+        "low": 0.5,
+        "high": 0.725
+      },
+      "retention_after": {
+        "mean": 0.425,
+        "low": 0.325,
+        "high": 0.5
+      },
+      "forgetting": {
+        "mean": 0.2,
+        "low": 0.025,
+        "high": 0.375
+      },
+      "recovery_target": {
+        "mean": 0.4,
+        "low": 0.2,
+        "high": 0.5
+      },
+      "recovered": {
+        "mean": 1,
+        "low": 1,
+        "high": 1
+      },
+      "recovery_restricted_steps": {
+        "mean": 10.2,
+        "low": 8,
+        "high": 13
+      },
+      "uncoached_token_entropy": {
+        "mean": 0.09733639743918976,
+        "low": 0.09141309748003679,
+        "high": 0.10331322396018998
+      },
+      "success_gain": {
+        "mean": 0.5,
+        "low": 0.46458333333333335,
+        "high": 0.53125
+      },
+      "cumulative_gain": {
+        "mean": 48,
+        "low": 44.6,
+        "high": 51
+      },
+      "success_gain_entropy": {
+        "mean": 0.48958333333333337,
+        "low": 0.45625000000000004,
+        "high": 0.5229166666666667
+      },
+      "cumulative_gain_entropy": {
+        "mean": 47,
+        "low": 43.8,
+        "high": 50.2
+      }
+    },
+    "reflection": {
+      "success": {
+        "mean": 0.06875,
+        "low": 0.06041666666666667,
+        "high": 0.07708333333333334
+      },
+      "uncoached_success": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "cumulative_success": {
+        "mean": 6.6,
+        "low": 5.8,
+        "high": 7.4
+      },
+      "pre_success": {
+        "mean": 0.08333333333333333,
+        "low": 0.06666666666666667,
+        "high": 0.10416666666666667
+      },
+      "post_auc": {
+        "mean": 0.05416666666666666,
+        "low": 0.03333333333333333,
+        "high": 0.075
+      },
+      "affected_post_auc": {
+        "mean": 0.05833333333333333,
+        "low": 0.041666666666666664,
+        "high": 0.075
+      },
+      "retention_before": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "retention_after": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "forgetting": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "recovery_target": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "recovered": {
+        "mean": 1,
+        "low": 1,
+        "high": 1
+      },
+      "recovery_restricted_steps": {
+        "mean": 7.4,
+        "low": 6.8,
+        "high": 8
+      },
+      "uncoached_token_entropy": {
+        "mean": 0.13896595113751048,
+        "low": 0.12579931419712959,
+        "high": 0.15762942385861065
+      },
+      "success_gain": {
+        "mean": 0.010416666666666668,
+        "low": -0.0020833333333333303,
+        "high": 0.02291666666666666
+      },
+      "cumulative_gain": {
+        "mean": 1,
+        "low": -0.2,
+        "high": 2.2
+      },
+      "success_gain_entropy": {
+        "mean": 1.3877787807814458e-18,
+        "low": -0.020833333333333332,
+        "high": 0.02291666666666667
+      },
+      "cumulative_gain_entropy": {
+        "mean": 0,
+        "low": -2,
+        "high": 2.2
+      }
+    },
+    "knowledge-cards": {
+      "success": {
+        "mean": 0.35416666666666663,
+        "low": 0.275,
+        "high": 0.4333333333333333
+      },
+      "uncoached_success": {
+        "mean": 0.33333333333333337,
+        "low": 0.2571428571428572,
+        "high": 0.4095238095238095
+      },
+      "cumulative_success": {
+        "mean": 34,
+        "low": 26.4,
+        "high": 41.6
+      },
+      "pre_success": {
+        "mean": 0.3041666666666667,
+        "low": 0.2583333333333333,
+        "high": 0.3541666666666667
+      },
+      "post_auc": {
+        "mean": 0.4041666666666667,
+        "low": 0.25416666666666665,
+        "high": 0.575
+      },
+      "affected_post_auc": {
+        "mean": 0.4666666666666667,
+        "low": 0.275,
+        "high": 0.675
+      },
+      "retention_before": {
+        "mean": 0.425,
+        "low": 0.325,
+        "high": 0.55
+      },
+      "retention_after": {
+        "mean": 0.4,
+        "low": 0.325,
+        "high": 0.475
+      },
+      "forgetting": {
+        "mean": 0.025,
+        "low": 0.0,
+        "high": 0.075
+      },
+      "recovery_target": {
+        "mean": 0.05,
+        "low": 0,
+        "high": 0.15
+      },
+      "recovered": {
+        "mean": 1,
+        "low": 1,
+        "high": 1
+      },
+      "recovery_restricted_steps": {
+        "mean": 7.4,
+        "low": 6.8,
+        "high": 8
+      },
+      "uncoached_token_entropy": {
+        "mean": 0.1505193876120867,
+        "low": 0.1382109408604469,
+        "high": 0.16053401350890217
+      },
+      "success_gain": {
+        "mean": 0.29583333333333334,
+        "low": 0.22291666666666665,
+        "high": 0.3666666666666667
+      },
+      "cumulative_gain": {
+        "mean": 28.4,
+        "low": 21.4,
+        "high": 35.2
+      },
+      "success_gain_entropy": {
+        "mean": 0.28541666666666665,
+        "low": 0.20625,
+        "high": 0.35624999999999996
+      },
+      "cumulative_gain_entropy": {
+        "mean": 27.4,
+        "low": 19.8,
+        "high": 34.2
+      }
+    },
+    "no-lesson-entropy": {
+      "success": {
+        "mean": 0.06875,
+        "low": 0.05208333333333333,
+        "high": 0.0875
+      },
+      "uncoached_success": {
+        "mean": 0.0047619047619047615,
+        "low": 0,
+        "high": 0.009523809523809523
+      },
+      "cumulative_success": {
+        "mean": 6.6,
+        "low": 5,
+        "high": 8.4
+      },
+      "pre_success": {
+        "mean": 0.075,
+        "low": 0.04583333333333333,
+        "high": 0.1125
+      },
+      "post_auc": {
+        "mean": 0.0625,
+        "low": 0.04583333333333333,
+        "high": 0.07916666666666666
+      },
+      "affected_post_auc": {
+        "mean": 0.05833333333333333,
+        "low": 0.024999999999999998,
+        "high": 0.08333333333333333
+      },
+      "retention_before": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "retention_after": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "forgetting": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "recovery_target": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      },
+      "recovered": {
+        "mean": 1,
+        "low": 1,
+        "high": 1
+      },
+      "recovery_restricted_steps": {
+        "mean": 7.4,
+        "low": 6.8,
+        "high": 8
+      },
+      "uncoached_token_entropy": {
+        "mean": 0.12737975930708148,
+        "low": 0.12026799048261448,
+        "high": 0.1356621526174392
+      },
+      "success_gain": {
+        "mean": 0.010416666666666666,
+        "low": -0.0020833333333333355,
+        "high": 0.02291666666666667
+      },
+      "cumulative_gain": {
+        "mean": 1,
+        "low": -0.2,
+        "high": 2.2
+      },
+      "success_gain_entropy": {
+        "mean": 0.0,
+        "low": 0.0,
+        "high": 0.0
+      },
+      "cumulative_gain_entropy": {
+        "mean": 0,
+        "low": 0,
+        "high": 0
+      }
+    }
+  }
+}
