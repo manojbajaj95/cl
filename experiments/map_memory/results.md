@@ -155,3 +155,98 @@ the written coordinates.
   content. [ROME](https://arxiv.org/abs/2202.05262) uses a closed-form update
   to shared weights to edit factual associations; this test writes external
   name-keyed vectors and leaves shared weights unchanged.
+
+## Follow-up: is the write channel the bottleneck?
+
+This run uses the same frozen model, 32 names, 40 statements and 320 prompts.
+The runner checks the regenerated statements and questions against the
+original raw results.
+
+- **Stronger closed-form write.** Keep the original block-3 probe direction
+  and sweep gains or replay the same FP16 vector at three early blocks.
+  Select one challenger per family solely on the real calibration triples
+  not used to fit the probe: maximize target accuracy, then expected flips,
+  then prefer smaller gain and the first listed block pattern on a tie.
+  Report each setting on separate real test triples; no fictional answers
+  select a setting.
+- **Oracle.** The original world defines an order, not unique numeric
+  spacings. To fix a hidden numerical ground truth without changing any
+  statements or questions, place the four names at uniform intervals in
+  log mass between their known endpoints' **true** coordinates. Write these
+  coordinates at the original and both selected settings, without using
+  solved model readouts for the target. Real comparator tokens are unchanged.
+- **Variant B.** Optimize one zero-initialized dense vector per name through
+  the frozen reader at the original block 3. Train on the two directional
+  choices in the stated subject/object order per statement, 80 balanced
+  prompts in all, for 20 epochs with AdamW (learning rate 0.03). No inverted
+  order, held-out two-hop pair, or transitive pair is used for training.
+  Stated accuracy here is training-set fit; inversion and other inference
+  scores are out of training. All follow-up rows store the same 98,304
+  vector bytes (plus the original name keys), including the multi-layer case.
+
+Reproduce from the repository root with the same dependencies as the
+[original run](README.md#reproduce):
+
+```sh
+OPENBLAS_NUM_THREADS=1 python -m experiments.map_memory.followup --output ~/map-memory-followup.json
+```
+
+### Real causal sweep
+
+Flips are toward the counterfactual among originally correct responses.
+Target counts include all 24 responses in each split (six triples, four
+prompts each).
+
+| Blocks (zero-indexed) | Gain per block | Calibration flips | Calibration target | Held-out flips | Held-out target |
+|---|---:|---:|---:|---:|---:|
+| 3 (original) | 4 | 12/17 | 19/24 | 13/21 | 16/24 |
+| 3 | 6 | 10/17 | 17/24 | 9/21 | 12/24 |
+| **3 (gain sweep)** | **8** | **11/17** | **18/24** | **8/21** | **11/24** |
+| 3 | 12 | 6/17 | 12/24 | 7/21 | 10/24 |
+| 3 | 16 | 6/17 | 12/24 | 8/21 | 11/24 |
+| **1, 3, 5 (multi-layer)** | **1** | **11/17** | **18/24** | **15/21** | **18/24** |
+| 1, 3, 5 | 2 | 10/17 | 17/24 | 10/21 | 13/24 |
+| 1, 3, 5 | 4 | 7/17 | 13/24 | 7/21 | 10/24 |
+| 1, 3, 5 | 8 | 6/17 | 10/24 | 7/21 | 9/24 |
+| 3, 4, 5 | 1 | 11/17 | 18/24 | 14/21 | 17/24 |
+| 3, 4, 5 | 2 | 10/17 | 17/24 | 10/21 | 13/24 |
+| 3, 4, 5 | 4 | 9/17 | 15/24 | 8/21 | 11/24 |
+| 3, 4, 5 | 8 | 5/17 | 9/24 | 7/21 | 9/24 |
+
+Larger single-block gains did not improve the real intervention. The
+calibration-selected multi-block replay improved held-out flips from
+13/21 (61.9%) to 15/21 (71.4%), despite a one-answer decrease on calibration.
+
+### Same-world fictional questions
+
+Counts are correct answers. The first three rows are references from the
+original run. The coordinate-only oracle simply compares the true scalars;
+it does not run the model or write a vector.
+
+| Arm | Inverse /80 | Two-hop /64 | Transitive /96 | Stated /80 | Vector bytes |
+|---|---:|---:|---:|---:|---:|
+| No write | 40 | 33 | 42 | 40 | 0 |
+| Original map (block 3, gain 4) | 40 | 42 | 39 | 38 | 98,304 |
+| Solved-as-text | 60 | 41 | 67 | 49 | — |
+| Gain sweep, solved | 42 | 45 | 41 | 36 | 98,304 |
+| Multi-layer, solved | 37 | 36 | 47 | 40 | 98,304 |
+| Oracle, original | 41 | 51 | 39 | 38 | 98,304 |
+| Oracle, gain sweep | 42 | 43 | 36 | 41 | 98,304 |
+| Oracle, multi-layer | 39 | 46 | 43 | 41 | 98,304 |
+| Variant B, trained on stated only | 36 | 43 | 54 | 80 | 98,304 |
+| Oracle, coordinates compared directly | 80 | 64 | 96 | 80 | — |
+
+**Conclusion.** The stronger and oracle axis writes stayed near chance on
+stated facts (36–41/80), even though direct comparisons of the true
+coordinates answered all 320 questions. The original oracle did improve
+two-hop accuracy from 42/64 to 51/64, so coordinate estimation mattered in
+that family, but fixing it did not fix stated readout, inverses, or transitive
+inference. Variant B fit all 80 stated prompts at the same site and byte
+budget, ruling out a blanket lack of capacity at that site. It did not learn
+a transferable ordering: it scored 133/240 (55.4%) on unstated prompts versus
+168/240 (70.0%) for solved-as-text, and inverses alone were 36/80. The evidence
+favors a bottleneck in writing/reading the axis for fictional names, not an
+absence of inferential information in the coordinates. A direct-fact fit
+using unconstrained vectors is not evidence of a coordinate representation.
+
+[Raw trial counts, predictions, and training trace](followup-mass-qwen15.json).
