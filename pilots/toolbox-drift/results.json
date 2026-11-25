@@ -1,0 +1,2197 @@
+{
+ "table": {
+  "tool": {
+   "detect": 1.9444444444444444,
+   "recover": 4.5,
+   "detect_breaking": 1.0,
+   "recover_breaking": 2.0,
+   "detect_silent": 2.888888888888889,
+   "recover_silent": 7.0,
+   "detect_censored": 1,
+   "recover_censored": 8,
+   "silent_wrong": 2.0555555555555554,
+   "wrong": 3.5555555555555554,
+   "uses": 5.722222222222222,
+   "pre_acc": 1.0,
+   "post_undrifted_acc": 1.0,
+   "false_flags": 0.0,
+   "llm_calls": 9.0,
+   "tokens": 5368.666666666667
+  },
+  "tool+tests": {
+   "detect": 1.0,
+   "recover": 3.9444444444444446,
+   "detect_breaking": 1.0,
+   "recover_breaking": 2.0,
+   "detect_silent": 1.0,
+   "recover_silent": 5.888888888888889,
+   "detect_censored": 0,
+   "recover_censored": 7,
+   "silent_wrong": 0.0,
+   "wrong": 3.0,
+   "uses": 5.722222222222222,
+   "pre_acc": 1.0,
+   "post_undrifted_acc": 1.0,
+   "false_flags": 0.0,
+   "llm_calls": 34.0,
+   "tokens": 20339.0
+  },
+  "lesson": {
+   "detect": 3.5555555555555554,
+   "recover": 4.833333333333333,
+   "detect_breaking": 4.222222222222222,
+   "recover_breaking": 2.6666666666666665,
+   "detect_silent": 2.888888888888889,
+   "recover_silent": 7.0,
+   "detect_censored": 6,
+   "recover_censored": 9,
+   "silent_wrong": 2.388888888888889,
+   "wrong": 3.7222222222222223,
+   "uses": 5.722222222222222,
+   "pre_acc": 0.9444444444444445,
+   "post_undrifted_acc": 0.8377425268896013,
+   "false_flags": 11.333333333333334,
+   "llm_calls": 199.33333333333334,
+   "tokens": 115968.66666666667
+  },
+  "lesson+tests": {
+   "detect": 2.4444444444444446,
+   "recover": 4.666666666666667,
+   "detect_breaking": 3.888888888888889,
+   "recover_breaking": 2.3333333333333335,
+   "detect_silent": 1.0,
+   "recover_silent": 7.0,
+   "detect_censored": 5,
+   "recover_censored": 9,
+   "silent_wrong": 0.0,
+   "wrong": 3.611111111111111,
+   "uses": 5.722222222222222,
+   "pre_acc": 0.9500000000000001,
+   "post_undrifted_acc": 0.833735907257165,
+   "false_flags": 18.0,
+   "llm_calls": 332.6666666666667,
+   "tokens": 197255.0
+  },
+  "none": {
+   "detect": 3.4444444444444446,
+   "recover": 5.555555555555555,
+   "detect_breaking": 3.7777777777777777,
+   "recover_breaking": 4.111111111111111,
+   "detect_silent": 3.111111111111111,
+   "recover_silent": 7.0,
+   "detect_censored": 7,
+   "recover_censored": 13,
+   "silent_wrong": 3.2777777777777777,
+   "wrong": 4.555555555555555,
+   "uses": 5.722222222222222,
+   "pre_acc": 0.3666666666666667,
+   "post_undrifted_acc": 0.3087657019763299,
+   "false_flags": 26.0,
+   "llm_calls": 180.0,
+   "tokens": 97100.66666666667
+  }
+ },
+ "contrasts": {
+  "lesson+tests - tool+tests": {
+   "detect": {
+    "mean": 1.4444444444444444,
+    "ci": [
+     0.3333333333333333,
+     2.9444444444444446
+    ],
+    "n": 18,
+    "seed_means": [
+     0.8333333333333334,
+     1.3333333333333333,
+     2.1666666666666665
+    ]
+   },
+   "recover": {
+    "mean": 0.7222222222222222,
+    "ci": [
+     -0.3333333333333333,
+     2.388888888888889
+    ],
+    "n": 18,
+    "seed_means": [
+     1.6666666666666667,
+     0.5,
+     0.0
+    ]
+   },
+   "wrong": {
+    "mean": 0.6111111111111112,
+    "ci": [
+     -0.3888888888888889,
+     2.2222222222222223
+    ],
+    "n": 18,
+    "seed_means": [
+     1.5,
+     0.3333333333333333,
+     0.0
+    ]
+   }
+  },
+  "lesson+tests - tool+tests [breaking]": {
+   "detect": {
+    "mean": 2.888888888888889,
+    "ci": [
+     1.0,
+     5.333333333333333
+    ],
+    "n": 9,
+    "seed_means": [
+     1.6666666666666667,
+     2.6666666666666665,
+     4.333333333333333
+    ]
+   },
+   "recover": {
+    "mean": 0.3333333333333333,
+    "ci": [
+     -0.6666666666666666,
+     2.0
+    ],
+    "n": 9,
+    "seed_means": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   }
+  },
+  "lesson+tests - tool+tests [silent]": {
+   "detect": {
+    "mean": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n": 9,
+    "seed_means": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "recover": {
+    "mean": 1.1111111111111112,
+    "ci": [
+     0.0,
+     4.444444444444445
+    ],
+    "n": 9,
+    "seed_means": [
+     3.3333333333333335,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "lesson - tool": {
+   "detect": {
+    "mean": 1.6111111111111112,
+    "ci": [
+     0.5555555555555556,
+     3.0
+    ],
+    "n": 18,
+    "seed_means": [
+     1.3333333333333333,
+     1.3333333333333333,
+     2.1666666666666665
+    ]
+   },
+   "recover": {
+    "mean": 0.3333333333333333,
+    "ci": [
+     -0.3333333333333333,
+     1.1666666666666667
+    ],
+    "n": 18,
+    "seed_means": [
+     0.5,
+     0.5,
+     0.0
+    ]
+   },
+   "wrong": {
+    "mean": 0.16666666666666666,
+    "ci": [
+     -0.3888888888888889,
+     0.8333333333333334
+    ],
+    "n": 18,
+    "seed_means": [
+     0.16666666666666666,
+     0.3333333333333333,
+     0.0
+    ]
+   }
+  },
+  "lesson - tool [breaking]": {
+   "detect": {
+    "mean": 3.2222222222222223,
+    "ci": [
+     1.5555555555555556,
+     5.444444444444445
+    ],
+    "n": 9,
+    "seed_means": [
+     2.6666666666666665,
+     2.6666666666666665,
+     4.333333333333333
+    ]
+   },
+   "recover": {
+    "mean": 0.6666666666666666,
+    "ci": [
+     -0.6666666666666666,
+     2.3333333333333335
+    ],
+    "n": 9,
+    "seed_means": [
+     1.0,
+     1.0,
+     0.0
+    ]
+   }
+  },
+  "lesson - tool [silent]": {
+   "detect": {
+    "mean": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n": 9,
+    "seed_means": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "recover": {
+    "mean": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n": 9,
+    "seed_means": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "tool+tests - tool": {
+   "detect": {
+    "mean": -0.9444444444444444,
+    "ci": [
+     -1.7222222222222223,
+     -0.3333333333333333
+    ],
+    "n": 18,
+    "seed_means": [
+     -1.0,
+     -0.8333333333333334,
+     -1.0
+    ]
+   },
+   "recover": {
+    "mean": -0.5555555555555556,
+    "ci": [
+     -2.2222222222222223,
+     0.0
+    ],
+    "n": 18,
+    "seed_means": [
+     -1.6666666666666667,
+     0.0,
+     0.0
+    ]
+   },
+   "wrong": {
+    "mean": -0.5555555555555556,
+    "ci": [
+     -2.2222222222222223,
+     0.0
+    ],
+    "n": 18,
+    "seed_means": [
+     -1.6666666666666667,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "tool+tests - tool [breaking]": {
+   "detect": {
+    "mean": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n": 9,
+    "seed_means": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "recover": {
+    "mean": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n": 9,
+    "seed_means": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "tool+tests - tool [silent]": {
+   "detect": {
+    "mean": -1.8888888888888888,
+    "ci": [
+     -3.0,
+     -0.8888888888888888
+    ],
+    "n": 9,
+    "seed_means": [
+     -2.0,
+     -1.6666666666666667,
+     -2.0
+    ]
+   },
+   "recover": {
+    "mean": -1.1111111111111112,
+    "ci": [
+     -4.444444444444445,
+     0.0
+    ],
+    "n": 9,
+    "seed_means": [
+     -3.3333333333333335,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "lesson+tests - lesson": {
+   "detect": {
+    "mean": -1.1111111111111112,
+    "ci": [
+     -1.9444444444444444,
+     -0.3888888888888889
+    ],
+    "n": 18,
+    "seed_means": [
+     -1.5,
+     -0.8333333333333334,
+     -1.0
+    ]
+   },
+   "recover": {
+    "mean": -0.16666666666666666,
+    "ci": [
+     -0.6666666666666666,
+     0.0
+    ],
+    "n": 18,
+    "seed_means": [
+     -0.5,
+     0.0,
+     0.0
+    ]
+   },
+   "wrong": {
+    "mean": -0.1111111111111111,
+    "ci": [
+     -0.4444444444444444,
+     0.0
+    ],
+    "n": 18,
+    "seed_means": [
+     -0.3333333333333333,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "lesson+tests - lesson [breaking]": {
+   "detect": {
+    "mean": -0.3333333333333333,
+    "ci": [
+     -1.3333333333333333,
+     0.0
+    ],
+    "n": 9,
+    "seed_means": [
+     -1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "recover": {
+    "mean": -0.3333333333333333,
+    "ci": [
+     -1.3333333333333333,
+     0.0
+    ],
+    "n": 9,
+    "seed_means": [
+     -1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "lesson+tests - lesson [silent]": {
+   "detect": {
+    "mean": -1.8888888888888888,
+    "ci": [
+     -3.0,
+     -0.8888888888888888
+    ],
+    "n": 9,
+    "seed_means": [
+     -2.0,
+     -1.6666666666666667,
+     -2.0
+    ]
+   },
+   "recover": {
+    "mean": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n": 9,
+    "seed_means": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "none - tool": {
+   "detect": {
+    "mean": 1.5,
+    "ci": [
+     0.5555555555555556,
+     2.4444444444444446
+    ],
+    "n": 18,
+    "seed_means": [
+     1.6666666666666667,
+     1.0,
+     1.8333333333333333
+    ]
+   },
+   "recover": {
+    "mean": 1.0555555555555556,
+    "ci": [
+     0.1111111111111111,
+     2.2777777777777777
+    ],
+    "n": 18,
+    "seed_means": [
+     1.0,
+     1.3333333333333333,
+     0.8333333333333334
+    ]
+   },
+   "wrong": {
+    "mean": 1.0,
+    "ci": [
+     0.05555555555555555,
+     2.2222222222222223
+    ],
+    "n": 18,
+    "seed_means": [
+     1.0,
+     1.3333333333333333,
+     0.6666666666666666
+    ]
+   }
+  },
+  "none - tool [breaking]": {
+   "detect": {
+    "mean": 2.7777777777777777,
+    "ci": [
+     1.3333333333333333,
+     4.0
+    ],
+    "n": 9,
+    "seed_means": [
+     3.3333333333333335,
+     2.0,
+     3.0
+    ]
+   },
+   "recover": {
+    "mean": 2.111111111111111,
+    "ci": [
+     0.4444444444444444,
+     4.222222222222222
+    ],
+    "n": 9,
+    "seed_means": [
+     2.0,
+     2.6666666666666665,
+     1.6666666666666667
+    ]
+   }
+  },
+  "none - tool [silent]": {
+   "detect": {
+    "mean": 0.2222222222222222,
+    "ci": [
+     0.0,
+     0.8888888888888888
+    ],
+    "n": 9,
+    "seed_means": [
+     0.0,
+     0.0,
+     0.6666666666666666
+    ]
+   },
+   "recover": {
+    "mean": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n": 9,
+    "seed_means": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "none - tool+tests": {
+   "detect": {
+    "mean": 2.4444444444444446,
+    "ci": [
+     1.3888888888888888,
+     3.3333333333333335
+    ],
+    "n": 18,
+    "seed_means": [
+     2.6666666666666665,
+     1.8333333333333333,
+     2.8333333333333335
+    ]
+   },
+   "recover": {
+    "mean": 1.6111111111111112,
+    "ci": [
+     0.2777777777777778,
+     3.3902777777777575
+    ],
+    "n": 18,
+    "seed_means": [
+     2.6666666666666665,
+     1.3333333333333333,
+     0.8333333333333334
+    ]
+   },
+   "wrong": {
+    "mean": 1.5555555555555556,
+    "ci": [
+     0.16666666666666666,
+     3.388888888888889
+    ],
+    "n": 18,
+    "seed_means": [
+     2.6666666666666665,
+     1.3333333333333333,
+     0.6666666666666666
+    ]
+   }
+  },
+  "none - tool+tests [breaking]": {
+   "detect": {
+    "mean": 2.7777777777777777,
+    "ci": [
+     1.3333333333333333,
+     4.0
+    ],
+    "n": 9,
+    "seed_means": [
+     3.3333333333333335,
+     2.0,
+     3.0
+    ]
+   },
+   "recover": {
+    "mean": 2.111111111111111,
+    "ci": [
+     0.4444444444444444,
+     4.222222222222222
+    ],
+    "n": 9,
+    "seed_means": [
+     2.0,
+     2.6666666666666665,
+     1.6666666666666667
+    ]
+   }
+  },
+  "none - tool+tests [silent]": {
+   "detect": {
+    "mean": 2.111111111111111,
+    "ci": [
+     1.0,
+     3.3333333333333335
+    ],
+    "n": 9,
+    "seed_means": [
+     2.0,
+     1.6666666666666667,
+     2.6666666666666665
+    ]
+   },
+   "recover": {
+    "mean": 1.1111111111111112,
+    "ci": [
+     0.0,
+     4.444444444444445
+    ],
+    "n": 9,
+    "seed_means": [
+     3.3333333333333335,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "none - lesson": {
+   "detect": {
+    "mean": -0.1111111111111111,
+    "ci": [
+     -1.2222222222222223,
+     0.7777777777777778
+    ],
+    "n": 18,
+    "seed_means": [
+     0.3333333333333333,
+     -0.3333333333333333,
+     -0.3333333333333333
+    ]
+   },
+   "recover": {
+    "mean": 0.7222222222222222,
+    "ci": [
+     0.16666666666666666,
+     1.4444444444444444
+    ],
+    "n": 18,
+    "seed_means": [
+     0.5,
+     0.8333333333333334,
+     0.8333333333333334
+    ]
+   },
+   "wrong": {
+    "mean": 0.8333333333333334,
+    "ci": [
+     0.1111111111111111,
+     1.6111111111111112
+    ],
+    "n": 18,
+    "seed_means": [
+     0.8333333333333334,
+     1.0,
+     0.6666666666666666
+    ]
+   }
+  },
+  "none - lesson [breaking]": {
+   "detect": {
+    "mean": -0.4444444444444444,
+    "ci": [
+     -2.7777777777777777,
+     1.3333333333333333
+    ],
+    "n": 9,
+    "seed_means": [
+     0.6666666666666666,
+     -0.6666666666666666,
+     -1.3333333333333333
+    ]
+   },
+   "recover": {
+    "mean": 1.4444444444444444,
+    "ci": [
+     0.4444444444444444,
+     2.669444444444404
+    ],
+    "n": 9,
+    "seed_means": [
+     1.0,
+     1.6666666666666667,
+     1.6666666666666667
+    ]
+   }
+  },
+  "none - lesson [silent]": {
+   "detect": {
+    "mean": 0.2222222222222222,
+    "ci": [
+     0.0,
+     0.8888888888888888
+    ],
+    "n": 9,
+    "seed_means": [
+     0.0,
+     0.0,
+     0.6666666666666666
+    ]
+   },
+   "recover": {
+    "mean": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n": 9,
+    "seed_means": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "none - lesson+tests": {
+   "detect": {
+    "mean": 1.0,
+    "ci": [
+     -0.4444444444444444,
+     2.2222222222222223
+    ],
+    "n": 18,
+    "seed_means": [
+     1.8333333333333333,
+     0.5,
+     0.6666666666666666
+    ]
+   },
+   "recover": {
+    "mean": 0.8888888888888888,
+    "ci": [
+     0.2222222222222222,
+     1.6666666666666667
+    ],
+    "n": 18,
+    "seed_means": [
+     1.0,
+     0.8333333333333334,
+     0.8333333333333334
+    ]
+   },
+   "wrong": {
+    "mean": 0.9444444444444444,
+    "ci": [
+     0.16666666666666666,
+     1.8333333333333333
+    ],
+    "n": 18,
+    "seed_means": [
+     1.1666666666666667,
+     1.0,
+     0.6666666666666666
+    ]
+   }
+  },
+  "none - lesson+tests [breaking]": {
+   "detect": {
+    "mean": -0.1111111111111111,
+    "ci": [
+     -2.6666666666666665,
+     1.8888888888888888
+    ],
+    "n": 9,
+    "seed_means": [
+     1.6666666666666667,
+     -0.6666666666666666,
+     -1.3333333333333333
+    ]
+   },
+   "recover": {
+    "mean": 1.7777777777777777,
+    "ci": [
+     0.5555555555555556,
+     3.0
+    ],
+    "n": 9,
+    "seed_means": [
+     2.0,
+     1.6666666666666667,
+     1.6666666666666667
+    ]
+   }
+  },
+  "none - lesson+tests [silent]": {
+   "detect": {
+    "mean": 2.111111111111111,
+    "ci": [
+     1.0,
+     3.3333333333333335
+    ],
+    "n": 9,
+    "seed_means": [
+     2.0,
+     1.6666666666666667,
+     2.6666666666666665
+    ]
+   },
+   "recover": {
+    "mean": 0.0,
+    "ci": [
+     0.0,
+     0.0
+    ],
+    "n": 9,
+    "seed_means": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  }
+ },
+ "verdict": "KILL",
+ "units": {
+  "lesson|0": [
+   {
+    "api": "order_status",
+    "kind": "breaking",
+    "uses": 5,
+    "detect": 4,
+    "recover": 5,
+    "detect_ep": 85,
+    "recover_ep": 102,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 3,
+    "silent_wrong": 2
+   },
+   {
+    "api": "order_user",
+    "kind": "breaking",
+    "uses": 4,
+    "detect": 2,
+    "recover": 3,
+    "detect_ep": 63,
+    "recover_ep": 111,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "population",
+    "kind": "breaking",
+    "uses": 4,
+    "detect": 5,
+    "recover": 1,
+    "detect_ep": null,
+    "recover_ep": 10,
+    "detect_censored": true,
+    "recover_censored": false,
+    "wrong": 0,
+    "silent_wrong": 0
+   },
+   {
+    "api": "stock",
+    "kind": "silent",
+    "uses": 5,
+    "detect": 2,
+    "recover": 6,
+    "detect_ep": 21,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 5,
+    "silent_wrong": 4
+   },
+   {
+    "api": "stock_price",
+    "kind": "silent",
+    "uses": 12,
+    "detect": 5,
+    "recover": 13,
+    "detect_ep": 45,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 12,
+    "silent_wrong": 10
+   },
+   {
+    "api": "user_city",
+    "kind": "silent",
+    "uses": 8,
+    "detect": 2,
+    "recover": 9,
+    "detect_ep": 49,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 8,
+    "silent_wrong": 2
+   }
+  ],
+  "lesson|1": [
+   {
+    "api": "user_email",
+    "kind": "breaking",
+    "uses": 6,
+    "detect": 7,
+    "recover": 1,
+    "detect_ep": null,
+    "recover_ep": 24,
+    "detect_censored": true,
+    "recover_censored": false,
+    "wrong": 0,
+    "silent_wrong": 0
+   },
+   {
+    "api": "translate",
+    "kind": "breaking",
+    "uses": 9,
+    "detect": 1,
+    "recover": 7,
+    "detect_ep": 4,
+    "recover_ep": 104,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 5,
+    "silent_wrong": 0
+   },
+   {
+    "api": "timezone",
+    "kind": "breaking",
+    "uses": 2,
+    "detect": 3,
+    "recover": 1,
+    "detect_ep": null,
+    "recover_ep": 45,
+    "detect_censored": true,
+    "recover_censored": false,
+    "wrong": 0,
+    "silent_wrong": 0
+   },
+   {
+    "api": "stock",
+    "kind": "silent",
+    "uses": 8,
+    "detect": 1,
+    "recover": 6,
+    "detect_ep": 2,
+    "recover_ep": 73,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 6,
+    "silent_wrong": 5
+   },
+   {
+    "api": "coords",
+    "kind": "silent",
+    "uses": 2,
+    "detect": 2,
+    "recover": 3,
+    "detect_ep": 108,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 2,
+    "silent_wrong": 1
+   },
+   {
+    "api": "price",
+    "kind": "silent",
+    "uses": 4,
+    "detect": 5,
+    "recover": 5,
+    "detect_ep": null,
+    "recover_ep": null,
+    "detect_censored": true,
+    "recover_censored": true,
+    "wrong": 4,
+    "silent_wrong": 4
+   }
+  ],
+  "lesson|2": [
+   {
+    "api": "population",
+    "kind": "breaking",
+    "uses": 4,
+    "detect": 5,
+    "recover": 1,
+    "detect_ep": null,
+    "recover_ep": 15,
+    "detect_censored": true,
+    "recover_censored": false,
+    "wrong": 0,
+    "silent_wrong": 0
+   },
+   {
+    "api": "timezone",
+    "kind": "breaking",
+    "uses": 9,
+    "detect": 10,
+    "recover": 1,
+    "detect_ep": null,
+    "recover_ep": 2,
+    "detect_censored": true,
+    "recover_censored": false,
+    "wrong": 0,
+    "silent_wrong": 0
+   },
+   {
+    "api": "translate",
+    "kind": "breaking",
+    "uses": 3,
+    "detect": 1,
+    "recover": 4,
+    "detect_ep": 58,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 3,
+    "silent_wrong": 0
+   },
+   {
+    "api": "order_items",
+    "kind": "silent",
+    "uses": 8,
+    "detect": 1,
+    "recover": 9,
+    "detect_ep": 12,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 8,
+    "silent_wrong": 7
+   },
+   {
+    "api": "user_age",
+    "kind": "silent",
+    "uses": 6,
+    "detect": 5,
+    "recover": 7,
+    "detect_ep": 100,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 6,
+    "silent_wrong": 5
+   },
+   {
+    "api": "holiday_count",
+    "kind": "silent",
+    "uses": 4,
+    "detect": 3,
+    "recover": 5,
+    "detect_ep": 65,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 4,
+    "silent_wrong": 3
+   }
+  ],
+  "lesson+tests|0": [
+   {
+    "api": "order_status",
+    "kind": "breaking",
+    "uses": 5,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 4,
+    "recover_ep": 17,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "order_user",
+    "kind": "breaking",
+    "uses": 4,
+    "detect": 2,
+    "recover": 3,
+    "detect_ep": 63,
+    "recover_ep": 111,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "population",
+    "kind": "breaking",
+    "uses": 4,
+    "detect": 5,
+    "recover": 1,
+    "detect_ep": null,
+    "recover_ep": 10,
+    "detect_censored": true,
+    "recover_censored": false,
+    "wrong": 0,
+    "silent_wrong": 0
+   },
+   {
+    "api": "stock",
+    "kind": "silent",
+    "uses": 5,
+    "detect": 1,
+    "recover": 6,
+    "detect_ep": 11,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 5,
+    "silent_wrong": 0
+   },
+   {
+    "api": "stock_price",
+    "kind": "silent",
+    "uses": 12,
+    "detect": 1,
+    "recover": 13,
+    "detect_ep": 2,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 12,
+    "silent_wrong": 0
+   },
+   {
+    "api": "user_city",
+    "kind": "silent",
+    "uses": 8,
+    "detect": 1,
+    "recover": 9,
+    "detect_ep": 18,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 8,
+    "silent_wrong": 0
+   }
+  ],
+  "lesson+tests|1": [
+   {
+    "api": "user_email",
+    "kind": "breaking",
+    "uses": 6,
+    "detect": 7,
+    "recover": 1,
+    "detect_ep": null,
+    "recover_ep": 24,
+    "detect_censored": true,
+    "recover_censored": false,
+    "wrong": 0,
+    "silent_wrong": 0
+   },
+   {
+    "api": "translate",
+    "kind": "breaking",
+    "uses": 9,
+    "detect": 1,
+    "recover": 7,
+    "detect_ep": 4,
+    "recover_ep": 104,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 5,
+    "silent_wrong": 0
+   },
+   {
+    "api": "timezone",
+    "kind": "breaking",
+    "uses": 2,
+    "detect": 3,
+    "recover": 1,
+    "detect_ep": null,
+    "recover_ep": 45,
+    "detect_censored": true,
+    "recover_censored": false,
+    "wrong": 0,
+    "silent_wrong": 0
+   },
+   {
+    "api": "stock",
+    "kind": "silent",
+    "uses": 8,
+    "detect": 1,
+    "recover": 6,
+    "detect_ep": 2,
+    "recover_ep": 73,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 6,
+    "silent_wrong": 0
+   },
+   {
+    "api": "coords",
+    "kind": "silent",
+    "uses": 2,
+    "detect": 1,
+    "recover": 3,
+    "detect_ep": 50,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 2,
+    "silent_wrong": 0
+   },
+   {
+    "api": "price",
+    "kind": "silent",
+    "uses": 4,
+    "detect": 1,
+    "recover": 5,
+    "detect_ep": 64,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 4,
+    "silent_wrong": 0
+   }
+  ],
+  "lesson+tests|2": [
+   {
+    "api": "population",
+    "kind": "breaking",
+    "uses": 4,
+    "detect": 5,
+    "recover": 1,
+    "detect_ep": null,
+    "recover_ep": 15,
+    "detect_censored": true,
+    "recover_censored": false,
+    "wrong": 0,
+    "silent_wrong": 0
+   },
+   {
+    "api": "timezone",
+    "kind": "breaking",
+    "uses": 9,
+    "detect": 10,
+    "recover": 1,
+    "detect_ep": null,
+    "recover_ep": 2,
+    "detect_censored": true,
+    "recover_censored": false,
+    "wrong": 0,
+    "silent_wrong": 0
+   },
+   {
+    "api": "translate",
+    "kind": "breaking",
+    "uses": 3,
+    "detect": 1,
+    "recover": 4,
+    "detect_ep": 58,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 3,
+    "silent_wrong": 0
+   },
+   {
+    "api": "order_items",
+    "kind": "silent",
+    "uses": 8,
+    "detect": 1,
+    "recover": 9,
+    "detect_ep": 12,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 8,
+    "silent_wrong": 0
+   },
+   {
+    "api": "user_age",
+    "kind": "silent",
+    "uses": 6,
+    "detect": 1,
+    "recover": 7,
+    "detect_ep": 34,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 6,
+    "silent_wrong": 0
+   },
+   {
+    "api": "holiday_count",
+    "kind": "silent",
+    "uses": 4,
+    "detect": 1,
+    "recover": 5,
+    "detect_ep": 9,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 4,
+    "silent_wrong": 0
+   }
+  ],
+  "none|0": [
+   {
+    "api": "order_status",
+    "kind": "breaking",
+    "uses": 5,
+    "detect": 3,
+    "recover": 6,
+    "detect_ep": 22,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 5,
+    "silent_wrong": 3
+   },
+   {
+    "api": "order_user",
+    "kind": "breaking",
+    "uses": 4,
+    "detect": 5,
+    "recover": 5,
+    "detect_ep": null,
+    "recover_ep": null,
+    "detect_censored": true,
+    "recover_censored": true,
+    "wrong": 4,
+    "silent_wrong": 4
+   },
+   {
+    "api": "population",
+    "kind": "breaking",
+    "uses": 4,
+    "detect": 5,
+    "recover": 1,
+    "detect_ep": null,
+    "recover_ep": 10,
+    "detect_censored": true,
+    "recover_censored": false,
+    "wrong": 0,
+    "silent_wrong": 0
+   },
+   {
+    "api": "stock",
+    "kind": "silent",
+    "uses": 5,
+    "detect": 2,
+    "recover": 6,
+    "detect_ep": 21,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 5,
+    "silent_wrong": 4
+   },
+   {
+    "api": "stock_price",
+    "kind": "silent",
+    "uses": 12,
+    "detect": 5,
+    "recover": 13,
+    "detect_ep": 45,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 12,
+    "silent_wrong": 10
+   },
+   {
+    "api": "user_city",
+    "kind": "silent",
+    "uses": 8,
+    "detect": 2,
+    "recover": 9,
+    "detect_ep": 49,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 8,
+    "silent_wrong": 5
+   }
+  ],
+  "none|1": [
+   {
+    "api": "user_email",
+    "kind": "breaking",
+    "uses": 6,
+    "detect": 7,
+    "recover": 1,
+    "detect_ep": null,
+    "recover_ep": 24,
+    "detect_censored": true,
+    "recover_censored": false,
+    "wrong": 0,
+    "silent_wrong": 0
+   },
+   {
+    "api": "translate",
+    "kind": "breaking",
+    "uses": 9,
+    "detect": 1,
+    "recover": 10,
+    "detect_ep": 4,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 9,
+    "silent_wrong": 6
+   },
+   {
+    "api": "timezone",
+    "kind": "breaking",
+    "uses": 2,
+    "detect": 1,
+    "recover": 3,
+    "detect_ep": 45,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 2,
+    "silent_wrong": 1
+   },
+   {
+    "api": "stock",
+    "kind": "silent",
+    "uses": 8,
+    "detect": 1,
+    "recover": 6,
+    "detect_ep": 2,
+    "recover_ep": 73,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 6,
+    "silent_wrong": 5
+   },
+   {
+    "api": "coords",
+    "kind": "silent",
+    "uses": 2,
+    "detect": 2,
+    "recover": 3,
+    "detect_ep": 108,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 2,
+    "silent_wrong": 1
+   },
+   {
+    "api": "price",
+    "kind": "silent",
+    "uses": 4,
+    "detect": 5,
+    "recover": 5,
+    "detect_ep": null,
+    "recover_ep": null,
+    "detect_censored": true,
+    "recover_censored": true,
+    "wrong": 4,
+    "silent_wrong": 4
+   }
+  ],
+  "none|2": [
+   {
+    "api": "population",
+    "kind": "breaking",
+    "uses": 4,
+    "detect": 5,
+    "recover": 1,
+    "detect_ep": null,
+    "recover_ep": 15,
+    "detect_censored": true,
+    "recover_censored": false,
+    "wrong": 0,
+    "silent_wrong": 0
+   },
+   {
+    "api": "timezone",
+    "kind": "breaking",
+    "uses": 9,
+    "detect": 3,
+    "recover": 6,
+    "detect_ep": 33,
+    "recover_ep": 66,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 5,
+    "silent_wrong": 3
+   },
+   {
+    "api": "translate",
+    "kind": "breaking",
+    "uses": 3,
+    "detect": 4,
+    "recover": 4,
+    "detect_ep": null,
+    "recover_ep": null,
+    "detect_censored": true,
+    "recover_censored": true,
+    "wrong": 3,
+    "silent_wrong": 3
+   },
+   {
+    "api": "order_items",
+    "kind": "silent",
+    "uses": 8,
+    "detect": 1,
+    "recover": 9,
+    "detect_ep": 12,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 8,
+    "silent_wrong": 2
+   },
+   {
+    "api": "user_age",
+    "kind": "silent",
+    "uses": 6,
+    "detect": 5,
+    "recover": 7,
+    "detect_ep": 100,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 6,
+    "silent_wrong": 5
+   },
+   {
+    "api": "holiday_count",
+    "kind": "silent",
+    "uses": 4,
+    "detect": 5,
+    "recover": 5,
+    "detect_ep": null,
+    "recover_ep": null,
+    "detect_censored": true,
+    "recover_censored": true,
+    "wrong": 3,
+    "silent_wrong": 3
+   }
+  ],
+  "tool|0": [
+   {
+    "api": "order_status",
+    "kind": "breaking",
+    "uses": 5,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 4,
+    "recover_ep": 17,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "order_user",
+    "kind": "breaking",
+    "uses": 4,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 15,
+    "recover_ep": 63,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "population",
+    "kind": "breaking",
+    "uses": 4,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 10,
+    "recover_ep": 26,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "stock",
+    "kind": "silent",
+    "uses": 5,
+    "detect": 2,
+    "recover": 6,
+    "detect_ep": 21,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 5,
+    "silent_wrong": 4
+   },
+   {
+    "api": "stock_price",
+    "kind": "silent",
+    "uses": 12,
+    "detect": 5,
+    "recover": 13,
+    "detect_ep": 45,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 12,
+    "silent_wrong": 10
+   },
+   {
+    "api": "user_city",
+    "kind": "silent",
+    "uses": 8,
+    "detect": 2,
+    "recover": 9,
+    "detect_ep": 49,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 8,
+    "silent_wrong": 5
+   }
+  ],
+  "tool|1": [
+   {
+    "api": "user_email",
+    "kind": "breaking",
+    "uses": 6,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 24,
+    "recover_ep": 55,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "translate",
+    "kind": "breaking",
+    "uses": 9,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 4,
+    "recover_ep": 12,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "timezone",
+    "kind": "breaking",
+    "uses": 2,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 45,
+    "recover_ep": 90,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "stock",
+    "kind": "silent",
+    "uses": 8,
+    "detect": 1,
+    "recover": 6,
+    "detect_ep": 2,
+    "recover_ep": 73,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 6,
+    "silent_wrong": 5
+   },
+   {
+    "api": "coords",
+    "kind": "silent",
+    "uses": 2,
+    "detect": 2,
+    "recover": 3,
+    "detect_ep": 108,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 2,
+    "silent_wrong": 1
+   },
+   {
+    "api": "price",
+    "kind": "silent",
+    "uses": 4,
+    "detect": 5,
+    "recover": 5,
+    "detect_ep": null,
+    "recover_ep": null,
+    "detect_censored": true,
+    "recover_censored": true,
+    "wrong": 4,
+    "silent_wrong": 4
+   }
+  ],
+  "tool|2": [
+   {
+    "api": "population",
+    "kind": "breaking",
+    "uses": 4,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 15,
+    "recover_ep": 36,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "timezone",
+    "kind": "breaking",
+    "uses": 9,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 2,
+    "recover_ep": 19,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "translate",
+    "kind": "breaking",
+    "uses": 3,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 58,
+    "recover_ep": 61,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "order_items",
+    "kind": "silent",
+    "uses": 8,
+    "detect": 1,
+    "recover": 9,
+    "detect_ep": 12,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 8,
+    "silent_wrong": 0
+   },
+   {
+    "api": "user_age",
+    "kind": "silent",
+    "uses": 6,
+    "detect": 5,
+    "recover": 7,
+    "detect_ep": 100,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 6,
+    "silent_wrong": 5
+   },
+   {
+    "api": "holiday_count",
+    "kind": "silent",
+    "uses": 4,
+    "detect": 3,
+    "recover": 5,
+    "detect_ep": 65,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 4,
+    "silent_wrong": 3
+   }
+  ],
+  "tool+tests|0": [
+   {
+    "api": "order_status",
+    "kind": "breaking",
+    "uses": 5,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 4,
+    "recover_ep": 17,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "order_user",
+    "kind": "breaking",
+    "uses": 4,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 15,
+    "recover_ep": 63,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "population",
+    "kind": "breaking",
+    "uses": 4,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 10,
+    "recover_ep": 26,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "stock",
+    "kind": "silent",
+    "uses": 5,
+    "detect": 1,
+    "recover": 6,
+    "detect_ep": 11,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 5,
+    "silent_wrong": 0
+   },
+   {
+    "api": "stock_price",
+    "kind": "silent",
+    "uses": 12,
+    "detect": 1,
+    "recover": 3,
+    "detect_ep": 2,
+    "recover_ep": 13,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 2,
+    "silent_wrong": 0
+   },
+   {
+    "api": "user_city",
+    "kind": "silent",
+    "uses": 8,
+    "detect": 1,
+    "recover": 9,
+    "detect_ep": 18,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 8,
+    "silent_wrong": 0
+   }
+  ],
+  "tool+tests|1": [
+   {
+    "api": "user_email",
+    "kind": "breaking",
+    "uses": 6,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 24,
+    "recover_ep": 55,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "translate",
+    "kind": "breaking",
+    "uses": 9,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 4,
+    "recover_ep": 12,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "timezone",
+    "kind": "breaking",
+    "uses": 2,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 45,
+    "recover_ep": 90,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "stock",
+    "kind": "silent",
+    "uses": 8,
+    "detect": 1,
+    "recover": 6,
+    "detect_ep": 2,
+    "recover_ep": 73,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 6,
+    "silent_wrong": 0
+   },
+   {
+    "api": "coords",
+    "kind": "silent",
+    "uses": 2,
+    "detect": 1,
+    "recover": 3,
+    "detect_ep": 50,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 2,
+    "silent_wrong": 0
+   },
+   {
+    "api": "price",
+    "kind": "silent",
+    "uses": 4,
+    "detect": 1,
+    "recover": 5,
+    "detect_ep": 64,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 4,
+    "silent_wrong": 0
+   }
+  ],
+  "tool+tests|2": [
+   {
+    "api": "population",
+    "kind": "breaking",
+    "uses": 4,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 15,
+    "recover_ep": 36,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "timezone",
+    "kind": "breaking",
+    "uses": 9,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 2,
+    "recover_ep": 19,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "translate",
+    "kind": "breaking",
+    "uses": 3,
+    "detect": 1,
+    "recover": 2,
+    "detect_ep": 58,
+    "recover_ep": 61,
+    "detect_censored": false,
+    "recover_censored": false,
+    "wrong": 1,
+    "silent_wrong": 0
+   },
+   {
+    "api": "order_items",
+    "kind": "silent",
+    "uses": 8,
+    "detect": 1,
+    "recover": 9,
+    "detect_ep": 12,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 8,
+    "silent_wrong": 0
+   },
+   {
+    "api": "user_age",
+    "kind": "silent",
+    "uses": 6,
+    "detect": 1,
+    "recover": 7,
+    "detect_ep": 34,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 6,
+    "silent_wrong": 0
+   },
+   {
+    "api": "holiday_count",
+    "kind": "silent",
+    "uses": 4,
+    "detect": 1,
+    "recover": 5,
+    "detect_ep": 9,
+    "recover_ep": null,
+    "detect_censored": false,
+    "recover_censored": true,
+    "wrong": 4,
+    "silent_wrong": 0
+   }
+  ]
+ },
+ "runs": {
+  "lesson|0": {
+   "pre_acc": 0.95,
+   "post_undrifted_acc": 0.8658536585365854,
+   "false_flags": 14,
+   "llm_calls": 205,
+   "tokens": 119503,
+   "sec": 2756.5
+  },
+  "lesson|1": {
+   "pre_acc": 0.9166666666666666,
+   "post_undrifted_acc": 0.7752808988764045,
+   "false_flags": 13,
+   "llm_calls": 200,
+   "tokens": 116227,
+   "sec": 2681.2
+  },
+  "lesson|2": {
+   "pre_acc": 0.9666666666666667,
+   "post_undrifted_acc": 0.872093023255814,
+   "false_flags": 7,
+   "llm_calls": 193,
+   "tokens": 112176,
+   "sec": 2514.9
+  },
+  "lesson+tests|0": {
+   "pre_acc": 0.95,
+   "post_undrifted_acc": 0.8658536585365854,
+   "false_flags": 14,
+   "llm_calls": 334,
+   "tokens": 198385,
+   "sec": 5892.6
+  },
+  "lesson+tests|1": {
+   "pre_acc": 0.9333333333333333,
+   "post_undrifted_acc": 0.7865168539325843,
+   "false_flags": 23,
+   "llm_calls": 344,
+   "tokens": 202867,
+   "sec": 4955.7
+  },
+  "lesson+tests|2": {
+   "pre_acc": 0.9666666666666667,
+   "post_undrifted_acc": 0.8488372093023255,
+   "false_flags": 17,
+   "llm_calls": 320,
+   "tokens": 190513,
+   "sec": 4869.9
+  },
+  "none|0": {
+   "pre_acc": 0.43333333333333335,
+   "post_undrifted_acc": 0.3170731707317073,
+   "false_flags": 26,
+   "llm_calls": 180,
+   "tokens": 96810,
+   "sec": 3507.2
+  },
+  "none|1": {
+   "pre_acc": 0.2833333333333333,
+   "post_undrifted_acc": 0.20224719101123595,
+   "false_flags": 34,
+   "llm_calls": 180,
+   "tokens": 96893,
+   "sec": 3507.7
+  },
+  "none|2": {
+   "pre_acc": 0.38333333333333336,
+   "post_undrifted_acc": 0.4069767441860465,
+   "false_flags": 18,
+   "llm_calls": 180,
+   "tokens": 97599,
+   "sec": 3596.2
+  },
+  "tool|0": {
+   "pre_acc": 1.0,
+   "post_undrifted_acc": 1.0,
+   "false_flags": 0,
+   "llm_calls": 9,
+   "tokens": 5355,
+   "sec": 193.0
+  },
+  "tool|1": {
+   "pre_acc": 1.0,
+   "post_undrifted_acc": 1.0,
+   "false_flags": 0,
+   "llm_calls": 5,
+   "tokens": 2966,
+   "sec": 121.7
+  },
+  "tool|2": {
+   "pre_acc": 1.0,
+   "post_undrifted_acc": 1.0,
+   "false_flags": 0,
+   "llm_calls": 13,
+   "tokens": 7785,
+   "sec": 312.8
+  },
+  "tool+tests|0": {
+   "pre_acc": 1.0,
+   "post_undrifted_acc": 1.0,
+   "false_flags": 0,
+   "llm_calls": 32,
+   "tokens": 19057,
+   "sec": 598.7
+  },
+  "tool+tests|1": {
+   "pre_acc": 1.0,
+   "post_undrifted_acc": 1.0,
+   "false_flags": 0,
+   "llm_calls": 31,
+   "tokens": 18459,
+   "sec": 536.8
+  },
+  "tool+tests|2": {
+   "pre_acc": 1.0,
+   "post_undrifted_acc": 1.0,
+   "false_flags": 0,
+   "llm_calls": 39,
+   "tokens": 23501,
+   "sec": 781.9
+  }
+ }
+}
