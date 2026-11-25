@@ -1,0 +1,303 @@
+{
+  "reliability": {
+    "passes": false,
+    "spearman_brown": {
+      "estimate": -0.04058969940647138,
+      "ci": [
+        -1.1706965886770269,
+        0.5094693536858388
+      ]
+    },
+    "raw_spearman": {
+      "estimate": -0.01989116156877463,
+      "ci": [
+        -0.36922378282587753,
+        0.3418040114847988
+      ]
+    },
+    "new_zero_shot_held_out": 0.31071428417971675
+  },
+  "lessons": [
+    {
+      "id": "m1-01",
+      "kind": "m1",
+      "truth_delta": 0.008369700355640443,
+      "truth_a_delta": 0.0013375168689937905,
+      "truth_b_delta": 0.015401883842287101
+    },
+    {
+      "id": "m1-02",
+      "kind": "m1",
+      "truth_delta": 0.017427688709516432,
+      "truth_a_delta": 0.0033996335467444336,
+      "truth_b_delta": 0.03145574387228843
+    },
+    {
+      "id": "m1-03",
+      "kind": "m1",
+      "truth_delta": 0.020590114959232474,
+      "truth_a_delta": 0.006254475056393677,
+      "truth_b_delta": 0.03492575486207126
+    },
+    {
+      "id": "m1-04",
+      "kind": "m1",
+      "truth_delta": 0.02173271150479858,
+      "truth_a_delta": 0.010542841614456094,
+      "truth_b_delta": 0.03292258139514106
+    },
+    {
+      "id": "m1-05",
+      "kind": "m1",
+      "truth_delta": 0.015949240292099934,
+      "truth_a_delta": 0.0032036176405087977,
+      "truth_b_delta": 0.028694862943691075
+    },
+    {
+      "id": "m1-06",
+      "kind": "m1",
+      "truth_delta": 0.006084994838736052,
+      "truth_a_delta": -0.021897387993453626,
+      "truth_b_delta": 0.03406737767092573
+    },
+    {
+      "id": "m1-07",
+      "kind": "m1",
+      "truth_delta": 0.01170944649662825,
+      "truth_a_delta": 0.023525077389097097,
+      "truth_b_delta": -0.0001061843958405917
+    },
+    {
+      "id": "m1-08",
+      "kind": "m1",
+      "truth_delta": 0.019480385329594948,
+      "truth_a_delta": 0.006969579365981286,
+      "truth_b_delta": 0.031991191293208605
+    },
+    {
+      "id": "m1-09",
+      "kind": "m1",
+      "truth_delta": 0.03371743593346555,
+      "truth_a_delta": 0.006599328288340113,
+      "truth_b_delta": 0.06083554357859099
+    },
+    {
+      "id": "m1-10",
+      "kind": "m1",
+      "truth_delta": 0.0142026778794262,
+      "truth_a_delta": -0.003220135659096559,
+      "truth_b_delta": 0.03162549141794895
+    },
+    {
+      "id": "m1-11",
+      "kind": "m1",
+      "truth_delta": 0.016931249925241358,
+      "truth_a_delta": 0.001859508233618759,
+      "truth_b_delta": 0.03200299161686395
+    },
+    {
+      "id": "m1-12",
+      "kind": "m1",
+      "truth_delta": 0.024792602929462188,
+      "truth_a_delta": 0.01173902569248382,
+      "truth_b_delta": 0.03784618016644055
+    },
+    {
+      "id": "m1-13",
+      "kind": "m1",
+      "truth_delta": 0.006084994838736052,
+      "truth_a_delta": -0.021897387993453626,
+      "truth_b_delta": 0.03406737767092573
+    },
+    {
+      "id": "m1-14",
+      "kind": "m1",
+      "truth_delta": 0.009831568406585223,
+      "truth_a_delta": -0.011456555151010107,
+      "truth_b_delta": 0.031119691964180556
+    },
+    {
+      "id": "m1-15",
+      "kind": "m1",
+      "truth_delta": 0.01289200186372802,
+      "truth_a_delta": 0.030447425451891812,
+      "truth_b_delta": -0.004663421724435772
+    },
+    {
+      "id": "m1-16",
+      "kind": "m1",
+      "truth_delta": 0.009407659001032674,
+      "truth_a_delta": 0.0020559015823005053,
+      "truth_b_delta": 0.016759416419764847
+    },
+    {
+      "id": "m1-17",
+      "kind": "m1",
+      "truth_delta": 0.019331895390031537,
+      "truth_a_delta": 0.0038712809779586008,
+      "truth_b_delta": 0.03479250980210447
+    },
+    {
+      "id": "m1-18",
+      "kind": "m1",
+      "truth_delta": 0.02152366527100964,
+      "truth_a_delta": 0.004842186138498054,
+      "truth_b_delta": 0.03820514440352123
+    },
+    {
+      "id": "m1-19",
+      "kind": "m1",
+      "truth_delta": 0.029143780036049255,
+      "truth_a_delta": 0.004875017575883225,
+      "truth_b_delta": 0.05341254249621528
+    },
+    {
+      "id": "m1-20",
+      "kind": "m1",
+      "truth_delta": 0.019480385329594948,
+      "truth_a_delta": 0.006969579365981286,
+      "truth_b_delta": 0.031991191293208605
+    },
+    {
+      "id": "g1-01",
+      "kind": "helpful",
+      "truth_delta": 0.019355144202888835,
+      "truth_a_delta": 0.0038597732141159393,
+      "truth_b_delta": 0.034850515191661734
+    },
+    {
+      "id": "g1-03",
+      "kind": "helpful",
+      "truth_delta": 0.015374736169591133,
+      "truth_a_delta": 0.006804130930330149,
+      "truth_b_delta": 0.023945341408852117
+    },
+    {
+      "id": "g1-04",
+      "kind": "helpful",
+      "truth_delta": 0.056806830843157706,
+      "truth_a_delta": 0.051785308537387685,
+      "truth_b_delta": 0.06182835314892774
+    },
+    {
+      "id": "g1-05",
+      "kind": "helpful",
+      "truth_delta": 0.013083019820750977,
+      "truth_a_delta": -0.014493122660291317,
+      "truth_b_delta": 0.04065916230179328
+    },
+    {
+      "id": "g1-07",
+      "kind": "helpful",
+      "truth_delta": 0.019741520844020543,
+      "truth_a_delta": 0.011654149045765692,
+      "truth_b_delta": 0.027828892642275393
+    },
+    {
+      "id": "g1-09",
+      "kind": "helpful",
+      "truth_delta": 0.022049324553601087,
+      "truth_a_delta": 0.010648255822241756,
+      "truth_b_delta": 0.03345039328496042
+    },
+    {
+      "id": "g1-10",
+      "kind": "helpful",
+      "truth_delta": 0.016408012589355137,
+      "truth_a_delta": 0.005140872686462003,
+      "truth_b_delta": 0.027675152492248275
+    },
+    {
+      "id": "g1-12",
+      "kind": "neutral",
+      "truth_delta": 0.019064675091060104,
+      "truth_a_delta": 0.010098374438430239,
+      "truth_b_delta": 0.028030975743689967
+    },
+    {
+      "id": "g1-13",
+      "kind": "neutral",
+      "truth_delta": 0.01883671439775368,
+      "truth_a_delta": 0.0071386295040111875,
+      "truth_b_delta": 0.030534799291496165
+    },
+    {
+      "id": "g1-14",
+      "kind": "neutral",
+      "truth_delta": 0.021332642784728056,
+      "truth_a_delta": 0.011689284373103834,
+      "truth_b_delta": 0.030976001196352285
+    },
+    {
+      "id": "g1-17",
+      "kind": "neutral",
+      "truth_delta": 0.021069787195689315,
+      "truth_a_delta": 0.008283252360125571,
+      "truth_b_delta": 0.033856322031253064
+    },
+    {
+      "id": "g1-18",
+      "kind": "neutral",
+      "truth_delta": 0.018757081215518504,
+      "truth_a_delta": 0.007142242119958747,
+      "truth_b_delta": 0.03037192031107826
+    },
+    {
+      "id": "g1-19",
+      "kind": "neutral",
+      "truth_delta": 0.01809893557719965,
+      "truth_a_delta": 0.006810521123394174,
+      "truth_b_delta": 0.02938735003100512
+    },
+    {
+      "id": "g1-20",
+      "kind": "neutral",
+      "truth_delta": 0.013353087424724706,
+      "truth_a_delta": 0.0006812795205229603,
+      "truth_b_delta": 0.02602489532892646
+    },
+    {
+      "id": "g1-23",
+      "kind": "misleading",
+      "truth_delta": 0.011462666456122683,
+      "truth_a_delta": -0.0019296080331202513,
+      "truth_b_delta": 0.02485494094536562
+    },
+    {
+      "id": "g1-24",
+      "kind": "misleading",
+      "truth_delta": 0.01814120972039128,
+      "truth_a_delta": 0.0053614992945940215,
+      "truth_b_delta": 0.030920920146188535
+    },
+    {
+      "id": "g1-25",
+      "kind": "misleading",
+      "truth_delta": 0.02147209771615803,
+      "truth_a_delta": 0.012461905957016848,
+      "truth_b_delta": 0.030482289475299216
+    },
+    {
+      "id": "g1-26",
+      "kind": "misleading",
+      "truth_delta": 0.019199983004619295,
+      "truth_a_delta": 0.00909174772936513,
+      "truth_b_delta": 0.029308218279873465
+    },
+    {
+      "id": "g1-29",
+      "kind": "misleading",
+      "truth_delta": 0.008816152188183612,
+      "truth_a_delta": 0.0006275652614245499,
+      "truth_b_delta": 0.017004739114942675
+    },
+    {
+      "id": "g1-30",
+      "kind": "misleading",
+      "truth_delta": 0.0076739452183555434,
+      "truth_a_delta": -0.0021230148914067487,
+      "truth_b_delta": 0.017470905328117837
+    }
+  ],
+  "verdict": "STOP: unreliable truth"
+}
