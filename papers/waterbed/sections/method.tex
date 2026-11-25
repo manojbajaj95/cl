@@ -1,0 +1,50 @@
+\section{A mixer-to-loss experiment}
+\label{sec:method}
+
+\subsection{Two teachers and one learner}
+
+Both tasks use \(x\sim\mathcal N(0,\Sigma)\), with a positive diagonal covariance \(\Sigma\in\R^{d\times d}\) and \(d=4\). The teachers have slopes \(a,b\in\R^d\) and clean labels \(x^\top a,x^\top b\), respectively. Both teacher outputs have unit variance; their angle in whitened coordinates lies between 0.80 and 1.20 radians. The width-one two-layer student predicts \(v w^\top x\), with \(w\in\R^d\) and \(v\in\R\). Both factors in \(\theta=(w,v)\in\R^{d+1}\) are trained. Writing \(\beta=vw\), its population losses are
+\begin{equation}
+  \ell_A(\theta)=\tfrac12(\beta-a)^\top\Sigma(\beta-a),\qquad
+  \ell_B(\theta)=\tfrac12(\beta-b)^\top\Sigma(\beta-b).
+  \label{eq:loss}
+\end{equation}
+Every arm starts at the same balanced factorization \(\theta_A\) of \(\beta=a\), where \(v>0\) and \(\|w\|_2=v\). The stream is an intervention on the mixture of two population gradients. It is not a stream of noisy minibatches: this removes gradient noise and fixes a well-defined operating point for the transfer.
+
+Let \(r\) be the replay fraction and \(\lambda\) the consolidation strength. All four arms use a single gradient-descent update with rate \(\eta\):
+\begin{align}
+  \theta_{t+1}&=\theta_t-\eta\nabla_\theta J(\theta_t,u_t), \label{eq:update}\\
+  J(\theta,u)&=(1-r)\{u\ell_A(\theta)+(1-u)\ell_B(\theta)\}
+    +r\widehat\ell_A(\theta)
+    +\tfrac{\lambda}{2}(\theta-\theta_A)^\top D(\theta-\theta_A). \label{eq:objective}
+\end{align}
+Here \(\widehat\ell_A\) is squared loss on 512 cached examples labeled by \(A\). Its gradient depends on the cache only through the empirical input covariance. The diagonal matrix \(D\in\R^{(d+1)\times(d+1)}\) contains the population second moments of the per-example squared-loss gradients at \(\theta_A\), under a Gaussian label-noise variance of \(0.0625\). This is the Gaussian model's diagonal Fisher rescaled to the squared-loss convention. The noise defines this penalty only; both the stream and the evaluation use clean targets. Gradient descent sets \(r=\lambda=0\); replay sets \(r=0.10,\lambda=0\); elastic weight consolidation (EWC) sets \(r=0,\lambda=8\).
+
+\subsection{Settled response rather than transient forgetting}
+
+We first warm up each arm at \(u_t=1/2\). Each driven run starts from that arm's unforced parameters \(\theta_\star\). We score \(\ell_A(\theta_t)\) before applying update \(t\), discard the first 2,048 driven steps, and fit cosine and sine coefficients over the next 8,192 steps. We snap a logarithmic grid to integer Fourier bins. A constant offset is orthogonal to both fitted harmonics; at Nyquist we fit only cosine and use its full squared norm. We divide the resulting magnitude by \(\alpha\) and integrate a shape-preserving cubic interpolant of log-gain. The first bin is at \(0.00307\) radians per update; we extend the log-gain flat from that bin to zero and also compute the area without this extension.
+
+Why use a mixture rather than hard switches? A small drive separates the local response from the large moves induced by a new task. It also gives a direct diagnostic: doubling \(\alpha\) should leave the gain approximately unchanged if higher-order effects are small. In contrast, the old-task loss mean need not decrease when the gain decreases. We report both and do not use either as a proxy for the other.
+
+\subsection{What the log-area depends on}
+
+Write \(p=d+1\). Linearize \cref{eq:update} at \((\theta_\star,\tfrac12)\), and read out the perturbation in \(\ell_A\). With state \(s_t=\theta_t-\theta_\star\), input \(\delta u_t=u_t-\tfrac12\), and scalar output perturbation \(\delta y_t\), the first-order system is
+\begin{align}
+  s_{t+1}&=M s_t+g\,\delta u_t,\qquad \delta y_t=c^\top s_t,\label{eq:lti}\\
+  M&=I_p-\eta\nabla_\theta^2 J,\quad
+  g=-\eta\,\partial_u\nabla_\theta J,\quad c=\nabla_\theta\ell_A.
+\end{align}
+Here \(M,I_p\in\R^{p\times p}\) and \(g,c\in\R^p\); derivatives are evaluated at the unforced point. The transfer \(S(z)=c^\top(zI_p-M)^{-1}g\) is strictly proper because we score before updating. Its one-step coefficient is \(h_1=c^\top g\). The two-layer scaling direction can be neutral without appearing in \(S\); only poles of the scalar transfer enter the calculation. In particular, a hidden neutral mode does not justify assuming stability if the readout sees it.
+
+\begin{proposition}[Log-area of the local transfer]
+\label{prop:jensen}
+Let \(S\) be a nonzero real rational transfer with all poles strictly inside the unit circle. Let \(h_m\) be its first nonzero impulse coefficient, \(m\geq 1\), and let \(\zeta_k\) be its finite zeros, counted with multiplicity. Then
+\begin{equation}
+  \mathcal I=\log|h_m|+\sum_{k:\,|\zeta_k|>1}\log|\zeta_k|,
+  \label{eq:jensen}
+\end{equation}
+\end{proposition}
+
+The rational factorization of \(S\) has leading numerator-to-denominator coefficient \(h_m\). On the unit circle, the log integral of each factor \(z-q\) is \(\log\max(1,|q|)\), by Jensen's formula. Stable poles contribute zero; because the coefficients are real, the average over positive frequencies equals the full-circle average. \Cref{app:proof} gives the details and a nonminimum-phase example.
+
+Thus \(h_1\neq 0\) and minimum phase imply zero normalized area after dividing the gain by \(|h_1|\), not equal raw area. Equal raw areas require the right-hand side of \cref{eq:jensen} to stay fixed, which matching prediction accuracy does not enforce. Even the normalized equality constrains the integral, not pointwise gains or mean retention.

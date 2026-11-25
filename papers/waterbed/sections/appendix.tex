@@ -1,0 +1,48 @@
+\section{Transfer derivations and estimator controls}
+\label{app:proof}
+
+\paragraph{Log integral.}
+Cancel common roots and write \(S(z)=h_m\prod_k(z-\zeta_k)/\prod_j(z-\rho_j)\), where \(\rho_j\) are the finite poles and the denominator degree exceeds the numerator degree by \(m\). The expansion at infinity starts at \(h_m z^{-m}\), which fixes the coefficient in this factorization. For \(|q|<1\), \(\log|e^{i\omega}-q|=\operatorname{Re}\log(1-q e^{-i\omega})\), whose Fourier expansion has zero average. For \(|q|>1\), factor out \(-q\) first to obtain mean \(\log|q|\). For \(|q|=1\) the logarithmic singularity is integrable and the average is zero by the limiting formula. Apply this identity to each factor and use conjugate symmetry to recover \cref{eq:jensen}.
+
+\paragraph{Exact scalar contrast.}
+For teacher slopes 0 and 1, write the learner coefficient as \(\beta_t\). The update is \(\beta_{t+1}=(1-\eta)\beta_t+\eta(1-u_t)\), and the old loss is \(\tfrac12\beta_t^2\). Thus at \(\beta_\star=\tfrac12\), \(g=-\eta\) and \(c=\tfrac12\). The squared gain is
+\[
+  |S(e^{i\omega})|^2 =
+  \frac{1}{4}\left[1+\frac{2(1-\eta)}{\eta^2}(1-\cos\omega)\right]^{-1}.
+\]
+The factor \((1-\eta)/\eta^2\) strictly decreases for \(0<\eta<1\). This proves the strict ordering for \(0<\omega\leq\pi\) even though both arms have identical DC gains, \(\lvert S(1)\rvert=\tfrac12\).
+
+\paragraph{Nonminimum-phase boundary.}
+The estimator checks use \(0.2/(z-0.8)\), with area \(\log 0.2\), and
+\[
+  -\frac{6}{z-0.2}+\frac{7}{z-0.5}
+    =\frac{z+1.6}{(z-0.2)(z-0.5)},
+\]
+with area \(\log 1.6\). The latter has two stable poles and unit one-step gain, but its zero at \(-1.6\) gives positive normalized area. It is an analytic filter control, not a transfer fitted to another continual learner. The lock-in control injects a nonzero offset plus known cosine and sine coefficients at a Fourier bin and verifies the Nyquist cosine-only normalization separately.
+
+\paragraph{Fitted transfer calculation.}
+For the product \(\beta=vw\), the Jacobian is \(P=[vI_d\;\;w]\in\R^{d\times p}\). Let \(\widehat\Sigma_A\) denote the cache covariance, and \(q\in\R^d\) the gradient of the data terms of \(J\) with respect to \(\beta\) at the unforced point. The parameter Hessian is \(P^\top[(1-r)\Sigma+r\widehat\Sigma_A]P+\lambda D\) plus a symmetric block with \(q\) and \(q^\top\) in the cross derivatives between \(w\) and \(v\). At a stationary point with \(r>0,\lambda=0\), or with \(r=\lambda=0\), \(q=0\) for nonzero \(v\); EWC can have \(q\neq0\). Input and readout vectors are \(g=-\eta(1-r)P^\top\Sigma(b-a)\) and \(c=P^\top\Sigma(\beta-a)\). Diagonalizing the symmetric \(M\) gives each residue as the product of \(g\) and \(c\) projected onto that mode. The implementation drops residues below \(10^{-12}\) of the maximum magnitude, rejecting unstable retained poles, and asserts stationarity at absolute tolerance \(10^{-8}\).
+
+\section{Reproduction details}
+\label{app:details}
+
+For each NumPy seed 410--417, draw the diagonal entries of \(\Sigma\) uniformly from \([0.65,1.35]\). Take orthonormal columns \(e_1,e_2\in\R^d\) from the QR factorization of a \(d\times2\) standard Gaussian matrix; set \(a=\Sigma^{-1/2}e_1\) and \(b=\Sigma^{-1/2}(\cos\gamma\,e_1+\sin\gamma\,e_2)\) for \(\gamma\) uniform on \([0.8,1.2]\). Cache vectors are independent draws from \(\mathcal{N}(0,\Sigma)\). The prior anchor has \(v=\sqrt{\|a\|_2}\) and \(w=a/v\). Joint sign accuracy follows from Gaussian angular agreement, \(1-\varphi/\pi\) for the angle \(\varphi\) between \(\Sigma^{1/2}\beta\) and the corresponding whitened teacher. No test samples or labels enter the simulator updates.
+
+\begin{table}[htbp]
+  \centering
+  \caption{\textbf{Joint sign accuracy can hide a shift from the new teacher to the old.}
+  Unforced operating points, averaged over eight paired seeds; loss is half squared prediction error. The two GD rates have the same fit. Rates and method strengths reproduce the four update rules.}
+  \label{tab:unforced}
+  \begin{tabular}{lrrrrrr}
+    \toprule
+    Method & \(\eta\) & \(r\) & \(\lambda\) & \(A\) loss \(\downarrow\) & \(B\) loss \(\downarrow\) & Joint acc. \(\uparrow\) \\
+    \midrule
+    GD, slow & 0.025 & 0 & 0 & 0.10137 & 0.10137 & 85.22\% \\
+    GD, fast & 0.150 & 0 & 0 & 0.10137 & 0.10137 & 85.22\% \\
+    Replay & 0.075 & 0.10 & 0 & 0.08261 & 0.12206 & 85.22\% \\
+    EWC & 0.075 & 0 & 8 & 0.04462 & 0.18122 & 85.22\% \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The sweep rounds 57 geometrically spaced points from bin 4 to bin 4,096 to the nearest integer, then deduplicates to 55 bins. Warm-up, settling, and lock-in use 8,192, 2,048, and 8,192 updates respectively; each seed and arm shares its warm-up across the two amplitudes and 55 frequencies. The run uses Python 3.10.12, NumPy 2.2.6, SciPy 1.15.3, and Matplotlib 3.10.9, with \texttt{OPENBLAS\_NUM\_THREADS=1}. The saved \href{https://github.com/manojbajaj95/cl/blob/f018cf8/experiments/waterbed/results.json}{\texttt{results.json}} contains seed-level spectra, endpoints, LTI estimates, and intervals.
