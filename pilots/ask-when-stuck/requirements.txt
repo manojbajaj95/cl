@@ -1,0 +1,5 @@
+alfworld==0.4.2
+textworld==1.6.2
+termcolor==2.5.0
+numpy==2.2.6
+scipy==1.15.3

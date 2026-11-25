@@ -1,0 +1,713 @@
+{
+  "wall_seconds": 343.0,
+  "calibration": {
+    "temperature": 1.0660736296911002,
+    "memory_entropy_nats": 0.9849677721074351,
+    "neutral_entropy_nats": 0.9518536713142531,
+    "matched_entropy_nats": 0.9849677721074899,
+    "retry_states": 96,
+    "source_ids": [
+      "train/look_at_obj_in_light-Pillow-None-DeskLamp-309/trial_T20190908_113843_792729/game.tw-pddl",
+      "train/pick_and_place_simple-Candle-None-Toilet-413/trial_T20190909_104039_809266/game.tw-pddl",
+      "train/pick_clean_then_place_in_recep-SoapBar-None-Toilet-408/trial_T20190908_122434_336174/game.tw-pddl",
+      "train/pick_cool_then_place_in_recep-WineBottle-None-Cabinet-16/trial_T20190907_084028_991219/game.tw-pddl",
+      "train/pick_heat_then_place_in_recep-Tomato-None-DiningTable-17/trial_T20190909_042716_008360/game.tw-pddl",
+      "train/pick_two_obj_and_place-DishSponge-None-GarbageCan-421/trial_T20190907_163320_744037/game.tw-pddl",
+      "train/look_at_obj_in_light-Pillow-None-DeskLamp-320/trial_T20190906_225859_247598/game.tw-pddl",
+      "train/pick_and_place_simple-KeyChain-None-Sofa-217/trial_T20190908_065442_639441/game.tw-pddl",
+      "train/pick_clean_then_place_in_recep-Potato-None-Microwave-11/trial_T20190908_215946_926015/game.tw-pddl",
+      "train/pick_cool_then_place_in_recep-Bowl-None-Cabinet-25/trial_T20190908_073438_481131/game.tw-pddl",
+      "train/pick_heat_then_place_in_recep-Cup-None-CounterTop-22/trial_T20190909_023638_397924/game.tw-pddl",
+      "train/pick_two_obj_and_place-SoapBottle-None-CounterTop-407/trial_T20190908_055510_633308/game.tw-pddl",
+      "train/look_at_obj_in_light-Vase-None-DeskLamp-216/trial_T20190906_200458_622810/game.tw-pddl",
+      "train/pick_and_place_simple-Watch-None-CoffeeTable-222/trial_T20190908_032408_369750/game.tw-pddl",
+      "train/pick_clean_then_place_in_recep-Potato-None-Microwave-11/trial_T20190908_215925_201428/game.tw-pddl",
+      "train/pick_cool_then_place_in_recep-Apple-None-CounterTop-14/trial_T20190909_045026_110157/game.tw-pddl",
+      "train/pick_heat_then_place_in_recep-Mug-None-Shelf-20/trial_T20190907_054109_225243/game.tw-pddl",
+      "train/pick_two_obj_and_place-Candle-None-Drawer-426/trial_T20190907_133522_667187/game.tw-pddl",
+      "train/look_at_obj_in_light-CellPhone-None-DeskLamp-318/trial_T20190909_005910_895239/game.tw-pddl",
+      "train/pick_and_place_simple-SoapBottle-None-Toilet-408/trial_T20190907_084042_365541/game.tw-pddl",
+      "train/pick_clean_then_place_in_recep-Bowl-None-DiningTable-23/trial_T20190907_221803_588693/game.tw-pddl",
+      "train/pick_cool_then_place_in_recep-Cup-None-Microwave-30/trial_T20190909_073542_933715/game.tw-pddl",
+      "train/pick_heat_then_place_in_recep-Tomato-None-DiningTable-24/trial_T20190907_073329_394002/game.tw-pddl",
+      "train/pick_two_obj_and_place-Statue-None-CoffeeTable-223/trial_T20190907_174318_168269/game.tw-pddl",
+      "train/look_at_obj_in_light-Laptop-None-DeskLamp-216/trial_T20190907_185541_681881/game.tw-pddl",
+      "train/pick_and_place_simple-Newspaper-None-Sofa-211/trial_T20190906_175004_203092/game.tw-pddl",
+      "train/pick_clean_then_place_in_recep-SoapBar-None-Drawer-409/trial_T20190907_040444_600165/game.tw-pddl",
+      "train/pick_cool_then_place_in_recep-Bowl-None-Microwave-19/trial_T20190909_041115_655821/game.tw-pddl",
+      "train/pick_heat_then_place_in_recep-Egg-None-Fridge-24/trial_T20190909_005512_279849/game.tw-pddl",
+      "train/pick_two_obj_and_place-Potato-None-Fridge-25/trial_T20190908_225233_432920/game.tw-pddl",
+      "train/look_at_obj_in_light-Box-None-DeskLamp-225/trial_T20190908_140234_782899/game.tw-pddl",
+      "train/pick_and_place_simple-WineBottle-None-Shelf-7/trial_T20190908_114629_589874/game.tw-pddl",
+      "train/pick_clean_then_place_in_recep-Kettle-None-DiningTable-17/trial_T20190909_023408_359277/game.tw-pddl",
+      "train/pick_cool_then_place_in_recep-Potato-None-Microwave-5/trial_T20190909_102625_235688/game.tw-pddl",
+      "train/pick_heat_then_place_in_recep-Apple-None-SideTable-3/trial_T20190907_164050_859748/game.tw-pddl",
+      "train/pick_two_obj_and_place-AlarmClock-None-Desk-307/trial_T20190907_013752_725369/game.tw-pddl",
+      "train/look_at_obj_in_light-Book-None-DeskLamp-324/trial_T20190907_014417_271891/game.tw-pddl",
+      "train/pick_and_place_simple-Laptop-None-Bed-302/trial_T20190908_112436_878411/game.tw-pddl",
+      "train/pick_clean_then_place_in_recep-DishSponge-None-CounterTop-427/trial_T20190909_010925_036448/game.tw-pddl",
+      "train/pick_cool_then_place_in_recep-Bowl-None-Shelf-7/trial_T20190906_185932_528745/game.tw-pddl",
+      "train/pick_heat_then_place_in_recep-Mug-None-Shelf-5/trial_T20190906_203744_920699/game.tw-pddl",
+      "train/pick_two_obj_and_place-Book-None-Drawer-304/trial_T20190908_022158_405498/game.tw-pddl",
+      "train/look_at_obj_in_light-AlarmClock-None-DeskLamp-304/trial_T20190907_170615_242578/game.tw-pddl",
+      "train/pick_and_place_simple-SprayBottle-None-Toilet-418/trial_T20190906_190917_905379/game.tw-pddl",
+      "train/pick_clean_then_place_in_recep-Ladle-None-Cabinet-20/trial_T20190907_195107_986651/game.tw-pddl",
+      "train/pick_cool_then_place_in_recep-Bread-None-DiningTable-11/trial_T20190908_005249_038958/game.tw-pddl",
+      "train/pick_heat_then_place_in_recep-Mug-None-Cabinet-20/trial_T20190908_230154_566315/game.tw-pddl",
+      "train/pick_two_obj_and_place-DishSponge-None-Toilet-403/trial_T20190908_024658_735745/game.tw-pddl"
+    ]
+  },
+  "held_out_retry_entropy_nats": {
+    "none": 0.9174595739962595,
+    "failure": 0.943394331063755,
+    "none_entropy_matched": 0.9514342035340145
+  },
+  "held_out_tasks": 134,
+  "blocks": [
+    {
+      "seed": 42,
+      "allocated_overlap": 6,
+      "index_ranks": [
+        [
+          180,
+          true,
+          82
+        ]
+      ],
+      "methods": {
+        "none": {
+          "n": 27,
+          "won": 11,
+          "first_won": 9,
+          "queries": 0,
+          "corrupt": 0,
+          "corrupt_hit": 0,
+          "calls": 45,
+          "input_tokens": 12765,
+          "memory_tokens": 0
+        },
+        "none_entropy_matched": {
+          "n": 27,
+          "won": 11,
+          "first_won": 9,
+          "queries": 0,
+          "corrupt": 0,
+          "corrupt_hit": 0,
+          "calls": 45,
+          "input_tokens": 12765,
+          "memory_tokens": 0
+        },
+        "180/1/push_always": {
+          "n": 27,
+          "won": 11,
+          "first_won": 8,
+          "queries": 27,
+          "corrupt": 73,
+          "corrupt_hit": 27,
+          "calls": 46,
+          "input_tokens": 13136,
+          "memory_tokens": 3240
+        },
+        "180/1/push_matched": {
+          "n": 27,
+          "won": 10,
+          "first_won": 8,
+          "queries": 10,
+          "corrupt": 26,
+          "corrupt_hit": 10,
+          "calls": 46,
+          "input_tokens": 13089,
+          "memory_tokens": 1200
+        },
+        "180/1/failure": {
+          "n": 27,
+          "won": 12,
+          "first_won": 9,
+          "queries": 10,
+          "corrupt": 26,
+          "corrupt_hit": 10,
+          "calls": 45,
+          "input_tokens": 12765,
+          "memory_tokens": 1200
+        },
+        "180/1/confidence": {
+          "n": 27,
+          "won": 12,
+          "first_won": 9,
+          "queries": 10,
+          "corrupt": 27,
+          "corrupt_hit": 10,
+          "calls": 45,
+          "input_tokens": 12765,
+          "memory_tokens": 1200
+        },
+        "180/1/confidence_prospective": {
+          "n": 27,
+          "won": 11,
+          "first_won": 9,
+          "queries": 10,
+          "corrupt": 28,
+          "corrupt_hit": 10,
+          "calls": 55,
+          "input_tokens": 15501,
+          "memory_tokens": 1200
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "allocated_overlap": 5,
+      "index_ranks": [
+        [
+          180,
+          true,
+          94
+        ]
+      ],
+      "methods": {
+        "none": {
+          "n": 28,
+          "won": 15,
+          "first_won": 9,
+          "queries": 0,
+          "corrupt": 0,
+          "corrupt_hit": 0,
+          "calls": 47,
+          "input_tokens": 13601,
+          "memory_tokens": 0
+        },
+        "none_entropy_matched": {
+          "n": 28,
+          "won": 14,
+          "first_won": 9,
+          "queries": 0,
+          "corrupt": 0,
+          "corrupt_hit": 0,
+          "calls": 47,
+          "input_tokens": 13601,
+          "memory_tokens": 0
+        },
+        "180/1/push_always": {
+          "n": 28,
+          "won": 17,
+          "first_won": 12,
+          "queries": 28,
+          "corrupt": 56,
+          "corrupt_hit": 28,
+          "calls": 44,
+          "input_tokens": 12733,
+          "memory_tokens": 3360
+        },
+        "180/1/push_matched": {
+          "n": 28,
+          "won": 15,
+          "first_won": 11,
+          "queries": 11,
+          "corrupt": 24,
+          "corrupt_hit": 11,
+          "calls": 45,
+          "input_tokens": 13014,
+          "memory_tokens": 1320
+        },
+        "180/1/failure": {
+          "n": 28,
+          "won": 12,
+          "first_won": 9,
+          "queries": 11,
+          "corrupt": 25,
+          "corrupt_hit": 11,
+          "calls": 47,
+          "input_tokens": 13601,
+          "memory_tokens": 1320
+        },
+        "180/1/confidence": {
+          "n": 28,
+          "won": 14,
+          "first_won": 9,
+          "queries": 11,
+          "corrupt": 21,
+          "corrupt_hit": 11,
+          "calls": 47,
+          "input_tokens": 13601,
+          "memory_tokens": 1320
+        },
+        "180/1/confidence_prospective": {
+          "n": 28,
+          "won": 16,
+          "first_won": 11,
+          "queries": 11,
+          "corrupt": 20,
+          "corrupt_hit": 11,
+          "calls": 56,
+          "input_tokens": 16052,
+          "memory_tokens": 1320
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "allocated_overlap": 5,
+      "index_ranks": [
+        [
+          180,
+          true,
+          87
+        ]
+      ],
+      "methods": {
+        "none": {
+          "n": 27,
+          "won": 10,
+          "first_won": 8,
+          "queries": 0,
+          "corrupt": 0,
+          "corrupt_hit": 0,
+          "calls": 46,
+          "input_tokens": 13805,
+          "memory_tokens": 0
+        },
+        "none_entropy_matched": {
+          "n": 27,
+          "won": 10,
+          "first_won": 8,
+          "queries": 0,
+          "corrupt": 0,
+          "corrupt_hit": 0,
+          "calls": 46,
+          "input_tokens": 13805,
+          "memory_tokens": 0
+        },
+        "180/1/push_always": {
+          "n": 27,
+          "won": 11,
+          "first_won": 8,
+          "queries": 27,
+          "corrupt": 62,
+          "corrupt_hit": 27,
+          "calls": 46,
+          "input_tokens": 13775,
+          "memory_tokens": 3240
+        },
+        "180/1/push_matched": {
+          "n": 27,
+          "won": 11,
+          "first_won": 9,
+          "queries": 9,
+          "corrupt": 22,
+          "corrupt_hit": 9,
+          "calls": 45,
+          "input_tokens": 13510,
+          "memory_tokens": 1080
+        },
+        "180/1/failure": {
+          "n": 27,
+          "won": 10,
+          "first_won": 8,
+          "queries": 9,
+          "corrupt": 23,
+          "corrupt_hit": 9,
+          "calls": 46,
+          "input_tokens": 13805,
+          "memory_tokens": 1080
+        },
+        "180/1/confidence": {
+          "n": 27,
+          "won": 11,
+          "first_won": 8,
+          "queries": 9,
+          "corrupt": 18,
+          "corrupt_hit": 9,
+          "calls": 46,
+          "input_tokens": 13805,
+          "memory_tokens": 1080
+        },
+        "180/1/confidence_prospective": {
+          "n": 27,
+          "won": 11,
+          "first_won": 9,
+          "queries": 9,
+          "corrupt": 19,
+          "corrupt_hit": 9,
+          "calls": 54,
+          "input_tokens": 15938,
+          "memory_tokens": 1080
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "allocated_overlap": 4,
+      "index_ranks": [
+        [
+          180,
+          true,
+          78
+        ]
+      ],
+      "methods": {
+        "none": {
+          "n": 26,
+          "won": 16,
+          "first_won": 11,
+          "queries": 0,
+          "corrupt": 0,
+          "corrupt_hit": 0,
+          "calls": 41,
+          "input_tokens": 11711,
+          "memory_tokens": 0
+        },
+        "none_entropy_matched": {
+          "n": 26,
+          "won": 16,
+          "first_won": 11,
+          "queries": 0,
+          "corrupt": 0,
+          "corrupt_hit": 0,
+          "calls": 41,
+          "input_tokens": 11711,
+          "memory_tokens": 0
+        },
+        "180/1/push_always": {
+          "n": 26,
+          "won": 16,
+          "first_won": 8,
+          "queries": 26,
+          "corrupt": 43,
+          "corrupt_hit": 21,
+          "calls": 44,
+          "input_tokens": 12596,
+          "memory_tokens": 3120
+        },
+        "180/1/push_matched": {
+          "n": 26,
+          "won": 16,
+          "first_won": 10,
+          "queries": 7,
+          "corrupt": 10,
+          "corrupt_hit": 5,
+          "calls": 42,
+          "input_tokens": 11973,
+          "memory_tokens": 840
+        },
+        "180/1/failure": {
+          "n": 26,
+          "won": 15,
+          "first_won": 11,
+          "queries": 7,
+          "corrupt": 16,
+          "corrupt_hit": 6,
+          "calls": 41,
+          "input_tokens": 11711,
+          "memory_tokens": 840
+        },
+        "180/1/confidence": {
+          "n": 26,
+          "won": 14,
+          "first_won": 11,
+          "queries": 7,
+          "corrupt": 13,
+          "corrupt_hit": 5,
+          "calls": 41,
+          "input_tokens": 11711,
+          "memory_tokens": 840
+        },
+        "180/1/confidence_prospective": {
+          "n": 26,
+          "won": 16,
+          "first_won": 11,
+          "queries": 7,
+          "corrupt": 10,
+          "corrupt_hit": 4,
+          "calls": 48,
+          "input_tokens": 13557,
+          "memory_tokens": 840
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "allocated_overlap": 10,
+      "index_ranks": [
+        [
+          180,
+          true,
+          82
+        ]
+      ],
+      "methods": {
+        "none": {
+          "n": 26,
+          "won": 11,
+          "first_won": 6,
+          "queries": 0,
+          "corrupt": 0,
+          "corrupt_hit": 0,
+          "calls": 46,
+          "input_tokens": 13061,
+          "memory_tokens": 0
+        },
+        "none_entropy_matched": {
+          "n": 26,
+          "won": 11,
+          "first_won": 6,
+          "queries": 0,
+          "corrupt": 0,
+          "corrupt_hit": 0,
+          "calls": 46,
+          "input_tokens": 13061,
+          "memory_tokens": 0
+        },
+        "180/1/push_always": {
+          "n": 26,
+          "won": 11,
+          "first_won": 5,
+          "queries": 26,
+          "corrupt": 65,
+          "corrupt_hit": 26,
+          "calls": 47,
+          "input_tokens": 13418,
+          "memory_tokens": 3120
+        },
+        "180/1/push_matched": {
+          "n": 26,
+          "won": 11,
+          "first_won": 6,
+          "queries": 12,
+          "corrupt": 32,
+          "corrupt_hit": 12,
+          "calls": 46,
+          "input_tokens": 13071,
+          "memory_tokens": 1440
+        },
+        "180/1/failure": {
+          "n": 26,
+          "won": 10,
+          "first_won": 6,
+          "queries": 12,
+          "corrupt": 30,
+          "corrupt_hit": 12,
+          "calls": 46,
+          "input_tokens": 13061,
+          "memory_tokens": 1440
+        },
+        "180/1/confidence": {
+          "n": 26,
+          "won": 10,
+          "first_won": 6,
+          "queries": 12,
+          "corrupt": 31,
+          "corrupt_hit": 12,
+          "calls": 46,
+          "input_tokens": 13061,
+          "memory_tokens": 1440
+        },
+        "180/1/confidence_prospective": {
+          "n": 26,
+          "won": 10,
+          "first_won": 5,
+          "queries": 12,
+          "corrupt": 30,
+          "corrupt_hit": 12,
+          "calls": 59,
+          "input_tokens": 16626,
+          "memory_tokens": 1440
+        }
+      }
+    }
+  ],
+  "metrics": {
+    "none": {
+      "accuracy_percent": {
+        "mean": 47.03907203907204,
+        "lo": 34.39176857436764,
+        "hi": 59.68637550377644
+      },
+      "first_accuracy_percent": {
+        "mean": 32.0980870980871,
+        "lo": 23.467884558227304,
+        "hi": 40.728289637946894
+      },
+      "query_rate_percent": 0.0,
+      "corrupt_atoms_per_task": 0.0,
+      "corrupt_atoms_per_query": null,
+      "corrupt_hit_rate_percent": 0.0,
+      "calls_per_task": 1.6791044776119404,
+      "input_tokens_per_task": 484.64925373134326,
+      "memory_tokens_per_task": 0.0
+    },
+    "none_entropy_matched": {
+      "accuracy_percent": {
+        "mean": 46.324786324786324,
+        "lo": 34.24575020672994,
+        "hi": 58.40382244284271
+      },
+      "first_accuracy_percent": {
+        "mean": 32.0980870980871,
+        "lo": 23.467884558227304,
+        "hi": 40.728289637946894
+      },
+      "query_rate_percent": 0.0,
+      "corrupt_atoms_per_task": 0.0,
+      "corrupt_atoms_per_query": null,
+      "corrupt_hit_rate_percent": 0.0,
+      "calls_per_task": 1.6791044776119404,
+      "input_tokens_per_task": 484.64925373134326,
+      "memory_tokens_per_task": 0.0
+    },
+    "180/1/push_always": {
+      "accuracy_percent": {
+        "mean": 49.20838420838421,
+        "lo": 35.671426166995246,
+        "hi": 62.745342249773174
+      },
+      "first_accuracy_percent": {
+        "mean": 30.423280423280424,
+        "lo": 20.011561550460197,
+        "hi": 40.83499929610065
+      },
+      "query_rate_percent": 100.0,
+      "corrupt_atoms_per_task": 2.2313432835820897,
+      "corrupt_atoms_per_query": 2.2313432835820897,
+      "corrupt_hit_rate_percent": 96.26865671641791,
+      "calls_per_task": 1.6940298507462686,
+      "input_tokens_per_task": 489.9850746268657,
+      "memory_tokens_per_task": 120.0
+    },
+    "180/1/push_matched": {
+      "accuracy_percent": {
+        "mean": 47.03907203907204,
+        "lo": 34.39176857436764,
+        "hi": 59.68637550377644
+      },
+      "first_accuracy_percent": {
+        "mean": 32.757427757427756,
+        "lo": 24.451670921618852,
+        "hi": 41.063184593236656
+      },
+      "query_rate_percent": 36.56716417910448,
+      "corrupt_atoms_per_task": 0.8507462686567164,
+      "corrupt_atoms_per_query": 2.326530612244898,
+      "corrupt_hit_rate_percent": 35.07462686567164,
+      "calls_per_task": 1.671641791044776,
+      "input_tokens_per_task": 482.5149253731343,
+      "memory_tokens_per_task": 43.88059701492537
+    },
+    "180/1/failure": {
+      "accuracy_percent": {
+        "mean": 44.0984940984941,
+        "lo": 33.93329482047513,
+        "hi": 54.26369337651307
+      },
+      "first_accuracy_percent": {
+        "mean": 32.0980870980871,
+        "lo": 23.467884558227304,
+        "hi": 40.728289637946894
+      },
+      "query_rate_percent": 36.56716417910448,
+      "corrupt_atoms_per_task": 0.8955223880597015,
+      "corrupt_atoms_per_query": 2.4489795918367347,
+      "corrupt_hit_rate_percent": 35.82089552238806,
+      "calls_per_task": 1.6791044776119404,
+      "input_tokens_per_task": 484.64925373134326,
+      "memory_tokens_per_task": 43.88059701492537
+    },
+    "180/1/confidence": {
+      "accuracy_percent": {
+        "mean": 45.4985754985755,
+        "lo": 37.56714696845602,
+        "hi": 53.430004028694974
+      },
+      "first_accuracy_percent": {
+        "mean": 32.0980870980871,
+        "lo": 23.467884558227304,
+        "hi": 40.728289637946894
+      },
+      "query_rate_percent": 36.56716417910448,
+      "corrupt_atoms_per_task": 0.8208955223880597,
+      "corrupt_atoms_per_query": 2.2448979591836733,
+      "corrupt_hit_rate_percent": 35.07462686567164,
+      "calls_per_task": 1.6791044776119404,
+      "input_tokens_per_task": 484.64925373134326,
+      "memory_tokens_per_task": 43.88059701492537
+    },
+    "180/1/confidence_prospective": {
+      "accuracy_percent": {
+        "mean": 47.72486772486773,
+        "lo": 34.367898080268624,
+        "hi": 61.08183736946683
+      },
+      "first_accuracy_percent": {
+        "mean": 33.498168498168496,
+        "lo": 22.48445451762447,
+        "hi": 44.51188247871252
+      },
+      "query_rate_percent": 36.56716417910448,
+      "corrupt_atoms_per_task": 0.7985074626865671,
+      "corrupt_atoms_per_query": 2.183673469387755,
+      "corrupt_hit_rate_percent": 34.32835820895522,
+      "calls_per_task": 2.029850746268657,
+      "input_tokens_per_task": 579.6567164179105,
+      "memory_tokens_per_task": 43.88059701492537
+    }
+  },
+  "paired_contrasts_pp": {
+    "failure_minus_confidence_at_largest": {
+      "mean": -1.4000814000814004,
+      "lo": -6.584292125799785,
+      "hi": 3.784129325636985
+    },
+    "failure_minus_confidence_prospective_at_largest": {
+      "mean": -3.6263736263736277,
+      "lo": -11.96857352029879,
+      "hi": 4.715826267551535
+    },
+    "failure_minus_push_matched_at_largest": {
+      "mean": -2.940577940577941,
+      "lo": -11.028897446684859,
+      "hi": 5.147741565528977
+    },
+    "failure_minus_no_memory_at_largest": {
+      "mean": -2.940577940577941,
+      "lo": -9.59432574420749,
+      "hi": 3.7131698630516077
+    },
+    "push_always_minus_entropy_matched_at_largest": {
+      "mean": 2.8835978835978837,
+      "lo": -2.9050623053476476,
+      "hi": 8.672258072543414
+    },
+    "push_matched_minus_entropy_matched_at_largest": {
+      "mean": 0.7142857142857139,
+      "lo": -3.094553961776269,
+      "hi": 4.523125390347697
+    },
+    "failure_minus_entropy_matched_at_largest": {
+      "mean": -2.2262922262922276,
+      "lo": -7.40351530317146,
+      "hi": 2.950930850587005
+    },
+    "confidence_minus_entropy_matched_at_largest": {
+      "mean": -0.8262108262108271,
+      "lo": -6.971701872713446,
+      "hi": 5.319280220291791
+    },
+    "confidence_prospective_minus_entropy_matched_at_largest": {
+      "mean": 1.4000814000814004,
+      "lo": -3.784129325636985,
+      "hi": 6.584292125799785
+    },
+    "none_minus_entropy_matched_at_largest": {
+      "mean": 0.7142857142857139,
+      "lo": -1.26888936085557,
+      "hi": 2.6974607894269975
+    }
+  },
+  "failure_minus_push_matched_corrupt_atoms_per_task_at_largest": {
+    "mean": 0.04531949531949532,
+    "lo": -0.09563749000265694,
+    "hi": 0.1862764806416476
+  },
+  "gates": {},
+  "confidence_equivalent_within_5pp": false,
+  "decision": null
+}
