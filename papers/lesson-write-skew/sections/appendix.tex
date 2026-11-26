@@ -1,0 +1,25 @@
+\section{Implementation and calibration}
+\label{app:details}
+
+Store seeds are 0--11 for the count fit and 100--129 for the held-out test.
+We sample three syllables from a fixed list of sixteen, rejecting duplicate keys and lines not matching the old rule's tokenized length.
+All active and inactive entries have the same sentence shape except for the initial \texttt{Tickets} or \texttt{Notes} marker and the key.
+The full prompt follows Qwen's chat markers and ends in an assistant cue, \texttt{Queue}, followed by a space.
+Each candidate digit is one token following that cue.
+We read six-way log probabilities with an equal logit offset on the six digits and retain exactly those six probabilities.
+The offset and common normalizer cancel in pairwise log-odds.
+The scorer checks the returned token identities and verifies invariance to a larger offset on the calibration prompt.
+
+Query 1 asks where a newly arrived ticket belongs; query 2 asks which queue handles the ticket type. Both request only a number.
+We use query 1 to check each new key in its fully active cube and score the shared all-inactive cell once per store and wording.
+On the calibration prompt, prefix caching agrees with an uncached read within $10^{-3}$ log-probability units.
+We run inference only on an eight-thread Intel Xeon CPU.
+
+Bootstrap intervals use 10,000 resamples of the held-out store indices with replacement.
+The exact one-sided zero-event upper limit, where applicable, solves $(1-p)^n=0.05$ for $n$ store draws.
+
+\paragraph{Synthetic crossing checks.}
+The additive margin $m(S)=2.5-|S|$ fails only at the full set, but its third difference is zero.
+A count curve $(2.5,2,1,-1)$ also fails only at the full set and gives third difference $-0.5$ without any identity effect.
+If all proper subsets instead score $1$ and the triple scores $-1$, the pair forecast is $1$ and misses by $-2$ logits (observed minus predicted).
+These cubes check the analysis, not the language model.
