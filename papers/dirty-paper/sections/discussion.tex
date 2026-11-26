@@ -1,0 +1,26 @@
+\section{Why the analogy stops at norm}
+\label{sec:scope}
+
+Costa's theorem is a statement about power.
+The precoder spends no extra power on known interference because the decoder cannot tell lattice-shifted signals apart.
+In a write channel, power is update norm, and our first result is exactly that statement.
+Continual learning, however, asks for retention, and retention is already free for projection: an A-null write keeps every old output fixed at any norm.
+The dirty-paper premise and the projection premise therefore do not compete on the primary metric.
+They compete only on how much norm the new task needs, and the reviewer's predicted risk applies there.
+The joint precoder's saving is borrowed from the old outputs, and it is repaid with old items whenever the write is short or later training shrinks the weights.
+
+The modulo decoder is also the scope boundary.
+With a non-periodic readout, such as regression, logits or argmax over classes, the coset \(r+M\mathbb Z^{N_B}\) becomes the single point \(r\) as \(M\to\infty\), the closest-vector step is the identity, and the A-null dirty-paper write is GPM.
+Our self-test checks this limit.
+A learned nonlinear encoder and decoder can recover THP-like folding for communication~\citep{ozyilkan2025dirty}, but in a network the decoder is the model itself: making its readout periodic changes the task, and the model must also be trained to be stable to whole-period moves of its outputs.
+
+\paragraph{Limitations.}
+The hidden layer is frozen and the write is a single readout update, so the comparison is between closed-form writes, not training runs.
+Budgets are scaled by GPM's exact-write norm, which compresses the grid at \(S=4\) where GPM is weak; the switched write and the decay curves are post hoc.
+Later training is modeled as uniform weight shrink only.
+We test one lattice (\(M\mathbb Z^n\), \(M=8\)) and small task sizes (\(N_A=24\), \(N_B=16\)).
+A larger network could make the joint precoder's cliff shallower, but nothing here suggests it would lift old-task accuracy above projection's.
+
+\paragraph{Verdict.}
+Dirty-paper writes, as specified, are killed: no gain over GPM on old-task accuracy, and no pre-registered gain on new-task accuracy at equal norm in \nkilled{} of \nconfigs{} configurations.
+What survives is an exact accounting identity, that known old weights cost the precoder no norm, which belongs to the modulo decoder and is mostly available to projected descent on a periodic loss.
