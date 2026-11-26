@@ -1,0 +1,68 @@
+\section{Results}
+\label{sec:results}
+
+\paragraph{Checks.}
+The analyzer recovers zero three-way contrast for an additive threshold crossing,
+recovers the count contrast for a count-only crossing, and detects a planted triple-only crossing that the pairwise forecast misses.
+On the token-matched calibration prompt, merely marking the old record as a note kept the answer correct and increased its margin from \oldOn{} to \oldOff{} logits.
+Thus the marker alone is not proof that the reader ignores inactive text.
+In a post hoc check at zero active new rules, replacing the old record with a disjoint note of the same token length and queue dropped old-key accuracy from \holdoutN/\holdoutN{} to \unboundCorrect/\holdoutN{}.
+With all three writes active, the model reads \primaryNew/\newTotal{} focal new keys and \controlNew/\newTotal{} disjoint new keys correctly on their own probes.
+
+\paragraph{One strict witness.}
+The primary query fails only at the full triple in \strictPrimary{} focal store (\cref{tab:retention}).
+Its lowest proper-subset margin is \witnessProper{} logits, but the full-set margin against the winning queue (\witnessRival{}) is $\witnessMargin{}$ logits.
+The pair-only, count-only, and curvature-corrected pair forecasts predict worst-rival margins of
+$\witnessPair{}$, $\witnessCount{}$, and $\witnessCorrected{}$ respectively.
+All three new rules remain correct on their own queries in this store.
+The original runner-up is not the rival that wins at the full set.
+With query 2, the same store stays correct at every subset, including the full set ($\witnessReworded{}$ logits; \cref{fig:factorial}).
+No focal store is a strict witness under query 2; its one-sided 95\% upper bound is \noWitnessUpper\% for this store sampler.
+
+\paragraph{The aggregate contrast does not distinguish the focal triples.}
+Primary-query focal trials pass the magnitude floor: the ratio of mean absolute third difference to mean absolute pair effect is \primaryRatio{} (95\% interval).
+The separately fit count curve predicts a full-set gain of $\primaryPredChange{}$ logits, not the observed mean shift of \primaryFullChange{} logits.
+Adding its curvature does not improve the pairwise forecasts in this run (\cref{tab:predictions}).
+Yet the disjoint controls are at least as variable by point estimate: the focal-minus-disjoint mean absolute count-centered contrast is \primaryResidualGap{} logits for query 1 and \secondaryResidualGap{} for query 2.
+Neither interval establishes larger focal residuals.
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Retention is checked against every rival, not just the original runner-up.}
+Each row covers \holdoutN{} held-out stores. \emph{Strict} counts cubes where every proper subset is correct but the full triple is not.
+\emph{Misses} count strict failures the corresponding forecast predicts to be safe.
+Token count is per old-read prompt, including the fixed cue.}
+\label{tab:retention}
+\begin{tabular}{llrrrrrr}
+\toprule
+& & \multicolumn{2}{c}{Old correct} & & \multicolumn{2}{c}{Misses} & \\
+\cmidrule(lr){3-4}\cmidrule(lr){6-7}
+Query & Triple & Empty & Full & Strict & Pair & Pair + count & Tokens \\
+\midrule
+\csname @@input\endcsname table_retention.tex
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Forecast error quantifies departures from each control.}
+Mean absolute error (MAE, logits, lower is better) measures forecast accuracy on the full-triple fixed-rival margin.
+\emph{Ratio} is mean absolute cubic over mean absolute pair effect.
+Ranges are store-bootstrap 95\% intervals conditional on the count fit.}
+\label{tab:predictions}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrrr}
+\toprule
+& & \multicolumn{3}{c}{Full-triple MAE} & \\
+\cmidrule(lr){3-5}
+Query & Triple & Count & Pair & Pair + count & Ratio \\
+\midrule
+\csname @@input\endcsname table_predictions.tex
+\bottomrule
+\end{tabular}
+\end{table}
+
+The factorial run takes \elapsedMinutes{} minutes on CPU with \nCalls{} scoring requests and \totalTokens{} logical input tokens, including calibration and full-store checks of the new keys.
+The focal and disjoint arms use the same prompt budget and checkpoint (\cref{tab:retention}).

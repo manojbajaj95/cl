@@ -1,0 +1,9 @@
+\begin{abstract}
+Three new rules in a prompt can flip an old decision even when every proper subset preserves it.
+Such a crossing does not establish a three-way interaction: small additive losses may suffice.
+We score all eight subsets of \holdoutN{} triples on frozen Qwen2.5-0.5B-Instruct, holding token length, positions, and queue labels fixed, and compare with disjoint triples and a separately fitted count curve.
+One primary-query triple flips the old answer only when fully active; both a pairwise extrapolation and a count-only forecast miss it, and all three new rules remain readable.
+Changing only the question wording restores the old answer in that store.
+After count correction, mean three-way residual size does not distinguish the focal triples from disjoint replacements.
+The experiment establishes a wording-sensitive case, not a robust retention failure that warrants escalating to weight edits.
+\end{abstract}

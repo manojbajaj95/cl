@@ -1,0 +1,43 @@
+\section{Protocol}
+\label{sec:protocol}
+
+\paragraph{Fixed slots.}
+The reader is Qwen2.5-0.5B-Instruct in FP16~\citep{qwen2024}.
+Each store has one fixed old routing rule, \texttt{kavimer} $\mapsto 4$, and three slots containing candidate rules $B,C,D$ for distinct, unrelated ticket types.
+The candidates map to different non-target queues; the control triple changes only keys, not queues or slots.
+For a subset $S\subseteq T=\{B,C,D\}$, slots outside $S$ use token-matched notes.
+Notes preserve each slot's printed queue and are marked as inactive in the instruction.
+Each prompt asks one of two questions about the old key.
+The old slot is drawn once per store, not per subset.
+We verify token length and the positions of the old rule and query in every old-read prompt.
+
+\paragraph{Retention and three-way interaction.}
+Let $m_r(S)$ be the logit for queue 4 minus the logit for rival queue $r$ in subset $S$.
+A strict failure requires $\min_{r\neq4}m_r(S)>0$ for every proper subset and $\min_{r\neq4}m_r(T)\leq0$.
+For a continuous contrast, pick the strongest rival at $S=\varnothing$ and freeze it for both cubes in a store and wording.
+Write $m(S)$ for that fixed-rival margin.
+The prediction from all lower-order coefficients and its error are
+\begin{align}
+\widehat m_2(T) &= \sum_{|S|=2}m(S)-\sum_{|S|=1}m(S)+m(\varnothing), \\
+\Delta_3 &= m(T)-\widehat m_2(T).
+\end{align}
+The contrast is the third finite difference on the Boolean cube.
+The pair effects for two entries $i,j$ are $m(ij)-m(i)-m(j)+m(\varnothing)$, where $m(ij)$ is shorthand for $m(\{i,j\})$.
+We divide the mean $|\Delta_3|$ by the mean absolute pair effect, averaging over stores and pairs.
+We use all five rival-specific predictions, not just the fixed rival, when counting missed flips.
+
+\paragraph{Count controls.}
+In each of \fitN{} separate stores we average the margin changes from $m(\varnothing)$ within each active count $k$.
+Let $g(k)$ be the mean of those averages across fit stores.
+The count-only prediction for a held-out store is $m(\varnothing)+g(3)$; its generic three-way component is
+$g(3)-3g(2)+3g(1)-g(0)$.
+We also add this component to the pairwise forecast to test whether generic curvature improves it.
+For predicted flips, we fit the same curve separately for each of the five rivals rather than using the fixed-rival aggregate curve.
+Neither count fit uses nonempty held-out cells.
+The disjoint triple tests the typical variation from another set of random keys with the same syntax and position, not a different key population.
+We resample paired stores for 95\% bootstrap intervals, conditional on the count fit; masks, rivals, and wordings are not independent replicates.
+
+\paragraph{Screen.}
+The earlier proposal set a relative interaction floor of $0.10$.
+A contrast above that floor does not suffice: promotion also requires a strict failure missed by the lower-order forecast and evidence beyond count curvature or generic matched fillers.
+This test neither trains weights nor selects candidate keys based on model scores.

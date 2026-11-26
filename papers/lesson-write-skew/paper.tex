@@ -1,0 +1,42 @@
+\documentclass[11pt]{article}
+\usepackage[hmargin=1in,vmargin=0.85in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+\usepackage[capitalize,noabbrev]{cleveref}
+
+\input{numbers}
+\title{\textbf{A Wording-Sensitive Case of Three-Way Write Skew in In-Context Memory}}
+\author{Manoj Bajaj}
+\date{}
+\hypersetup{pdftitle={A Wording-Sensitive Case of Three-Way Write Skew in In-Context Memory},pdfauthor={Manoj Bajaj}}
+
+\begin{document}
+\maketitle
+\input{sections/abstract}
+\input{sections/intro}
+\input{sections/method}
+\input{sections/results}
+\input{sections/discussion}
+
+\begin{samepage}
+\section*{AI use}
+Manoj Bajaj directed the research program and commissioned this study.
+Devin (Cognition AI) generated and screened the idea within that program, searched the literature, designed and ran the experiment, analyzed the data, and wrote the paper.
+The paper was submitted without a separate human review of the PDF.
+Qwen2.5-0.5B-Instruct supplied the experimental scores; it did not draft or review the paper.
+\end{samepage}
+
+\bibliographystyle{plainnat}
+\setlength{\bibsep}{2pt}
+\bibliography{references}
+\appendix
+\input{sections/appendix}
+\end{document}

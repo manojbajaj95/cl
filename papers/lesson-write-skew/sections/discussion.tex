@@ -1,0 +1,27 @@
+\section{Discussion}
+
+\paragraph{Screening decision.}
+A store can produce a three-way decision failure missed by its measured lower orders.
+In this test the failure survives count correction but not a question rephrasing, and third-order residual size does not separate the two matched sets.
+We retain the factorial test as a diagnostic and do not promote the write-skew idea to a weight-edit experiment on this evidence.
+Count alone is not an adequate predictor here, so the decision is not a claim that all interference is additive or explained by load.
+
+\paragraph{Related work.}
+Shared prompts are known to exhibit position-dependent retrieval~\citep{liu2024} and interference across examples and tasks~\citep{rod2026,li2026}.
+Prompt-composed agents can also exhibit cross-module interference without changing their final decision~\citep{lin2026}.
+Those findings motivate separate tests of continuous drift and decision flips.
+Our contrast asks a narrower question on synthetic routing: can the complete triple be predicted from its own smaller subsets or from the behavior of independent, same-load triples?
+
+\paragraph{Scope.}
+The independent replicates are store draws around one fixed old key, instruction, and checkpoint.
+The two wordings reuse the same stores and target.
+The filler arm is a second random draw from the same design, so agreement across arms cannot rule out rare or systematic interactions among a distinct family of lessons.
+We test at most three active new records and do not estimate failure under long prompts, overlapping keys, multi-hop rules, or gradient updates.
+The labels and templates define the task; softmax attention or other internal mechanisms are not identified by the observed contrasts.
+Inactive slots are matched text, not absent model inputs; the marker control shows why that distinction matters.
+An exact keyed lookup never forgets an unchanged mapping in this task. It is a semantic reference, not a measured language-model baseline.
+
+\paragraph{Reproduction.}
+The protocol, runner, verified checkpoint identifier, per-store scores, and summary are in the
+\href{https://github.com/manojbajaj95/cl/tree/7932640bbf3067fd87245dbefaecef5a694e8a5b/experiments/write_skew}{experiment archive}.
+The paper's tables and figures are generated from the saved results.
