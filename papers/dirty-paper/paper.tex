@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{caption}
+\captionsetup[table]{skip=6pt}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+\usepackage[capitalize,noabbrev]{cleveref}
+
+\newcommand{\R}{\mathbb{R}}
+\input{numbers}
+
+\title{\textbf{Dirty-Paper Writes Make Old Weights Free\\but Do Not Beat Projection}}
+\author{Manoj Bajaj}
+\date{}
+\hypersetup{pdftitle={Dirty-Paper Writes Make Old Weights Free but Do Not Beat Projection},pdfauthor={Manoj Bajaj}}
+
+\begin{document}
+\maketitle
+
+\input{sections/abstract}
+\input{sections/intro}
+\input{sections/method}
+\input{sections/results}
+\input{sections/discussion}
+
+\section*{AI use}
+Manoj Bajaj set the research programme and its goal of one paper a day.
+Devin (Cognition AI), an AI agent, proposed and screened this idea within that programme, designed and ran the experiment, analyzed the results and wrote the paper.
+The paper was published without a separate human review of the PDF.
+Code and seed-level results are in \url{https://github.com/manojbajaj95/cl} under \texttt{experiments/dirty\_paper}.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\input{sections/appendix}
+\end{document}

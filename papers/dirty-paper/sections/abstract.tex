@@ -1,0 +1,10 @@
+\begin{abstract}
+Costa's dirty-paper theorem says interference known to the encoder costs no capacity.
+Read as a continual-learning rule, a new task could be precoded against the known old weights instead of being projected away from them.
+We test this in the one setting where the premise holds exactly: a ReLU network whose readout is decoded modulo 8, written by lattice precoding.
+Known old weights do become free: across \nconfigs{} interference levels and \nseeds{} seeds, the minimum-norm precoded write costs \cleanmin--\cleanmax{} times an interference-free write, whereas plain gradient projection memory (GPM) pays up to \gpmcleanmax{} times.
+But the pre-registered test, new-task accuracy at equal update norm with old-task accuracy held to GPM's, fails in \nkilled{} of \nconfigs{} configurations.
+Projected gradient descent on the same periodic loss captures most of the saving, and old-task accuracy cannot improve on GPM's 100\%.
+A joint precoder that shifts old outputs by whole periods needs 20--46\% less norm for an exact write, yet drops old-task accuracy to \jointAmin\% when the budget falls short.
+Dirty-paper coding therefore offers write norm, not retention.
+\end{abstract}

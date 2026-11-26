@@ -1,0 +1,51 @@
+\section{A write channel where Costa's premise holds}
+\label{sec:method}
+
+\subsection{Network, tasks and decoder}
+
+The network is a two-layer ReLU MLP with a frozen hidden layer and a scalar readout \(w\in\R^{h}\):
+\(f_w(x)=w^\top\phi(x)\), \(\phi(x)=\sqrt{2/h}\,\max(Ux+c,0)\), with \(x\in\R^{16}\), \(h=64\), \(U_{ij}\sim\mathcal N(0,1/16)\) and \(c_i\sim\mathcal N(0,1/4)\).
+Each item carries a residue label \(t\in\{0,\dots,M-1\}\) with \(M=8\), and is correct when \(f_w(x)\) rounds to \(t\) modulo \(M\):
+\begin{equation}
+  \mathrm{correct}(x,t)=\mathbf{1}\big[\,|\mathrm{wrap}(f_w(x)-t)|<\tfrac12\,\big],\qquad \mathrm{wrap}(u)=u-M\,\mathrm{round}(u/M).
+  \label{eq:decoder}
+\end{equation}
+Chance is \(1/M=12.5\%\).
+This modulo decoder is the assumption that makes dirty-paper coding possible (\cref{sec:scope}); everything else is a standard readout write.
+
+Old task \(A\) has \(N_A=24\) Gaussian inputs with features \(\Phi_A\in\R^{h\times N_A}\) and uniform labels \(t_A\).
+The old weights \(w_0\) are the minimum-norm interpolant of \(y_A=t_A+ML\), where \(L\) is uniform on \(\{-S,\dots,S\}\).
+With \(S=0\) the old outputs sit in \([0,M)\); with \(S=4\) they are spread over five periods, as they would be after unconstrained training on a periodic loss.
+New task \(B\) has \(N_B=16\) inputs, each at angle \(\vartheta\in\{15^\circ,30^\circ,60^\circ,90^\circ\}\) from a distinct \(A\) input, so smaller \(\vartheta\) means stronger interference.
+The writer knows \(w_0\), so it knows the interference \(s_B=\Phi_B^\top w_0\) that the old weights add to every \(B\) output.
+
+\subsection{Seven writes}
+
+Every arm writes \(\Delta=Fa\) for a feature map \(F\) and asks for a change \(z\) of the outputs it controls; the exact write is the minimum-norm \(\Delta\) realizing \(z\).
+Let \(P=I-\Phi_A(\Phi_A^\top\Phi_A)^{-1}\Phi_A^\top\) project onto the complement of \(A\)'s features, \(G=\Phi_B^\top P\Phi_B\), and \(r=t_B-s_B\).
+\begin{itemize}
+  \item \textbf{FT}: \(F=\Phi_B\), \(z=r\). No protection; a lower bound on norm and on retention.
+  \item \textbf{GPM}~\citep{saha2021gpm}: \(F=P\Phi_B\), \(z=r\). Hard projection; \(A\)'s outputs do not move.
+  \item \textbf{OWM}~\citep{zeng2019owm}: \(F=P_\alpha\Phi_B\), \(z=r\), with \(P_\alpha=I-\Phi_A(\Phi_A^\top\Phi_A+\alpha I)^{-1}\Phi_A^\top\) and \(\alpha=0.01\,\mathrm{tr}(\Phi_A^\top\Phi_A)/N_A\). Soft projection; \(A\) may move.
+  \item \textbf{GPM + modular GD}: \(F=P\Phi_B\), trained by gradient descent on the periodic loss \(\tfrac{M^2}{4\pi^2}(1-\cos\tfrac{2\pi e}{M})\) of the residual \(e=s_B+G a-t_B\), for 60{,}000 steps at rate \(1/\lambda_{\max}(G)\).
+  This is GPM given the same decoder knowledge as the dirty-paper arms, and is the strongest matched baseline.
+  \item \textbf{Dirty-paper, THP}: \(F=P\Phi_B\), \(z=\mathrm{wrap}(r)\) coordinatewise: Tomlinson--Harashima precoding~\citep{tomlinson1971,harashima1972}.
+  \item \textbf{Dirty-paper, A-null (VP)}: \(F=P\Phi_B\) and \(z\) the member of the coset \(r+M\mathbb Z^{N_B}\) of least write cost \(z^\top G^{-1}z\), i.e.\ vector-perturbation precoding~\citep{hochwald2005vp}.
+  This is exactly the minimum-norm \(A\)-null write that decodes all of \(B\).
+  \item \textbf{Dirty-paper, joint}: \(F=[\Phi_A,\Phi_B]\), with \(A\)'s outputs allowed to move by whole periods: \(z\in M\mathbb Z^{N_A}\times(r+M\mathbb Z^{N_B})\), minimizing \(z^\top K^{-1}z\) with \(K=F^\top F\).
+  The new task is written \emph{around} the old one instead of beside it, which is the card's literal proposal.
+\end{itemize}
+The closest-vector problems are solved by LLL reduction~\citep{lenstra1982lll} and Schnorr--Euchner enumeration~\citep{agrell2002closest}, capped at \(4\times10^5\) nodes.
+The A-null search finished exactly in every instance; the 40-dimensional joint search finished in at least \cvpexact{} of instances per configuration and otherwise returns the best point found, which can only overstate the joint write's cost.
+
+\subsection{Equal update norm and the kill bar}
+
+For budgets \(\rho=\beta\,\|\Delta_{\mathrm{GPM}}\|\) with 15 log-spaced \(\beta\in[0.05,1.5]\), each arm writes its best update of norm at most \(\rho\): the ridge-shrunk solution \(a=(F^\top\Phi+\lambda I)^{-1}z\) whose norm equals \(\rho\) (\(\lambda=0\) if the exact write already fits), and for modular GD the same descent with projection onto the norm ball.
+We score old-task accuracy (primary), new-task accuracy, the exact-write norm, and robustness to later training modeled as a uniform weight shrink \(w\mapsto(1-\gamma)w\) after the write; the half-life is the smallest \(\gamma\) on a 40-point log grid in \([10^{-4},0.3]\) at which accuracy falls below 50\%.
+
+The pre-registered decision, fixed in code before the first sweep, averages new-task accuracy over the 15 budgets for each seed.
+A dirty-paper arm earns credit at a budget only if its old-task accuracy is within 1~pp of GPM's; the best dirty-paper arm (THP, A-null, joint) is compared with the best projection arm (GPM, OWM, modular GD).
+The idea is killed unless the paired gain has a 95\% Student-\(t\) interval above zero and a mean of at least 1~pp.
+We run \nseeds{} seeds for each of the \nconfigs{} \((\vartheta,S)\) configurations; each seed draws its own network, inputs and labels.
+The whole sweep takes \runtime{} minutes on one CPU core.
+After the first sweep we added three measurements that do not enter the decision: interference-free reference writes, old-task decay curves, and budget sweeps at \(S=4\).

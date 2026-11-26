@@ -1,0 +1,82 @@
+\section{Results}
+\label{sec:results}
+
+\begin{table}[t]
+  \centering
+  \caption{\textbf{Known old weights are free for the precoder, but the pre-registered test fails in \nkilled{} of \nconfigs{} configurations.}
+  Columns 3--5: exact-write norm relative to GPM with modular descent (below 1 is cheaper).
+  ``Free'': the A-null dirty-paper write's norm divided by the same write's norm with the old weights removed (Costa predicts 1).
+  \(\Delta\) test: the pre-registered paired gain in budget-averaged new-task accuracy (pp) of the best dirty-paper arm over the best projection arm; the idea passes only if the interval is above zero and the mean is at least 1~pp.
+  Switch: post hoc, the joint write when the budget covers its exact norm and modular descent otherwise, minus modular descent (pp).
+  Means over \nseeds{} seeds with 95\% Student-\(t\) intervals.}
+  \label{tab:main}
+  \small
+  \setlength{\tabcolsep}{3.5pt}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{rrcccccc}
+    \toprule
+    \(\vartheta\) & \(S\) & GPM & Dirty (A-null) & Dirty (joint) & Free & \(\Delta\) test (pp) & Switch (pp) \\
+    \midrule
+    \csname @@input\endcsname table_main.tex 
+    \bottomrule
+  \end{tabular}}
+\end{table}
+
+\subsection{Known interference costs nothing}
+
+Costa's premise transfers.
+The minimum-norm A-null precoded write costs \cleanmin--\cleanmax{} times the same write made with the old weights removed, and every interval in the ``Free'' column of \cref{tab:main} contains 1.
+The interference is not small: the old weights add an output of root-mean-square 4--5 to each new item at \(S=0\) and 22--29 at \(S=4\) (\cref{sec:appendix}).
+GPM, which must cancel it, pays for it.
+At \(S=4\) GPM's exact write costs up to \gpmcleanmax{} times its interference-free write, and 10.4--10.8 times the A-null precoder's.
+
+\subsection{A baseline with the same decoder takes most of the saving}
+
+The saving belongs to the decoder, not to the precoder.
+GPM with modular descent knows nothing about lattices, yet descending the periodic loss from zero lands in a cheap coset: its exact writes cost \gdgpmSfourmin--\gdgpmSfourmax{} of plain GPM's at \(S=4\).
+Closest-vector search then trims a further 7--16\%, as the A-null column shows.
+THP's coordinatewise wrap is worse than modular descent in every configuration (\cref{tab:arms}), as expected from a precoder that ignores the correlations in \(G\).
+
+The trimmed norm does not turn into accuracy at equal norm.
+Below its exact threshold the A-null write shrinks toward a fixed coset point and gains nothing over descent, which can change coset as the norm grows: at the main configuration the budget-averaged difference is \mainVPGD{} pp (95\% interval \mainVPGDLo{} to \mainVPGDHi{}).
+Old-task accuracy cannot separate them at all.
+Every A-null arm leaves the old outputs untouched, so GPM's 100\% is a ceiling that no write can beat on the primary metric (\cref{fig:budget}, right).
+
+\subsection{The joint precoder trades norm for a retention cliff}
+
+The joint write is the literal proposal: it moves old outputs by whole periods, which the modulo decoder cannot see.
+It is the only arm with a large saving, needing \vjgdmin--\vjgdmax{} of modular descent's norm for an exact write.
+The saving is conditional.
+An exact joint write leaves old-task accuracy at 100\%, but a short one leaves old outputs part-way between periods: at the main configuration old-task accuracy falls to \jointAmin\% at the smallest budgets, near chance.
+The same loan is visible under later training.
+After an exact write, the joint arm's old-task half-life under weight shrink is \hlAjoint{}, against \hlAgpm{} for every A-null arm (\cref{tab:arms}).
+
+These two effects decide the pre-registered test.
+Under the 1~pp rule the joint arm earns no credit wherever it costs old items, and the A-null arms have nothing to add over descent.
+Only the strongest-interference configuration (\(\vartheta=15^\circ\), \(S=4\)) passes, with \hardDelta{} pp (\hardDeltaLo{} to \hardDeltaHi{}); there the budget grid starts above the joint write's cliff because it is scaled to GPM's large exact-write norm.
+The main configuration fails at \mainDelta{} pp (\mainDeltaLo{} to \mainDeltaHi{}).
+
+A writer that knows the joint write's exact norm can avoid the cliff by falling back to modular descent below it.
+This switched write, constructed after the sweep, never loses an old item and beats descent in every configuration, but by \swmin--\swmax{} pp averaged over budgets.
+Its whole gain lies between the two exact-write thresholds, where it adds \swwmin--\swwmax{} pp.
+It is a scheduling rule over two writes, not evidence that precoding protects old knowledge.
+
+\begin{table}[t]
+  \centering
+  \caption{\textbf{All seven writes at the main configuration} (\(\vartheta=30^\circ\), \(S=0\)).
+  Norm: exact-write norm relative to GPM.
+  Accuracies at the budget of 0.445 GPM norms, the grid point nearest the A-null write's threshold.
+  Half-lives: weight shrink \(\gamma\) at which accuracy first falls below 50\% after an exact write (larger is more robust).
+  Means over \nseeds{} seeds with 95\% Student-\(t\) intervals.}
+  \label{tab:arms}
+  \small
+  \setlength{\tabcolsep}{3.5pt}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lccccc}
+    \toprule
+    Write & Norm & New-task acc. & Old-task acc. & Old half-life & New half-life \\
+    \midrule
+    \csname @@input\endcsname table_arms.tex 
+    \bottomrule
+  \end{tabular}}
+\end{table}
