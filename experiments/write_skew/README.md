@@ -9,6 +9,15 @@ departure from a store's own lower-order effects; the count and disjoint arms
 check whether that departure needs a specific combination. Accuracy is forced
 choice among six queues, not unconstrained generation.
 
+## Result
+
+One of 30 focal triples passed every proper subset but failed on the whole
+triple; lower-order and count forecasts both missed it. All three new keys
+were still read correctly. Rewording the old-key question removed the failure.
+The frozen count fit did not explain the margin shifts by itself; after count
+correction disjoint controls had comparable or larger residuals. Do not
+promote to LoRA on this screen; retain the witness and the assay.
+
 ## Reproduce
 
 Use Python 3.10+, NumPy, and the CPU `llama-server` build at llama.cpp
@@ -27,12 +36,15 @@ In another shell, with `GGUF` pointing to the same file:
 python3 experiments/write_skew/run.py --model "$GGUF" --llama-commit 0ce7f213b0749fa4dee4e87d8ae7bf63e621c1ad
 python3 experiments/write_skew/analyze.py --self-test
 python3 experiments/write_skew/analyze.py
+python3 experiments/write_skew/audit.py
 ```
 
 `run.json` records keys, slots, queue labels, verified positions, six
 conditional log probabilities per read, the token budget, and elapsed wall
 time. Subset index is a three-bit mask in candidate slot order; 0 is shared
 and 7 is fully active. `summary.json` records paired store effects and
-store-bootstrap intervals. The figure and paper tables can be regenerated
+store-bootstrap intervals. `binding_audit.json` records the post hoc
+token-matched removal of the old key in the all-inactive arm, using the primary
+wording only. The figure and paper tables can be regenerated
 without model inference. Minor floating-point differences across CPU builds
 are possible.

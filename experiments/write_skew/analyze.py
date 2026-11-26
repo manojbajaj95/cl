@@ -75,6 +75,10 @@ def evaluate(store, wording, arm, count, by_rival):
         margins=fixed.tolist(),
         all_rival_min=cube.min(axis=1).tolist(),
         rival=int(RIVALS[ref] + 1),
+        full_rival=int(RIVALS[np.argmin(cube[7])] + 1),
+        pair_min=float(prediction.min()),
+        count_min=float(forecast.min()),
+        corrected_min=float(corrected.min()),
     )
 
 
@@ -85,7 +89,7 @@ def comparison(result, wording):
     n = len(result["holdout"])
     lookup = np.random.default_rng(832 + wording).integers(0, n, size=(10000, n))
     columns = {arm: {key: np.asarray([row[key] for row in rows])
-                     for key in rows[0] if key not in {"seed", "rival"}}
+                     for key in rows[0] if key not in {"seed", "rival", "full_rival"}}
                for arm, rows in data.items()}
 
     def paired_ci(a):
