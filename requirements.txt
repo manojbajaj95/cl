@@ -1,0 +1,5 @@
+numpy
+matplotlib
+mujoco==3.17.0
+pytest
+pypdfium2
