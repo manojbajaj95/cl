@@ -1,0 +1,89 @@
+\section{Experiments}
+\label{sec:results}
+
+Each of 32 seeded streams contains 16 independent boards. Twelve receive
+the upgrade and four keep their old solver. Each board has a uniform random
+goal and residue, and a random row order fixed across policies. We label
+every state crossed with $+1,+3,-2,+25$, including the goal state.
+The always-illegal $+25$ gives an explicit invalid family in addition to
+out-of-bounds cases of the other moves. The primary release adds $+6$;
+the secondary release instead adds $-5$ to the same paired boards.
+Each cap is applied independently per upgraded board. A guard lookup,
+rerun of a legality check, or attempted continuation move costs one
+operation; no method can charge a partially finished row as refreshed.
+The outcome is exact joint labels, not reward accuracy on solver outputs.
+
+\paragraph{Positive control.}
+The independent labeler expands reached-state sets forward, rather than
+memoizing backward reachability. All three refresh arms match it on all
+1,536 arm--board checks for each release when the cap is removed, including
+unreleased boards. Freezing the store leaves 1,429 of 36,864 upgraded rows
+wrong after release A (3.88\%) and 2,497 wrong after release B (6.77\%).
+The primary release therefore exceeds the required 1-point stale-label
+error before testing any proposed improvement.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Bypassing the guard uses more of the cap for continuation work.}
+Release A, primary cap of 96 operations per upgraded board. Exact joint
+accuracy is a mean with 95\% marginal $t$ intervals over 32 streams; work
+columns are means per upgraded board. Paired contrasts are given in text.}
+\label{tab:primary}
+\begin{tabular}{lrrrrr}
+\toprule
+Policy & Exact (\%) $\uparrow$ & Total & Guard & Validity & Continuation \\
+\midrule
+\csname @@input\endcsname table_accuracy.tex
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Primary test.}
+At 96 operations per upgraded board, guarded split refresh gains
+0.019 percentage points over whole-label refresh (97.5\% paired
+interval: 0.001 to 0.037), but loses 0.366 points to memoized PAV
+(\(-0.492\) to \(-0.241\)). These are the preregistered two-sided
+intervals, giving 95\% familywise coverage by Bonferroni. Both upper
+bounds fall below the required 2-point gain. This is not an inability to
+resolve a noisy tie: the interval against memoized PAV lies entirely below
+zero, and even the upper bound against whole-label refresh is close to zero
+relative to the decision threshold.
+
+\paragraph{Retention.}
+At the primary cap, all four policies retained all 12,288 unchanged rows,
+all 15,360 invalid rows across both upgraded and unchanged boards, and all
+3,072 unchanged statewise weak orderings, including ties.
+All 986 strict detours (unchanged rows with $P_1=-1$) retained their old
+label exactly. These are intended invariances: the release does not touch task
+legality or the solver on those boards. They check for collateral damage to
+the label store, not generalization of a learned verifier.
+
+\subsection{Where did the budget go?}
+\label{sec:diagnostic}
+
+Both guards mark 9,298 rows as potentially stale, 36.7\% of the legal
+rows on upgraded boards. They cover all actual changes, but only 15.4\%
+of flags correspond to changed labels in release A and 26.9\% in B.
+The guard detects access to a new move rather than a change in reachability,
+and progress can stay the same even when a reachability term changes.
+Guard charges at the primary cap cost split refresh 8.76 operations per
+board on average, while whole-label refresh spent just 2.24 on legality.
+The gain from skipping that check is small in an arithmetic grammar; the
+unguarded baseline spends almost all available work on shared continuation
+queries instead (\cref{tab:primary}).
+
+At the 384-operation cap in release A, guarded split refresh and memoized
+recomputation both recover every joint label and spend the same 180.18
+mean continuation attempts. The guarded version spends 66 more operations
+per board, exactly one lookup per legal row. This does not imply pruning
+can never save search. In this store, unflagged rows did not add to the
+aggregate continuation work once queries were shared, so pruning those
+rows did not save enough work to amortize the guard.
+
+\paragraph{Second release.}
+The negative move creates more stale labels but does not reverse the
+comparison at the primary cap: split leads whole-label refresh by 0.016
+points and trails memoized recomputation by 0.060 points. At the largest
+cap split and memoized recomputation reach exact labels while whole
+remains at 99.82\%. These comparisons are descriptive, not a second
+promotion test. \Cref{fig:cap} shows the complete budget sweep.
