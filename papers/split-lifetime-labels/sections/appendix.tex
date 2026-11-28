@@ -1,0 +1,48 @@
+\section{Reproduction details}
+\label{app:details}
+
+The test uses CPU-only Python 3.10.12, NumPy 2.2.6 with PCG64 seeds 0--31,
+and SciPy 1.15.3. There are no trainable parameters or fitting steps.
+The saved run took about seven seconds on an Intel Xeon VM across both
+releases, all caps and arms, and the independent oracle checks.
+From the repository root, run:
+\begin{verbatim}
+cd experiments/split-lifetime-labels
+python -m unittest -v
+python run.py
+cd ../../papers/split-lifetime-labels
+python plot.py
+latexmk -pdf -interaction=nonstopmode -halt-on-error paper.tex
+\end{verbatim}
+The protocol was committed before the first run
+(\href{https://github.com/manojbajaj95/cl/commit/e95e61a}{\texttt{e95e61a}}).
+The runner writes one record for each seed per release, preserves all
+retention and work counts, and reports the decision computed from the
+two prespecified paired contrasts. Stream-level estimates first average
+over boards within each stream. Since their board and row counts are
+equal, this gives the same point estimate as pooling rows but uses
+streams, not pooled rows, as replicates for the intervals.
+
+\paragraph{Cached state and cost scope.}
+All arms may retain the 96 baseline rows, each containing validity and
+an optional signed progress bit of information, and the $6\times24$
+Boolean v1 reachability table. The Python code represents them as
+lists and tuples; Python object sizes are not treated as transmission
+costs. The guard is a 96-byte payload per board. The temporary v2
+memo is keyed by the remaining horizon and integer state, with at most
+$5\times24$ entries. Old-cache construction, fixed indexing, and
+in-memory row writes are excluded from the work-unit budget and both
+check and continuation attempts are charged the same. These choices
+favor the guarded policies insofar as they also need extra v1 mask
+compilation. No wall-clock superiority is
+inferred from the operation comparisons.
+
+\paragraph{Two ways to compute reachability.}
+The recomputation queries $V_v^h(x)$ recursively, using the previous
+value immediately when $h=0$ or the cell was true at v1. Otherwise it
+tries old moves in the order $+1,+3,-2$, then the new move where
+eligible, memoizing each completed cell. The oracle instead starts
+with $\{x\}$, unions in every state reachable by one move at each
+iteration, and checks goal membership after $h$ iterations; it uses
+neither v1 reuse nor the guard. Budget exhaustion leaves the current
+row unchanged and stops the upgrade work for the board.

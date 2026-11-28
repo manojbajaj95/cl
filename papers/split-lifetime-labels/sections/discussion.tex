@@ -1,0 +1,44 @@
+\section{Related work}
+
+\paragraph{What a step label means.}
+Process supervision uses judgments of intermediate steps rather than
+only grading final answers~\citep{lightman2023verify}. Rewarding Progress
+defines progress by a separate prover's change in success
+probability~\citep{setlur2024rewarding}. Our bounded reachability
+label is a deterministic analogue; we ask how to maintain that label
+when the prover changes, not whether training on progress improves
+reasoning. Keeping validity and progress separate is compatible with
+that baseline and is not by itself evidence for a guard.
+
+\paragraph{Maintaining answers after a release.}
+Incremental path algorithms address what to recompute after a graph
+update~\citep{ramalingam1996incremental}. Our mask is more limited: it
+certifies that a row cannot change under an additive release with a
+specified source class, without maintaining paths or reverse dependencies.
+The memoized PAV baseline is intentionally simpler than a fully
+incremental graph algorithm. The test asks whether the row certificate
+adds value even against this relatively cheap alternative.
+
+\section{Conclusion}
+
+Separating legality from progress describes the arithmetic verifier
+correctly, but it does not establish a useful expiration primitive.
+The guard catches every changed label, yet spends budget on many rows
+whose labels stay correct. Exact progress recomputation from a shared
+cache makes better use of the same budget on the primary release;
+whole-label refresh is only marginally behind the split variant.
+We do not promote split expiry on this evidence.
+
+The experiment assumes known additive solver edits, fixed step legality
+and perfect legality checks that are cheap to repeat; the retention
+slice deliberately does not change. The test bounds usefulness in this
+finite setting, not in language-model systems whose checks may rely on
+expensive tools or whose continuation policies cannot be enumerated.
+For a guard to be worth testing there, it should have measurable
+precision, and the search it saves must exceed guard cost after
+cross-row memoization. Changes that remove continuations or change
+the grammar would also require a different soundness argument.
+
+The preregistration, runner, tests and per-stream results are in the
+repository's experiment directory; the plot and table can be regenerated
+from the saved results without rerunning the pilot.

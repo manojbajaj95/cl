@@ -1,0 +1,47 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+\usepackage[capitalize,noabbrev]{cleveref}
+
+\newtheorem{proposition}{Proposition}
+\title{\textbf{When Should a Process Label Expire?}}
+\author{Manoj Bajaj}
+\date{}
+\hypersetup{pdftitle={When Should a Process Label Expire?},pdfauthor={Manoj Bajaj}}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Process verifiers can score an intermediate step for both legal execution and progress toward a solution.
+A solver upgrade can change progress without changing legality, suggesting that the two fields should expire independently.
+We preregistered an equal-budget test on 32 streams of bounded arithmetic puzzles, where a solver gains a continuation move and stale progress labels can be checked against exact enumeration.
+At 96 operations per upgraded board, retaining legality and selectively refreshing progress improved exact joint-label accuracy by 0.02 percentage points over whole-label refresh (97.5\% paired interval: 0.001 to 0.037), but lost 0.37 points to memoized progress recomputation (\(-0.492\) to \(-0.241\)).
+Both comparisons miss the 2-point promotion bar; all methods retained exact labels on unchanged boards.
+The result separates the semantic case for two fields from the computational case for a separate expiration guard: in this finite setting, memoization was more useful than the guard.
+\end{abstract}
+
+\input{sections/intro}
+\input{sections/method}
+\input{sections/results}
+\input{sections/discussion}
+
+\section*{AI use}
+Idea selection was mixed: Manoj Bajaj directed the research program and its idea pool; Devin (Cognition AI) selected and operationalized the card for this study.
+Devin conducted the literature check, designed and ran the experiments, analyzed the results, and wrote and typeset the paper, without a separate human review of the PDF.
+
+\bibliographystyle{plainnat}
+\setlength{\bibsep}{2pt}
+\bibliography{references}
+\clearpage
+\appendix
+\input{sections/appendix}
+\end{document}
